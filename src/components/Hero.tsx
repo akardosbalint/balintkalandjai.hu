@@ -53,7 +53,7 @@ import SubscribeForm from "./SubscribeForm";
  */
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 const activeSubheadline =
-  "Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök Rishikeshben, hogy Yoga Alliance-hitelesített jógaoktató legyek, és élőben dokumentálom az egészet — napi egy TikTok-videóval és heti egy őszinte levéllel.";
+  "Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga szövetség által akkreditált jógaoktatóvá váljak, és élőben dokumentálom az egészet — napi egy TikTok-videóval és heti egy őszinte levéllel.";
 
 export default function Hero() {
   return (
