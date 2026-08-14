@@ -39,10 +39,10 @@ export default function Story() {
         >
           {/* MINTA: sok minden, semmi nem tapadt meg */}
           <p>
-            Voltam már sales support associate egy multinál a UK piacra,
-            KKV-marketinges, adománygyűjtő, jótékonysági vacsorák
-            szervezője, egy gyerekalapítvány kuratóriumi elnöke. Dolgoztam
-            kereskedelemben is (Tesco). Végigjártam a konyhai ranglétrát
+            Voltam már értékesítéstámogatási munkatárs egy multinál, a
+            brit piacra, KKV-marketinges, adománygyűjtő, jótékonysági
+            vacsorák szervezője, egy gyerekalapítvány kuratóriumi elnöke,
+            dolgoztam kereskedelemben is. Végigjártam a konyhai ranglétrát
             mosogatótól konyhafőnökig, voltam magánszakács, sofőr,
             raktáros, podcaster, egyszer még szinkronszínésznek is
             jelentkeztem. Építettem sárból házat Marokkóban, és vigyáztam
