@@ -81,10 +81,11 @@ export default function Story() {
             mellett tényleg kitartottam.
           </p>
 
-          {/* FORDULÓPONT: nehéz nyár, sürgősségi beszélgetés a tanítóval */}
+          {/* FORDULÓPONT: nehéz nyár, sürgősségi beszélgetés az egyik oktatóval */}
           <p>
             Idén nyáron egy szakítás után nagyon mély pontra kerültem —
-            annyira, hogy sürgősségi beszélgetést kértem a tanítómtól. Ott
+            annyira, hogy sürgősségi beszélgetést kértem az egyik
+            oktatómtól. Ott
             vált világossá: nekem egy dolgot kell találnom, amibe legalább
             egy évig bele tudok állni. És hogy semmi nem érdekel igazán,
             ami nem az emberi tudat fejlődéséről szól.
@@ -92,7 +93,7 @@ export default function Story() {
 
           {/* DÖNTÉS: miért pont a jóga */}
           <p>
-            A jóga a legközelebbi rokona annak, amit már bizonyítottan
+            A jóga elvei a kertszomszédjai annak, amit már bizonyítottan
             napi szinten képes vagyok gyakorolni — plusz ott volt egy 10
             évvel ezelőtti első jógaóra emléke, és egy barátom indiai
             tapasztalata is. Szóval eldöntöttem: elmegyek Indiába, és a
