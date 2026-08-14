@@ -42,7 +42,7 @@ export default function StickyMobileCTA() {
             onClick={scrollToForm}
             className="w-full rounded-full bg-forest-800 px-6 py-3.5 font-medium text-sand-50 shadow-lg transition hover:bg-forest-900"
           >
-            Feliratkozom a heti levélre
+            Gyere, tarts velem
           </button>
         </motion.div>
       )}

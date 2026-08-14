@@ -17,12 +17,18 @@ const inter = Inter({
   display: "swap",
 });
 
+// META TITLE / DESCRIPTION — SEO + social share preview.
+// Szándékosan nyers, nem "jóga hírlevél feliratkozás" sablon szöveg —
+// ugyanaz a hang, mint a hero-ban.
+const pageTitle =
+  "31 évesen még mindig nem tudom, mi legyek — de most élőben keresem";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: `${siteConfig.brandName} — heti levél Rishikeshből`,
+  title: pageTitle,
   description: siteConfig.description,
   openGraph: {
-    title: `${siteConfig.brandName} — heti levél Rishikeshből`,
+    title: pageTitle,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.brandName,
@@ -31,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.brandName} — heti levél Rishikeshből`,
+    title: pageTitle,
     description: siteConfig.description,
   },
 };

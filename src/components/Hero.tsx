@@ -6,29 +6,44 @@ import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
 
 /**
- * A/B TESZTELHETŐ HEADLINE VARIÁCIÓK
- * -----------------------------------
- * A jelenleg aktív verzió az A. Ha A/B tesztelnél, cseréld ki az
- * `activeHeadline`-t az alábbiak közül egyre, vagy köss be egy
- * feature-flag / query param alapú választást.
+ * HERO — headline + subheadline A/B variációk
+ * ---------------------------------------------
+ * A jelenleg aktív verzió az A. Csere: írd át az `activeHeadline` /
+ * `activeSubheadline` konstansokat, vagy köss be egy feature-flag /
+ * query param alapú választást.
  *
- * A) "Amíg te ezt olvasod, én épp a Himalája lábánál tanulok jógát
- *     tanítani." — a legszemélyesebb, "most történik" érzetű nyitás.
+ * Közös elv mind az 5 verzióban: nem "iratkozz fel a hírlevélre" a
+ * keret, hanem "gyere, kövesd végig, ahogy élőben keresem a
+ * válaszokat" — lásd a copywriting-elveket a repo README-jében.
  *
- * B) "58 nap, 500 óra, és egy csomó dolog, amit szeretnék elmesélni
- *     neked." — konkrét számok, kíváncsiságot keltő listajelleg.
+ * A) "31 éves vagyok. Voltam már szinte minden — csak akasztott ember
+ *     nem. Idén nyáron eldöntöttem, hogy ennek vége."
+ *     — a legnyersebb, önironikus nyitás; a "shiny object syndrome"
+ *     mintát mondja ki azonnal, majd a fordulat a subheadline-ban jön.
  *
- * C) "Nem egy újabb jóga-hírlevél. Egy heti levél arról, mit tanulok
- *     éppen most, Rishikeshben." — differenciáló, kimondja mi NEM ez.
+ * B) "Voltam multis üzletkötő, konyhafőnök, magánsofőr, adománygyűjtő,
+ *     alapítványi kuratóriumi elnök, podcaster, majdnem szinkron-
+ *     színész. Egy dolog kivételével semmi nem tartott ki."
+ *     — konkrét lista-headline, a mennyiség önmagában hitelesít.
  *
- * D) "Van egy történetem, ami épp most íródik Indiában — ha kíváncsi
- *     vagy a folytatásra, minden héten elküldöm." — sorozat-érzetet
- *     erősítő, "iratkozz fel a folytatásra" logika.
+ * C) "Idén nyáron összetörtem. Aztán rájöttem, hogy 31 évig semmi nem
+ *     tartott ki bennem — egy dolgot kivéve."
+ *     — a legérzelmesebb nyitás, a törésre épít (finoman, klinikai
+ *     részletek nélkül).
+ *
+ * D) "Se nem guru, se nem coach vagyok — csak egy 31 éves pasi, aki
+ *     épp most próbálja kitalálni, mihez tudna végre hűséges maradni."
+ *     — direkt pozicionálás a "nincsenek válaszaim" keretre.
+ *
+ * E) "Kipróbáltam majdnem mindent: multis sales-t, éttermi konyhát,
+ *     adománygyűjtést, alapítványi kuratóriumot, podcastot, szinkront.
+ *     3.5 éve van egy dolog, ami mellett mégis kitartottam."
+ *     — a csavart (ECO) emeli be már a headline-ba, bizonyítékként.
  */
 const activeHeadline =
-  "Amíg te ezt olvasod, én épp a Himalája lábánál tanulok jógát tanítani.";
+  "31 éves vagyok. Voltam már szinte minden — csak akasztott ember nem. Idén nyáron eldöntöttem, hogy ennek vége.";
 const activeSubheadline =
-  "És minden héten megírom, mit tanultam — egy mély, személyes levél, nem napi apróhirdetés.";
+  "58 napja Rishikeshben tanulok jógát tanítani, mert ez az első dolog 3.5 év óta, amiről tudom, hogy ki tudok tartani mellette. Nincsenek válaszaim — csak napi TikTok-videóim és heti egy őszinte levelem, amiben veled együtt keresem őket.";
 
 export default function Hero() {
   return (
@@ -42,7 +57,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-forest-800/15 bg-white/50 px-4 py-1.5 text-sm text-forest-800 backdrop-blur-sm"
         >
-          Rishikesh, India · 58 napos, 500 órás jógaoktatói képzés
+          Rishikesh, India · 58 nap · 500 óra · napi 1 TikTok · heti 1 levél
         </motion.p>
 
         <motion.h1

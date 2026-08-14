@@ -5,9 +5,12 @@
 export const siteConfig = {
   brandName: "Tudatosság és Jelenlét",
   ownerName: "Bálint",
+  ownerFullName: "Kardos Bálint",
   url: "https://tudatossagesjelenlet.hu",
+  // Nyers, nem sablon meta description — lásd app/layout.tsx a teljes
+  // hangnemért (SEO + social share preview szöveg).
   description:
-    "Heti egy őszinte levél Bálint 58 napos indiai jógaoktatói képzéséről — Rishikeshből, a Himalája lábától.",
+    "31 éves vagyok, kipróbáltam már szinte mindent, és semmi nem tartott ki — egy dolgot kivéve. Most Indiában tanulok jógát tanítani, nyilvánosan, szűretlenül. Nincsenek válaszaim. Gyere, keressük együtt.",
   social: {
     instagram: "https://instagram.com/",
     tiktok: "https://tiktok.com/@",

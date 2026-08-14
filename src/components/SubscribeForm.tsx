@@ -13,7 +13,7 @@ interface SubscribeFormProps {
 
 export default function SubscribeForm({
   id,
-  ctaLabel = "Feliratkozom a levelekre",
+  ctaLabel = "Gyere, tarts velem",
 }: SubscribeFormProps) {
   const uid = useId();
   const [email, setEmail] = useState("");
@@ -111,8 +111,8 @@ export default function SubscribeForm({
           Nézd meg a bejövő leveleid
         </p>
         <p className="max-w-sm text-ink-900/70">
-          Küldtünk egy megerősítő emailt — kattints rá, és jöhet az első
-          levél Rishikeshből.
+          Küldtünk egy megerősítő emailt — kattints rá, és onnantól veled
+          tartok, minden héten, Rishikeshből.
         </p>
       </div>
     );
@@ -202,7 +202,8 @@ export default function SubscribeForm({
       </AnimatePresence>
 
       <p className="mt-3 text-xs text-ink-900/50">
-        Heti 1 levél. Semmi spam. Bármikor egy kattintással leiratkozhatsz.
+        Heti 1 levél. Nulla spam, nulla guru-duma. Bármikor egy kattintással
+        leiratkozhatsz.
       </p>
     </form>
   );

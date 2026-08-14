@@ -1,25 +1,32 @@
 import AnimatedSection from "./AnimatedSection";
 
+/**
+ * MIT KAPSZ — konkrét, kézzelfogható ígéretek
+ * -----------------------------------------------
+ * Elv: konkrétum az absztrakció helyett. Nincs "mély átalakulás" vagy
+ * "megtalálod önmagad" típusú homályos ígéret — helyette pontosan az,
+ * amit ténylegesen kapsz, hétről hétre.
+ */
 const items = [
   {
-    title: "Heti egy mély levél, nem napi apróhirdetés",
+    title: "Heti 1 levél, nem napi optimizmus-adag",
     description:
-      "Minden héten egy hosszabb, személyes reflexió arról, mit tanultam épp aznap vagy azon a héten — nem összefoglaló, hanem történet.",
+      "A napi TikTok a highlight reel. A heti levél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
   },
   {
-    title: "Őszinte kulisszák, nem highlight reel",
+    title: "Nulla szűrés, nulla guru-pózolás",
     description:
-      "A nehéz napok, a kétségek, a „minek csinálom ezt” pillanatok is benne lesznek — nem csak a szép naplementés fotók pillanata.",
+      "Nem azt fogom írni, hogy „megtaláltam magam”. Lehet, hogy három hét múlva kiderül, tévedtem valamiben — azt is megírom, nem csak a szép részeket.",
   },
   {
-    title: "Elsőbbség az élménybeszámoló eseményhez",
+    title: "Elsőbbség, amikor hazaérek",
     description:
-      "Amikor hazaérek novemberben, elsők között kapsz meghívót egy ingyenes, élő beszámolóra arról, mi történt ez alatt az 58 nap alatt.",
+      "Novemberben, amikor visszaérek Magyarországra, a levelezőlistám kapja meg elsőként a meghívót egy ingyenes, élő beszámolóra arról, mi történt ez alatt az 58 nap alatt.",
   },
   {
     title: "Korai hely az újévi elvonuláson és a programon",
     description:
-      "A feliratkozók kapják meg elsőként a részleteket a „Tudatosság és Jelenlét” újévi elvonulásról, és a 12+1 hetes programról, ami utána indul.",
+      "Ha rezonál veled, amit csinálok, itt kapod meg elsőként a részleteket a januári „Tudatosság és Jelenlét” elvonulásról, és a 12+1 hetes programról, ami utána indul.",
   },
 ];
 

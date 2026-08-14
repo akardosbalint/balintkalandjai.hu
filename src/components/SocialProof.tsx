@@ -2,30 +2,29 @@ import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
 
 /**
- * PLACEHOLDER TARTALOM
- * ---------------------
- * Ezeket a kártyákat cseréld le valódi visszajelzésekre, amint
- * összegyűlnek — a meditációs kör tagjaitól, a karitatív vacsorák
- * résztvevőitől, vagy a hírlevél első olvasóitól.
+ * FOLYAMAT-BIZONYÍTÉK — nem hamis "sikertörténet" placeholder
+ * -----------------------------------------------------------------
+ * Mivel még nincs valós social proof, a keret NEM "mások már
+ * kipróbálták és imádták" hazug placeholder, hanem "kövesd a
+ * folyamatot, és dönts magad" — ami pontosan illik a "nincsenek
+ * válaszaim, élőben keresem" pozicionáláshoz. A kártyák azt mutatják
+ * be, MIT láthatsz élőben, nem azt, hogy kik dicsérték már.
  */
-const quotes = [
+const proofPoints = [
   {
-    quote:
-      "„Ide teszünk majd egy valódi mondatot valakitől, aki részt vett Bálint meditációs körén vagy karitatív vacsoráján.”",
-    name: "Helyőrző név",
-    context: "Energy of Consciousness közösség",
+    title: "58 nap, napi bejelentkezés",
+    description:
+      "Minden nap kirakok egy TikTok-videót Rishikeshből — nem szerkesztett, nem kihegyezett tartalom, hanem az, ami aznap tényleg történt.",
   },
   {
-    quote:
-      "„Ide kerül majd egy visszajelzés valakitől, aki már olvassa a heti leveleket Indiából.”",
-    name: "Helyőrző név",
-    context: "hírlevél-olvasó",
+    title: "Heti levél, szűretlenül",
+    description:
+      "Amit nem mondok el 60 másodpercben, azt megírom hosszabban, hétvégenként — a kétségekkel, a rossz napokkal együtt, nem csak a jókkal.",
   },
   {
-    quote:
-      "„Ide illeszthető egy mondat egy korábbi résztvevőtől, aki hitelesíti, hogy Bálint nem csak beszél a jelenlétről, hanem éli is.”",
-    name: "Helyőrző név",
-    context: "korábbi program résztvevője",
+    title: "Egy történet, ami még nincs lezárva",
+    description:
+      "Nem utólag elmesélt sikertörténet ez. Élőben zajlik, és nem tudom, hova fut ki. Te is végignézheted, ahogy én — időben, valós időben.",
   },
 ];
 
@@ -37,28 +36,30 @@ export default function SocialProof() {
       <div className="mx-auto max-w-5xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
           <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
-            Kiktől hallhatsz még rólam
+            Miért higgy nekem
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
-            Ez a hely a valódi történeteknek van fenntartva
+            Nincsenek idézeteim elégedett olvasóktól. Van helyette valami
+            jobb.
           </h2>
           <p className="mt-4 text-ink-900/70">
-            Ahogy gyűlnek a visszajelzések a levelekről és a korábbi
-            közösségi munkámról, ide kerülnek majd — egyelőre helyőrzőkkel.
+            Nem kérlek, hogy higgy a szavamnak. Kövesd végig a folyamatot, és
+            döntsd el magad, hogy ér-e valamit.
           </p>
         </AnimatedSection>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-3">
-          {quotes.map((q, i) => (
+          {proofPoints.map((point, i) => (
             <AnimatedSection
-              key={q.name + i}
+              key={point.title}
               delay={0.08 * i}
-              className="flex flex-col justify-between rounded-2xl border border-dashed border-forest-800/20 bg-white/40 p-7 backdrop-blur-sm"
+              className="flex flex-col justify-between rounded-2xl border border-forest-800/10 bg-white/40 p-7 backdrop-blur-sm"
             >
-              <p className="text-ink-900/70 italic">{q.quote}</p>
-              <div className="mt-6">
-                <p className="font-medium text-forest-900">{q.name}</p>
-                <p className="text-sm text-ink-900/50">{q.context}</p>
+              <div>
+                <h3 className="font-serif text-lg text-forest-900">
+                  {point.title}
+                </h3>
+                <p className="mt-3 text-ink-900/70">{point.description}</p>
               </div>
             </AnimatedSection>
           ))}
