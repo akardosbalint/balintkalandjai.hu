@@ -73,9 +73,8 @@ export default function AdatkezelesPage() {
             3. Az adatkezelés célja és jogalapja
           </h2>
           <p className="mt-2">
-            Az adatkezelés célja a heti hírlevél, valamint az abban
-            hirdetett események (élménybeszámoló, elvonulás, program)
-            kapcsán történő kapcsolattartás. Az adatkezelés jogalapja a
+            Az adatkezelés célja a heti hírlevél, valamint az azzal
+            kapcsolatos tartalmak kiküldése. Az adatkezelés jogalapja a
             GDPR 6. cikk (1) bekezdés a) pontja szerinti önkéntes
             hozzájárulásod, amelyet a feliratkozáskor a checkbox
             bejelölésével és a megerősítő emailben (double opt-in) adsz meg.

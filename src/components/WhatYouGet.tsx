@@ -19,14 +19,14 @@ const items = [
       "Nem azt fogom írni, hogy „megtaláltam magam”. Lehet, hogy három hét múlva kiderül, tévedtem valamiben — azt is megírom, nem csak a szép részeket.",
   },
   {
-    title: "Elsőbbség, amikor hazaérek",
+    title: "Amit egy 60 másodperces videóban nem lehet elmondani",
     description:
-      "Novemberben, amikor visszaérek Magyarországra, a levelezőlistám kapja meg elsőként a meghívót egy ingyenes, élő beszámolóra arról, mi történt ez alatt az 58 nap alatt.",
+      "A heti levélben visszamegyek a napi TikTok mögé: mit jelentett valójában az az órányi Hatha, Ashtanga vagy pranayama gyakorlat, és mihez kezdek azzal, amit aznap megtanultam.",
   },
   {
-    title: "Korai hely az újévi elvonuláson és a programon",
+    title: "Élő, lezáratlan gondolkodás",
     description:
-      "Ha rezonál veled, amit csinálok, itt kapod meg elsőként a részleteket a januári „Tudatosság és Jelenlét” elvonulásról, és a 12+1 hetes programról, ami utána indul.",
+      "Nem utólag összerakott, szép ívű történetet kapsz. Minden levélben ott vannak a nyitott kérdések is: mit nem tudok még eldönteni, hol bizonytalanodom el, mit csinálnék most másképp.",
   },
 ];
 
