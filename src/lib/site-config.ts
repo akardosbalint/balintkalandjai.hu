@@ -10,7 +10,7 @@ export const siteConfig = {
   // Nyers, nem sablon meta description — lásd app/layout.tsx a teljes
   // hangnemért (SEO + social share preview szöveg).
   description:
-    "31 éves vagyok, kipróbáltam már szinte mindent, és semmi nem tartott ki — egy dolgot kivéve. Most Indiában tanulok jógát tanítani, nyilvánosan, szűretlenül. Nincsenek válaszaim. Gyere, keressük együtt.",
+    "31 éven át lemaradtam a saját életemről. Most 58 napra Indiába megyek jógát tanulni, nyilvánosan, szűretlenül dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
   social: {
     instagram: "https://instagram.com/",
     tiktok: "https://tiktok.com/@",

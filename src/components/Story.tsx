@@ -77,12 +77,12 @@ export default function Story() {
 
           {/* KERET: nincsenek válaszaim, nyilvánosan keresem, gyere velem */}
           <p>
-            Most itt vagyok: 58 napos, 500 órás jógaoktatói képzésen,
-            Rishikeshben. Nincsenek válaszaim — csak napi egy
-            TikTok-videóm és heti egy hosszú, őszinte levelem arról, amit
-            aznap találtam ki, vagy amiben épp elakadtam. Nyilvánosan
-            csinálom, hogy legyen, aki számon kérje rajtam, ha megint
-            kicsúszna a kezemből. Gyere, nézd végig velem.
+            A terv: 58 nap, 500 óra, jógaoktatói képzés Rishikeshben.
+            Nincsenek válaszaim — csak napi egy TikTok-videóval és heti egy
+            hosszú, őszinte levéllel dokumentálom majd, amit aznap találok
+            ki, vagy amiben épp elakadok. Nyilvánosan csinálom, hogy legyen,
+            aki számon kérje rajtam, ha megint kicsúszna a kezemből. Gyere,
+            nézd végig velem.
           </p>
         </AnimatedSection>
       </div>

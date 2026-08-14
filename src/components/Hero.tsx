@@ -8,13 +8,24 @@ import SubscribeForm from "./SubscribeForm";
 /**
  * HERO — headline + subheadline A/B variációk
  * ---------------------------------------------
- * A jelenleg aktív verzió az A. Csere: írd át az `activeHeadline` /
+ * A jelenleg aktív verzió az F. Csere: írd át az `activeHeadline` /
  * `activeSubheadline` konstansokat, vagy köss be egy feature-flag /
  * query param alapú választást.
  *
- * Közös elv mind az 5 verzióban: nem "iratkozz fel a hírlevélre" a
+ * Közös elv minden verzióban: nem "iratkozz fel a hírlevélre" a
  * keret, hanem "gyere, kövesd végig, ahogy élőben keresem a
  * válaszokat" — lásd a copywriting-elveket a repo README-jében.
+ *
+ * IDŐBELISÉG — FONTOS: a képzés 2026. okt. 1-jén indul, tehát amíg a
+ * tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy már ott
+ * van, vagy hogy már eltelt X nap ("58 napja Rishikeshben..." HIBÁS).
+ * Jelen idő használható (pl. "58 napot töltök Rishikeshben"), de
+ * csak terv/időtartam leírásaként, nem eltelt idő állításaként.
+ *
+ * F) "31 éven keresztül lemaradtam a saját életemről."
+ *     — a jelenleg aktív verzió. Nem magyarázatot ad (mint az A: a
+ *     "shiny object syndrome" minta), hanem egyenesen az érzést
+ *     mondja ki, amiben ez a minta gyökerezik — ezért erősebb hook.
  *
  * A) "31 éves vagyok. Voltam már szinte minden — csak akasztott ember
  *     nem. Idén nyáron eldöntöttem, hogy ennek vége."
@@ -40,10 +51,9 @@ import SubscribeForm from "./SubscribeForm";
  *     3.5 éve van egy dolog, ami mellett mégis kitartottam."
  *     — a csavart (ECO) emeli be már a headline-ba, bizonyítékként.
  */
-const activeHeadline =
-  "31 éves vagyok. Voltam már szinte minden — csak akasztott ember nem. Idén nyáron eldöntöttem, hogy ennek vége.";
+const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 const activeSubheadline =
-  "58 napja Rishikeshben tanulok jógát tanítani, mert ez az első dolog 3.5 év óta, amiről tudom, hogy ki tudok tartani mellette. Nincsenek válaszaim — csak napi TikTok-videóim és heti egy őszinte levelem, amiben veled együtt keresem őket.";
+  "Idén nyáron eldöntöttem, hogy ennek vége. 58 napot töltök Rishikeshben, jógaoktatónak tanulok, és élőben dokumentálom, ahogy megpróbálok végre beérni saját magamhoz — napi egy TikTok-videóval és heti egy őszinte levéllel.";
 
 export default function Hero() {
   return (

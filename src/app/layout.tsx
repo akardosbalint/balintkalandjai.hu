@@ -21,7 +21,7 @@ const inter = Inter({
 // Szándékosan nyers, nem "jóga hírlevél feliratkozás" sablon szöveg —
 // ugyanaz a hang, mint a hero-ban.
 const pageTitle =
-  "31 évesen még mindig nem tudom, mi legyek — de most élőben keresem";
+  "31 éven keresztül lemaradtam a saját életemről — most utánajárok, miért";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
