@@ -39,13 +39,16 @@ export default function Story() {
         >
           {/* MINTA: sok minden, semmi nem tapadt meg */}
           <p>
-            Voltam már multis üzletkötő, KKV-marketinges, adománygyűjtő,
-            jótékonysági vacsorák szervezője, egy gyerekalapítvány
-            kuratóriumi elnöke. Végigjártam a konyhai ranglétrát
+            Voltam már sales support associate egy multinál a UK piacra,
+            KKV-marketinges, adománygyűjtő, jótékonysági vacsorák
+            szervezője, egy gyerekalapítvány kuratóriumi elnöke. Dolgoztam
+            kereskedelemben is (Tesco). Végigjártam a konyhai ranglétrát
             mosogatótól konyhafőnökig, voltam magánszakács, sofőr,
             raktáros, podcaster, egyszer még szinkronszínésznek is
-            jelentkeztem. Gyerekként somogyi kukoricaföldön és megyei
-            gyárban dolgoztam. Ha létezik tankönyvi példa a{" "}
+            jelentkeztem. Építettem sárból házat Marokkóban, és vigyáztam
+            macskákra „hivatásszerűen” több országban is. Gyerekként
+            somogyi kukoricaföldön és megyei gyárban dolgoztam. Ha létezik
+            tankönyvi példa a{" "}
             <Term
               definition={
                 <>

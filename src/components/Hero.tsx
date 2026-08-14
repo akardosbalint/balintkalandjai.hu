@@ -57,8 +57,7 @@ const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
 // lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga
 // szövetség által akkreditált, RYT-500 minősítésű jógaoktatóvá
-// váljak, és élőben dokumentálom az egészet — napi egy TikTok-
-// videóval és heti egy őszinte levéllel."
+// váljak, és élőben dokumentálom az egészet."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
 // magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
 // kifejezésekhez (telefonon is elérhető, nem csak hoverre).
@@ -112,8 +111,7 @@ export default function Hero() {
           >
             RYT-500
           </Term>{" "}
-          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egészet
-          — napi egy TikTok-videóval és heti egy őszinte levéllel.
+          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egészet.
         </motion.p>
 
         <div className="flex w-full justify-center">
