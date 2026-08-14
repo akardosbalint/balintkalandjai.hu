@@ -47,9 +47,8 @@ export default function Story() {
             raktáros, podcaster, egyszer még szinkronszínésznek is
             jelentkeztem. Építettem sárból házat Marokkóban, és vigyáztam
             macskákra „hivatásszerűen” több országban is. Diákként
-            dolgoztam somogyi kukoricaföldön. És a megyei gyárakban is. Ha
-            létezik
-            tankönyvi példa a{" "}
+            dolgoztam somogyi kukoricaföldeken. És a megyei gyárakban is. Ha
+            létezik tankönyvi példa a{" "}
             <Term
               definition={
                 <>
