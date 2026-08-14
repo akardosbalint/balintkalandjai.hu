@@ -14,4 +14,10 @@ export const siteConfig = {
     facebook: "https://facebook.com/",
   },
   email: "hello@tudatossagesjelenlet.hu",
+  journey: {
+    // A képzés első napja és teljes hossza — a JourneyProgress ebből számolja
+    // ki, hányadik napnál tartunk.
+    startDate: "2026-10-15",
+    totalDays: 58,
+  },
 } as const;

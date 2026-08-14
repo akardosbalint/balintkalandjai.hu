@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import JourneyProgress from "./JourneyProgress";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
 
@@ -61,6 +62,10 @@ export default function Hero() {
         >
           {activeSubheadline}
         </motion.p>
+
+        <div className="flex w-full justify-center">
+          <JourneyProgress />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
