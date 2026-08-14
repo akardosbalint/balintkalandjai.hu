@@ -17,7 +17,7 @@ export const siteConfig = {
   journey: {
     // A képzés első napja és teljes hossza — a JourneyProgress ebből számolja
     // ki, hányadik napnál tartunk.
-    startDate: "2026-10-15",
+    startDate: "2026-10-01",
     totalDays: 58,
   },
 } as const;

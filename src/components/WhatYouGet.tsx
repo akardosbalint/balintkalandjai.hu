@@ -14,7 +14,7 @@ const items = [
   {
     title: "Elsőbbség az élménybeszámoló eseményhez",
     description:
-      "Amikor hazaérek decemberben, elsők között kapsz meghívót egy ingyenes, élő beszámolóra arról, mi történt ez alatt az 58 nap alatt.",
+      "Amikor hazaérek novemberben, elsők között kapsz meghívót egy ingyenes, élő beszámolóra arról, mi történt ez alatt az 58 nap alatt.",
   },
   {
     title: "Korai hely az újévi elvonuláson és a programon",
