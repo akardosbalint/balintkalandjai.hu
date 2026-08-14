@@ -39,9 +39,9 @@ export default function Story() {
         >
           {/* MINTA: sok minden, semmi nem tapadt meg */}
           <p>
-            Voltam már értékesítéstámogatási munkatárs egy multinál, a
-            brit piacra, KKV-marketinges, adománygyűjtő, jótékonysági
-            vacsorák szervezője, egy gyerekalapítvány kuratóriumi elnöke,
+            Voltam már értékesítéstámogatási munkatárs egy multinál,
+            KKV-marketinges, adománygyűjtő, jótékonysági vacsorák
+            szervezője, egy gyerekalapítvány kuratóriumi elnöke. És
             dolgoztam kereskedelemben is. Végigjártam a konyhai ranglétrát
             mosogatótól konyhafőnökig, voltam magánszakács, sofőr,
             raktáros, podcaster, egyszer még szinkronszínésznek is
