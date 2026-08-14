@@ -82,14 +82,13 @@ export default function Story() {
             mellett tényleg kitartottam.
           </p>
 
-          {/* FORDULÓPONT: nehéz nyár, sürgősségi beszélgetés az egyik oktatóval */}
+          {/* FORDULÓPONT: nehéz nyár, sürgősségi konzultáció egy ECO oktatóval */}
           <p>
             Idén nyáron egy szakítás után nagyon mély pontra kerültem —
-            annyira, hogy sürgősségi beszélgetést kértem az egyik
-            oktatómtól. Ott
-            vált világossá: nekem egy dolgot kell találnom, amibe legalább
-            egy évig bele tudok állni. És hogy semmi nem érdekel igazán,
-            ami nem az emberi tudat fejlődéséről szól.
+            annyira, hogy sürgősségi konzultációt kértem az egyik ECO
+            oktatómtól. Ott vált világossá: nekem egy dolgot kell találnom,
+            amibe legalább egy évig bele tudok állni. És hogy semmi nem
+            érdekel igazán, ami nem az emberi tudat fejlődéséről szól.
           </p>
 
           {/* DÖNTÉS: miért pont a jóga */}
