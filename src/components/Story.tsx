@@ -1,5 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
+import Term from "./Term";
 
 /**
  * STORY — bemutatkozó narratíva (150–250 szó, ívelt mini-sztori)
@@ -44,17 +45,37 @@ export default function Story() {
             mosogatótól konyhafőnökig, voltam magánszakács, sofőr,
             raktáros, podcaster, egyszer még szinkronszínésznek is
             jelentkeztem. Gyerekként somogyi kukoricaföldön és megyei
-            gyárban dolgoztam. Ha létezik tankönyvi példa a „shiny object
-            syndrome”-ra, az én vagyok: mindig jött valami izgalmasabb, és
+            gyárban dolgoztam. Ha létezik tankönyvi példa a{" "}
+            <Term
+              definition={
+                <>
+                  A „csillogó tárgy szindróma”: amikor mindig az köt le a
+                  legjobban, ami épp új és izgalmas — a korábbi projekt meg
+                  csak úgy félbemarad.
+                </>
+              }
+            >
+              „shiny object syndrome”
+            </Term>
+            -ra, az én vagyok: mindig jött valami izgalmasabb, és
             otthagytam, amit addig csináltam.
           </p>
 
           {/* KIVÉTEL: ECO, 3.5 év */}
           <p>
             Egy dolog kivétel. 3.5 éve, minden áldott nap, kihagyás nélkül
-            gyakorlom az ECO-t (Energy of Consciousness) — egy dogma- és
-            vallásmentes önismereti technikát. Ez az egyetlen dolog az
-            életemben, ami mellett tényleg kitartottam.
+            gyakorlom az{" "}
+            <a
+              href="https://ecokozosseg.hu"
+              target="_blank"
+              rel="noreferrer"
+              className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900"
+            >
+              ECO
+            </a>
+            -t (Energy of Consciousness) — egy dogma- és vallásmentes
+            önismereti technikát. Ez az egyetlen dolog az életemben, ami
+            mellett tényleg kitartottam.
           </p>
 
           {/* FORDULÓPONT: nehéz nyár, sürgősségi beszélgetés a tanítóval */}

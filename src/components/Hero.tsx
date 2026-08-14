@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import JourneyProgress from "./JourneyProgress";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
+import Term from "./Term";
 
 /**
  * HERO — headline + subheadline A/B variációk
@@ -52,8 +53,15 @@ import SubscribeForm from "./SubscribeForm";
  *     — a csavart (ECO) emeli be már a headline-ba, bizonyítékként.
  */
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
-const activeSubheadline =
-  "Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga szövetség által akkreditált jógaoktatóvá váljak, és élőben dokumentálom az egészet — napi egy TikTok-videóval és heti egy őszinte levéllel.";
+// Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
+// magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
+// lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga
+// szövetség által akkreditált, RYT-500 minősítésű jógaoktatóvá
+// váljak, és élőben dokumentálom az egészet — napi egy TikTok-
+// videóval és heti egy őszinte levéllel."
+// A JSX-es változat lent a Term komponenssel koppintható/kattintható
+// magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
+// kifejezésekhez (telefonon is elérhető, nem csak hoverre).
 
 export default function Hero() {
   return (
@@ -76,7 +84,36 @@ export default function Hero() {
           transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
-          {activeSubheadline}
+          Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök
+          Rishikeshben, hogy a{" "}
+          <Term
+            definition={
+              <>
+                <strong className="font-medium text-forest-900">
+                  Yoga Alliance International
+                </strong>{" "}
+                — a jógaoktatói képzések legelterjedtebb nemzetközi
+                akkreditációs szervezete.
+              </>
+            }
+          >
+            nemzetközi jóga szövetség
+          </Term>{" "}
+          által akkreditált,{" "}
+          <Term
+            definition={
+              <>
+                <strong className="font-medium text-forest-900">
+                  RYT-500
+                </strong>{" "}
+                — regisztrált, 500 órás jógaoktató-képzés minősítés.
+              </>
+            }
+          >
+            RYT-500
+          </Term>{" "}
+          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egészet
+          — napi egy TikTok-videóval és heti egy őszinte levéllel.
         </motion.p>
 
         <div className="flex w-full justify-center">
