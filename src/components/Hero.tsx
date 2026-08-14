@@ -61,15 +61,6 @@ export default function Hero() {
       <OrganicBackground variant="hero" />
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-forest-800/15 bg-white/50 px-4 py-1.5 text-sm text-forest-800 backdrop-blur-sm"
-        >
-          Rishikesh, India · 58 nap · 500 óra · napi 1 TikTok · heti 1 levél
-        </motion.p>
-
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
