@@ -46,8 +46,9 @@ export default function Story() {
             mosogatótól konyhafőnökig, voltam magánszakács, sofőr,
             raktáros, podcaster, egyszer még szinkronszínésznek is
             jelentkeztem. Építettem sárból házat Marokkóban, és vigyáztam
-            macskákra „hivatásszerűen” több országban is. Gyerekként
-            somogyi kukoricaföldön és megyei gyárban dolgoztam. Ha létezik
+            macskákra „hivatásszerűen” több országban is. Diákként
+            dolgoztam somogyi kukoricaföldön. És a megyei gyárakban is. Ha
+            létezik
             tankönyvi példa a{" "}
             <Term
               definition={
