@@ -8,14 +8,8 @@ export default function Footer() {
         <p className="font-serif text-xl">{siteConfig.brandName}</p>
 
         <div className="flex gap-6 text-sm text-sand-100/70">
-          <a href={siteConfig.social.instagram} className="hover:text-sand-50" target="_blank" rel="noreferrer">
-            Instagram
-          </a>
           <a href={siteConfig.social.tiktok} className="hover:text-sand-50" target="_blank" rel="noreferrer">
             TikTok
-          </a>
-          <a href={siteConfig.social.facebook} className="hover:text-sand-50" target="_blank" rel="noreferrer">
-            Facebook
           </a>
         </div>
 
