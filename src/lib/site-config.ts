@@ -12,7 +12,7 @@ export const siteConfig = {
   description:
     "31 éven át lemaradtam a saját életemről. Most 58 napra Indiába megyek jógát tanulni, nyilvánosan, szűretlenül dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
   social: {
-    tiktok: "https://tiktok.com/@akardosbalint",
+    tiktok: "https://tiktok.com/@akardosbalint.hu",
   },
   email: "balint@akardosbalint.hu",
   // Az adatkezelési tájékoztatóhoz (GDPR-hoz kötelező feltüntetni az
