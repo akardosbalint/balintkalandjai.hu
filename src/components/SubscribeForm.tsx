@@ -108,11 +108,12 @@ export default function SubscribeForm({
           />
         </motion.svg>
         <p className="font-serif text-xl text-forest-900">
-          Nézd meg a bejövő leveleid
+          Nézd meg a bejövő leveleid — a spam és a promóció mappákat is!
         </p>
         <p className="max-w-sm text-ink-900/70">
-          Küldtünk egy megerősítő emailt — kattints rá, és onnantól veled
-          tartok, minden héten, Rishikeshből.
+          Küldtem egy megerősítő emailt — kattints rá a benne lévő gombra
+          és onnantól kezdve minden héten jelentkezem, egyenesen
+          Rishikeshből.
         </p>
       </div>
     );
