@@ -28,8 +28,7 @@ export default function Story() {
             Mielőtt feliratkozol
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
-            Nem guru vagyok. Csak valaki, aki 31 évesen még mindig nem tudja,
-            mi legyen, ha felnő.
+            Nem vagyok guru.
           </h2>
         </AnimatedSection>
 
@@ -39,16 +38,17 @@ export default function Story() {
         >
           {/* MINTA: sok minden, semmi nem tapadt meg */}
           <p>
-            Voltam már értékesítéstámogatási munkatárs egy multinál,
-            KKV-marketinges, adománygyűjtő, jótékonysági vacsorák
-            szervezője, egy gyerekalapítvány kuratóriumi elnöke. És
-            dolgoztam kereskedelemben is. Végigjártam a konyhai ranglétrát
-            mosogatótól konyhafőnökig, voltam magánszakács, sofőr,
-            raktáros, podcaster, egyszer még szinkronszínésznek is
-            jelentkeztem. Építettem sárból házat Marokkóban, és vigyáztam
-            macskákra „hivatásszerűen” több országban is. Diákként
-            dolgoztam somogyi kukoricaföldeken. És a megyei gyárakban is. Ha
-            létezik tankönyvi példa a{" "}
+            Dolgoztam kereskedelemben, csináltam hideghívásokat, voltam már
+            értékesítéstámogatási munkatárs egy multinál, KKV marketing &
+            értékesítési vezető, közösségszervező, jótékonysági vacsorák
+            házigazdája, egy gyerekalapítvány kuratóriumi elnöke is.
+            Végigjártam a konyhai ranglétrát mosogatótól konyhafőnökig,
+            voltam privát séf, sofőr, raktáros, podcaster, egyszer még
+            szinkronszínésznek is jelentkeztem. Építettem sárból házat
+            Marokkóban, és vigyáztam macskákra „hivatásszerűen” több
+            országban is. Diákként a somogyi kukoricaföldeken töltöttem a
+            nyaraimat, és gimi mellett dolgoztam a környékbéli gyárak
+            nagyrészében is. Ha létezik tankönyvi példa a{" "}
             <Term
               definition={
                 <>
@@ -66,7 +66,7 @@ export default function Story() {
 
           {/* KIVÉTEL: ECO, 3.5 év */}
           <p>
-            Egy dolog kivétel. 3.5 éve, minden áldott nap, kihagyás nélkül
+            Kivéve egy dolgot. 3.5 éve, minden áldott nap, kihagyás nélkül
             gyakorlom az{" "}
             <a
               href="https://ecokozosseg.hu"
@@ -85,28 +85,29 @@ export default function Story() {
           <p>
             Idén nyáron egy szakítás után nagyon mély pontra kerültem —
             annyira, hogy sürgősségi konzultációt kértem az egyik ECO
-            oktatómtól. Ott vált világossá: nekem egy dolgot kell találnom,
-            amibe legalább egy évig bele tudok állni. És hogy semmi nem
-            érdekel igazán, ami nem az emberi tudat fejlődéséről szól.
+            oktatómtól. Ott vált világossá: hogy semmi nem érdekel igazán,
+            ami nem az emberi tudat fejlődéséről szól — ezért tudtam
+            elköteleződni az ECO mellett, és emiatt nem tudok igazán
+            kitartóan csinálni semmit, ami nem erről szól.
           </p>
 
           {/* DÖNTÉS: miért pont a jóga */}
           <p>
-            A jóga elvei a kertszomszédjai annak, amit már bizonyítottan
-            napi szinten képes vagyok gyakorolni — plusz ott volt egy 10
-            évvel ezelőtti első jógaóra emléke, és egy barátom indiai
-            tapasztalata is. Szóval eldöntöttem: elmegyek Indiába, és a
-            jóga tanításán keresztül keresem meg újra, ki vagyok.
+            Így jött a jóga. Az elvei a kertszomszédjai az ECO-nak, amit
+            már bizonyítottan napi szinten képes vagyok gyakorolni. Szóval
+            eldöntöttem: elmegyek Indiába, hogy közvetlenül a forrásnál
+            tanuljak és ezen keresztül keressem meg, hogy ki is vagyok.
           </p>
 
           {/* KERET: nincsenek válaszaim, nyilvánosan keresem, gyere velem */}
           <p>
-            A terv: 58 nap, 500 óra, jógaoktatói képzés Rishikeshben.
-            Nincsenek válaszaim — csak napi egy TikTok-videóval és heti egy
-            hosszú, őszinte levéllel dokumentálom majd, amit aznap találok
-            ki, vagy amiben épp elakadok. Nyilvánosan csinálom, hogy legyen,
-            aki számon kérje rajtam, ha megint kicsúszna a kezemből. Gyere,
-            nézd végig velem.
+            A terv: 58 napos, 500 órás akkreditált jógaoktatói képzés
+            Rishikeshben, a „jóga fővárosában”. Nincsenek bekészített
+            válaszaim — napi egy TikTok-videóval és heti egy hosszú,
+            őszinte levéllel dokumentálom majd az utam. Nyilvánosan
+            csinálom, hogy legyen, aki számon kérje rajtam — így talán
+            könnyebb lesz folytatni a nehéz napokon is. Gyere, nézd végig
+            velem.
           </p>
         </AnimatedSection>
       </div>

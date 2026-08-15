@@ -56,7 +56,7 @@ export default function JourneyProgress() {
 
   const label =
     info.phase === "before"
-      ? `Indulásig ${info.daysUntilStart} nap`
+      ? `Indulásig még ${info.daysUntilStart} nap van hátra.`
       : info.phase === "during"
         ? `A(z) ${info.day}. napomat élem Rishikeshben`
         : "Megvan az 58 nap — a képzésnek vége, hazaértem";

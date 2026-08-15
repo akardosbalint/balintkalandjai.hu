@@ -168,8 +168,8 @@ export default function SubscribeForm({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest-800/30 text-terracotta-600 focus:ring-terracotta-500"
         />
         <span>
-          Elfogadom, hogy a {siteConfig.brandName} heti emailt küldjön nekem,
-          és megismertem az{" "}
+          Elfogadom, hogy {siteConfig.ownerFullName} heti emailt küldjön
+          nekem, és megismertem az{" "}
           <a
             href="/adatkezeles"
             className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900"

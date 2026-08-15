@@ -18,13 +18,17 @@ export default function SecondCTA() {
       <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
         <AnimatedSection>
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
-            Ha idáig eljutottál, valószínűleg te is elakadtál valahol
+            Ha idáig eljutottál, valószínűleg te is átéltél hasonlót
           </h2>
           <p className="mt-4 text-lg text-ink-900/75">
-            Nem kell Indiába menned hozzá, hogy rájöjj, min kéne változtatnod.
-            De ha van egy dolog, amiről tudod, hogy abba kéne hagynod, vagy
-            végre elkezdened — kövesd végig, ahogy én próbálom kitalálni a
-            sajátomat. Lehet, hogy közben te is megtudsz valamit magadról.
+            Neked nem kell Indiáig menned ahhoz, hogy rájöjj, min kéne
+            változtatnod. De ha van egy dolog, amiről tudod, hogy abba kéne
+            hagynod, vagy végre elkezdened, lehet, hogy tud inspirálni az
+            én történetem.
+          </p>
+          <p className="mt-4 text-lg text-ink-900/75">
+            Kövesd végig, ahogy én próbálom kitalálni a sajátomat.
+            Elképzelhető, hogy közben te is megtudsz valamit magadról.
           </p>
         </AnimatedSection>
 

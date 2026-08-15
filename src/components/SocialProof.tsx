@@ -14,17 +14,17 @@ const proofPoints = [
   {
     title: "58 nap, napi bejelentkezés",
     description:
-      "Minden nap kirakok egy TikTok-videót Rishikeshből — nem szerkesztett, nem kihegyezett tartalom, hanem az, ami aznap tényleg történt.",
+      "Minden nap kirakok egy TikTok-videót Rishikeshből — nem szerkesztett tartalom, hanem az, ami aznap tényleg történt.",
   },
   {
     title: "Heti levél, szűretlenül",
     description:
-      "Amit nem mondok el 60 másodpercben, azt megírom hosszabban, hétvégenként — a kétségekkel, a rossz napokkal együtt, nem csak a jókkal.",
+      "Amit nem mondok el 60 másodpercben, azt megírom hosszabban, hétvégenként — a kétségekkel, a rossz napokkal együtt.",
   },
   {
     title: "Egy történet, ami még nincs lezárva",
     description:
-      "Nem utólag elmesélt sikertörténet ez. Élőben zajlik, és nem tudom, hova fut ki. Te is végignézheted, ahogy én — időben, valós időben.",
+      "Nem utólag elmesélt sikertörténet ez. Élőben zajlik, és én sem tudom pontosan, hova fut ki. Te is végignézheted, ahogy én élem: valós időben.",
   },
 ];
 
