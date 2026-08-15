@@ -1,7 +1,7 @@
 # Tudatosság és Jelenlét — feliratkozó oldal
 
 Egyoldalas, magasan konvertáló feliratkozó (landing) oldal a heti Rishikesh-hírlevélhez.
-Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion, MailerLite
+Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion, Kit
 integrációval, GDPR-kompatibilis feliratkozó flow-val.
 
 ## Gyors indítás
@@ -9,31 +9,31 @@ integrációval, GDPR-kompatibilis feliratkozó flow-val.
 ```bash
 npm install
 cp .env.local.example .env.local
-# töltsd ki a .env.local-t a saját MailerLite adataiddal (lásd lent)
+# töltsd ki a .env.local-t a saját Kit adataiddal (lásd lent)
 npm run dev
 ```
 
 Az oldal ezután elérhető: http://localhost:3000
 
-## MailerLite beállítása
+## Kit beállítása
 
-A feliratkozó form szerver oldalon (`/app/api/subscribe/route.ts`) hívja a MailerLite
-API-t, hogy az API kulcs sose kerüljön a böngészőbe.
+A feliratkozó form szerver oldalon (`/app/api/subscribe/route.ts`) hívja a Kit
+(korábban ConvertKit) v4 API-t, hogy az API kulcs sose kerüljön a böngészőbe.
 
-1. **Fiók**: hozz létre egy MailerLite fiókot (vagy használd a meglévőt).
-2. **Csoport**: Subscribers → Groups → hozz létre egy csoportot, pl. `Newsletter — India 2026`.
-   A csoport ID-ját megtalálod a csoport URL-jében, vagy lekérdezheted az API-n
-   keresztül (`GET /api/groups`).
-3. **API kulcs**: Integrations → Developer API → generálj egy új API kulcsot.
-4. **Double opt-in**: MailerLite fiók → Settings → Subscribers → Double opt-in —
-   győződj meg róla, hogy be van kapcsolva (EU-s fiókoknál ez alapértelmezett).
-   Ez felelős a megerősítő email automatikus kiküldéséért — az API hívás maga
-   csak feliratkoztat, a MailerLite küldi a megerősítést.
-5. **Környezeti változók**: másold be a kulcsot és a csoport ID-t a `.env.local`-ba:
+1. **Fiók**: hozz létre egy Kit fiókot (kit.com), vagy használd a meglévőt.
+2. **Form**: Grow → Landing Pages & Forms → hozz létre egy formot, pl.
+   `Newsletter — India 2026`. Az ID a form URL-jéből olvasható ki.
+3. **Double opt-in**: a form beállításainál győződj meg róla, hogy a
+   feliratkozás megerősítést igényel (opt-in confirmation). Ez felelős a
+   megerősítő email automatikus kiküldéséért — az API hívás maga csak
+   hozzáadja a feliratkozót a formhoz, a megerősítést maga a Kit küldi.
+4. **API kulcs**: Settings → Developer → API Keys → generálj egy V4 API
+   kulcsot.
+5. **Környezeti változók**: másold be a kulcsot és a form ID-t a `.env.local`-ba:
 
    ```
-   MAILERLITE_API_KEY=...
-   MAILERLITE_GROUP_ID=...
+   KIT_API_KEY=...
+   KIT_FORM_ID=...
    ```
 
 ### Feliratkozási flow
@@ -41,22 +41,25 @@ API-t, hogy az API kulcs sose kerüljön a böngészőbe.
 1. Látogató kitölti a formot (email + opcionális keresztnév), elfogadja a
    GDPR checkboxot.
 2. Kliens POST-ol a `/api/subscribe`-ra.
-3. A szerver route hívja a MailerLite `POST /api/subscribers` végpontot.
+3. A szerver route két Kit API hívást indít: `POST /v4/subscribers` (a
+   feliratkozó létrehozása/frissítése, itt kerül be a keresztnév), majd
+   `POST /v4/forms/{formId}/subscribers` (hozzáadás a formhoz — ez indítja
+   a double opt-in emailt).
 4. Sikeres válasz esetén optimista UI (checkmark animáció) jelenik meg:
-   „Nézd meg a bejövő leveleid — küldtünk egy megerősítő emailt."
-5. A MailerLite kiküldi a double opt-in megerősítő emailt; a látogató csak
-   a megerősítés után kerül aktív állapotba, és csak ezután kap tartalmat.
-6. Hibaállapotok (hálózati hiba, MailerLite 4xx/5xx) barátságos, magyar
-   nyelvű üzenetet jelenítenek meg, technikai részletek nélkül.
+   „Nézd meg a bejövő leveleid — küldtem egy megerősítő emailt."
+5. A Kit kiküldi a double opt-in megerősítő emailt; a látogató csak a
+   megerősítés után kerül aktív állapotba, és csak ezután kap tartalmat.
+6. Hibaállapotok (hálózati hiba, Kit 4xx/5xx) barátságos, magyar nyelvű
+   üzenetet jelenítenek meg, technikai részletek nélkül.
 
 ## GDPR / adatkezelés
 
 - A form csak email címet kér kötelezően, keresztnevet opcionálisan.
 - A hozzájárulás checkbox alapból nincs bepipálva, és linkel a
   `/adatkezeles` oldalra.
-- A `/adatkezeles` oldal egy **kitölthető sablon** — nézesd át valakivel,
-  aki ért a GDPR-hoz, mielőtt élesbe mész, és töltsd ki a `[szögletes
-  zárójeles]` placeholdereket (cégadatok, MailerLite DPA link stb.).
+- A `/adatkezeles` oldal egy **kiindulópont** valós adatokkal (adatkezelő,
+  Kit és Vercel mint adatfeldolgozók) — de ez így is jogi átnézést igényel,
+  mielőtt élesbe mész, főleg a fizetős program indulása előtt.
 - A footer tartalmazza a leiratkozási tájékoztatást.
 
 ## Hero headline A/B változatok
@@ -83,8 +86,8 @@ konstans cseréjével, vagy bekötve egy A/B tesztelő eszközbe / feature flag-
 1. Told fel a repót GitHub-ra (ha még nem tetted).
 2. Vercel dashboard → Add New → Project → válaszd ki a repót.
 3. Environment Variables alatt add hozzá:
-   - `MAILERLITE_API_KEY`
-   - `MAILERLITE_GROUP_ID`
+   - `KIT_API_KEY`
+   - `KIT_FORM_ID`
 4. Deploy — a build parancs és output automatikusan felismerésre kerül
    (Next.js preset).
 5. Domain: kösd be a saját domained/aldomained a Vercel projekt Settings →

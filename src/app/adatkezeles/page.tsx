@@ -64,8 +64,8 @@ export default function AdatkezelesPage() {
             <li>keresztnév (opcionális, ha megadod)</li>
             <li>
               feliratkozás időpontja és technikai adatok (pl. IP cím, amit a
-              MailerLite a visszaélések elleni védelem és a jogszerű
-              hozzájárulás igazolása miatt automatikusan rögzít)
+              Kit a visszaélések elleni védelem és a jogszerű hozzájárulás
+              igazolása miatt automatikusan rögzít)
             </li>
           </ul>
         </section>
@@ -88,11 +88,12 @@ export default function AdatkezelesPage() {
             4. Adatfeldolgozók
           </h2>
           <p className="mt-2">
-            A hírlevelek kiküldéséhez a MailerLite Limited (Ireland)
-            szolgáltatását használom, amely EU-s adatfeldolgozóként a GDPR
-            előírásai szerint kezeli az adatokat. Adatfeldolgozói
-            szerződésük elérhető a MailerLite honlapján (Data Processing
-            Agreement).
+            A hírlevelek kiküldéséhez a Kit, Inc. (Boise, Idaho, USA)
+            szolgáltatását használom. Az USA-ba történő adattovábbítás a
+            Kit által biztosított garanciák mellett történik (EU-US Data
+            Privacy Framework, illetve Standard Szerződéses Feltételek /
+            International Data Transfer Agreement). Adatfeldolgozói
+            szerződésük (Data Processing Addendum) elérhető: kit.com/dpa.
           </p>
           <p className="mt-2">
             A weboldal tárhelyét a Vercel Inc. (USA) biztosítja, amely a
