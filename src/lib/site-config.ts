@@ -3,7 +3,7 @@
  * Ha változik a domain/márkanév/social linkek, itt kell frissíteni.
  */
 export const siteConfig = {
-  brandName: "Tudatosság és Jelenlét",
+  brandName: "Kardos Bálint",
   ownerName: "Bálint",
   ownerFullName: "Kardos Bálint",
   url: "https://tudatossagesjelenlet.hu",
