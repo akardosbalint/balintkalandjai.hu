@@ -16,7 +16,11 @@ export const siteConfig = {
     tiktok: "https://tiktok.com/@",
     facebook: "https://facebook.com/",
   },
-  email: "hello@tudatossagesjelenlet.hu",
+  email: "balint@akardosbalint.hu",
+  // Az adatkezelési tájékoztatóhoz (GDPR-hoz kötelező feltüntetni az
+  // adatkezelő elérhetőségét) — magánszemélyként, nem regisztrált
+  // vállalkozásként fut az oldal, ezért nincs adószám/nyilvántartási szám.
+  ownerAddress: "7584 Babócsa, Rákóczi u. 28.",
   journey: {
     // A képzés első napja és teljes hossza — a JourneyProgress ebből számolja
     // ki, hányadik napnál tartunk.
