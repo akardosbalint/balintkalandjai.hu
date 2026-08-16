@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const KIT_API_BASE = "https://api.kit.com/v4";
 
 interface SubscribeBody {
   email?: string;
@@ -10,19 +9,11 @@ interface SubscribeBody {
 }
 
 /**
- * Szerver oldali proxy a Kit (korábban ConvertKit) API felé, hogy az
- * API kulcs soha ne kerüljön a böngészőbe.
- *
- * Két lépésben történik, a Kit v4 API dokumentált mintája szerint:
- *   1. POST /v4/subscribers — létrehozza/frissíti a feliratkozót
- *      (itt kerül be a keresztnév).
- *   2. POST /v4/forms/{formId}/subscribers — hozzáadja a megadott
- *      form-hoz, ami a Kit form saját beállítása alapján kiküldi a
- *      double opt-in megerősítő emailt.
- *
- * A double opt-in flow-t tehát a KIT_FORM_ID-hez tartozó form
- * beállítása vezérli — itt csak feliratkoztatunk, a megerősítő
- * emailt maga a Kit küldi automatikusan.
+ * Szerver oldali proxy a MailerLite API felé, hogy az API kulcs
+ * soha ne kerüljön a böngészőbe. A double opt-in flow-t a MailerLite
+ * fiók / csoport beállítása vezérli (Settings → Subscribers →
+ * Double opt-in) — itt csak feliratkoztatunk, a megerősítő emailt
+ * a MailerLite küldi automatikusan.
  */
 export async function POST(request: Request) {
   let body: SubscribeBody;
@@ -57,12 +48,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.KIT_API_KEY;
-  const formId = process.env.KIT_FORM_ID;
+  const apiKey = process.env.MAILERLITE_API_KEY;
+  const groupId = process.env.MAILERLITE_GROUP_ID;
 
-  if (!apiKey || !formId) {
+  if (!apiKey || !groupId) {
     console.error(
-      "Hiányzó KIT_API_KEY vagy KIT_FORM_ID environment variable."
+      "Hiányzó MAILERLITE_API_KEY vagy MAILERLITE_GROUP_ID environment variable."
     );
     return NextResponse.json(
       {
@@ -73,49 +64,60 @@ export async function POST(request: Request) {
     );
   }
 
-  const headers = {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-    "X-Kit-Api-Key": apiKey,
-  };
-
   try {
-    // 1. lépés: feliratkozó létrehozása/frissítése (itt kerül be a név)
-    const subscriberRes = await fetch(`${KIT_API_BASE}/subscribers`, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        email_address: email,
-        first_name: firstName || undefined,
-        state: "inactive",
-      }),
-    });
-
-    if (!subscriberRes.ok) {
-      const errorBody = await subscriberRes.json().catch(() => null);
-      console.error("Kit API hiba (subscribers):", subscriberRes.status, errorBody);
-      return errorResponse(subscriberRes.status);
-    }
-
-    // 2. lépés: hozzáadás a form-hoz — ez indítja a double opt-in emailt
-    const formRes = await fetch(
-      `${KIT_API_BASE}/forms/${formId}/subscribers`,
+    const response = await fetch(
+      "https://connect.mailerlite.com/api/subscribers",
       {
         method: "POST",
-        headers,
-        body: JSON.stringify({ email_address: email }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          email,
+          fields: firstName ? { name: firstName } : undefined,
+          groups: [groupId],
+        }),
       }
     );
 
-    if (!formRes.ok) {
-      const errorBody = await formRes.json().catch(() => null);
-      console.error("Kit API hiba (forms/subscribers):", formRes.status, errorBody);
-      return errorResponse(formRes.status);
+    if (response.ok) {
+      return NextResponse.json({ ok: true }, { status: 200 });
     }
 
-    return NextResponse.json({ ok: true }, { status: 200 });
+    const errorBody = await response.json().catch(() => null);
+    console.error("MailerLite API hiba:", response.status, errorBody);
+
+    if (response.status === 429) {
+      return NextResponse.json(
+        {
+          message:
+            "Sokan iratkoznak fel most — várj egy percet, és próbáld újra.",
+        },
+        { status: 429 }
+      );
+    }
+
+    if (response.status === 422) {
+      return NextResponse.json(
+        {
+          message:
+            "Ezzel az email címmel már regisztrálva vagy, vagy valami nem stimmel az adatokkal. Nézd meg a leveleid, hátha ott a megerősítő email.",
+        },
+        { status: 422 }
+      );
+    }
+
+    return NextResponse.json(
+      {
+        message:
+          "Valami elakadt nálunk a feliratkozásnál. Próbáld meg még egyszer egy perc múlva.",
+      },
+      { status: 502 }
+    );
   } catch (error) {
-    console.error("Nem sikerült elérni a Kit API-t:", error);
+    console.error("Nem sikerült elérni a MailerLite API-t:", error);
     return NextResponse.json(
       {
         message:
@@ -124,34 +126,4 @@ export async function POST(request: Request) {
       { status: 502 }
     );
   }
-}
-
-function errorResponse(status: number) {
-  if (status === 429) {
-    return NextResponse.json(
-      {
-        message:
-          "Sokan iratkoznak fel most — várj egy percet, és próbáld újra.",
-      },
-      { status: 429 }
-    );
-  }
-
-  if (status === 422 || status === 400) {
-    return NextResponse.json(
-      {
-        message:
-          "Ezzel az email címmel már regisztrálva vagy, vagy valami nem stimmel az adatokkal. Nézd meg a leveleid, hátha ott a megerősítő email.",
-      },
-      { status: 422 }
-    );
-  }
-
-  return NextResponse.json(
-    {
-      message:
-        "Valami elakadt nálunk a feliratkozásnál. Próbáld meg még egyszer egy perc múlva.",
-    },
-    { status: 502 }
-  );
 }
