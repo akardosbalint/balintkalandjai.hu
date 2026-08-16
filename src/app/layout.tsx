@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 import { siteConfig } from "@/lib/site-config";
 
 const fraunces = Fraunces({
@@ -56,8 +57,9 @@ export default function RootLayout({
   return (
     <html lang="hu">
       <body
-        className={`${fraunces.variable} ${inter.variable} font-sans antialiased bg-sand-50 text-ink-900`}
+        className={`relative ${fraunces.variable} ${inter.variable} font-sans antialiased bg-sand-50 text-ink-900`}
       >
+        <Header />
         {children}
       </body>
     </html>
