@@ -43,9 +43,16 @@ API-t, hogy az API kulcs sose kerüljön a böngészőbe.
 2. Kliens POST-ol a `/api/subscribe`-ra.
 3. A szerver route hívja a MailerLite `POST /api/subscribers` végpontot.
 4. Sikeres válasz esetén optimista UI (checkmark animáció) jelenik meg:
-   „Nézd meg a bejövő leveleid — küldtünk egy megerősítő emailt."
-5. A MailerLite kiküldi a double opt-in megerősítő emailt; a látogató csak
-   a megerősítés után kerül aktív állapotba, és csak ezután kap tartalmat.
+   „Ez megvan. Az első leveled jövő vasárnap estig megérkezik." — a
+   sikerüzenet szándékosan nem a megerősítésről szól, hanem arról, mire
+   számíthat a látogató.
+5. A MailerLite a háttérben ettől függetlenül kiküldi a double opt-in
+   megerősítő emailt; a látogató csak a megerősítés után kerül aktív
+   állapotba, és csak ezután kap tartalmat. FONTOS: mivel a sikerüzenet
+   már nem kéri erre kifejezetten a látogatót, érdemes megfontolni, hogy
+   a MailerLite double opt-in email szövege önmagában is egyértelműen
+   hívjon fel a megerősítésre — különben lehet, hogy valaki elmulasztja,
+   és sosem kapja meg a vasárnapi levelet.
 6. Hibaállapotok (hálózati hiba, MailerLite 4xx/5xx) barátságos, magyar
    nyelvű üzenetet jelenítenek meg, technikai részletek nélkül.
 
