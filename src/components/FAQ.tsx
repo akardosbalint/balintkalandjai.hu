@@ -8,7 +8,7 @@ import OrganicBackground from "./OrganicBackground";
 const items = [
   {
     question: "Hol végzed a képzést?",
-    answer: "A Rudra Yogpeethen, Rishikeshben, Indiában.",
+    answer: "Indiában, a rishikeshi Rudra Yogpeeth Yoga Ashramban.",
   },
   {
     question: "Mikor indulsz?",
