@@ -9,21 +9,21 @@ const items = [
   {
     question: "Hol végzed a képzést?",
     answer:
-      "Rudra Yogpeeth, Ghugtyani Malli, Tapovan, Rishikesh, Uttarakhand 249137, India.",
+      "A Rudra Yogpeethen, Tapovanban, Rishikesh mellett, Indiában.",
   },
   {
     question: "Mit tanítanak?",
     answer:
-      "Az iskola a hagyományos Hatha jógát tanítja, kiemelt hangsúllyal a testtartás-korrekción és az igazodáson (alignment). Emellett megismerkedsz a Hatha Vinyasa flow-val, az Ashtanga Vinyasával, az ősi filozófiai tudással és a jógikus életmóddal, a pránajámával (légzéstechnikák), az anatómiával, a filozófiával, a meditációval és a mantrázással. Az egész egy összefüggő jógastílust ad át, benne a sima átmenetekkel egyik forma és a másik között — így minden területen bővül a tudásod és a gyakorlati tapasztalatod.\n\nJógastílusok, amikkel foglalkozunk: Hatha, Kundalini, Vinyasa, Nidra, Ashtanga, Karma, Terápiás jóga.",
+      "Hagyományos Hatha jógát tanulok, igazodással és testtartással a középpontban. Emellett Vinyasát, Ashtangát, pránajámát, anatómiát, filozófiát, meditációt és mantrázást. A stílusok: Hatha, Kundalini, Vinyasa, Nidra, Ashtanga, Karma, terápiás jóga.",
   },
   {
     question: "Mennyibe kerül?",
     answer:
-      "Az oda-vissza repjegy kb. 200 000 Ft, a képzés 899 dollár, aktuális árfolyamon kb. 285 000 Ft, plusz a vízum kb. 15 000 Ft (1 éves turista vízum). Az egész összesen kb. 500 000 Ft. Magyarországon egy 200 órás oktatóképzés 300–400 ezer Ft körül mozog — ez nem sokkal drágább annál, viszont 500 órás, és közvetlenül a forrástól jön.",
+      "Összesen kb. 500 000 Ft-ba kerül: a repjegy kb. 200 000 Ft, a képzés 899 dollár (kb. 285 000 Ft), a vízum kb. 15 000 Ft. Egy hazai 200 órás képzés 300–400 ezer Ft — ez nem sokkal drágább annál, de 500 órás, és közvetlen a forrástól jön.",
   },
   {
     question: "Milyen végzettséget ad?",
-    answer: "Yoga Alliance RYT-500 minősítést.",
+    answer: "Yoga Alliance RYT-500 minősítést kapok.",
   },
 ];
 
