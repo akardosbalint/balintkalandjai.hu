@@ -23,7 +23,7 @@ const items = [
   {
     question: "Mit tanítanak?",
     answer:
-      "Hagyományos Hatha jógát tanulok, igazodással és testtartással a középpontban. Emellett Vinyasát, Ashtangát, pránajámát, anatómiát, filozófiát, meditációt és mantrázást. A stílusok: Hatha, Kundalini, Vinyasa, Nidra, Ashtanga, Karma, terápiás jóga.",
+      "Hatha, Vinyasa és Ashtanga jóga mellett pránajámát (jógalégzést), yoga nidrát (jógaalvás), terápiás jógát, anatómiát, filozófiát, meditációt és mantrázást is tanulok.",
   },
   {
     question: "Mennyibe kerül?",
