@@ -12,6 +12,15 @@ const items = [
       "A Rudra Yogpeethen, Tapovanban, Rishikesh mellett, Indiában.",
   },
   {
+    question: "Mikor indulsz?",
+    answer: "2026. október 1-jén, 58 napra.",
+  },
+  {
+    question: "Miért pont Rishikesht választottad?",
+    answer:
+      "Rishikesh a jóga fővárosa — itt a legerősebb a hagyomány. Nem egy magyar stúdióban akartam tanulni, hanem közvetlenül a forrásnál.",
+  },
+  {
     question: "Mit tanítanak?",
     answer:
       "Hagyományos Hatha jógát tanulok, igazodással és testtartással a középpontban. Emellett Vinyasát, Ashtangát, pránajámát, anatómiát, filozófiát, meditációt és mantrázást. A stílusok: Hatha, Kundalini, Vinyasa, Nidra, Ashtanga, Karma, terápiás jóga.",
@@ -22,8 +31,19 @@ const items = [
       "Összesen kb. 500 000 Ft-ba kerül: a repjegy kb. 200 000 Ft, a képzés 899 dollár (kb. 285 000 Ft), a vízum kb. 15 000 Ft. Egy hazai 200 órás képzés 300–400 ezer Ft — ez nem sokkal drágább annál, de 500 órás, és közvetlen a forrástól jön.",
   },
   {
-    question: "Milyen végzettséget ad?",
-    answer: "Yoga Alliance RYT-500 minősítést kapok.",
+    question: "Milyen végzettséget ad, és miben más, mint a szokásos RYT-200?",
+    answer:
+      "Yoga Alliance RYT-500 minősítést kapok. Ez azt jelenti, hogy egy 200 órás alapképzésen felül még 300 óra haladó anyagot is elvégzek, mindezt egyben, egy iskolánál, megszakítás nélkül.\n\nAz RYT-200 az iparági alapszint: ennyi kell ahhoz, hogy valaki hivatalosan taníthasson és regisztrált oktató legyen — a legtöbb jógaoktató itt meg is áll. Az RYT-500 ennél mélyebb: több haladó ászana, alaposabb anatómia és filozófia, komolyabb tanítási gyakorlat. Gyakorlatilag két képzést végzek el egyszerre, nem két külön kurzust két különböző iskolában, ahogy sokan csinálják.",
+  },
+  {
+    question: "Jógaoktató leszel utána?",
+    answer:
+      "Megvan hozzá a papírom, de nem ez a fő cél. Azért megyek, hogy közelebb kerüljek magamhoz — a tanítás csak ráadás, ha úgy alakul.",
+  },
+  {
+    question: "Miért csinálod ezt nyilvánosan?",
+    answer:
+      "Mert eddig mindent otthagytam, amint nehéz lett. Ha nyilvánosan vállalom, lesz, aki számon kéri rajtam — ez segít kitartani a nehéz napokon is.",
   },
 ];
 
