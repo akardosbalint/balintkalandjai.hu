@@ -23,7 +23,7 @@ const items = [
   {
     question: "Mit tanítanak?",
     answer:
-      "Hatha, Vinyasa és Ashtanga jóga mellett pránajámát (jógalégzést), yoga nidrát (jógaalvás), terápiás jógát, anatómiát, filozófiát, meditációt és mantrázást is tanulok.",
+      "Hatha, Vinyasa és Ashtanga jóga mellett pránajámát (jógalégzést), yoga nidrát (jógaalvást), terápiás jógát, anatómiát, filozófiát, meditációt és mantrázást is tanulok.",
   },
   {
     question: "Mennyibe kerül?",
