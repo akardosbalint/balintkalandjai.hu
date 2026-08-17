@@ -53,7 +53,7 @@ const items = [
   {
     question: "Mikor és miért kezdted az ECO-t?",
     answer:
-      "2023 februárjában, a válásom után kezdtem — egy nagy szerelmi csalódás után. Úgy tűnik, amikor összetörik a szívem, akkor jönnek életem legmeghatározóbb dolgai.",
+      "2023 februárjában, a válásom után kezdtem. Úgy tűnik, amikor összetörik a szívem, akkor jönnek életem legmeghatározóbb dolgai. 🤷🏽‍♂️",
   },
   {
     question: "Van köze az ECO-nak a jógához?",
