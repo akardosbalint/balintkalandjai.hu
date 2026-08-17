@@ -21,7 +21,7 @@ const items = [
   {
     title: "Amit egy 60 másodperces videóban nem lehet elmondani",
     description:
-      "A heti levélben visszamegyek a napi TikTok mögé: mit jelentett valójában az az órányi Hatha, Ashtanga vagy pranayama gyakorlat, és mihez kezdek azzal, amit aznap megtanultam.",
+      "A heti levélben visszamegyek a napi TikTok mögé: mit jelentett valójában egy órányi Hatha, Ashtanga vagy Iyengar gyakorlat, egy pranayama- vagy jógaalvás- (yoga nidra) foglalkozás, és mihez kezdek azzal, amit aznap megtanultam.",
   },
   {
     title: "Élő, lezáratlan gondolkodás",
