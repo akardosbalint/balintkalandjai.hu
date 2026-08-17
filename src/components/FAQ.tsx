@@ -8,17 +8,17 @@ import OrganicBackground from "./OrganicBackground";
 const items = [
   {
     question: "Hol végzed a képzést?",
-    answer:
-      "A Rudra Yogpeethen, Tapovanban, Rishikesh mellett, Indiában.",
+    answer: "A Rudra Yogpeethen, Rishikeshben, Indiában.",
   },
   {
     question: "Mikor indulsz?",
-    answer: "2026. október 1-jén, 58 napra.",
+    answer:
+      "2026. szeptember 28-án. A képzés október 1. és november 27. között zajlik.",
   },
   {
     question: "Miért pont Rishikesht választottad?",
     answer:
-      "Rishikesh a jóga fővárosa — itt a legerősebb a hagyomány. Nem egy magyar stúdióban akartam tanulni, hanem közvetlenül a forrásnál.",
+      "Szerettem volna közvetlenül a forrásnál tanulni. Rishikesh a jóga fővárosa — itt a legerősebb a hagyomány.",
   },
   {
     question: "Mit tanítanak?",
@@ -44,6 +44,21 @@ const items = [
     question: "Miért csinálod ezt nyilvánosan?",
     answer:
       "Mert eddig mindent otthagytam, amint nehéz lett. Ha nyilvánosan vállalom, lesz, aki számon kéri rajtam — ez segít kitartani a nehéz napokon is.",
+  },
+  {
+    question: "Mi az az ECO?",
+    answer:
+      "Az Energy of Consciousness (ECO) egy vallás- és dogmamentes önismereti út és energetikai módszer — nem gyógyászat, nem terápia. Régi energiagyógyászati hagyományokra épül, de önálló, saját eszköztárral. A célja, hogy a gyakorló egyre tudatosabbá váljon, és felelősséget vállaljon a saját életéért, reakcióiért, kapcsolataiért.",
+  },
+  {
+    question: "Mikor és miért kezdted az ECO-t?",
+    answer:
+      "2023 februárjában, a válásom után kezdtem — egy nagy szerelmi csalódás után. Úgy tűnik, amikor összetörik a szívem, akkor jönnek életem legmeghatározóbb dolgai.",
+  },
+  {
+    question: "Van köze az ECO-nak a jógához?",
+    answer:
+      "Igen, az elvei rokonok. Mindkettő a tudatosság fejlesztéséről szól — ezért éreztem természetesnek, hogy a jóga felé induljak, miután 3,5 éve minden nap, kihagyás nélkül gyakorlom az ECO-t.",
   },
 ];
 
