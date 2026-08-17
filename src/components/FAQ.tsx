@@ -38,7 +38,7 @@ const items = [
   {
     question: "Jógaoktató leszel utána?",
     answer:
-      "Megvan hozzá a papírom, de nem ez a fő cél. Azért megyek, hogy közelebb kerüljek magamhoz — a tanítás csak ráadás, ha úgy alakul.",
+      "Meglesz hozzá a papírom, de nem ez a fő cél. Azért megyek, hogy közelebb kerüljek magamhoz — az oktatás csak ráadás, ha úgy alakul.",
   },
   {
     question: "Miért csinálod ezt nyilvánosan?",
