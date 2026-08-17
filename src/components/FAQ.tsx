@@ -48,7 +48,7 @@ const items = [
   {
     question: "Mi az az ECO?",
     answer:
-      "Az Energy of Consciousness (ECO) egy vallás- és dogmamentes önismereti út és energetikai módszer — nem gyógyászat, nem terápia. Régi energiagyógyászati hagyományokra épül, de önálló, saját eszköztárral. A célja, hogy a gyakorló egyre tudatosabbá váljon, és felelősséget vállaljon a saját életéért, reakcióiért, kapcsolataiért.",
+      "Az Energy of Consciousness (ECO) egy vallás- és dogmamentes önismereti út és energetikai technika.\n\nRégi energiagyógyászati hagyományokra épül, de önálló, saját eszköztárral. A célja, hogy a gyakorló egyre tudatosabbá váljon, és felelősséget vállaljon a saját életéért, reakcióiért, kapcsolataiért.",
   },
   {
     question: "Mikor és miért kezdted az ECO-t?",
