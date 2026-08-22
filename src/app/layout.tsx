@@ -3,6 +3,11 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { siteConfig } from "@/lib/site-config";
+import {
+  buildPersonJsonLd,
+  buildWebSiteJsonLd,
+  serializeJsonLd,
+} from "@/lib/structured-data";
 
 const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
@@ -28,6 +33,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: pageTitle,
   description: siteConfig.description,
+  alternates: { canonical: siteConfig.url },
   openGraph: {
     title: pageTitle,
     description: siteConfig.description,
@@ -59,6 +65,14 @@ export default function RootLayout({
       <body
         className={`relative ${fraunces.variable} ${inter.variable} font-sans antialiased bg-sand-50 text-ink-900`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildPersonJsonLd()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildWebSiteJsonLd()) }}
+        />
         <Header />
         {children}
       </body>
