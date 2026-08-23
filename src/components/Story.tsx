@@ -118,8 +118,12 @@ export default function Story() {
 
             {/* KERET: nincsenek válaszaim, nyilvánosan keresem, gyere velem */}
             <p>
-              A terv: 58 napos, 500 órás akkreditált jógaoktatói képzés
-              Rishikeshben, a „jóga fővárosában”. Nincsenek bekészített
+              A terv: szeptember 28-án hajnalban indulok Budapestről,
+              másnap lépek be Indiába. Október 1. és november 28. között
+              elvégzek egy 500 órás, akkreditált jógaoktatói képzést
+              Rishikeshben, a „jóga fővárosában”, majd december 2-án
+              indulok haza, és december 3-án este érek Magyarországra —
+              összesen kábé 9 hetet töltök Indiában. Nincsenek bekészített
               válaszaim — napi egy TikTok-videóval és heti egy hosszú,
               őszinte levéllel dokumentálom majd az utam. Nyilvánosan
               csinálom, hogy legyen, aki számon kérje rajtam — így talán
