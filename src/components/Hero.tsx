@@ -17,10 +17,11 @@ import Term from "./Term";
  * keret, hanem "gyere, kövesd végig, ahogy élőben keresem a
  * válaszokat" — lásd a copywriting-elveket a repo README-jében.
  *
- * IDŐBELISÉG — FONTOS: a képzés 2026. okt. 1-jén indul, tehát amíg a
- * tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy már ott
- * van, vagy hogy már eltelt X nap ("58 napja Rishikeshben..." HIBÁS).
- * Jelen idő használható (pl. "58 napot töltök Rishikeshben"), de
+ * IDŐBELISÉG — FONTOS: az utazás 2026. szept. 26-án indul Mo.-ról,
+ * megérkezés Indiába 2026. szept. 28-án, tehát amíg a tulajdonos el
+ * nem utazik, a szöveg NEM állíthatja, hogy már ott van, vagy hogy már
+ * eltelt X nap ("66 napja Rishikeshben..." HIBÁS).
+ * Jelen idő használható (pl. "66 napot töltök Rishikeshben"), de
  * csak terv/időtartam leírásaként, nem eltelt idő állításaként.
  *
  * F) "31 éven keresztül lemaradtam a saját életemről."
@@ -55,7 +56,7 @@ import Term from "./Term";
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
 // magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
-// lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga
+// lemaradást. 66 napot töltök Rishikeshben, hogy a nemzetközi jóga
 // szövetség által akkreditált, RYT-500 minősítésű jógaoktatóvá
 // váljak, és élőben dokumentálom az egészet."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
@@ -83,7 +84,7 @@ export default function Hero() {
           transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
-          Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök
+          Most Indiáig megyek, hogy behozzam a lemaradást. 66 napot töltök
           Rishikeshben, hogy a{" "}
           <Term
             definition={
