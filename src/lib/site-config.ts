@@ -24,6 +24,10 @@ export const siteConfig = {
     // JourneyProgress ebből számolja ki, hányadik napnál tartunk.
     // Indulás Mo.-ról: 2026-09-26, érkezés Indiába: 2026-09-28.
     // Indulás Indiából: 2026-12-02, érkezés Mo.-ra: 2026-12-03.
+    // FONTOS: ez nem ugyanaz, mint a képzés hossza — a 66 napos indiai
+    // tartózkodáson belül maga az akkreditált képzés 2026-10-01 és
+    // 2026-11-28 között tart (59 nap), a többi nap korábbi érkezés/
+    // későbbi hazautazás.
     startDate: "2026-09-28",
     totalDays: 66,
   },
