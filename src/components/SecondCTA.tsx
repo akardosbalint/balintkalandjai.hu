@@ -26,12 +26,6 @@ export default function SecondCTA() {
             hagynod, vagy végre elkezdened, lehet, hogy tud inspirálni az
             én történetem.
           </p>
-          <p className="mt-4 text-lg text-ink-900/75">
-            Semmiben sem vagyok különb nálad — csak épp keresem a saját
-            utamat. Kövesd végig, ahogy csinálom: ha én meg tudom találni,
-            te is képes vagy rá. Elképzelhető, hogy közben te is megtudsz
-            valamit magadról.
-          </p>
         </AnimatedSection>
 
         <AnimatedSection
