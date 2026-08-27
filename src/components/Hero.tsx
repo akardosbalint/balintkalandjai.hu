@@ -60,9 +60,9 @@ import Term from "./Term";
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
 // magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
-// lemaradást. 67 napot töltök Indiában, ebből Rishikeshben elvégzek
-// egy nemzetközi jóga szövetség által akkreditált, RYT-500
-// minősítésű jógaoktatói képzést, és élőben dokumentálom az egészet."
+// lemaradást. 67 napot töltök Rishikeshben, ahol elvégzek egy
+// nemzetközi jóga szövetség által akkreditált, RYT-500 minősítésű
+// jógaoktatói képzést, és élőben dokumentálom az egészet."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
 // magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
 // kifejezésekhez (telefonon is elérhető, nem csak hoverre).
@@ -89,7 +89,7 @@ export default function Hero() {
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
           Most Indiáig megyek, hogy behozzam a lemaradást. 67 napot töltök
-          Indiában, ebből Rishikeshben elvégzek egy{" "}
+          Rishikeshben, ahol elvégzek egy{" "}
           <Term
             definition={
               <>
