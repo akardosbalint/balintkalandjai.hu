@@ -20,9 +20,12 @@ export const siteConfig = {
   // vállalkozásként fut az oldal, ezért nincs adószám/nyilvántartási szám.
   ownerAddress: "7584 Babócsa, Rákóczi u. 28.",
   journey: {
-    // A képzés első napja és teljes hossza — a JourneyProgress ebből számolja
-    // ki, hányadik napnál tartunk.
-    startDate: "2026-10-01",
-    totalDays: 58,
+    // A teljes út első napja (Rishikeshbe érkezés) és teljes hossza —
+    // a JourneyProgress ebből számolja ki, hányadik napnál tartunk.
+    // Maga a 500 órás képzés csak 58 nap ebből (okt. 1. – nov. 28.),
+    // az érkezés (szept. 28.) és a hazautazás (dec. 3.) miatt a teljes
+    // kint tartózkodás ennél hosszabb.
+    startDate: "2026-09-28",
+    totalDays: 67,
   },
 } as const;

@@ -38,7 +38,9 @@ function getJourneyDayInfo(now: Date): JourneyDayInfo {
 }
 
 /**
- * Élő haladásjelző: hányadik napnál tartok az 58 napos képzésből.
+ * Élő haladásjelző: hányadik napnál tartok a teljes 67 napos úton
+ * (szept. 28-i érkezéstől dec. 3-i hazautazásig) — ebbe illeszkedik bele
+ * a 4. naptól (okt. 1.) az 58 napos akkreditált képzés is.
  * Kliens oldalon számol (a látogató helyi dátuma alapján), hogy mindig
  * friss legyen újradeploy nélkül is — ezért csak mountolás után jelenik meg,
  * elkerülve a szerver/kliens dátum-eltérésből adódó hydration villanást.
@@ -59,7 +61,7 @@ export default function JourneyProgress() {
       ? `Indulásig még ${info.daysUntilStart} nap van hátra.`
       : info.phase === "during"
         ? `A(z) ${info.day}. napomat élem Rishikeshben`
-        : "Megvan az 58 nap — a képzésnek vége, hazaértem";
+        : "Vége az útnak — hazaértem";
 
   const countLabel =
     info.phase === "before" ? `0 / ${TOTAL_DAYS}. nap` : `${info.day} / ${TOTAL_DAYS}. nap`;
