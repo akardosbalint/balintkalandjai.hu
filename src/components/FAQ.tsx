@@ -87,14 +87,15 @@ const items: { question: string; answer: ReactNode }[] = [
       "Kemény: 5-kor kelek, és este 9-kor már alszom is. Közte mantra-éneklés, légzőgyakorlatok és tisztítótechnikák, klasszikus Hatha jóga, jógafilozófia és anatómia órák, önkéntes munka (karma jóga), délutáni önálló gyakorlás, majd Ashtanga Vinyasa, és a nap meditációval zárul. Egy nap alatt többet mozgok és tanulok, mint egy átlagos hét alatt itthon.",
   },
   {
-    question: "Hova fér bele mindez a napirendbe — nem leszel dögfáradt?",
+    question:
+      "Hogyan fér majd bele tartalomgyártás a napirendbe — nem leszel dögfáradt?",
     answer:
-      "A napi rövid videót és annak posztolását kb. 5 perc alatt oldom meg, lefekvés előtt. A heti levél nehezebben fér bele — azokon a napokon valószínűleg egy órával később fekszem le, hogy megírjam.",
+      "A napi rövid videót és annak posztolását lefekvés előtt tervezem. A heti levél nehezebben fér bele — azokon a napokon valószínűleg egy órával később fekszem le, hogy megírjam.",
   },
   {
-    question: "Beszélsz angolul a képzésen, nyelvi akadály nem lesz?",
+    question: "Nem lesz nyelvi akadály?",
     answer:
-      "A képzés nyelve angol, és ez nálam nem akadály: közel anyanyelvi szinten beszélek angolul, közel egy évtizede van C1-es nyelvvizsgám, és az elmúlt 15 évben is aktívan használtam a nyelvet.",
+      "A képzés nyelve angol, és ez nálam nem akadály: közel anyanyelvi szinten beszélem, egy évtizede van C1-es nyelvvizsgám, és az elmúlt 15 évben is aktívan használtam a nyelvet.",
   },
   {
     question: "Bármikor leiratkozhatok?",
