@@ -1,4 +1,4 @@
-type Variant = "hero" | "story" | "offer" | "proof" | "cta";
+type Variant = "hero" | "story" | "offer" | "proof" | "faq" | "cta";
 
 const VARIANT_BLOBS: Record<Variant, { className: string; style: React.CSSProperties }[]> = {
   hero: [
@@ -46,6 +46,16 @@ const VARIANT_BLOBS: Record<Variant, { className: string; style: React.CSSProper
       style: {
         background:
           "radial-gradient(closest-side, rgba(193,97,60,0.22), rgba(193,97,60,0) 70%)",
+      },
+    },
+  ],
+  faq: [
+    {
+      className:
+        "absolute -bottom-20 right-1/4 h-[24rem] w-[24rem] rounded-full blur-3xl animate-drift",
+      style: {
+        background:
+          "radial-gradient(closest-side, rgba(184,147,91,0.22), rgba(184,147,91,0) 70%)",
       },
     },
   ],

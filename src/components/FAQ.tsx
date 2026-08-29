@@ -1,0 +1,193 @@
+"use client";
+
+import { useState, type ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import AnimatedSection from "./AnimatedSection";
+import OrganicBackground from "./OrganicBackground";
+
+/**
+ * GYIK — a chatben véglegesített kérdés-válasz párok.
+ * Accordion: alapból minden kérdés csukva, kattintásra nyílik ki
+ * egyesével — 17 tétel egyszerre kiírva agyonnyomná az oldalt.
+ */
+const items: { question: string; answer: ReactNode }[] = [
+  {
+    question: "Ki vagy te, miért higgyek neked?",
+    answer:
+      "Nem vagyok különlegesebb nálad — csak egy 31 éves útkereső srác, aki egyetlen dologban (az ECO-ban) volt képes kitartó lenni egész életében, és keresi, hogy mi számára az önazonos hivatás az életben. Ne higgy nekem — nézd végig az utam, és aztán döntsd el, hogy tudsz-e azonosulni azzal, amit képviselek.",
+  },
+  {
+    question: "Miért mész Indiáig, miért nem itthon végzed el a képzést?",
+    answer:
+      "Az érzés az, hogy ki kell szakadnom a mindennapok forgatagából ahhoz, hogy ez tényleg működjön. De van egy nagyon gyakorlati ok is: itthon egy 200 órás jógaképzés is 300–400 ezer forintba kerül, Indiában 290 ezer forintért kapok 500 órás képzést, plusz két hónap teljes ellátást — napi háromszori étkezést és szállást. A repjeggyel és vízummal együtt is 500 ezer forint alatt kijövök belőle, cserébe a forrásnál tanulhatok, és 500 órás képzésről kapok oklevelet, a szokásos 200 óra helyett.",
+  },
+  {
+    question: "Mikor indul az út, és meddig tart?",
+    answer:
+      "A repülőm szeptember 26-án indul Budapestről, és várhatóan december 3-án érkezem vissza. Maga a képzés október 1. és november 28. között zajlik Rishikeshben — a többi idő az utazásra és a köztes napokra megy el.",
+  },
+  {
+    question: "Mit kapok pontosan, ha feliratkozom?",
+    answer:
+      "Heti 1 hosszú, közvetlen, baráti hangvételű levelet emailben — azt, amit egy 60 másodperces videóban nem lehet elmondani. A napi TikTok a pillanatkép, a heti levél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam hajnali négykor.",
+  },
+  {
+    question: "Mikor kapom az első levelet?",
+    answer:
+      "A feliratkozás utáni első vasárnap estig megérkezik. Utána minden vasárnap jön egy új — fontos, hogy a régi leveleket utólag nem lehet visszaolvasni, szóval érdemes időben csatlakozni.",
+  },
+  {
+    question: "Ez ingyenes?",
+    answer:
+      "Igen. Nincs rejtett fizetős szint, nincs „ingyen most, majd fizess később” trükk a levelek végén. A heti levél és a napi bejelentkezések (főként TikTok, másodsorban Facebook és Instagram Reels, YouTube Shorts) is teljesen ingyenesek.",
+  },
+  {
+    question: "Hova kerülnek fel a videók?",
+    answer:
+      "A fő platform a TikTok. Ha lesz rá kapacitásom, felteszem Instagram és Facebook Reelsre, illetve YouTube Shortsra is.",
+  },
+  {
+    question: "Mi az az ECO, amiről a történetedben írsz?",
+    answer:
+      "Az Energy of Consciousness egy dogma- és vallásmentes önismereti technika, amit 3.5 éve minden nap gyakorlok. Ez az egyetlen dolog, ami mellett valaha ilyen sokáig kitartottam — ezért döntöttem a jóga mellett is, ami filozófiájában közel áll hozzá.",
+  },
+  {
+    question: 'Mi az az RYT-500 / "nemzetközi jóga szövetség" minősítés?',
+    answer:
+      "A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete. Az RYT-500 egy 500 órás, regisztrált jógaoktató-képzés minősítése — ezt szerzem meg Rishikeshben. Gyakorlatilag olyan, mintha az alapképzést és a mesterképzést egyben végezném el: az alap 200 órás szint fölött mélyebb tudást és tapasztalatot ad jóga-anatómiában, terápiás alkalmazásban, tanítási módszertanban, valamint a pranayama és a meditáció elmélyültebb gyakorlatában.",
+  },
+  {
+    question: 'Ez egy "tanulj jógázni" hírlevél? Kapok gyakorlatokat, pózokat?',
+    answer:
+      "Nem. Ez nem oktatóanyag, hanem az, ahogy én élem meg élőben a képzést — a kétségekkel, a rossz napokkal, a nyitott kérdésekkel együtt. Ha közben te is felismersz magadban valamit, az bónusz, nem a cél.",
+  },
+  {
+    question: "Mi a célod ezzel?",
+    answer:
+      "Elsősorban magamnak dokumentálom — de ha közben mást is inspirál, az felér egy bónusszal. Azért csinálom nyilvánosan, mert tudom, hogy könnyebb kitartani, ha van, aki számon kér. És mert egy világban, ahol minden csak a filterekről szól, szeretnék valódi képet mutatni: a jó pillanatoktól a nehéz, próbára tevő napokig — mert azokat is mindenki átéli, csak nem sokan mutatják meg.",
+  },
+  {
+    question: "Mi a terved a képzés utánra, jógaoktató leszel itthon?",
+    answer:
+      "Még nem tudom — az út valószínűleg sokat fog formálni rajtam ahhoz, hogy ezt előre megmondjam. Vannak ötleteim és elképzeléseim, de egyikhez sem szeretnék még ragaszkodni. Majd kiderül.",
+  },
+  {
+    question: "Egyedül mész, vagy van kint csoport/iskola, ahol tanulsz?",
+    answer:
+      "Egyedül utazom, de egy szervezett csoportos képzésre érkezem a Rudra Yogpeeth Yoga Ashramba (Tapovan, Ghugtyani Malli, Rishikesh, Uttarakhand, India).",
+  },
+  {
+    question: "Mi van, ha közben meggondolod magad, vagy nem fejezed be a képzést?",
+    answer:
+      "Nem tudom kizárni. Ha ez történik, azt is megírom — pontosan úgy, ahogy van, szépítés nélkül. Nem ígérhetek happy endet, csak azt, hogy őszintén dokumentálom, bármerre alakul is.",
+  },
+  {
+    question: "Milyen lesz egy átlagos napod Rishikeshben?",
+    answer:
+      "Kemény: 5-kor kelek, és este 9-kor már alszom is. Közte mantra-éneklés, légzőgyakorlatok és tisztítótechnikák, klasszikus Hatha jóga, jógafilozófia és anatómia órák, önkéntes munka (karma jóga), délutáni önálló gyakorlás, majd Ashtanga Vinyasa, és a nap meditációval zárul. Egy nap alatt többet mozgok és tanulok, mint egy átlagos hét alatt itthon.",
+  },
+  {
+    question: "Hova fér bele mindez a napirendbe — nem leszel dögfáradt?",
+    answer:
+      "A napi rövid videót és annak posztolását kb. 5 perc alatt oldom meg, lefekvés előtt. A heti levél nehezebben fér bele — azokon a napokon valószínűleg egy órával később fekszem le, hogy megírjam.",
+  },
+  {
+    question: "Beszélsz angolul a képzésen, nyelvi akadály nem lesz?",
+    answer:
+      "A képzés nyelve angol, és ez nálam nem akadály: közel anyanyelvi szinten beszélek angolul, közel egy évtizede van C1-es nyelvvizsgám, és az elmúlt 15 évben is aktívan használtam a nyelvet.",
+  },
+  {
+    question: "Bármikor leiratkozhatok?",
+    answer: (
+      <>
+        Igen, egy kattintással — minden levél alján találsz erre linket. Az
+        adataidat (email, opcionális keresztnév) a MailerLite kezeli, GDPR
+        szerint; részletek az{" "}
+        <a
+          href="/adatkezeles"
+          className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900"
+        >
+          Adatkezelési tájékoztatóban
+        </a>
+        .
+      </>
+    ),
+  },
+];
+
+export default function FAQ() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+      <OrganicBackground variant="faq" />
+
+      <div className="mx-auto max-w-3xl">
+        <AnimatedSection className="mx-auto max-w-xl text-center">
+          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+            Kérdésed van?
+          </p>
+          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
+            Gyakran ismételt kérdések
+          </h2>
+        </AnimatedSection>
+
+        <div className="mt-16 space-y-4">
+          {items.map((item, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <AnimatedSection
+                key={item.question}
+                delay={Math.min(i * 0.03, 0.3)}
+                className="overflow-hidden rounded-2xl border border-forest-800/10 bg-white/50 backdrop-blur-sm"
+              >
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                >
+                  <span className="font-serif text-lg text-forest-900">
+                    {item.question}
+                  </span>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    className={`shrink-0 text-terracotta-600 transition-transform duration-300 ${
+                      isOpen ? "rotate-45" : ""
+                    }`}
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 3v14M3 10h14"
+                      stroke="currentColor"
+                      strokeWidth="1.75"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <p className="px-6 pb-6 text-ink-900/70">
+                        {item.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </AnimatedSection>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
