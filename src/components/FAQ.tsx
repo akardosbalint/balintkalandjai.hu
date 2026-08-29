@@ -7,8 +7,9 @@ import OrganicBackground from "./OrganicBackground";
 
 /**
  * GYIK — a chatben véglegesített kérdés-válasz párok.
- * Accordion: alapból minden kérdés csukva, kattintásra nyílik ki
- * egyesével — 17 tétel egyszerre kiírva agyonnyomná az oldalt.
+ * Rokon témák egy kérdésbe vonva (max. 10 tétel), hogy a szekció ne
+ * legyen agyonnyomva. Accordion: alapból minden kérdés csukva,
+ * kattintásra nyílik ki egyesével.
  */
 const items: { question: string; answer: ReactNode }[] = [
   {
@@ -22,80 +23,39 @@ const items: { question: string; answer: ReactNode }[] = [
       "Az érzés az, hogy ki kell szakadnom a mindennapok forgatagából ahhoz, hogy ez tényleg működjön. De van egy nagyon gyakorlati ok is: itthon egy 200 órás jógaképzés is 300–400 ezer forintba kerül, Indiában 290 ezer forintért kapok 500 órás képzést, plusz két hónap teljes ellátást — napi háromszori étkezést és szállást. A repjeggyel és vízummal együtt is 500 ezer forint alatt kijövök belőle, cserébe a forrásnál tanulhatok, és 500 órás képzésről kapok oklevelet, a szokásos 200 óra helyett.",
   },
   {
-    question: "Mikor indul az út, és meddig tart?",
+    question: "Mikor indul az út, meddig tart, és mi a terved utána?",
     answer:
-      "A repülőm szeptember 26-án indul Budapestről, és várhatóan december 3-án érkezem vissza. Maga a képzés október 1. és november 28. között zajlik Rishikeshben — a többi idő az utazásra és a köztes napokra megy el.",
+      "A repülőm szeptember 26-án indul Budapestről, és várhatóan december 3-án érkezem vissza. Maga a képzés október 1. és november 28. között zajlik Rishikeshben. Hogy utána mi lesz — jógaoktató leszek itthon, vagy valami más —, azt még nem tudom. Az út valószínűleg sokat fog formálni rajtam ahhoz, hogy ezt előre megmondjam. Vannak ötleteim, de egyikhez sem szeretnék ragaszkodni. Majd kiderül.",
   },
   {
-    question: "Mit kapok pontosan, ha feliratkozom?",
+    question: "Mit kapok pontosan, ha feliratkozom, és mennyibe kerül?",
     answer:
-      "Heti 1 hosszú, közvetlen, baráti hangvételű levelet emailben — azt, amit egy 60 másodperces videóban nem lehet elmondani. A napi TikTok a pillanatkép, a heti levél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam hajnali négykor.",
+      "Heti 1 hosszú, közvetlen, baráti hangvételű levelet emailben — azt, amit egy 60 másodperces videóban nem lehet elmondani: mit tanultam, mit rontottam el, min gondolkodtam hajnali négykor. Az első levél a feliratkozás utáni első vasárnap estig megérkezik, utána minden vasárnap jön egy új; a régieket utólag nem lehet visszaolvasni. Emellett napi rövid videót is találsz — elsősorban TikTokon, kapacitástól függően Instagram, Facebook Reels és YouTube Shorts is. Mindez teljesen ingyenes.",
   },
   {
-    question: "Mikor kapom az első levelet?",
+    question: 'Mi az az ECO, és mi az az RYT-500 minősítés?',
     answer:
-      "A feliratkozás utáni első vasárnap estig megérkezik. Utána minden vasárnap jön egy új — fontos, hogy a régi leveleket utólag nem lehet visszaolvasni, szóval érdemes időben csatlakozni.",
+      "Az Energy of Consciousness (ECO) egy dogma- és vallásmentes önismereti technika, amit 3.5 éve minden nap gyakorlok — ez az egyetlen dolog, ami mellett valaha ilyen sokáig kitartottam, és filozófiájában közel áll a jógához. Az RYT-500 pedig egy 500 órás, a Yoga Alliance International (a legelterjedtebb nemzetközi akkreditációs szervezet) által elismert jógaoktatói minősítés — ezt szerzem meg Rishikeshben. Gyakorlatilag olyan, mintha az alapképzést és a mesterképzést egyben végezném el: az alap 200 órás szint fölött mélyebb tudást ad jóga-anatómiában, terápiás alkalmazásban, tanítási módszertanban, valamint a pranayama és a meditáció elmélyültebb gyakorlatában.",
   },
   {
-    question: "Ez ingyenes?",
+    question: 'Ez egy "tanulj jógázni" hírlevél? Mi a célod ezzel?',
     answer:
-      "Igen. Nincs rejtett fizetős szint, nincs „ingyen most, majd fizess később” trükk a levelek végén. A heti levél és a napi bejelentkezések (főként TikTok, másodsorban Facebook és Instagram Reels, YouTube Shorts) is teljesen ingyenesek.",
+      "Nem, ez nem oktatóanyag — hanem az, ahogy én élem meg élőben a képzést, a kétségekkel és a rossz napokkal együtt. Elsősorban magamnak dokumentálom, de remélem, hogy közben mást is inspirál. Azért csinálom nyilvánosan, mert tudom, hogy könnyebb kitartani, ha van, aki számon kér — és mert egy világban, ahol minden csak a filterekről szól, szeretnék valódi képet mutatni: a jó pillanatoktól a nehéz, próbára tevő napokig.",
   },
   {
-    question: "Hova kerülnek fel a videók?",
+    question: "Egyedül mész? Nem lesz nyelvi akadály?",
     answer:
-      "A fő platform a TikTok. Ha lesz rá kapacitásom, felteszem Instagram és Facebook Reelsre, illetve YouTube Shortsra is.",
+      "Egyedül utazom, de egy szervezett csoportos képzésre érkezem a Rudra Yogpeeth Yoga Ashramba (Tapovan, Rishikesh, India). A képzés nyelve angol, de ez nálam nem akadály: közel anyanyelvi szinten beszélem, egy évtizede van C1-es nyelvvizsgám, és az elmúlt 15 évben is aktívan használtam a nyelvet.",
   },
   {
-    question: "Mi az az ECO, amiről a történetedben írsz?",
+    question: "Milyen lesz egy átlagos napod, és hogyan fér bele a tartalomgyártás?",
     answer:
-      "Az Energy of Consciousness egy dogma- és vallásmentes önismereti technika, amit 3.5 éve minden nap gyakorlok. Ez az egyetlen dolog, ami mellett valaha ilyen sokáig kitartottam — ezért döntöttem a jóga mellett is, ami filozófiájában közel áll hozzá.",
-  },
-  {
-    question: 'Mi az az RYT-500 / "nemzetközi jóga szövetség" minősítés?',
-    answer:
-      "A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete. Az RYT-500 egy 500 órás, regisztrált jógaoktató-képzés minősítése — ezt szerzem meg Rishikeshben. Gyakorlatilag olyan, mintha az alapképzést és a mesterképzést egyben végezném el: az alap 200 órás szint fölött mélyebb tudást és tapasztalatot ad jóga-anatómiában, terápiás alkalmazásban, tanítási módszertanban, valamint a pranayama és a meditáció elmélyültebb gyakorlatában.",
-  },
-  {
-    question: 'Ez egy "tanulj jógázni" hírlevél? Kapok gyakorlatokat, pózokat?',
-    answer:
-      "Nem. Ez nem oktatóanyag, hanem az, ahogy én élem meg élőben a képzést — a kétségekkel, a rossz napokkal, a nyitott kérdésekkel együtt. Ha közben te is felismersz magadban valamit, az bónusz, nem a cél.",
-  },
-  {
-    question: "Mi a célod ezzel?",
-    answer:
-      "Elsősorban magamnak dokumentálom — de ha közben mást is inspirál, az felér egy bónusszal. Azért csinálom nyilvánosan, mert tudom, hogy könnyebb kitartani, ha van, aki számon kér. És mert egy világban, ahol minden csak a filterekről szól, szeretnék valódi képet mutatni: a jó pillanatoktól a nehéz, próbára tevő napokig — mert azokat is mindenki átéli, csak nem sokan mutatják meg.",
-  },
-  {
-    question: "Mi a terved a képzés utánra, jógaoktató leszel itthon?",
-    answer:
-      "Még nem tudom — az út valószínűleg sokat fog formálni rajtam ahhoz, hogy ezt előre megmondjam. Vannak ötleteim és elképzeléseim, de egyikhez sem szeretnék még ragaszkodni. Majd kiderül.",
-  },
-  {
-    question: "Egyedül mész, vagy van kint csoport/iskola, ahol tanulsz?",
-    answer:
-      "Egyedül utazom, de egy szervezett csoportos képzésre érkezem a Rudra Yogpeeth Yoga Ashramba (Tapovan, Ghugtyani Malli, Rishikesh, Uttarakhand, India).",
+      "Kemény: 5-kor kelek, este 9-kor már alszom is. Közte mantra-éneklés, légzőgyakorlatok, klasszikus Hatha jóga, jógafilozófia és anatómia órák, karma jóga, önálló gyakorlás, Ashtanga Vinyasa, meditáció. A napi rövid videót és annak posztolását lefekvés előtt tervezem beilleszteni; a heti levél nehezebben fér bele — azokon a napokon valószínűleg egy órával később fekszem le, hogy megírjam.",
   },
   {
     question: "Mi van, ha közben meggondolod magad, vagy nem fejezed be a képzést?",
     answer:
       "Nem tudom kizárni. Ha ez történik, azt is megírom — pontosan úgy, ahogy van, szépítés nélkül. Nem ígérhetek happy endet, csak azt, hogy őszintén dokumentálom, bármerre alakul is.",
-  },
-  {
-    question: "Milyen lesz egy átlagos napod Rishikeshben?",
-    answer:
-      "Kemény: 5-kor kelek, és este 9-kor már alszom is. Közte mantra-éneklés, légzőgyakorlatok és tisztítótechnikák, klasszikus Hatha jóga, jógafilozófia és anatómia órák, önkéntes munka (karma jóga), délutáni önálló gyakorlás, majd Ashtanga Vinyasa, és a nap meditációval zárul. Egy nap alatt többet mozgok és tanulok, mint egy átlagos hét alatt itthon.",
-  },
-  {
-    question:
-      "Hogyan fér majd bele tartalomgyártás a napirendbe — nem leszel dögfáradt?",
-    answer:
-      "A napi rövid videót és annak posztolását lefekvés előtt tervezem. A heti levél nehezebben fér bele — azokon a napokon valószínűleg egy órával később fekszem le, hogy megírjam.",
-  },
-  {
-    question: "Nem lesz nyelvi akadály?",
-    answer:
-      "A képzés nyelve angol, és ez nálam nem akadály: közel anyanyelvi szinten beszélem, egy évtizede van C1-es nyelvvizsgám, és az elmúlt 15 évben is aktívan használtam a nyelvet.",
   },
   {
     question: "Bármikor leiratkozhatok?",
