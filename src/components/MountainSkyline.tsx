@@ -1,5 +1,10 @@
+interface MountainSkylineProps {
+  /** Kisebb, útvonalív nélküli, "megérkeztünk" hangulatú változat. */
+  compact?: boolean;
+}
+
 /**
- * HEGYVONULAT + NAPKELTE + ÚTVONALÍV
+ * HEGYVONULAT + NAPKELTE + (OPCIONÁLIS) ÚTVONALÍV
  * -----------------------------------------------------------------
  * A Hero szekció alján lévő, kalandra hívó "establishing shot": egy
  * rétegzett, absztrakt Himalája-sziluett, meleg napkelte-színátmenettel,
@@ -7,24 +12,31 @@
  * kiemelt csúcs-jelölőig (Indiáig) fut — a konkrét utazást vetíti elő
  * vizuálisan, mielőtt a látogató elolvasná a szöveget.
  *
+ * `compact` módban (a záró CTA szekcióban) alacsonyabb és útvonalív
+ * nélküli — mintha ugyanoda a hegyvonulathoz érnénk vissza a történet
+ * végén, immár nyugodtabban, cél nélküli nyíl nélkül.
+ *
  * Szándékosan alacsony, lapos sávban tartva (nem a teljes szekció
  * magasságában): a csúcsok csak a sáv alsó ~40%-áig érnek fel, hogy a
- * fölötte lévő szövegnek/formnak ne kelljen extra helyet hagynia — a
- * Hero.tsx z-index rétegzése garantálja, hogy a tartalom mindig
- * felette marad, még ha rá is lóg valamennyi.
+ * fölötte lévő tartalomnak ne kelljen extra helyet hagynia — a
+ * felhasználó komponens z-index rétegzése garantálja, hogy a tartalom
+ * mindig felette marad, még ha rá is lóg valamennyi.
  */
-export default function MountainSkyline() {
+export default function MountainSkyline({ compact = false }: MountainSkylineProps) {
   return (
     <div
-      className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 overflow-hidden sm:h-56"
+      className={`pointer-events-none absolute inset-x-0 bottom-0 -z-10 overflow-hidden ${
+        compact ? "h-28 sm:h-40" : "h-40 sm:h-56"
+      }`}
       aria-hidden="true"
     >
       {/* napkelte-mosás: meleg szín a láthatáron, elhalványul felfelé */}
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(to top, rgba(193,97,60,0.22) 0%, rgba(184,147,91,0.13) 35%, rgba(184,147,91,0.04) 65%, rgba(251,247,241,0) 90%)",
+          background: compact
+            ? "linear-gradient(to top, rgba(46,59,44,0.16) 0%, rgba(184,147,91,0.08) 40%, rgba(251,247,241,0) 85%)"
+            : "linear-gradient(to top, rgba(193,97,60,0.22) 0%, rgba(184,147,91,0.13) 35%, rgba(184,147,91,0.04) 65%, rgba(251,247,241,0) 90%)",
         }}
       />
 
@@ -53,25 +65,29 @@ export default function MountainSkyline() {
           opacity="0.9"
         />
 
-        {/* útvonalív: induló pont (itthon) → csúcs-jelölő (India) */}
-        <path
-          d="M50,188 Q380,70 760,92 T1300,60"
-          fill="none"
-          stroke="#F4ECE0"
-          strokeWidth="1.5"
-          strokeDasharray="0.5 12"
-          strokeLinecap="round"
-          opacity="0.5"
-        />
-        <circle cx="50" cy="188" r="4" fill="#F4ECE0" opacity="0.7" />
-        <circle
-          cx="1300"
-          cy="60"
-          r="6"
-          fill="#B8935B"
-          className="animate-breathe-slow"
-          style={{ transformBox: "fill-box", transformOrigin: "center" }}
-        />
+        {!compact && (
+          <>
+            {/* útvonalív: induló pont (itthon) → csúcs-jelölő (India) */}
+            <path
+              d="M50,188 Q380,70 760,92 T1300,60"
+              fill="none"
+              stroke="#F4ECE0"
+              strokeWidth="1.5"
+              strokeDasharray="0.5 12"
+              strokeLinecap="round"
+              opacity="0.5"
+            />
+            <circle cx="50" cy="188" r="4" fill="#F4ECE0" opacity="0.7" />
+            <circle
+              cx="1300"
+              cy="60"
+              r="6"
+              fill="#B8935B"
+              className="animate-breathe-slow"
+              style={{ transformBox: "fill-box", transformOrigin: "center" }}
+            />
+          </>
+        )}
       </svg>
     </div>
   );

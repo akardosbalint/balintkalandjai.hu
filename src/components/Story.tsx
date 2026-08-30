@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
+import CompassRose from "./CompassRose";
 import OrganicBackground from "./OrganicBackground";
 import Term from "./Term";
 import WaypointMarker from "./WaypointMarker";
@@ -38,7 +39,7 @@ export default function Story() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[320px_1fr] lg:gap-16">
           <AnimatedSection
             delay={0.1}
-            className="mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
+            className="relative mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
           >
             <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-xl ring-1 ring-forest-900/10">
               <Image
@@ -49,6 +50,7 @@ export default function Story() {
                 className="object-cover"
               />
             </div>
+            <CompassRose className="pointer-events-none absolute -right-3 -top-3 h-14 w-14 rotate-[8deg] drop-shadow-sm sm:h-16 sm:w-16" />
           </AnimatedSection>
 
           <AnimatedSection

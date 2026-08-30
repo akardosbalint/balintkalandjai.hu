@@ -1,4 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
+import MountainSkyline from "./MountainSkyline";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
 import WaypointMarker from "./WaypointMarker";
@@ -13,10 +14,11 @@ import WaypointMarker from "./WaypointMarker";
  */
 export default function SecondCTA() {
   return (
-    <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden px-6 pb-40 pt-24 sm:pb-52 sm:pt-32">
       <OrganicBackground variant="cta" />
+      <MountainSkyline compact />
 
-      <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center text-center">
         <AnimatedSection>
           <WaypointMarker className="mx-auto mb-5 h-6 w-6 text-terracotta-600" />
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
