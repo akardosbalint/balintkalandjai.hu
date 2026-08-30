@@ -187,7 +187,7 @@ export default function ExitIntentPopup() {
               id="exit-popup-headline"
               className="mt-3 text-balance font-serif text-2xl leading-tight text-forest-900 sm:text-3xl"
             >
-              Ne hagyd, hogy az életed elmenjen melletted.
+              Ne hagyd, hogy elmenjen melletted az életed.
             </h2>
             <p className="mt-4 text-ink-900/75">
               31 évig szinte kizárólag kívülről szemléltem a saját
