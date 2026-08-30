@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import JourneyProgress from "./JourneyProgress";
+import MountainSkyline from "./MountainSkyline";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
 import Term from "./Term";
@@ -65,10 +66,11 @@ const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden px-6 pb-20 pt-28 sm:pt-36">
+    <section className="relative isolate overflow-hidden px-6 pb-28 pt-28 sm:pb-36 sm:pt-36">
       <OrganicBackground variant="hero" />
+      <MountainSkyline />
 
-      <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
+import OmMark from "./OmMark";
 
 const TOTAL_DAYS = siteConfig.journey.totalDays;
 
@@ -38,35 +39,14 @@ function getJourneyDayInfo(now: Date): JourneyDayInfo {
 }
 
 /**
- * Kis "láng" jelölő — a jelenlegi pozíciót mutatja az ösvényen. Egy
- * mécses/gyertyaláng sziluettje: meleg, indiai zarándokúthoz illő kép,
- * anélkül, hogy konkrét vallási szimbólumot (pl. diya) másolna 1:1.
- */
-function FlameMarker() {
-  return (
-    <svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true" focusable="false">
-      <path
-        d="M8 0C10.5 3.5 13 6.8 13 10.2 13 14 10.8 17 8 17S3 14 3 10.2C3 6.8 5.5 3.5 8 0Z"
-        fill="#C1613C"
-      />
-      <path
-        d="M8 5.5C9.2 7.6 10.4 9.4 10.4 11.4 10.4 13.3 9.3 15 8 15S5.6 13.3 5.6 11.4C5.6 9.4 6.8 7.6 8 5.5Z"
-        fill="#F4ECE0"
-        opacity="0.85"
-      />
-    </svg>
-  );
-}
-
-/**
  * Élő haladásjelző: hányadik napnál tartok a teljes 67 napos úton
  * (szept. 28-i érkezéstől dec. 3-i hazautazásig) — ebbe illeszkedik bele
  * a 4. naptól (okt. 1.) az 58 napos akkreditált képzés is.
  *
  * A sáv szándékosan egy kanyargó, pontozott ösvényt formáz (nem sima
- * lekerekített progress bar), a végén egy "láng" jelöli az aktuális
- * pozíciót — az útkeresés motívumát viszi tovább a landing page
- * legfontosabb, élő elemébe.
+ * lekerekített progress bar), a végén egy "ॐ" jel mutatja az aktuális
+ * pozíciót — az útkeresés és a jóga motívumát viszi tovább a landing
+ * page legfontosabb, élő elemébe.
  *
  * Kliens oldalon számol (a látogató helyi dátuma alapján), hogy mindig
  * friss legyen újradeploy nélkül is — ezért csak mountolás után jelenik meg,
@@ -154,12 +134,12 @@ export default function JourneyProgress() {
         </svg>
 
         <motion.div
-          className="absolute top-1/2 -ml-2 -translate-y-1/2"
+          className="absolute top-1/2 -ml-2.5 -translate-y-1/2"
           initial={{ left: "0%" }}
           animate={{ left: `${percent}%` }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <FlameMarker />
+          <OmMark className="text-xl text-terracotta-600" />
         </motion.div>
       </div>
     </motion.div>

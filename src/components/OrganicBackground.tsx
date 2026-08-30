@@ -134,33 +134,33 @@ const VARIANT_MOTIFS: Record<
   { rosette?: string; ripples?: string }
 > = {
   hero: {
-    rosette: "absolute -bottom-6 left-6 h-32 w-32 opacity-[0.08] animate-drift sm:h-40 sm:w-40",
+    rosette: "absolute -bottom-6 left-6 h-32 w-32 opacity-[0.11] animate-drift sm:h-40 sm:w-40",
     ripples:
-      "absolute bottom-0 right-8 h-64 w-64 translate-y-1/3 opacity-[0.1] animate-breathe-slow sm:h-80 sm:w-80",
+      "absolute bottom-0 right-8 h-64 w-64 translate-y-1/3 opacity-[0.13] animate-breathe-slow sm:h-80 sm:w-80",
   },
   story: {
-    rosette: "absolute right-4 top-24 h-28 w-28 opacity-[0.07] animate-drift sm:h-36 sm:w-36",
+    rosette: "absolute right-4 top-24 h-28 w-28 opacity-[0.11] animate-drift sm:h-36 sm:w-36",
     ripples:
-      "absolute -left-10 bottom-10 h-56 w-56 opacity-[0.08] animate-breathe-slow sm:h-72 sm:w-72",
+      "absolute -left-10 bottom-10 h-56 w-56 opacity-[0.11] animate-breathe-slow sm:h-72 sm:w-72",
   },
   offer: {
-    rosette: "absolute right-8 top-8 h-28 w-28 opacity-[0.07] animate-drift sm:h-36 sm:w-36",
+    rosette: "absolute right-8 top-8 h-28 w-28 opacity-[0.11] animate-drift sm:h-36 sm:w-36",
     ripples:
-      "absolute -bottom-16 right-0 h-64 w-64 opacity-[0.09] animate-breathe-slow sm:h-80 sm:w-80",
+      "absolute -bottom-16 right-0 h-64 w-64 opacity-[0.12] animate-breathe-slow sm:h-80 sm:w-80",
   },
   proof: {
-    rosette: "absolute -bottom-4 left-6 h-28 w-28 opacity-[0.07] animate-drift sm:h-36 sm:w-36",
+    rosette: "absolute -bottom-4 left-6 h-28 w-28 opacity-[0.11] animate-drift sm:h-36 sm:w-36",
     ripples:
-      "absolute -top-10 left-1/4 h-56 w-56 opacity-[0.08] animate-breathe-slow sm:h-72 sm:w-72",
+      "absolute -top-10 left-1/4 h-56 w-56 opacity-[0.11] animate-breathe-slow sm:h-72 sm:w-72",
   },
   faq: {
-    rosette: "absolute left-4 top-10 h-28 w-28 opacity-[0.07] animate-drift sm:h-36 sm:w-36",
+    rosette: "absolute left-4 top-10 h-28 w-28 opacity-[0.11] animate-drift sm:h-36 sm:w-36",
     ripples:
-      "absolute -bottom-14 left-1/3 h-56 w-56 opacity-[0.08] animate-breathe-slow sm:h-72 sm:w-72",
+      "absolute -bottom-14 left-1/3 h-56 w-56 opacity-[0.11] animate-breathe-slow sm:h-72 sm:w-72",
   },
   cta: {
     ripples:
-      "absolute inset-x-0 bottom-0 mx-auto h-[26rem] w-[26rem] translate-y-1/4 opacity-[0.1] animate-breathe-slow",
+      "absolute inset-x-0 bottom-0 mx-auto h-[26rem] w-[26rem] translate-y-1/4 opacity-[0.13] animate-breathe-slow",
   },
 };
 
