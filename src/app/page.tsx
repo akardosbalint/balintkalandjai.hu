@@ -6,6 +6,7 @@ import FAQ from "@/components/FAQ";
 import SecondCTA from "@/components/SecondCTA";
 import Footer from "@/components/Footer";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <SecondCTA />
       <Footer />
       <StickyMobileCTA />
+      <ExitIntentPopup />
     </main>
   );
 }

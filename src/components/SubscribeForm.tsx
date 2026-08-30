@@ -9,11 +9,13 @@ type Status = "idle" | "loading" | "success" | "error";
 interface SubscribeFormProps {
   id?: string;
   ctaLabel?: string;
+  onSuccess?: () => void;
 }
 
 export default function SubscribeForm({
   id,
   ctaLabel = "Gyere, tarts velem",
+  onSuccess,
 }: SubscribeFormProps) {
   const uid = useId();
   const [email, setEmail] = useState("");
@@ -54,7 +56,15 @@ export default function SubscribeForm({
         return;
       }
 
+      try {
+        localStorage.setItem("balint-subscribed", "1");
+      } catch {
+        // Privát böngészés / letiltott storage — nem kritikus, csak az
+        // exit-intent popup újramegjelenését szűrné ki jövőbeli látogatáskor.
+      }
+
       setStatus("success");
+      onSuccess?.();
     } catch {
       setStatus("error");
       setErrorMessage(
