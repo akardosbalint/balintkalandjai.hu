@@ -199,7 +199,7 @@ export default function ExitIntentPopup() {
 
             <div className="mt-6">
               <SubscribeForm
-                ctaLabel="Igen, tartok veled"
+                ctaLabel="Veled tartok - feliratkozom"
                 onSuccess={() => {
                   window.setTimeout(() => setVisible(false), 2200);
                 }}
