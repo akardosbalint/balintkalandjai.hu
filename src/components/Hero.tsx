@@ -54,10 +54,10 @@ import Term from "./Term";
  */
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
-// magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
-// lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga
-// szövetség által akkreditált, RYT-500 minősítésű jógaoktatóvá
-// váljak, és élőben dokumentálom az egészet."
+// magyarázatok nélkül): "Most Dél-Ázsiáig megyek, hogy behozzam a
+// lemaradást. A tervek szerint 9 hetet töltök Indiában, hogy a
+// nemzetközi jóga szövetség által akkreditált, RYT-500 minősítésű
+// jógaoktatóvá váljak, és élőben dokumentálom az egész folyamatot."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
 // magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
 // kifejezésekhez (telefonon is elérhető, nem csak hoverre).
@@ -83,8 +83,8 @@ export default function Hero() {
           transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
-          Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök
-          Rishikeshben, hogy a{" "}
+          Most Dél-Ázsiáig megyek, hogy behozzam a lemaradást. A tervek
+          szerint 9 hetet töltök Indiában, hogy a{" "}
           <Term
             definition={
               <>
@@ -111,7 +111,8 @@ export default function Hero() {
           >
             RYT-500
           </Term>{" "}
-          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egészet.
+          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egész
+          folyamatot.
         </motion.p>
 
         <div className="flex w-full justify-center">
