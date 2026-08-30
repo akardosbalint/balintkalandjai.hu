@@ -1,5 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
+import WaypointMarker from "./WaypointMarker";
 
 /**
  * FOLYAMAT-BIZONYÍTÉK — nem hamis "sikertörténet" placeholder
@@ -35,7 +36,8 @@ export default function SocialProof() {
 
       <div className="mx-auto max-w-5xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+          <p className="mb-4 flex items-center justify-center gap-2 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+            <WaypointMarker />
             Miért higgy nekem
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">

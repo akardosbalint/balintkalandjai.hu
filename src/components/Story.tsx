@@ -2,6 +2,7 @@ import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
 import Term from "./Term";
+import WaypointMarker from "./WaypointMarker";
 
 /**
  * STORY — bemutatkozó narratíva (150–250 szó, ívelt mini-sztori)
@@ -25,7 +26,8 @@ export default function Story() {
 
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+          <p className="mb-4 flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+            <WaypointMarker />
             Mielőtt feliratkozol
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">

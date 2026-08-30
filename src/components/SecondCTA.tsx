@@ -1,6 +1,7 @@
 import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
+import WaypointMarker from "./WaypointMarker";
 
 /**
  * MÁSODIK (ALSÓ) CTA — más szög, mint a hero
@@ -17,6 +18,7 @@ export default function SecondCTA() {
 
       <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
         <AnimatedSection>
+          <WaypointMarker className="mx-auto mb-5 h-6 w-6 text-terracotta-600" />
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
             Ha idáig eljutottál, valószínűleg te is átéltél hasonlót
           </h2>

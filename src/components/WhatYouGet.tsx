@@ -1,4 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
+import OrganicBackground from "./OrganicBackground";
+import WaypointMarker from "./WaypointMarker";
 
 /**
  * MIT KAPSZ — konkrét, kézzelfogható ígéretek
@@ -32,10 +34,13 @@ const items = [
 
 export default function WhatYouGet() {
   return (
-    <section className="relative px-6 py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden px-6 py-24 sm:py-32">
+      <OrganicBackground variant="offer" />
+
       <div className="mx-auto max-w-4xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+          <p className="mb-4 flex items-center justify-center gap-2 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+            <WaypointMarker />
             Mit kapsz
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
@@ -50,7 +55,7 @@ export default function WhatYouGet() {
               delay={0.08 * i}
               className="rounded-2xl border border-forest-800/10 bg-white/50 p-8 backdrop-blur-sm"
             >
-              <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-terracotta-500/15 font-serif text-terracotta-600">
+              <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-terracotta-500/15 font-serif text-terracotta-600 ring-1 ring-terracotta-500/30">
                 {i + 1}
               </span>
               <h3 className="font-serif text-xl text-forest-900">
