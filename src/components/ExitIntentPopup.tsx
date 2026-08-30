@@ -187,18 +187,18 @@ export default function ExitIntentPopup() {
               id="exit-popup-headline"
               className="mt-3 text-balance font-serif text-2xl leading-tight text-forest-900 sm:text-3xl"
             >
-              Ne maradj le megint valamiről, ami számíthatna.
+              Ne hagyd, hogy az életed elmenjen melletted.
             </h2>
             <p className="mt-4 text-ink-900/75">
-              31 évig kívülről néztem, ahogy elmegy mellettem az életem,
-              amit én akartam. Most nyilvánosan nekivágok, hogy ez ne
-              történjen meg újra. Ha ismered ezt az érzést, gyere velem —
-              heti 1 őszinte levél, ingyen.
+              31 évig szinte kizárólag kívülről szemléltem a saját
+              életemet. Ha te is ismered ezt az érzést — a
+              bizonytalanságot, a kétségeket, hogy sokáig nem találtad a
+              helyed —, gyere velem. Heti 1 őszinte levél, ingyen.
             </p>
 
             <div className="mt-6">
               <SubscribeForm
-                ctaLabel="Nem akarok megint lemaradni"
+                ctaLabel="Igen, tartok veled"
                 onSuccess={() => {
                   window.setTimeout(() => setVisible(false), 2200);
                 }}
