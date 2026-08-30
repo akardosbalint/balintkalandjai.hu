@@ -10,7 +10,7 @@ export const siteConfig = {
   // Nyers, nem sablon meta description — lásd app/layout.tsx a teljes
   // hangnemért (SEO + social share preview szöveg).
   description:
-    "31 éven át lemaradtam a saját életemről. Most 58 napra Indiába megyek jógát tanulni, nyilvánosan, szűretlenül dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
+    "31 éven át lemaradtam a saját életemről. A tervek szerint 67 napra Indiába megyek, ebből 58 napot egy rishikeshi jógaoktatói képzéssel töltök — nyilvánosan, szűretlenül dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
   social: {
     tiktok: "https://tiktok.com/@akardosbalint.hu",
   },

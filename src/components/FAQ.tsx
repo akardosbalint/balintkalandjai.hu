@@ -25,7 +25,7 @@ const items: { question: string; answer: ReactNode }[] = [
   {
     question: "Mikor indul az út, meddig tart, és mi a terved utána?",
     answer:
-      "A repülőm szeptember 26-án indul Budapestről, és várhatóan december 3-án érkezem vissza. Maga a képzés október 1. és november 28. között zajlik Rishikeshben. Hogy utána mi lesz — jógaoktató leszek itthon, vagy valami más —, azt még nem tudom. Az út valószínűleg sokat fog formálni rajtam ahhoz, hogy ezt előre megmondjam. Vannak ötleteim, de egyikhez sem szeretnék ragaszkodni. Majd kiderül.",
+      "A repülőm szeptember 26-án indul Budapestről, és várhatóan december 3-án érkezem vissza — összesen minimum 67 napot töltök Indiában. Ebből 58 nap a rishikeshi jógaoktatói képzés, október 1. és november 28. között. Hogy utána mi lesz — jógaoktató leszek itthon, vagy valami más —, azt még nem tudom. Az út valószínűleg sokat fog formálni rajtam ahhoz, hogy ezt előre megmondjam. Vannak ötleteim, de egyikhez sem szeretnék ragaszkodni. Majd kiderül.",
   },
   {
     question: "Mit kapok pontosan, ha feliratkozom, és mennyibe kerül?",

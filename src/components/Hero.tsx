@@ -17,11 +17,12 @@ import Term from "./Term";
  * keret, hanem "gyere, kövesd végig, ahogy élőben keresem a
  * válaszokat" — lásd a copywriting-elveket a repo README-jében.
  *
- * IDŐBELISÉG — FONTOS: a képzés 2026. okt. 1-jén indul, tehát amíg a
- * tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy már ott
- * van, vagy hogy már eltelt X nap ("58 napja Rishikeshben..." HIBÁS).
- * Jelen idő használható (pl. "58 napot töltök Rishikeshben"), de
- * csak terv/időtartam leírásaként, nem eltelt idő állításaként.
+ * IDŐBELISÉG — FONTOS: az utazás 2026. szept. 28-án kezdődik, a képzés
+ * okt. 1-jén indul, tehát amíg a tulajdonos el nem utazik, a szöveg NEM
+ * állíthatja, hogy már ott van, vagy hogy már eltelt X nap ("58 napja
+ * Rishikeshben..." HIBÁS). Jelen idő használható (pl. "67 napot töltök
+ * Indiában"), de csak terv/időtartam leírásaként, nem eltelt idő
+ * állításaként.
  *
  * F) "31 éven keresztül lemaradtam a saját életemről."
  *     — a jelenleg aktív verzió. Nem magyarázatot ad (mint az A: a
@@ -55,9 +56,10 @@ import Term from "./Term";
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
 // magyarázatok nélkül): "Most Dél-Ázsiáig megyek, hogy behozzam a
-// lemaradást. A tervek szerint 9 hetet töltök Indiában, hogy a
-// nemzetközi jóga szövetség által akkreditált, RYT-500 minősítésű
-// jógaoktatóvá váljak, és élőben dokumentálom az egész folyamatot."
+// lemaradást. A tervek szerint minimum 67 napot töltök Indiában, ebből
+// 58 nap a rishikeshi jógaoktatói képzés, ahol a nemzetközi jóga
+// szövetség által akkreditált, RYT-500 minősítést szerzem meg — és
+// élőben dokumentálom az egész folyamatot."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
 // magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
 // kifejezésekhez (telefonon is elérhető, nem csak hoverre).
@@ -84,7 +86,8 @@ export default function Hero() {
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
           Most Dél-Ázsiáig megyek, hogy behozzam a lemaradást. A tervek
-          szerint 9 hetet töltök Indiában, hogy a{" "}
+          szerint minimum 67 napot töltök Indiában, ebből 58 nap a
+          rishikeshi jógaoktatói képzés, ahol a{" "}
           <Term
             definition={
               <>
@@ -111,7 +114,7 @@ export default function Hero() {
           >
             RYT-500
           </Term>{" "}
-          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egész
+          minősítést szerzem meg — és élőben dokumentálom az egész
           folyamatot.
         </motion.p>
 

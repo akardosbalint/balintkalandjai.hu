@@ -60,7 +60,7 @@ export default function JourneyProgress() {
     info.phase === "before"
       ? `Indulásig még ${info.daysUntilStart} nap van hátra.`
       : info.phase === "during"
-        ? `A(z) ${info.day}. napomat élem Rishikeshben`
+        ? `A(z) ${info.day}. napomat élem Indiában`
         : "Vége az útnak — hazaértem";
 
   const countLabel =
