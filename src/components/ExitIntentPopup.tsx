@@ -193,7 +193,8 @@ export default function ExitIntentPopup() {
               31 évig szinte kizárólag kívülről szemléltem a saját
               életemet. Ha te is ismered ezt az érzést — a
               bizonytalanságot, a kétségeket, hogy sokáig nem találtad a
-              helyed —, gyere velem. Heti 1 őszinte levél, ingyen.
+              helyed —, gyere velem. Heti 1 őszinte levél, ingyen. Hátha
+              segít.
             </p>
 
             <div className="mt-6">
