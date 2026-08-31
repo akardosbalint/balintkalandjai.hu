@@ -178,10 +178,11 @@ export default function AdatkezelesPage() {
           <p className="mt-2">
             Az adatkezelés jogalapja a GDPR 6. cikk (1) bekezdés a) pontja
             szerinti önkéntes hozzájárulásod, amelyet a feliratkozáskor a
-            checkbox bejelölésével, majd a megerősítő emailben (double
-            opt-in) adsz meg. A hozzájárulásodat bármikor, indoklás nélkül,
-            díjmentesen visszavonhatod — ez nem érinti a visszavonás előtt,
-            a hozzájárulás alapján végzett adatkezelés jogszerűségét.
+            checkbox bejelölésével adsz meg — a feliratkozásod ezzel
+            azonnal aktívvá válik. A hozzájárulásodat bármikor, indoklás
+            nélkül, díjmentesen visszavonhatod — ez nem érinti a
+            visszavonás előtt, a hozzájárulás alapján végzett adatkezelés
+            jogszerűségét.
           </p>
           <p className="mt-2">
             A Weboldal tárhelyének biztonságos üzemeltetéséhez kapcsolódó,

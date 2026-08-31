@@ -10,10 +10,9 @@ interface SubscribeBody {
 
 /**
  * Szerver oldali proxy a MailerLite API felé, hogy az API kulcs
- * soha ne kerüljön a böngészőbe. A double opt-in flow-t a MailerLite
- * fiók / csoport beállítása vezérli (Settings → Subscribers →
- * Double opt-in) — itt csak feliratkoztatunk, a megerősítő emailt
- * a MailerLite küldi automatikusan.
+ * soha ne kerüljön a böngészőbe. A feliratkozás egylépcsős (single
+ * opt-in): a sikeres API hívással a feliratkozó azonnal aktív
+ * állapotba kerül, nincs külön megerősítő email.
  */
 export async function POST(request: Request) {
   let body: SubscribeBody;
