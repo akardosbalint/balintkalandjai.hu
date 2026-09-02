@@ -19,7 +19,7 @@ export default function Footer() {
             találsz erre gombot.
           </p>
           <p className="mt-2">
-            <Link href="/adatkezeles" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-sand-50">
               Adatkezelési tájékoztató
             </Link>
           </p>

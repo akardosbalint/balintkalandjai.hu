@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  * fizetős programot is fogsz hirdetni, ami már számlázási / további
  * adatkezelési kötelezettségeket hozhat be.
  */
-export default function AdatkezelesPage() {
+export default function PrivacyPolicyPage() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-20">
       <Link
@@ -29,7 +29,7 @@ export default function AdatkezelesPage() {
         Adatkezelési tájékoztató
       </h1>
       <p className="mt-2 text-sm text-ink-900/50">
-        Hatályos: 2026. augusztus 15. Ez egy sablon — kérj jogi átnézést,
+        Hatályos: 2026. szeptember 2. Ez egy sablon — kérj jogi átnézést,
         mielőtt élesben használod.
       </p>
 
@@ -56,8 +56,9 @@ export default function AdatkezelesPage() {
             2. Milyen adatokat kezelünk
           </h2>
           <p className="mt-2">
-            A hírlevélre való feliratkozáskor az alábbi adatokat kérem el és
-            kezelem:
+            A weboldal jelenleg egyetlen ponton kér el adatot: a hírlevélre
+            való feliratkozáskor (a főoldalon található feliratkozó
+            űrlapon). Ekkor az alábbi adatokat kérem el és kezelem:
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>email cím (kötelező)</li>
@@ -68,6 +69,10 @@ export default function AdatkezelesPage() {
               hozzájárulás igazolása miatt automatikusan rögzít)
             </li>
           </ul>
+          <p className="mt-2">
+            Az űrlapon kívül más adatgyűjtési pont (pl. regisztráció,
+            fizetés, kapcsolatfelvételi form) jelenleg nincs az oldalon.
+          </p>
         </section>
 
         <section>
@@ -79,13 +84,29 @@ export default function AdatkezelesPage() {
             kapcsolatos tartalmak kiküldése. Az adatkezelés jogalapja a
             GDPR 6. cikk (1) bekezdés a) pontja szerinti önkéntes
             hozzájárulásod, amelyet a feliratkozáskor a checkbox
-            bejelölésével és a megerősítő emailben (double opt-in) adsz meg.
+            bejelölésével adsz meg.
           </p>
         </section>
 
         <section>
           <h2 className="font-serif text-xl text-forest-900">
-            4. Adatfeldolgozók
+            4. Sütik (cookie-k) és analitika
+          </h2>
+          <p className="mt-2">
+            A weboldal jelenleg nem használ saját sütiket, nem futtat
+            látogatottság-mérő (analitikai) szolgáltatást, és nem épít be
+            hirdetési vagy követő (tracking) kódot. A tárhelyszolgáltató
+            (lásd lent) a szolgáltatás működtetéséhez technikailag
+            szükséges naplózást végezhet, ami nem minősül marketing célú
+            sütinek. Ha ez a jövőben változik (pl. látogatottságmérő
+            bevezetése), ezt a tájékoztatót frissítem, és — ahol szükséges
+            — hozzájárulást kérek előtte.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="font-serif text-xl text-forest-900">
+            5. Adatfeldolgozók
           </h2>
           <p className="mt-2">
             A hírlevelek kiküldéséhez a MailerLite Limited (Ireland)
@@ -108,7 +129,7 @@ export default function AdatkezelesPage() {
 
         <section>
           <h2 className="font-serif text-xl text-forest-900">
-            5. Meddig tároljuk az adataidat
+            6. Meddig tároljuk az adataidat
           </h2>
           <p className="mt-2">
             Az adataidat a hozzájárulásod visszavonásáig (azaz
@@ -121,7 +142,7 @@ export default function AdatkezelesPage() {
 
         <section>
           <h2 className="font-serif text-xl text-forest-900">
-            6. A te jogaid
+            7. A te jogaid
           </h2>
           <p className="mt-2">
             Bármikor kérheted az adataidhoz való hozzáférést, azok
@@ -140,7 +161,7 @@ export default function AdatkezelesPage() {
 
         <section>
           <h2 className="font-serif text-xl text-forest-900">
-            7. Panasz benyújtásának lehetősége
+            8. Panasz benyújtásának lehetősége
           </h2>
           <p className="mt-2">
             Ha úgy érzed, hogy megsértettem az adataid kezelésével
