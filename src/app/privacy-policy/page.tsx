@@ -1,9 +1,27 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
+import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
+
+const pageTitle = `Adatkezelési tájékoztató — ${siteConfig.brandName}`;
+const pageDescription =
+  "Milyen adatokat kezelünk a hírlevél-feliratkozáskor, milyen jogalapon, meddig, és milyen jogaid vannak.";
 
 export const metadata: Metadata = {
-  title: `Adatkezelési tájékoztató — ${siteConfig.brandName}`,
+  title: pageTitle,
+  description: pageDescription,
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+  openGraph: buildOpenGraph({
+    title: pageTitle,
+    description: pageDescription,
+    path: "/privacy-policy",
+  }),
+  twitter: buildTwitter({
+    title: pageTitle,
+    description: pageDescription,
+  }),
 };
 
 export default function PrivacyPolicyPage() {

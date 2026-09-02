@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import { siteConfig } from "@/lib/site-config";
+import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
@@ -28,19 +29,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: pageTitle,
   description: siteConfig.description,
-  openGraph: {
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: buildOpenGraph({
     title: pageTitle,
     description: siteConfig.description,
-    url: siteConfig.url,
-    siteName: siteConfig.brandName,
-    locale: "hu_HU",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
+    path: "/",
+  }),
+  twitter: buildTwitter({
     title: pageTitle,
     description: siteConfig.description,
-  },
+  }),
 };
 
 export const viewport: Viewport = {
