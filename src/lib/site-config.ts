@@ -25,4 +25,9 @@ export const siteConfig = {
     startDate: "2026-10-01",
     totalDays: 58,
   },
+  analytics: {
+    // A GA Measurement ID nem titkos adat (a böngészőbe amúgy is
+    // kikerül), ezért simán ide kerülhet, env változó nélkül.
+    googleMeasurementId: "G-QYHPHKXFWE",
+  },
 } as const;

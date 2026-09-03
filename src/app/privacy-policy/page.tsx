@@ -101,14 +101,26 @@ export default function PrivacyPolicyPage() {
             4. Sütik (cookie-k) és analitika
           </h2>
           <p className="mt-2">
-            A weboldal jelenleg nem használ saját sütiket, nem futtat
-            látogatottság-mérő (analitikai) szolgáltatást, és nem épít be
-            hirdetési vagy követő (tracking) kódot. A tárhelyszolgáltató
+            A weboldal Google Analyticset használ látogatottság mérésére
+            (pl. hányan, honnan és milyen oldalakra érkeznek). Ez a mérés
+            sütiket helyez el a böngésződben, és{" "}
+            <strong className="font-medium text-forest-900">
+              kizárólag a hozzájárulásoddal fut
+            </strong>{" "}
+            — az oldal betöltésekor semmilyen mérőkód nem aktív, amíg a
+            képernyő alján megjelenő sávon nem kattintasz az „Elfogadom”
+            gombra. Ha az „Elutasítom” gombra kattintasz, vagy nem
+            reagálsz, a mérés nem indul el. A döntésedet a böngésződ
+            eltárolja, így legközelebb nem kérdezünk rá újra; a döntést
+            bármikor megváltoztathatod a böngésződ süti-beállításaiban a
+            tárolt adat törlésével.
+          </p>
+          <p className="mt-2">
+            Ezen kívül a weboldal nem használ saját sütiket, és nem épít
+            be hirdetési vagy követő (tracking) kódot. A tárhelyszolgáltató
             (lásd lent) a szolgáltatás működtetéséhez technikailag
             szükséges naplózást végezhet, ami nem minősül marketing célú
-            sütinek. Ha ez a jövőben változik (pl. látogatottságmérő
-            bevezetése), ezt a tájékoztatót frissítem, és — ahol szükséges
-            — hozzájárulást kérek előtte.
+            sütinek.
           </p>
         </section>
 
@@ -132,6 +144,17 @@ export default function PrivacyPolicyPage() {
             Szerződéses Feltételek) mellett történik — a pontos jogalapot
             érdemes közvetlenül a Vercellel kötött feldolgozói
             szerződésben ellenőrizni.
+          </p>
+          <p className="mt-2">
+            Ha hozzájárulsz a látogatottság-méréshez, a Google Ireland
+            Limited (illetve anyavállalata, a Google LLC, USA) Google
+            Analytics szolgáltatása kezeli az ehhez szükséges adatokat
+            (pl. anonimizált IP-cím, meglátogatott oldalak, eszköz- és
+            böngészőtípus). Az adatkezelés jogalapja a hozzájárulásod
+            (GDPR 6. cikk (1) bek. a) pont), amit bármikor visszavonhatsz
+            a fent leírt módon. Az USA-ba történő adattovábbítás a Google
+            által biztosított garanciák (Standard Szerződéses Feltételek)
+            mellett történik.
           </p>
         </section>
 

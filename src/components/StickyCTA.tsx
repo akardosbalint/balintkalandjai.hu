@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { CONSENT_EVENT, getStoredConsent } from "@/lib/analytics";
 
 /**
  * Görgetés közben visszatérő CTA, ha a Hero form már nem látszik —
@@ -10,6 +11,20 @@ import { AnimatePresence, motion } from "framer-motion";
  */
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
+  // Első látogatáskor, amíg a cookie consent döntés nincs meg, a
+  // banner is alul, teljes szélességben jelenik meg mobilon — hogy a
+  // kettő ne csússzon egymásra, a sticky CTA-t addig nem mutatjuk.
+  const [consentDecided, setConsentDecided] = useState(false);
+
+  useEffect(() => {
+    setConsentDecided(getStoredConsent() !== null);
+    function handleConsentChange() {
+      setConsentDecided(true);
+    }
+    window.addEventListener(CONSENT_EVENT, handleConsentChange);
+    return () =>
+      window.removeEventListener(CONSENT_EVENT, handleConsentChange);
+  }, []);
 
   useEffect(() => {
     const heroForm = document.getElementById("feliratkozas");
@@ -35,7 +50,7 @@ export default function StickyCTA() {
 
   return (
     <AnimatePresence>
-      {visible && (
+      {visible && consentDecided && (
         <motion.div
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

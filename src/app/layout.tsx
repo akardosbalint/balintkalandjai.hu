@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
@@ -59,8 +62,30 @@ export default function RootLayout({
       <body
         className={`relative ${fraunces.variable} ${inter.variable} font-sans antialiased bg-sand-50 text-ink-900`}
       >
+        {/*
+          Google Consent Mode "default": MINDIG ennek kell lefutnia a
+          gtag.js betöltése előtt, különben az első pageview
+          hozzájárulás nélkül menne ki. A tényleges "granted" állapotot
+          a CookieConsent komponens állítja be.
+        */}
+        <Script id="ga-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied'
+            });
+            gtag('js', new Date());
+          `}
+        </Script>
+        <GoogleAnalytics />
         <Header />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );

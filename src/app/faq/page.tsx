@@ -86,6 +86,23 @@ const items: FaqItem[] = [
     ),
   },
   {
+    question: "Használ az oldal sütiket vagy analitikát?",
+    answer: (
+      <>
+        Google Analyticset használok látogatottság mérésére, de csak akkor,
+        ha ezt a képernyő alján megjelenő sávon elfogadod — enélkül nem
+        indul el semmilyen mérőkód. Bővebben az{" "}
+        <Link
+          href="/privacy-policy"
+          className="underline decoration-terracotta-500 underline-offset-2"
+        >
+          Adatkezelési tájékoztatóban
+        </Link>{" "}
+        olvashatsz róla.
+      </>
+    ),
+  },
+  {
     question: "Hogyan iratkozhatok le?",
     answer: (
       <>
