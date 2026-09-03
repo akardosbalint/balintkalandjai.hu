@@ -36,7 +36,7 @@ export default function SecondCTA() {
           delay={0.15}
           className="mt-10 flex w-full justify-center"
         >
-          <SubscribeForm ctaLabel="Igen, engem is érdekel, hova fut ki ez" />
+          <SubscribeForm />
         </AnimatedSection>
       </div>
     </section>

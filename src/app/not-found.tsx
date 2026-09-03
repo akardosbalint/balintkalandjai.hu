@@ -15,14 +15,14 @@ const links = [
     description: "Vissza a történethez, ahonnan indultál.",
   },
   {
-    href: "/#feliratkozas",
-    title: "Feliratkozás a hírlevélre",
-    description: "Kövesd élőben, ahogy Rishikeshben keresem a válaszokat.",
-  },
-  {
     href: "/privacy-policy",
     title: "Adatkezelési tájékoztató",
     description: "Mit kezelek rólad, és miért.",
+  },
+  {
+    href: "/terms",
+    title: "Általános Szerződési Feltételek",
+    description: "A hírlevél igénybevételének feltételei.",
   },
 ];
 
@@ -43,7 +43,17 @@ export default function NotFound() {
           nézd meg az alábbi linkeket, biztos találsz, amit keresel.
         </p>
 
-        <div className="mt-10 grid w-full gap-3 sm:grid-cols-3">
+        <Link
+          href="/#feliratkozas"
+          className="group mt-10 flex w-full max-w-md flex-col items-start gap-1 rounded-2xl bg-forest-800 p-6 text-left text-sand-50 shadow-lg transition hover:bg-forest-900"
+        >
+          <span className="font-serif text-lg">Feliratkozás a hírlevélre</span>
+          <span className="text-sm text-sand-100/70">
+            Kövesd élőben, ahogy Rishikeshben keresem a válaszokat.
+          </span>
+        </Link>
+
+        <div className="mt-4 grid w-full max-w-2xl gap-3 sm:grid-cols-3">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -59,13 +69,6 @@ export default function NotFound() {
             </Link>
           ))}
         </div>
-
-        <Link
-          href="/"
-          className="mt-10 text-sm text-terracotta-600 underline underline-offset-2"
-        >
-          ← Vissza a főoldalra
-        </Link>
       </div>
     </main>
   );
