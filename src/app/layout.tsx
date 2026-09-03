@@ -25,7 +25,14 @@ const inter = Inter({
 // META TITLE / DESCRIPTION — SEO + social share preview.
 // Szándékosan nyers, nem "jóga hírlevél feliratkozás" sablon szöveg —
 // ugyanaz a hang, mint a hero-ban.
-const pageTitle =
+//
+// A <title> tag-nek (böngésző fül + Google találati lista) 60 karakter
+// körül érdemes maradni, különben a keresőmotorok levágják — ezért ez
+// rövidebb, és pontosan a Hero H1-jével egyezik. A közösségimédia-
+// megosztásoknál (og:title/twitter:title) nagyvonalúbb a limit, ott
+// megmarad a teljesebb, hosszabb mondat.
+const pageTitle = "31 éven keresztül lemaradtam a saját életemről.";
+const socialTitle =
   "31 éven keresztül lemaradtam a saját életemről — most utánajárok, miért";
 
 export const metadata: Metadata = {
@@ -36,12 +43,12 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: buildOpenGraph({
-    title: pageTitle,
+    title: socialTitle,
     description: siteConfig.description,
     path: "/",
   }),
   twitter: buildTwitter({
-    title: pageTitle,
+    title: socialTitle,
     description: siteConfig.description,
   }),
 };
