@@ -30,7 +30,7 @@ const items: FaqItem[] = [
     question: "Miről szól ez az oldal?",
     answer: (
       <>
-        {siteConfig.ownerFullName} 58 napos indiai jógaoktatói képzésének élő,
+        {siteConfig.ownerFullName} 67 napos indiai jógaoktatói képzésének élő,
         szűretlen dokumentálása: napi TikTok-videó Rishikeshből, plusz egy
         heti email hírlevél, amiben mindaz benne van, ami egy 60 másodperces
         videóba nem fér bele.

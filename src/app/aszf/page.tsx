@@ -73,7 +73,7 @@ export default function TermsPage() {
           <p className="mt-2">
             A weboldal ({siteConfig.url}) jelenleg egyetlen szolgáltatást
             nyújt: egy ingyenes heti email hírlevelet, amelyben a
-            {" " + siteConfig.ownerFullName} 58 napos indiai jógaoktatói
+            {" " + siteConfig.ownerFullName} 67 napos indiai jógaoktatói
             képzésének személyes, szűretlen dokumentálását olvashatod. A
             hírlevél mellett napi TikTok-tartalom is elérhető, ez azonban
             nem a weboldalon keresztül, hanem a TikTok platformján zajlik,

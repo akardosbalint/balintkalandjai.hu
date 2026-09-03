@@ -9,6 +9,6 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return renderOgImage(
     "31 éven keresztül lemaradtam a saját életemről.",
-    "58 nap Rishikeshben — élőben dokumentálva"
+    "67 nap Rishikeshben — élőben dokumentálva"
   );
 }
