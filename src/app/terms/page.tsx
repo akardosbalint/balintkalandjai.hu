@@ -5,7 +5,7 @@ import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const pageTitle = `Általános Szerződési Feltételek — ${siteConfig.brandName}`;
 const pageDescription =
-  "A hírlevél-szolgáltatás igénybevételének feltételei: mit kapsz, mi a felelősségem, és hogyan iratkozhatsz le.";
+  "A heti hírlevél igénybevételének feltételei: mit kapsz tőlem, mi a felelősségem, és hogyan iratkozhatsz le bármikor. Nézd át, mielőtt feliratkozol a levelekre.";
 
 export const metadata: Metadata = {
   title: pageTitle,

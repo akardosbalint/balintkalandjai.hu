@@ -6,7 +6,7 @@ import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const pageTitle = `Gyakori kérdések — ${siteConfig.brandName}`;
 const pageDescription =
-  "Mi ez az oldal, ingyenes-e a hírlevél, milyen adatokat kezelünk, és hogyan iratkozhatsz le — a leggyakoribb kérdések egy helyen.";
+  "Ingyenes-e a hírlevél, milyen adatot kezelünk, hogyan iratkozhatsz le — a leggyakoribb kérdések egy helyen. Nem találod a válaszod? Iratkozz fel, és írj nekem.";
 
 export const metadata: Metadata = {
   title: pageTitle,

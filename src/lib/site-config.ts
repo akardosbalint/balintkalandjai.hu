@@ -8,9 +8,10 @@ export const siteConfig = {
   ownerFullName: "Kardos Bálint",
   url: "https://tudatossagesjelenlet.hu",
   // Nyers, nem sablon meta description — lásd app/layout.tsx a teljes
-  // hangnemért (SEO + social share preview szöveg).
+  // hangnemért (SEO + social share preview szöveg). 150-160 karakter
+  // körül tartva, hogy a Google ne vágja le a találati listában.
   description:
-    "31 éven át lemaradtam a saját életemről. Most 58 napra Indiába megyek jógát tanulni, nyilvánosan, szűretlenül dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
+    "31 éven át lemaradtam a saját életemről. Most 58 napra Indiába megyek jógát tanulni, nyilvánosan dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
   social: {
     tiktok: "https://tiktok.com/@akardosbalint.hu",
   },

@@ -5,6 +5,8 @@ import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: `Ez az oldal nincs meg — ${siteConfig.brandName}`,
+  description:
+    "Ez az oldal nem létezik, de a történet folytatódik — nézd meg a főoldalt, vagy iratkozz fel a heti hírlevélre, hogy élőben kövesd, mi történik Rishikeshben.",
   robots: { index: false, follow: false },
 };
 

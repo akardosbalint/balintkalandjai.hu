@@ -5,7 +5,7 @@ import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const pageTitle = `Adatkezelési tájékoztató — ${siteConfig.brandName}`;
 const pageDescription =
-  "Milyen adatokat kezelünk a hírlevél-feliratkozáskor, milyen jogalapon, meddig, és milyen jogaid vannak.";
+  "Az akardosbalint.hu hírlevél-feliratkozáskor kezelt adatokról: milyen adat, milyen jogalap, meddig tároljuk, milyen jogaid vannak — nézd át feliratkozás előtt.";
 
 export const metadata: Metadata = {
   title: pageTitle,
