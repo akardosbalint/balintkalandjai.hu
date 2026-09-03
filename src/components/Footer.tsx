@@ -18,9 +18,12 @@ export default function Footer() {
             Bármikor egy kattintással leiratkozhatsz — minden levél alján
             találsz erre gombot.
           </p>
-          <p className="mt-2">
+          <p className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1">
             <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-sand-50">
               Adatkezelési tájékoztató
+            </Link>
+            <Link href="/terms" className="underline underline-offset-2 hover:text-sand-50">
+              Általános Szerződési Feltételek
             </Link>
           </p>
         </div>
