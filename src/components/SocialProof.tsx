@@ -12,7 +12,7 @@ import OrganicBackground from "./OrganicBackground";
  */
 const proofPoints = [
   {
-    title: "58 nap, napi bejelentkezés",
+    title: "67 nap, napi bejelentkezés",
     description:
       "Minden nap kirakok egy TikTok-videót Rishikeshből — nem szerkesztett tartalom, hanem az, ami aznap tényleg történt.",
   },
