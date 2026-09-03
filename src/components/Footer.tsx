@@ -31,7 +31,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <p className="text-xs text-sand-100/40">
+        <p className="text-xs text-sand-100/55">
           © {new Date().getFullYear()} {siteConfig.brandName}. Minden jog
           fenntartva.
         </p>

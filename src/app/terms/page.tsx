@@ -44,7 +44,7 @@ export default function TermsPage() {
       <h1 className="mt-6 font-serif text-3xl text-forest-900 sm:text-4xl">
         Általános Szerződési Feltételek
       </h1>
-      <p className="mt-2 text-sm text-ink-900/50">
+      <p className="mt-2 text-sm text-ink-900/65">
         Hatályos: 2026. szeptember 3.
       </p>
 

@@ -65,7 +65,7 @@ export default function NotFound() {
               <span className="font-serif text-lg text-forest-900 group-hover:text-terracotta-600">
                 {link.title}
               </span>
-              <span className="text-sm text-ink-900/60">
+              <span className="text-sm text-ink-900/65">
                 {link.description}
               </span>
             </Link>
