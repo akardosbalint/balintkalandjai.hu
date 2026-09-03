@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   alternates: {
-    canonical: "/privacy-policy",
+    canonical: "/adatkezeles",
   },
   openGraph: buildOpenGraph({
     title: pageTitle,
     description: pageDescription,
-    path: "/privacy-policy",
+    path: "/adatkezeles",
   }),
   twitter: buildTwitter({
     title: pageTitle,

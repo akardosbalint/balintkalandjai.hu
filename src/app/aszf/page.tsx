@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   alternates: {
-    canonical: "/terms",
+    canonical: "/aszf",
   },
   openGraph: buildOpenGraph({
     title: pageTitle,
     description: pageDescription,
-    path: "/terms",
+    path: "/aszf",
   }),
   twitter: buildTwitter({
     title: pageTitle,
@@ -103,7 +103,7 @@ export default function TermsPage() {
             fizetési kötelezettséggel. A feliratkozáskor kezelt
             adatokról bővebben az{" "}
             <Link
-              href="/privacy-policy"
+              href="/adatkezeles"
               className="underline decoration-terracotta-500 underline-offset-2"
             >
               Adatkezelési tájékoztatóban

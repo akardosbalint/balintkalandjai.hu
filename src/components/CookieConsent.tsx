@@ -61,7 +61,7 @@ export default function CookieConsent() {
               hozzájárulásoddal kerül sor — enélkül nem futnak
               mérőkódok. Bővebben az{" "}
               <Link
-                href="/privacy-policy"
+                href="/adatkezeles"
                 className="underline decoration-terracotta-500 underline-offset-2"
               >
                 Adatkezelési tájékoztatóban

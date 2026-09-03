@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title: pageTitle,
   description: pageDescription,
   alternates: {
-    canonical: "/faq",
+    canonical: "/gyik",
   },
   openGraph: buildOpenGraph({
     title: pageTitle,
     description: pageDescription,
-    path: "/faq",
+    path: "/gyik",
   }),
   twitter: buildTwitter({
     title: pageTitle,
@@ -76,7 +76,7 @@ const items: FaqItem[] = [
         Az email címedet (kötelező) és opcionálisan a keresztnevedet. Bővebben
         az{" "}
         <Link
-          href="/privacy-policy"
+          href="/adatkezeles"
           className="underline decoration-terracotta-500 underline-offset-2"
         >
           Adatkezelési tájékoztatóban
@@ -93,7 +93,7 @@ const items: FaqItem[] = [
         ha ezt a képernyő alján megjelenő sávon elfogadod — enélkül nem
         indul el semmilyen mérőkód. Bővebben az{" "}
         <Link
-          href="/privacy-policy"
+          href="/adatkezeles"
           className="underline decoration-terracotta-500 underline-offset-2"
         >
           Adatkezelési tájékoztatóban

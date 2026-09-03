@@ -17,12 +17,12 @@ const links = [
     description: "Vissza a történethez, ahonnan indultál.",
   },
   {
-    href: "/privacy-policy",
+    href: "/adatkezeles",
     title: "Adatkezelési tájékoztató",
     description: "Mit kezelek rólad, és miért.",
   },
   {
-    href: "/terms",
+    href: "/aszf",
     title: "Általános Szerződési Feltételek",
     description: "A hírlevél igénybevételének feltételei.",
   },

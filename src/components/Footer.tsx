@@ -19,13 +19,13 @@ export default function Footer() {
             találsz erre gombot.
           </p>
           <p className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <Link href="/faq" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/gyik" className="underline underline-offset-2 hover:text-sand-50">
               Gyakori kérdések
             </Link>
-            <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/adatkezeles" className="underline underline-offset-2 hover:text-sand-50">
               Adatkezelési tájékoztató
             </Link>
-            <Link href="/terms" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/aszf" className="underline underline-offset-2 hover:text-sand-50">
               Általános Szerződési Feltételek
             </Link>
           </p>

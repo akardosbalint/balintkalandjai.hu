@@ -170,7 +170,7 @@ export default function SubscribeForm({
           Elfogadom, hogy {siteConfig.ownerFullName} heti emailt küldjön
           nekem, és megismertem az{" "}
           <a
-            href="/privacy-policy"
+            href="/adatkezeles"
             className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900"
           >
             Adatkezelési Tájékoztatót
