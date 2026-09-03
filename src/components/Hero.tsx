@@ -68,10 +68,18 @@ export default function Hero() {
       <OrganicBackground variant="hero" />
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        {/*
+          A H1/subheadline itt a mérésekben az LCP (Largest Contentful
+          Paint) elem — hosszú fade-in delay/duration esetén ez
+          közvetlenül rontja a Core Web Vitals LCP metrikáját (mért
+          eset: ~2.6s "element render delay" a korábbi 0.35s delay +
+          1.1s duration miatt). Ezért ennél a két elemnél rövidebb az
+          animáció, mint a lentebbieknél.
+        */}
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="text-balance font-serif text-4xl leading-[1.15] text-forest-900 sm:text-5xl md:text-6xl"
         >
           {activeHeadline}
@@ -80,7 +88,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
           Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök
