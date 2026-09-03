@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { getStoredConsent, setStoredConsent } from "@/lib/analytics";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const stored = getStoredConsent();
@@ -17,6 +18,27 @@ export default function CookieConsent() {
     }
   }, []);
 
+  // A fixen alul lévő sáv rövidebb oldalakon (pl. FAQ) eltakarhatná az
+  // utolsó tartalmat, mert onnan nincs hova tovább görgetni — ezért
+  // amíg látszik, a body kap ugyanekkora alsó paddinget.
+  useEffect(() => {
+    if (!visible) {
+      document.body.style.paddingBottom = "";
+      return;
+    }
+
+    function updatePadding() {
+      document.body.style.paddingBottom = `${bannerRef.current?.offsetHeight ?? 0}px`;
+    }
+
+    updatePadding();
+    window.addEventListener("resize", updatePadding);
+    return () => {
+      window.removeEventListener("resize", updatePadding);
+      document.body.style.paddingBottom = "";
+    };
+  }, [visible]);
+
   function handleChoice(choice: "granted" | "denied") {
     setStoredConsent(choice);
     setVisible(false);
@@ -26,6 +48,7 @@ export default function CookieConsent() {
     <AnimatePresence>
       {visible && (
         <motion.div
+          ref={bannerRef}
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
