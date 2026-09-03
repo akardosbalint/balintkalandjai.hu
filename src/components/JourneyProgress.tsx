@@ -38,7 +38,7 @@ function getJourneyDayInfo(now: Date): JourneyDayInfo {
 }
 
 /**
- * Élő haladásjelző: hányadik napnál tartok az 58 napos képzésből.
+ * Élő haladásjelző: hányadik napnál tartok a 67 napos indiai utamból.
  * Kliens oldalon számol (a látogató helyi dátuma alapján), hogy mindig
  * friss legyen újradeploy nélkül is — ezért csak mountolás után jelenik meg,
  * elkerülve a szerver/kliens dátum-eltérésből adódó hydration villanást.
@@ -59,7 +59,7 @@ export default function JourneyProgress() {
       ? `Indulásig még ${info.daysUntilStart} nap van hátra.`
       : info.phase === "during"
         ? `A(z) ${info.day}. napomat élem Rishikeshben`
-        : "Megvan az 58 nap — a képzésnek vége, hazaértem";
+        : "Megvan a 67 nap — a képzésnek vége, hazaértem";
 
   const countLabel =
     info.phase === "before" ? `0 / ${TOTAL_DAYS}. nap` : `${info.day} / ${TOTAL_DAYS}. nap`;
@@ -71,11 +71,15 @@ export default function JourneyProgress() {
       transition={{ duration: 1, ease: "easeOut" }}
       className="mt-8 w-full max-w-md"
     >
-      <div className="flex items-center justify-between text-sm text-ink-900/60">
+      <div className="flex items-center justify-between text-sm text-ink-900/65">
         <span>{label}</span>
         <span className="tabular-nums">{countLabel}</span>
       </div>
-      <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-forest-800/10">
+      {/* Dekoratív — a fenti szöveg már megadja ugyanezt az infót. */}
+      <div
+        aria-hidden="true"
+        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-forest-800/10"
+      >
         <motion.div
           className="h-full rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-400"
           initial={{ width: 0 }}

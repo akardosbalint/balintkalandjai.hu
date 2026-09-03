@@ -17,10 +17,15 @@ import Term from "./Term";
  * keret, hanem "gyere, kövesd végig, ahogy élőben keresem a
  * válaszokat" — lásd a copywriting-elveket a repo README-jében.
  *
- * IDŐBELISÉG — FONTOS: a képzés 2026. okt. 1-jén indul, tehát amíg a
- * tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy már ott
- * van, vagy hogy már eltelt X nap ("58 napja Rishikeshben..." HIBÁS).
- * Jelen idő használható (pl. "58 napot töltök Rishikeshben"), de
+ * IDŐBELISÉG — FONTOS: az utazás 2026. szept. 26-án indul Mo.-ról,
+ * megérkezés Indiába 2026. szept. 28-án, hazaindulás Dehradunból
+ * 2026. dec. 3-án. A 2026. okt. 1. – nov. 28. közötti 500 órás
+ * akkreditált képzés csak a 67 napos indiai tartózkodás egy szelete —
+ * korábban érkezik és később utazik haza, mint a képzés kezdete/vége.
+ * Tehát amíg a tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy
+ * már ott van, vagy hogy már eltelt X nap ("67 napja Rishikeshben..."
+ * HIBÁS).
+ * Jelen idő használható (pl. "67 napot töltök Indiában"), de
  * csak terv/időtartam leírásaként, nem eltelt idő állításaként.
  *
  * F) "31 éven keresztül lemaradtam a saját életemről."
@@ -55,9 +60,9 @@ import Term from "./Term";
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
 // magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
-// lemaradást. 58 napot töltök Rishikeshben, hogy a nemzetközi jóga
-// szövetség által akkreditált, RYT-500 minősítésű jógaoktatóvá
-// váljak, és élőben dokumentálom az egészet."
+// lemaradást. 67 napot töltök Rishikeshben, ahol elvégzek egy
+// nemzetközi jóga szövetség által akkreditált, RYT-500 minősítésű
+// jógaoktatói képzést, és élőben dokumentálom az egészet."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
 // magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
 // kifejezésekhez (telefonon is elérhető, nem csak hoverre).
@@ -68,10 +73,18 @@ export default function Hero() {
       <OrganicBackground variant="hero" />
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+        {/*
+          A H1/subheadline itt a mérésekben az LCP (Largest Contentful
+          Paint) elem — hosszú fade-in delay/duration esetén ez
+          közvetlenül rontja a Core Web Vitals LCP metrikáját (mért
+          eset: ~2.6s "element render delay" a korábbi 0.35s delay +
+          1.1s duration miatt). Ezért ennél a két elemnél rövidebb az
+          animáció, mint a lentebbieknél.
+        */}
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="text-balance font-serif text-4xl leading-[1.15] text-forest-900 sm:text-5xl md:text-6xl"
         >
           {activeHeadline}
@@ -80,11 +93,11 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
         >
-          Most Indiáig megyek, hogy behozzam a lemaradást. 58 napot töltök
-          Rishikeshben, hogy a{" "}
+          Most Indiáig megyek, hogy behozzam a lemaradást. 67 napot töltök
+          Rishikeshben, ahol elvégzek egy{" "}
           <Term
             definition={
               <>
@@ -111,7 +124,7 @@ export default function Hero() {
           >
             RYT-500
           </Term>{" "}
-          minősítésű jógaoktatóvá váljak, és élőben dokumentálom az egészet.
+          minősítésű jógaoktatói képzést, és élőben dokumentálom az egészet.
         </motion.p>
 
         <div className="flex w-full justify-center">

@@ -21,14 +21,10 @@ export default function SecondCTA() {
             Ha idáig eljutottál, valószínűleg te is átéltél hasonlót
           </h2>
           <p className="mt-4 text-lg text-ink-900/75">
-            Neked nem kell Indiáig menned ahhoz, hogy rájöjj, min kéne
+            Neked nem kell Dél-Ázsiáig menned ahhoz, hogy rájöjj, min kéne
             változtatnod. De ha van egy dolog, amiről tudod, hogy abba kéne
             hagynod, vagy végre elkezdened, lehet, hogy tud inspirálni az
             én történetem.
-          </p>
-          <p className="mt-4 text-lg text-ink-900/75">
-            Kövesd végig, ahogy én próbálom kitalálni a sajátomat.
-            Elképzelhető, hogy közben te is megtudsz valamit magadról.
           </p>
         </AnimatedSection>
 
@@ -36,7 +32,7 @@ export default function SecondCTA() {
           delay={0.15}
           className="mt-10 flex w-full justify-center"
         >
-          <SubscribeForm ctaLabel="Igen, engem is érdekel, hova fut ki ez" />
+          <SubscribeForm />
         </AnimatedSection>
       </div>
     </section>

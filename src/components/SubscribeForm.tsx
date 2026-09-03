@@ -136,7 +136,7 @@ export default function SubscribeForm({
           placeholder="Keresztnév (opcionális)"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/40 outline-none transition focus:border-terracotta-500 sm:w-2/5"
+          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 sm:w-2/5"
         />
         <label htmlFor={`${uid}-email`} className="sr-only">
           Email cím
@@ -150,7 +150,7 @@ export default function SubscribeForm({
           placeholder="te@email.hu"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/40 outline-none transition focus:border-terracotta-500"
+          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500"
         />
       </div>
 
@@ -190,6 +190,7 @@ export default function SubscribeForm({
       <AnimatePresence>
         {status === "error" && (
           <motion.p
+            role="alert"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -200,7 +201,7 @@ export default function SubscribeForm({
         )}
       </AnimatePresence>
 
-      <p className="mt-3 text-xs text-ink-900/50">
+      <p className="mt-3 text-xs text-ink-900/65">
         Heti 1 levél. Nulla spam, nulla guru-duma. Bármikor egy kattintással
         leiratkozhatsz.
       </p>
