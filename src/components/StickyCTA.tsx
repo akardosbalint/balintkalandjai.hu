@@ -60,7 +60,7 @@ export default function StickyCTA() {
         >
           <button
             onClick={scrollToForm}
-            className="w-full rounded-full bg-forest-800 px-6 py-3.5 font-medium text-sand-50 shadow-lg transition hover:bg-forest-900 sm:w-auto sm:px-7 sm:shadow-xl"
+            className="w-full rounded-full bg-forest-800 px-6 py-3.5 font-medium text-sand-50 shadow-lg transition hover:bg-forest-900 dark:bg-sand-50 dark:text-forest-900 dark:hover:bg-sand-100 sm:w-auto sm:px-7 sm:shadow-xl"
           >
             Gyere, tarts velem
           </button>

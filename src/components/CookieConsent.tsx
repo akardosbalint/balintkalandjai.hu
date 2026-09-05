@@ -79,7 +79,7 @@ export default function CookieConsent() {
               <button
                 type="button"
                 onClick={() => handleChoice("granted")}
-                className="rounded-full bg-forest-800 px-5 py-2.5 text-sm font-medium text-sand-50 transition hover:bg-forest-900"
+                className="rounded-full bg-forest-800 px-5 py-2.5 text-sm font-medium text-sand-50 transition hover:bg-forest-900 dark:bg-sand-50 dark:text-forest-900 dark:hover:bg-sand-100"
               >
                 Elfogadom
               </button>

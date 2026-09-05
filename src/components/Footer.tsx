@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site-config";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-forest-800/10 bg-forest-900 px-6 py-14 text-sand-100">
+    <footer className="border-t border-forest-800/10 bg-forest-900 px-6 py-14 text-sand-100 dark:border-sand-50/10 dark:bg-forest-800">
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
         <p className="font-serif text-xl">{siteConfig.brandName}</p>
 

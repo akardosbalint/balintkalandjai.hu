@@ -183,7 +183,7 @@ export default function SubscribeForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-4 w-full rounded-full bg-forest-800 px-8 py-3.5 font-medium text-sand-50 transition hover:bg-forest-900 disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="mt-4 w-full rounded-full bg-forest-800 px-8 py-3.5 font-medium text-sand-50 transition hover:bg-forest-900 disabled:cursor-wait disabled:opacity-70 dark:bg-sand-50 dark:text-forest-900 dark:hover:bg-sand-100 sm:w-auto"
       >
         {status === "loading" ? "Küldés…" : ctaLabel}
       </button>

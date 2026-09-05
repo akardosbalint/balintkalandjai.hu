@@ -47,10 +47,10 @@ export default function NotFound() {
 
         <Link
           href="/#feliratkozas"
-          className="group mt-10 flex w-full max-w-md flex-col items-start gap-1 rounded-2xl bg-forest-800 p-6 text-left text-sand-50 shadow-lg transition hover:bg-forest-900"
+          className="group mt-10 flex w-full max-w-md flex-col items-start gap-1 rounded-2xl bg-forest-800 p-6 text-left text-sand-50 shadow-lg transition hover:bg-forest-900 dark:bg-sand-50 dark:text-forest-900 dark:hover:bg-sand-100"
         >
           <span className="font-serif text-lg">Feliratkozás a hírlevélre</span>
-          <span className="text-sm text-sand-100/70">
+          <span className="text-sm text-sand-100/70 dark:text-forest-900/70">
             Kövesd élőben, ahogy Rishikeshben keresem a válaszokat.
           </span>
         </Link>
