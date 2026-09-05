@@ -68,7 +68,7 @@ export default function Term({ children, definition }: TermProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 4, scale: 0.98 }}
               transition={{ duration: 0.18, ease: "easeOut" }}
-              className="block rounded-xl border border-forest-800/10 bg-white px-4 py-3 text-left text-sm leading-snug text-ink-900/80 shadow-lg"
+              className="block rounded-xl border border-forest-800/10 bg-white px-4 py-3 text-left text-sm leading-snug text-ink-900/80 shadow-lg dark:border-sand-50/10 dark:bg-forest-800 dark:text-sand-100/80"
             >
               {definition}
             </motion.span>

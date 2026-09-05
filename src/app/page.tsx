@@ -4,7 +4,7 @@ import WhatYouGet from "@/components/WhatYouGet";
 import SocialProof from "@/components/SocialProof";
 import SecondCTA from "@/components/SecondCTA";
 import Footer from "@/components/Footer";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
+import StickyCTA from "@/components/StickyCTA";
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
       <SocialProof />
       <SecondCTA />
       <Footer />
-      <StickyMobileCTA />
+      <StickyCTA />
     </main>
   );
 }
