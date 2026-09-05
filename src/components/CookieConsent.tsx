@@ -53,10 +53,10 @@ export default function CookieConsent() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-6 py-5 backdrop-blur-sm"
+          className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-6 py-5 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95"
         >
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
-            <p className="text-sm text-ink-900/75">
+            <p className="text-sm text-ink-900/75 dark:text-sand-100/75">
               Látogatottság-mérésre (Google Analytics) csak a
               hozzájárulásoddal kerül sor — enélkül nem futnak
               mérőkódok. Bővebben az{" "}
@@ -72,7 +72,7 @@ export default function CookieConsent() {
               <button
                 type="button"
                 onClick={() => handleChoice("denied")}
-                className="rounded-full border border-forest-800/20 px-5 py-2.5 text-sm font-medium text-ink-900/70 transition hover:bg-forest-800/5"
+                className="rounded-full border border-forest-800/20 px-5 py-2.5 text-sm font-medium text-ink-900/70 transition hover:bg-forest-800/5 dark:border-sand-50/20 dark:text-sand-100/70 dark:hover:bg-sand-50/10"
               >
                 Elutasítom
               </button>

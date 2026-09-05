@@ -34,13 +34,13 @@ export default function NotFound() {
       <OrganicBackground variant="hero" />
 
       <div className="mx-auto flex w-full max-w-2xl animate-fade-in flex-col items-center text-center">
-        <p className="font-serif text-6xl text-terracotta-500 sm:text-7xl">
+        <p className="font-serif text-6xl text-terracotta-500 dark:text-terracotta-400 sm:text-7xl">
           404
         </p>
-        <h1 className="mt-4 text-balance font-serif text-3xl text-forest-900 sm:text-4xl">
+        <h1 className="mt-4 text-balance font-serif text-3xl text-forest-900 dark:text-sand-50 sm:text-4xl">
           Ez az útvonal is lemaradt valahol.
         </h1>
-        <p className="mt-4 max-w-md text-balance text-ink-900/70">
+        <p className="mt-4 max-w-md text-balance text-ink-900/70 dark:text-sand-100/70">
           Az oldal, amit keresel, nem létezik, vagy elköltözött. Nincs baj —
           nézd meg az alábbi linkeket, biztos találsz, amit keresel.
         </p>
@@ -60,12 +60,12 @@ export default function NotFound() {
             <Link
               key={link.href}
               href={link.href}
-              className="group flex flex-col items-start gap-1 rounded-2xl border border-forest-800/10 bg-white/60 p-5 text-left backdrop-blur-sm transition hover:border-terracotta-500/40 hover:bg-white/80"
+              className="group flex flex-col items-start gap-1 rounded-2xl border border-forest-800/10 bg-white/60 p-5 text-left backdrop-blur-sm transition hover:border-terracotta-500/40 hover:bg-white/80 dark:border-sand-50/10 dark:bg-forest-800/40 dark:hover:bg-forest-800/60"
             >
-              <span className="font-serif text-lg text-forest-900 group-hover:text-terracotta-600">
+              <span className="font-serif text-lg text-forest-900 group-hover:text-terracotta-600 dark:text-sand-50 dark:group-hover:text-terracotta-400">
                 {link.title}
               </span>
-              <span className="text-sm text-ink-900/65">
+              <span className="text-sm text-ink-900/65 dark:text-sand-100/65">
                 {link.description}
               </span>
             </Link>

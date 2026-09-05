@@ -150,15 +150,15 @@ export default function FaqPage() {
     <main className="mx-auto max-w-2xl px-6 py-20">
       <Link
         href="/"
-        className="text-sm text-terracotta-600 underline underline-offset-2"
+        className="text-sm text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
       >
         ← Vissza a főoldalra
       </Link>
 
-      <h1 className="mt-6 font-serif text-3xl text-forest-900 sm:text-4xl">
+      <h1 className="mt-6 font-serif text-3xl text-forest-900 dark:text-sand-50 sm:text-4xl">
         Gyakori kérdések
       </h1>
-      <p className="mt-2 max-w-md text-ink-900/70">
+      <p className="mt-2 max-w-md text-ink-900/70 dark:text-sand-100/70">
         A leggyakrabban kapott kérdések egy helyen. Ha valami hiányzik,
         írj bátran.
       </p>

@@ -35,14 +35,14 @@ export default function SocialProof() {
 
       <div className="mx-auto max-w-5xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600 dark:text-terracotta-400">
             Miért higgy nekem
           </p>
-          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
+          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
             Nincsenek idézeteim elégedett olvasóktól. Van helyette valami
             jobb.
           </h2>
-          <p className="mt-4 text-ink-900/70">
+          <p className="mt-4 text-ink-900/70 dark:text-sand-100/70">
             Nem kérlek, hogy higgy a szavamnak. Kövesd végig a folyamatot, és
             döntsd el magad, hogy ér-e valamit.
           </p>
@@ -53,13 +53,13 @@ export default function SocialProof() {
             <AnimatedSection
               key={point.title}
               delay={0.08 * i}
-              className="flex flex-col justify-between rounded-2xl border border-forest-800/10 bg-white/40 p-7 backdrop-blur-sm"
+              className="flex flex-col justify-between rounded-2xl border border-forest-800/10 bg-white/40 p-7 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/40"
             >
               <div>
-                <h3 className="font-serif text-lg text-forest-900">
+                <h3 className="font-serif text-lg text-forest-900 dark:text-sand-50">
                   {point.title}
                 </h3>
-                <p className="mt-3 text-ink-900/70">{point.description}</p>
+                <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{point.description}</p>
               </div>
             </AnimatedSection>
           ))}

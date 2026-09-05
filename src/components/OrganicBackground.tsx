@@ -15,7 +15,7 @@ const VARIANT_BLOBS: Record<Variant, { className: string; style: React.CSSProper
         "absolute top-1/3 -left-32 h-[26rem] w-[26rem] rounded-full blur-3xl animate-drift",
       style: {
         background:
-          "radial-gradient(closest-side, rgba(46,59,44,0.28), rgba(46,59,44,0) 70%)",
+          "radial-gradient(closest-side, rgba(184,147,91,0.25), rgba(184,147,91,0) 70%)",
       },
     },
   ],
