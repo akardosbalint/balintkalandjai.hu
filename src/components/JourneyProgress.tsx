@@ -76,16 +76,21 @@ export default function JourneyProgress() {
         <span className="tabular-nums">{countLabel}</span>
       </div>
       {/* Dekoratív — a fenti szöveg már megadja ugyanezt az infót. */}
-      <div
-        aria-hidden="true"
-        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-forest-800/10 dark:bg-sand-50/10"
-      >
+      <div aria-hidden="true" className="relative mt-6 h-px w-full bg-ink-900/10 dark:bg-sand-100/15">
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-400"
-          initial={{ width: 0 }}
-          animate={{ width: `${percent}%` }}
+          className="absolute top-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-forest-900 shadow-lg"
+          initial={{ left: 0 }}
+          animate={{ left: `${percent}%` }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-        />
+        >
+          <span
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 rounded-full bg-saffron-500/40 blur-md animate-breathe"
+          />
+          <span className="font-devanagari text-base leading-none text-saffron-500">
+            ॐ
+          </span>
+        </motion.div>
       </div>
     </motion.div>
   );

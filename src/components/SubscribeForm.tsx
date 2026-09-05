@@ -67,7 +67,7 @@ export default function SubscribeForm({
     return (
       <div
         id={id}
-        className="flex flex-col items-center gap-4 rounded-2xl border border-forest-800/10 bg-white/60 px-6 py-10 text-center backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/40"
+        className="flex flex-col items-center gap-4 px-6 py-10 text-center"
       >
         <motion.svg
           width="56"
