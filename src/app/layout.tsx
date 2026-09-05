@@ -5,8 +5,10 @@ import "./globals.css";
 import Header from "@/components/Header";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import CookieConsent from "@/components/CookieConsent";
+import ThemeSchedule from "@/components/ThemeSchedule";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
+import { themeInitScript } from "@/lib/theme-schedule";
 
 const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
@@ -67,8 +69,16 @@ export default function RootLayout({
   return (
     <html lang="hu">
       <body
-        className={`relative ${fraunces.variable} ${inter.variable} font-sans antialiased bg-sand-50 text-ink-900`}
+        className={`relative ${fraunces.variable} ${inter.variable} font-sans antialiased bg-background text-foreground`}
       >
+        {/*
+          Fut le legelőbb, még a hydration előtt — így nem villan fel a
+          light mode egy pillanatra dark óraköz esetén (FOUC). A
+          ThemeSchedule komponens tartja frissen ezt utána.
+        */}
+        <script
+          dangerouslySetInnerHTML={{ __html: themeInitScript() }}
+        />
         {/*
           Google Consent Mode "default": MINDIG ennek kell lefutnia a
           gtag.js betöltése előtt, különben az első pageview
@@ -90,6 +100,7 @@ export default function RootLayout({
           `}
         </Script>
         <GoogleAnalytics />
+        <ThemeSchedule />
         <Header />
         {children}
         <CookieConsent />

@@ -71,14 +71,14 @@ export default function JourneyProgress() {
       transition={{ duration: 1, ease: "easeOut" }}
       className="mt-8 w-full max-w-md"
     >
-      <div className="flex items-center justify-between text-sm text-ink-900/65">
+      <div className="flex items-center justify-between text-sm text-ink-900/65 dark:text-sand-100/65">
         <span>{label}</span>
         <span className="tabular-nums">{countLabel}</span>
       </div>
       {/* Dekoratív — a fenti szöveg már megadja ugyanezt az infót. */}
       <div
         aria-hidden="true"
-        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-forest-800/10"
+        className="mt-2 h-2 w-full overflow-hidden rounded-full bg-forest-800/10 dark:bg-sand-50/10"
       >
         <motion.div
           className="h-full rounded-full bg-gradient-to-r from-terracotta-600 to-terracotta-400"

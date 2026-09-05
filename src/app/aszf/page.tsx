@@ -36,21 +36,21 @@ export default function TermsPage() {
     <main className="mx-auto max-w-2xl px-6 py-20">
       <Link
         href="/"
-        className="text-sm text-terracotta-600 underline underline-offset-2"
+        className="text-sm text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
       >
         ← Vissza a főoldalra
       </Link>
 
-      <h1 className="mt-6 font-serif text-3xl text-forest-900 sm:text-4xl">
+      <h1 className="mt-6 font-serif text-3xl text-forest-900 dark:text-sand-50 sm:text-4xl">
         Általános Szerződési Feltételek
       </h1>
-      <p className="mt-2 text-sm text-ink-900/65">
+      <p className="mt-2 text-sm text-ink-900/65 dark:text-sand-100/65">
         Hatályos: 2026. szeptember 3.
       </p>
 
-      <div className="mt-10 space-y-8 text-ink-900/80">
+      <div className="mt-10 space-y-8 text-ink-900/80 dark:text-sand-100/80">
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             1. A szolgáltató
           </h2>
           <p className="mt-2">
@@ -67,7 +67,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             2. A szolgáltatás
           </h2>
           <p className="mt-2">
@@ -81,7 +81,7 @@ export default function TermsPage() {
           </p>
           <p className="mt-2">
             A szolgáltatás jelenleg{" "}
-            <strong className="font-medium text-forest-900">
+            <strong className="font-medium text-forest-900 dark:text-sand-50">
               teljesen ingyenes
             </strong>
             , fizetős terméket vagy előfizetést a weboldal nem árul, és
@@ -92,7 +92,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             3. Feliratkozás
           </h2>
           <p className="mt-2">
@@ -113,7 +113,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             4. Tartalom és felelősség
           </h2>
           <p className="mt-2">
@@ -134,7 +134,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             5. Szellemi tulajdon
           </h2>
           <p className="mt-2">
@@ -147,7 +147,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             6. Leiratkozás, megszűnés
           </h2>
           <p className="mt-2">
@@ -171,7 +171,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             7. Panasz, jogorvoslat
           </h2>
           <p className="mt-2">
@@ -192,7 +192,7 @@ export default function TermsPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             8. Alkalmazandó jog
           </h2>
           <p className="mt-2">

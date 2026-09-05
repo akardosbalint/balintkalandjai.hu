@@ -25,10 +25,10 @@ export default function Story() {
 
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600 dark:text-terracotta-400">
             Mielőtt feliratkozol
           </p>
-          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
+          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
             Nem vagyok guru.
           </h2>
         </AnimatedSection>
@@ -38,7 +38,7 @@ export default function Story() {
             delay={0.1}
             className="mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
           >
-            <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-xl ring-1 ring-forest-900/10">
+            <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-xl ring-1 ring-forest-900/10 dark:ring-sand-50/10">
               <Image
                 src="/images/kardos-balint-profil.jpg"
                 alt="Kardos Bálint portréja"
@@ -51,7 +51,7 @@ export default function Story() {
 
           <AnimatedSection
             delay={0.2}
-            className="space-y-5 text-lg leading-relaxed text-ink-900/80"
+            className="space-y-5 text-lg leading-relaxed text-ink-900/80 dark:text-sand-100/80"
           >
             {/* MINTA: sok minden, semmi nem tapadt meg */}
             <p>
@@ -89,7 +89,7 @@ export default function Story() {
                 href="https://ecokozosseg.hu"
                 target="_blank"
                 rel="noreferrer"
-                className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900"
+                className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
               >
                 ECO
               </a>

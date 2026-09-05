@@ -29,21 +29,21 @@ export default function PrivacyPolicyPage() {
     <main className="mx-auto max-w-2xl px-6 py-20">
       <Link
         href="/"
-        className="text-sm text-terracotta-600 underline underline-offset-2"
+        className="text-sm text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
       >
         ← Vissza a főoldalra
       </Link>
 
-      <h1 className="mt-6 font-serif text-3xl text-forest-900 sm:text-4xl">
+      <h1 className="mt-6 font-serif text-3xl text-forest-900 dark:text-sand-50 sm:text-4xl">
         Adatkezelési tájékoztató
       </h1>
-      <p className="mt-2 text-sm text-ink-900/65">
+      <p className="mt-2 text-sm text-ink-900/65 dark:text-sand-100/65">
         Hatályos: 2026. szeptember 2.
       </p>
 
-      <div className="mt-10 space-y-8 text-ink-900/80">
+      <div className="mt-10 space-y-8 text-ink-900/80 dark:text-sand-100/80">
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             1. Az adatkezelő
           </h2>
           <p className="mt-2">
@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             2. Milyen adatokat kezelünk
           </h2>
           <p className="mt-2">
@@ -84,7 +84,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             3. Az adatkezelés célja és jogalapja
           </h2>
           <p className="mt-2">
@@ -97,14 +97,14 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             4. Sütik (cookie-k) és analitika
           </h2>
           <p className="mt-2">
             A weboldal Google Analyticset használ látogatottság mérésére
             (pl. hányan, honnan és milyen oldalakra érkeznek). Ez a mérés
             sütiket helyez el a böngésződben, és{" "}
-            <strong className="font-medium text-forest-900">
+            <strong className="font-medium text-forest-900 dark:text-sand-50">
               kizárólag a hozzájárulásoddal fut
             </strong>{" "}
             — az oldal betöltésekor semmilyen mérőkód nem aktív, amíg a
@@ -125,7 +125,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             5. Adatfeldolgozók
           </h2>
           <p className="mt-2">
@@ -159,7 +159,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             6. Meddig tároljuk az adataidat
           </h2>
           <p className="mt-2">
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             7. A te jogaid
           </h2>
           <p className="mt-2">
@@ -191,7 +191,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="font-serif text-xl text-forest-900">
+          <h2 className="font-serif text-xl text-forest-900 dark:text-sand-50">
             8. Panasz benyújtásának lehetősége
           </h2>
           <p className="mt-2">

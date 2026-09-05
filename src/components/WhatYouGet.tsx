@@ -35,10 +35,10 @@ export default function WhatYouGet() {
     <section className="relative px-6 py-24 sm:py-32">
       <div className="mx-auto max-w-4xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600">
+          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600 dark:text-terracotta-400">
             Mit kapsz
           </p>
-          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 sm:text-4xl">
+          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
             Négy dolog, amire számíthatsz minden levélben
           </h2>
         </AnimatedSection>
@@ -48,15 +48,15 @@ export default function WhatYouGet() {
             <AnimatedSection
               key={item.title}
               delay={0.08 * i}
-              className="rounded-2xl border border-forest-800/10 bg-white/50 p-8 backdrop-blur-sm"
+              className="rounded-2xl border border-forest-800/10 bg-white/50 p-8 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/40"
             >
-              <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-terracotta-500/15 font-serif text-terracotta-600">
+              <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-terracotta-500/15 font-serif text-terracotta-600 dark:bg-terracotta-400/20 dark:text-terracotta-400">
                 {i + 1}
               </span>
-              <h3 className="font-serif text-xl text-forest-900">
+              <h3 className="font-serif text-xl text-forest-900 dark:text-sand-50">
                 {item.title}
               </h3>
-              <p className="mt-3 text-ink-900/70">{item.description}</p>
+              <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{item.description}</p>
             </AnimatedSection>
           ))}
         </div>

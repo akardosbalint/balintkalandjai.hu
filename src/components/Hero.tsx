@@ -85,7 +85,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="text-balance font-serif text-4xl leading-[1.15] text-forest-900 sm:text-5xl md:text-6xl"
+          className="text-balance font-serif text-4xl leading-[1.15] text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl"
         >
           {activeHeadline}
         </motion.h1>
@@ -94,14 +94,14 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 sm:text-xl"
+          className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:text-xl"
         >
           Most Indiáig megyek, hogy behozzam a lemaradást. 67 napot töltök
           Rishikeshben, ahol elvégzek egy{" "}
           <Term
             definition={
               <>
-                <strong className="font-medium text-forest-900">
+                <strong className="font-medium text-forest-900 dark:text-sand-50">
                   Yoga Alliance International
                 </strong>{" "}
                 — a jógaoktatói képzések legelterjedtebb nemzetközi
@@ -115,7 +115,7 @@ export default function Hero() {
           <Term
             definition={
               <>
-                <strong className="font-medium text-forest-900">
+                <strong className="font-medium text-forest-900 dark:text-sand-50">
                   RYT-500
                 </strong>{" "}
                 — regisztrált, 500 órás jógaoktató-képzés minősítés.
