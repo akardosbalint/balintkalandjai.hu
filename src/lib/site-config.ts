@@ -6,7 +6,7 @@ export const siteConfig = {
   brandName: "Kardos Bálint",
   ownerName: "Bálint",
   ownerFullName: "Kardos Bálint",
-  url: "https://tudatossagesjelenlet.hu",
+  url: "https://akardosbalint.hu",
   // Nyers, nem sablon meta description — lásd app/layout.tsx a teljes
   // hangnemért (SEO + social share preview szöveg). 150-160 karakter
   // körül tartva, hogy a Google ne vágja le a találati listában.
