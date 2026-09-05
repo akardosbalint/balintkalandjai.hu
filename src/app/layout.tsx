@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, Noto_Sans_Devanagari } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -21,6 +21,14 @@ const fraunces = Fraunces({
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Az om (ॐ) jel helyes devanagari glifjéhez — az utazás-jelző jelölőjében.
+const notoDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  variable: "--font-devanagari",
+  weight: ["400"],
   display: "swap",
 });
 
@@ -69,7 +77,7 @@ export default function RootLayout({
   return (
     <html lang="hu">
       <body
-        className={`relative ${fraunces.variable} ${inter.variable} font-sans antialiased bg-background text-foreground`}
+        className={`relative ${fraunces.variable} ${inter.variable} ${notoDevanagari.variable} font-sans antialiased bg-background text-foreground`}
       >
         {/*
           Fut le legelőbb, még a hydration előtt — így nem villan fel a

@@ -4,58 +4,50 @@ const VARIANT_BLOBS: Record<Variant, { className: string; style: React.CSSProper
   hero: [
     {
       className:
-        "absolute -top-32 -right-24 h-[34rem] w-[34rem] rounded-full blur-3xl animate-breathe-slow",
+        "absolute -top-32 -right-24 h-[30rem] w-[30rem] rounded-full blur-3xl animate-breathe-slow",
       style: {
         background:
-          "radial-gradient(closest-side, rgba(193,97,60,0.35), rgba(193,97,60,0) 70%)",
-      },
-    },
-    {
-      className:
-        "absolute top-1/3 -left-32 h-[26rem] w-[26rem] rounded-full blur-3xl animate-drift",
-      style: {
-        background:
-          "radial-gradient(closest-side, rgba(184,147,91,0.25), rgba(184,147,91,0) 70%)",
+          "radial-gradient(closest-side, rgba(255,153,51,0.20), rgba(255,153,51,0) 70%)",
       },
     },
   ],
   story: [
     {
       className:
-        "absolute top-10 left-1/2 h-[22rem] w-[22rem] -translate-x-1/2 rounded-full blur-3xl animate-breathe-slow",
+        "absolute top-10 left-1/2 h-[20rem] w-[20rem] -translate-x-1/2 rounded-full blur-3xl animate-breathe-slow",
       style: {
         background:
-          "radial-gradient(closest-side, rgba(184,147,91,0.25), rgba(184,147,91,0) 70%)",
+          "radial-gradient(closest-side, rgba(255,153,51,0.14), rgba(255,153,51,0) 70%)",
       },
     },
   ],
   offer: [
     {
       className:
-        "absolute -bottom-24 -left-20 h-[28rem] w-[28rem] rounded-full blur-3xl animate-drift",
+        "absolute -bottom-24 -left-20 h-[26rem] w-[26rem] rounded-full blur-3xl animate-drift",
       style: {
         background:
-          "radial-gradient(closest-side, rgba(46,59,44,0.3), rgba(46,59,44,0) 70%)",
+          "radial-gradient(closest-side, rgba(255,153,51,0.16), rgba(255,153,51,0) 70%)",
       },
     },
   ],
   proof: [
     {
       className:
-        "absolute -top-16 right-0 h-[24rem] w-[24rem] rounded-full blur-3xl animate-breathe-slow",
+        "absolute -top-16 right-0 h-[22rem] w-[22rem] rounded-full blur-3xl animate-breathe-slow",
       style: {
         background:
-          "radial-gradient(closest-side, rgba(193,97,60,0.22), rgba(193,97,60,0) 70%)",
+          "radial-gradient(closest-side, rgba(255,153,51,0.14), rgba(255,153,51,0) 70%)",
       },
     },
   ],
   cta: [
     {
       className:
-        "absolute inset-x-0 -top-40 mx-auto h-[30rem] w-[30rem] rounded-full blur-3xl animate-breathe-slow",
+        "absolute inset-x-0 -top-40 mx-auto h-[26rem] w-[26rem] rounded-full blur-3xl animate-breathe-slow",
       style: {
         background:
-          "radial-gradient(closest-side, rgba(193,97,60,0.3), rgba(193,97,60,0) 70%)",
+          "radial-gradient(closest-side, rgba(255,153,51,0.18), rgba(255,153,51,0) 70%)",
       },
     },
   ],

@@ -43,17 +43,17 @@ export default function WhatYouGet() {
           </h2>
         </AnimatedSection>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2">
+        <div className="mt-16 grid gap-x-10 gap-y-10 sm:grid-cols-2">
           {items.map((item, i) => (
             <AnimatedSection
               key={item.title}
               delay={0.08 * i}
-              className="rounded-2xl border border-forest-800/10 bg-white/50 p-8 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/40"
+              className="border-t border-ink-900/10 pt-6 dark:border-sand-100/10"
             >
-              <span className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-terracotta-500/15 font-serif text-terracotta-600 dark:bg-terracotta-400/20 dark:text-terracotta-400">
-                {i + 1}
+              <span className="font-serif text-2xl text-terracotta-600 dark:text-terracotta-400">
+                {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="font-serif text-xl text-forest-900 dark:text-sand-50">
+              <h3 className="mt-3 font-serif text-xl text-forest-900 dark:text-sand-50">
                 {item.title}
               </h3>
               <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{item.description}</p>

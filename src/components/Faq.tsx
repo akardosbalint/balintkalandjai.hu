@@ -17,24 +17,21 @@ export default function Faq({ items }: { items: FaqItem[] }) {
   const uid = useId();
 
   return (
-    <div className="space-y-3">
+    <div className="divide-y divide-ink-900/10 dark:divide-sand-100/10">
       {items.map((item, i) => {
         const isOpen = openIndex === i;
         const panelId = `${uid}-panel-${i}`;
         const buttonId = `${uid}-button-${i}`;
 
         return (
-          <div
-            key={item.question}
-            className="overflow-hidden rounded-2xl border border-forest-800/10 bg-white/50 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/40"
-          >
+          <div key={item.question}>
             <button
               id={buttonId}
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : i)}
               aria-expanded={isOpen}
               aria-controls={panelId}
-              className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+              className="flex w-full items-center justify-between gap-4 py-5 text-left"
             >
               <span className="font-serif text-lg text-forest-900 dark:text-sand-50">
                 {item.question}
@@ -61,7 +58,7 @@ export default function Faq({ items }: { items: FaqItem[] }) {
                   transition={{ duration: 0.25, ease: "easeOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="px-6 pb-5 text-ink-900/70 dark:text-sand-100/70">{item.answer}</p>
+                  <p className="pb-5 text-ink-900/70 dark:text-sand-100/70">{item.answer}</p>
                 </motion.div>
               )}
             </AnimatePresence>

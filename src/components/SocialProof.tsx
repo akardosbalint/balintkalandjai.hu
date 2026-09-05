@@ -48,19 +48,17 @@ export default function SocialProof() {
           </p>
         </AnimatedSection>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-3">
+        <div className="mt-16 grid gap-8 sm:grid-cols-3">
           {proofPoints.map((point, i) => (
             <AnimatedSection
               key={point.title}
               delay={0.08 * i}
-              className="flex flex-col justify-between rounded-2xl border border-forest-800/10 bg-white/40 p-7 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/40"
+              className="border-t border-ink-900/10 pt-6 dark:border-sand-100/10"
             >
-              <div>
-                <h3 className="font-serif text-lg text-forest-900 dark:text-sand-50">
-                  {point.title}
-                </h3>
-                <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{point.description}</p>
-              </div>
+              <h3 className="font-serif text-lg text-forest-900 dark:text-sand-50">
+                {point.title}
+              </h3>
+              <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{point.description}</p>
             </AnimatedSection>
           ))}
         </div>

@@ -55,12 +55,12 @@ export default function NotFound() {
           </span>
         </Link>
 
-        <div className="mt-4 grid w-full max-w-2xl gap-3 sm:grid-cols-3">
+        <div className="mt-6 grid w-full max-w-md divide-y divide-ink-900/10 dark:divide-sand-100/10">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="group flex flex-col items-start gap-1 rounded-2xl border border-forest-800/10 bg-white/60 p-5 text-left backdrop-blur-sm transition hover:border-terracotta-500/40 hover:bg-white/80 dark:border-sand-50/10 dark:bg-forest-800/40 dark:hover:bg-forest-800/60"
+              className="group flex flex-col items-start gap-1 py-4 text-left"
             >
               <span className="font-serif text-lg text-forest-900 group-hover:text-terracotta-600 dark:text-sand-50 dark:group-hover:text-terracotta-400">
                 {link.title}

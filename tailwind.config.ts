@@ -44,6 +44,7 @@ const config: Config = {
       fontFamily: {
         serif: ["var(--font-fraunces)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        devanagari: ["var(--font-devanagari)", "serif"],
       },
       animation: {
         "fade-in": "fadeIn 1.2s ease-out forwards",
