@@ -29,6 +29,14 @@ export const siteConfig = {
     // tartózkodáson belül maga az akkreditált képzés 2026-10-01 és
     // 2026-11-28 között tart (59 nap), a többi nap korábbi érkezés/
     // későbbi hazautazás.
+    //
+    // BIZONYTALAN VÉGDÁTUM: a december 3-i hazaindulás a JELENLEGI terv,
+    // nem biztos. Ha a dalai láma december 27-ig bezárólag tanítást
+    // tart, Bálint ott marad addig — a turistavízum viszont egyszerre
+    // max. 90 napot enged (2026-09-28-tól számolva ez pont 2026-12-27),
+    // tehát ennél tovább semmiképpen nem maradhat. Ha ez a hosszabbítás
+    // ténylegesen bekövetkezik, a totalDays értékét (és a GYIK vonatkozó
+    // válaszát) frissíteni kell a tényleges hazautazás napjával.
     startDate: "2026-09-28",
     totalDays: 67,
   },
