@@ -31,12 +31,13 @@ export const siteConfig = {
     // későbbi hazautazás.
     //
     // BIZONYTALAN VÉGDÁTUM: a december 3-i hazaindulás a JELENLEGI terv,
-    // nem biztos. Ha a dalai láma december 27-ig bezárólag tanítást
-    // tart, Bálint ott marad addig — a turistavízum viszont egyszerre
-    // max. 90 napot enged (2026-09-28-tól számolva ez pont 2026-12-27),
-    // tehát ennél tovább semmiképpen nem maradhat. Ha ez a hosszabbítás
-    // ténylegesen bekövetkezik, a totalDays értékét (és a GYIK vonatkozó
-    // válaszát) frissíteni kell a tényleges hazautazás napjával.
+    // nem biztos. Ha Őszentsége a Dalai Láma, Tenzin Gyatso december
+    // 27-ig bezárólag tanítást tart, Bálint ott marad addig — a
+    // turistavízum viszont egyszerre max. 90 napot enged (2026-09-28-tól
+    // számolva ez pont 2026-12-27), tehát ennél tovább semmiképpen nem
+    // maradhat. Ha ez a hosszabbítás ténylegesen bekövetkezik, a
+    // totalDays értékét (és a GYIK vonatkozó válaszát) frissíteni kell
+    // a tényleges hazautazás napjával.
     startDate: "2026-09-28",
     totalDays: 67,
   },
