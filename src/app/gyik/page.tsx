@@ -44,11 +44,11 @@ const items: FaqItem[] = [
         A gépem szeptember 26-án indul Magyarországról, szeptember 28-án
         érkezem Indiába. Október 1. és november 28. között tart maga a
         képzés, utána a terv szerint december 3-án indulok haza (érkezés
-        Mo.-ra december 4.). Van egy kivétel: ha a dalai láma december
-        27-ig bezárólag tanítást tart, ott maradok addig — a
-        turistavízumom viszont egyszerre max. 90 napot enged az
-        országban, ami épp december 27-ig ad időt, szóval legkésőbb
-        akkor mindenképpen el kell hagynom Indiát.
+        Mo.-ra december 4.). Van egy kivétel: ha Őszentsége a Dalai
+        Láma, Tenzin Gyatso december 27-ig bezárólag tanítást tart, ott
+        maradok addig — a turistavízumom viszont egyszerre max. 90
+        napot enged az országban, ami épp december 27-ig ad időt,
+        szóval legkésőbb akkor mindenképpen el kell hagynom Indiát.
       </>
     ),
   },
