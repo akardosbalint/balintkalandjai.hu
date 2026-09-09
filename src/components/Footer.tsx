@@ -7,9 +7,18 @@ export default function Footer() {
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
         <p className="font-serif text-xl">{siteConfig.brandName}</p>
 
-        <div className="flex gap-6 text-sm text-sand-100/70">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-sand-100/70">
           <a href={siteConfig.social.tiktok} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
             TikTok
+          </a>
+          <a href={siteConfig.social.instagram} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+            Instagram
+          </a>
+          <a href={siteConfig.social.youtube} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+            YouTube
+          </a>
+          <a href={siteConfig.social.facebook} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+            Facebook
           </a>
         </div>
 

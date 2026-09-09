@@ -12,7 +12,7 @@ const items = [
   {
     title: "Heti 1 levél, nem napi optimizmus-adag",
     description:
-      "A napi TikTok a highlight reel. A heti levél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
+      "A napi videó a highlight reel. A heti levél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
   },
   {
     title: "Nulla szűrés, nulla guru-pózolás",
@@ -22,7 +22,7 @@ const items = [
   {
     title: "Amit egy 60 másodperces videóban nem lehet elmondani",
     description:
-      "A heti levélben visszamegyek a napi TikTok mögé: mit jelentett valójában az az órányi Hatha, Ashtanga vagy pranayama gyakorlat, és mihez kezdek azzal, amit aznap megtanultam.",
+      "A heti levélben visszamegyek a napi videó mögé: mit jelentett valójában az az órányi Hatha, Ashtanga vagy pranayama gyakorlat, és mihez kezdek azzal, amit aznap megtanultam.",
   },
   {
     title: "Élő, lezáratlan gondolkodás",

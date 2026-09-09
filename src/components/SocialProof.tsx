@@ -14,7 +14,7 @@ const proofPoints = [
   {
     title: "67 nap, napi bejelentkezés",
     description:
-      "Minden nap kirakok egy TikTok-videót Rishikeshből — nem szerkesztett tartalom, hanem az, ami aznap tényleg történt.",
+      "Minden nap kirakok egy videót Rishikeshből TikTokra, Instagramra, YouTube Shortsra és Facebookra is — nem szerkesztett tartalom, hanem az, ami aznap tényleg történt.",
   },
   {
     title: "Heti levél, szűretlenül",

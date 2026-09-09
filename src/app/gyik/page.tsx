@@ -31,9 +31,10 @@ const items: FaqItem[] = [
     answer: (
       <>
         {siteConfig.ownerFullName} 67 napos indiai jógaoktatói képzésének élő,
-        szűretlen dokumentálása: napi TikTok-videó Rishikeshből, plusz egy
-        heti email hírlevél, amiben mindaz benne van, ami egy 60 másodperces
-        videóba nem fér bele.
+        szűretlen dokumentálása: napi videó Rishikeshből (TikTokon,
+        Instagramon, YouTube Shortson és Facebookon), plusz egy heti email
+        hírlevél, amiben mindaz benne van, ami egy 60 másodperces videóba
+        nem fér bele.
       </>
     ),
   },
@@ -60,15 +61,15 @@ const items: FaqItem[] = [
   {
     question: "Milyen gyakran érkezik levél?",
     answer:
-      "Heti egy alkalommal — nem napi optimizmus-adag, hanem egy hosszabb, mélyebb összefoglaló arról, ami a napi TikTok-videók mögött valójában történik.",
+      "Heti egy alkalommal — nem napi optimizmus-adag, hanem egy hosszabb, mélyebb összefoglaló arról, ami a napi videók mögött valójában történik.",
   },
   {
-    question: "Miben más a hírlevél, mint a TikTok-tartalom?",
+    question: "Miben más a hírlevél, mint a napi videós tartalom?",
     answer:
-      "A TikTok a napi highlight reel. A hírlevél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel — a nyitott, még lezáratlan kérdésekkel együtt.",
+      "A napi videó a highlight reel. A hírlevél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel — a nyitott, még lezáratlan kérdésekkel együtt.",
   },
   {
-    question: "Csak a TikTokot is követhetem, hírlevél nélkül?",
+    question: "Csak a videós tartalmakat is követhetem, hírlevél nélkül?",
     answer: (
       <>
         Igen — a{" "}
@@ -78,9 +79,36 @@ const items: FaqItem[] = [
           rel="noreferrer"
           className="underline decoration-terracotta-500 underline-offset-2"
         >
-          TikTok-profil
+          TikTok
+        </a>
+        ,{" "}
+        <a
+          href={siteConfig.social.instagram}
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-terracotta-500 underline-offset-2"
+        >
+          Instagram
+        </a>
+        ,{" "}
+        <a
+          href={siteConfig.social.youtube}
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-terracotta-500 underline-offset-2"
+        >
+          YouTube Shorts
         </a>{" "}
-        bárki számára nyitott, nem kell hozzá feliratkoznod semmire.
+        és{" "}
+        <a
+          href={siteConfig.social.facebook}
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-terracotta-500 underline-offset-2"
+        >
+          Facebook
+        </a>{" "}
+        profilom bárki számára nyitott, nem kell hozzá feliratkoznod semmire.
       </>
     ),
   },

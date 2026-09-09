@@ -75,9 +75,10 @@ export default function TermsPage() {
             nyújt: egy ingyenes heti email hírlevelet, amelyben a
             {" " + siteConfig.ownerFullName} 67 napos indiai jógaoktatói
             képzésének személyes, szűretlen dokumentálását olvashatod. A
-            hírlevél mellett napi TikTok-tartalom is elérhető, ez azonban
-            nem a weboldalon keresztül, hanem a TikTok platformján zajlik,
-            és nem tartozik ennek az ÁSZF-nek a hatálya alá.
+            hírlevél mellett napi videós tartalom is elérhető TikTokon,
+            Instagramon, YouTube Shortson és Facebookon, ez azonban nem a
+            weboldalon keresztül, hanem az adott platformokon zajlik, és
+            nem tartozik ennek az ÁSZF-nek a hatálya alá.
           </p>
           <p className="mt-2">
             A szolgáltatás jelenleg{" "}

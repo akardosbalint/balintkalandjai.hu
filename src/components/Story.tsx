@@ -122,8 +122,9 @@ export default function Story() {
               akkreditált jógaoktatói képzés Rishikeshben, a „jóga
               fővárosában” — összesen 67 napot töltök Indiában, mert
               korábban érkezem és később utazom haza. Nincsenek bekészített
-              válaszaim — napi egy TikTok-videóval és heti egy hosszú,
-              őszinte levéllel dokumentálom majd az utam. Nyilvánosan
+              válaszaim — napi egy videóval (TikTokon, Instagramon, YouTube
+              Shortson és Facebookon) és heti egy hosszú, őszinte levéllel
+              dokumentálom majd az utam. Nyilvánosan
               csinálom, hogy legyen, aki számon kérje rajtam — így talán
               könnyebb lesz folytatni a nehéz napokon is. Gyere, nézd végig
               velem.

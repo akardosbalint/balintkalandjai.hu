@@ -11,14 +11,28 @@ interface TermProps {
 }
 
 /**
- * Inline kifejezés-magyarázat. Koppintásra/kattintásra nyílik ki — NEM
- * csak hoverre —, hogy telefonon (ahonnan a legtöbb látogató érkezik)
- * is elérhető legyen. Kattintás a kifejezésen kívülre, vagy Escape,
- * bezárja.
+ * Inline kifejezés-magyarázat.
+ *
+ * Asztali/laptop egérrel (valódi hover-képes, pontos mutatóeszköz —
+ * `(hover: hover) and (pointer: fine)`) elég fölé húzni az egeret.
+ * Mobilon/tableten (ahol nincs megbízható hover) koppintásra/
+ * kattintásra nyílik ki. Kattintás a kifejezésen kívülre, vagy
+ * Escape, mindkét esetben bezárja.
  */
 export default function Term({ children, definition }: TermProps) {
   const [open, setOpen] = useState(false);
+  const [canHover, setCanHover] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setCanHover(mql.matches);
+    function handleChange(event: MediaQueryListEvent) {
+      setCanHover(event.matches);
+    }
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -43,7 +57,12 @@ export default function Term({ children, definition }: TermProps) {
   }, [open]);
 
   return (
-    <span ref={ref} className="relative inline-block">
+    <span
+      ref={ref}
+      className="relative inline-block"
+      onMouseEnter={canHover ? () => setOpen(true) : undefined}
+      onMouseLeave={canHover ? () => setOpen(false) : undefined}
+    >
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
