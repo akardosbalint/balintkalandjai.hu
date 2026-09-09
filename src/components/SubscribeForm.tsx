@@ -116,7 +116,9 @@ export default function SubscribeForm({
             }}
           />
         </motion.svg>
-        <p className="font-serif text-xl text-forest-900 dark:text-sand-50">Ez megvan.</p>
+        <p className="font-serif text-xl text-forest-900 dark:text-sand-50">
+          Gratulálok, ezzel meg is vagyunk.
+        </p>
         <p className="max-w-sm text-ink-900/70 dark:text-sand-100/70">
           Az első leveled jövő vasárnap estig megérkezik, egyenesen
           Rishikeshből. Ha nem találod, nézd meg a spam és a promóció
