@@ -12,7 +12,7 @@ import SubscribeForm from "./SubscribeForm";
  */
 export default function SecondCTA() {
   return (
-    <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+    <section className="relative overflow-hidden px-6 py-24 sm:py-32 grain-overlay">
       <OrganicBackground variant="cta" />
 
       <div className="mx-auto flex max-w-2xl flex-col items-center text-center">

@@ -69,7 +69,7 @@ const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden px-6 pb-20 pt-28 sm:pt-36">
+    <section className="relative isolate overflow-hidden px-6 pb-20 pt-28 sm:pt-36 grain-overlay">
       <OrganicBackground variant="hero" />
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">

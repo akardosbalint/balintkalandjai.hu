@@ -30,7 +30,7 @@ const proofPoints = [
 
 export default function SocialProof() {
   return (
-    <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+    <section className="relative overflow-hidden px-6 py-24 sm:py-32 grain-overlay">
       <OrganicBackground variant="proof" />
 
       <div className="mx-auto max-w-5xl">

@@ -1,4 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
+import OrganicBackground from "./OrganicBackground";
 
 /**
  * MIT KAPSZ — konkrét, kézzelfogható ígéretek
@@ -32,7 +33,9 @@ const items = [
 
 export default function WhatYouGet() {
   return (
-    <section className="relative px-6 py-24 sm:py-32">
+    <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+      <OrganicBackground variant="offer" />
+
       <div className="mx-auto max-w-4xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
