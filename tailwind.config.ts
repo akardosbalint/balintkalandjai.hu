@@ -17,6 +17,9 @@ const config: Config = {
           100: "#F4ECE0",
           200: "#EADCC7",
           300: "#DEC9A8",
+          // Mélyebb homok-árnyalat: fényes témában a "belső" felületekhez
+          // (kártyák, kiemelt panelek) — lásd 3-4. lépés.
+          400: "#D2B78E",
         },
         terracotta: {
           400: "#D08059",
@@ -30,6 +33,10 @@ const config: Config = {
           600: "#E6821A",
         },
         forest: {
+          // Világosabb erdő-árnyalat: sötét témában a "belső" felületekhez
+          // (kártyák, kiemelt panelek) — a 900-as alapháttérnél észrevehetően
+          // világosabb, de a szöveges 700/800-nál még visszafogott.
+          600: "#3B4B39",
           700: "#2E3B2C",
           800: "#243024",
           900: "#1A231B",
@@ -37,14 +44,34 @@ const config: Config = {
         ink: {
           900: "#241C15",
         },
+        // A "belső utazás" (jóga, reflexió, tanulás) csendesebb kísérő
+        // árnyalata a domináns safrán (= "külső utazás", CTA-k, élénk
+        // pillanatok) mellett — eddig gyakorlatilag használaton kívül volt.
         gold: {
+          300: "#D9BB8C",
           400: "#B8935B",
+          600: "#96703C",
         },
       },
       fontFamily: {
         serif: ["var(--font-fraunces)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         devanagari: ["var(--font-devanagari)", "serif"],
+      },
+      boxShadow: {
+        // Meleg, ink-alapú árnyékok a Tailwind alapértelmezett semleges
+        // szürkéje helyett — kevésbé "generikus UI", jobban illik a
+        // föld/napfény palettához.
+        soft: "0 1px 2px 0 rgba(36,28,21,0.05), 0 6px 20px -4px rgba(36,28,21,0.12)",
+        "soft-lg":
+          "0 4px 10px 0 rgba(36,28,21,0.08), 0 24px 48px -12px rgba(36,28,21,0.22)",
+        // Szín szerinti izzás a két motívumhoz: safrán a "külső" (dinamikus,
+        // nyilvános) elemekhez, arany a "belső" (csendes, reflektív)
+        // elemekhez — 3-4. lépéstől ténylegesen bevonva.
+        "glow-saffron":
+          "0 0 0 1px rgba(255,153,51,0.15), 0 8px 30px -6px rgba(255,153,51,0.35)",
+        "glow-gold":
+          "0 0 0 1px rgba(184,147,91,0.18), 0 8px 30px -8px rgba(184,147,91,0.30)",
       },
       animation: {
         "fade-in": "fadeIn 1.2s ease-out forwards",

@@ -38,7 +38,7 @@ export default function Story() {
             delay={0.1}
             className="mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
           >
-            <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-xl ring-1 ring-forest-900/10 dark:ring-sand-50/10">
+            <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-forest-900/10 dark:ring-sand-50/10">
               <Image
                 src="/images/kardos-balint-profil.jpg"
                 alt="Kardos Bálint portréja"
