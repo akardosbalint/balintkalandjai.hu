@@ -69,7 +69,7 @@ const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden px-6 pb-20 pt-28 sm:pt-36 grain-overlay">
+    <section className="relative isolate overflow-hidden px-6 pb-20 pt-20 sm:pt-36 grain-overlay">
       <OrganicBackground variant="hero" />
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -94,7 +94,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 max-w-xl text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:text-xl"
+          className="mt-4 max-w-xl text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:mt-6 sm:text-xl"
         >
           Most Indiáig megyek, hogy behozzam a lemaradást. 67 napot töltök
           Rishikeshben, ahol elvégzek egy{" "}
@@ -135,7 +135,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex w-full justify-center"
+          className="mt-6 flex w-full justify-center sm:mt-10"
         >
           <SubscribeForm id="feliratkozas" />
         </motion.div>

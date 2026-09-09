@@ -75,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="hu">
+    <html lang="hu" suppressHydrationWarning>
       <body
         className={`relative ${fraunces.variable} ${inter.variable} ${notoDevanagari.variable} font-sans antialiased bg-background text-foreground`}
       >

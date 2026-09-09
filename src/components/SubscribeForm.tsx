@@ -6,6 +6,8 @@ import { siteConfig } from "@/lib/site-config";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 interface SubscribeFormProps {
   id?: string;
   ctaLabel?: string;
@@ -24,6 +26,12 @@ export default function SubscribeForm({
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!EMAIL_REGEX.test(email.trim())) {
+      setStatus("error");
+      setErrorMessage("Adj meg egy érvényes email címet.");
+      return;
+    }
 
     if (!consent) {
       setStatus("error");
@@ -172,7 +180,7 @@ export default function SubscribeForm({
           nekem, és megismertem az{" "}
           <a
             href="/adatkezeles"
-            className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
           >
             Adatkezelési Tájékoztatót
           </a>
