@@ -1,13 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CONSENT_EVENT, getStoredConsent } from "@/lib/analytics";
 
+// Minden hely, ahol a látogató már látja a feliratkozó űrlapot (vagy a
+// footert) — ilyenkor a lebegő CTA felesleges, sőt zavaró duplikáció
+// lenne (két "Gyere, tarts velem" gomb egymáson).
+const SUBSCRIBE_FORM_IDS = ["feliratkozas", "feliratkozas-lent"];
+
 /**
- * Görgetés közben visszatérő CTA, ha a Hero form már nem látszik —
- * mobilon teljes szélességű alsó sáv, desktopon diszkrétebb, lebegő
- * gomb jobb alul, hogy ne törje meg az olvasást.
+ * Görgetés közben visszatérő CTA, ha épp egyik feliratkozó űrlap (Hero,
+ * SecondCTA) és a footer sem látszik — mobilon teljes szélességű alsó
+ * sáv, desktopon diszkrétebb, lebegő gomb jobb alul, hogy ne törje meg
+ * az olvasást.
  */
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
@@ -15,6 +21,7 @@ export default function StickyCTA() {
   // banner is alul, teljes szélességben jelenik meg mobilon — hogy a
   // kettő ne csússzon egymásra, a sticky CTA-t addig nem mutatjuk.
   const [consentDecided, setConsentDecided] = useState(false);
+  const intersectingKeys = useRef(new Set<string>());
 
   useEffect(() => {
     setConsentDecided(getStoredConsent() !== null);
@@ -27,17 +34,29 @@ export default function StickyCTA() {
   }, []);
 
   useEffect(() => {
-    const heroForm = document.getElementById("feliratkozas");
-    if (!heroForm) return;
+    const footer = document.querySelector("footer");
+    const targets = [
+      ...SUBSCRIBE_FORM_IDS.map((id) => document.getElementById(id)),
+      footer,
+    ].filter((el): el is HTMLElement => el !== null);
+    if (targets.length === 0) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+      (entries) => {
+        for (const entry of entries) {
+          const key = entry.target.id || "footer";
+          if (entry.isIntersecting) {
+            intersectingKeys.current.add(key);
+          } else {
+            intersectingKeys.current.delete(key);
+          }
+        }
+        setVisible(intersectingKeys.current.size === 0);
       },
       { threshold: 0 }
     );
 
-    observer.observe(heroForm);
+    targets.forEach((target) => observer.observe(target));
     return () => observer.disconnect();
   }, []);
 

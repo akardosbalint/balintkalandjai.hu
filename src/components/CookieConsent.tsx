@@ -14,7 +14,15 @@ export default function CookieConsent() {
     if (stored === "granted") {
       window.gtag?.("consent", "update", { analytics_storage: "granted" });
     } else if (stored === null) {
-      setVisible(true);
+      // Rövid késleltetés, mielőtt a sáv megjelenik — enélkül első
+      // látogatáskor a banner azonnal, a betöltéssel egyszerre eltakarná
+      // a Hero feliratkozó űrlapját (kis mobil nézetablaknál a banner
+      // pont ráfedhet az űrlapra). A mérőkód gátlása (Consent Mode
+      // "denied" default) így is azonnal érvényben van, ez a
+      // késleltetés csak a sáv MEGJELENÉSÉT tolja el, a hozzájárulás
+      // nélküli mérést nem engedi meg.
+      const timer = setTimeout(() => setVisible(true), 1200);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -53,9 +61,9 @@ export default function CookieConsent() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-6 py-5 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95"
+          className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-6 py-4 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:py-5"
         >
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
             <p className="text-sm text-ink-900/75 dark:text-sand-100/75">
               Látogatottság-mérésre (Google Analytics) csak a
               hozzájárulásoddal kerül sor — enélkül nem futnak

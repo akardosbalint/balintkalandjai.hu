@@ -8,33 +8,33 @@ export default function Footer() {
         <p className="font-serif text-xl">{siteConfig.brandName}</p>
 
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-sand-100/70">
-          <a href={siteConfig.social.tiktok} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+          <a href={siteConfig.social.tiktok} className="-my-2 inline-block py-2 transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
             TikTok
           </a>
-          <a href={siteConfig.social.instagram} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+          <a href={siteConfig.social.instagram} className="-my-2 inline-block py-2 transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
             Instagram
           </a>
-          <a href={siteConfig.social.youtube} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+          <a href={siteConfig.social.youtube} className="-my-2 inline-block py-2 transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
             YouTube
           </a>
-          <a href={siteConfig.social.facebook} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
+          <a href={siteConfig.social.facebook} className="-my-2 inline-block py-2 transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
             Facebook
           </a>
         </div>
 
         <div className="max-w-md text-sm text-sand-100/60">
           <p>
-            Bármikor egy kattintással leiratkozhatsz — minden levél alján
+            Bármikor egy kattintással leiratkozhatsz — minden email alján
             találsz erre gombot.
           </p>
           <p className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <Link href="/gyik" className="underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
+            <Link href="/gyik" className="-my-2 inline-block py-2 underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Gyakori kérdések
             </Link>
-            <Link href="/adatkezeles" className="underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
+            <Link href="/adatkezeles" className="-my-2 inline-block py-2 underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Adatkezelési tájékoztató
             </Link>
-            <Link href="/aszf" className="underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
+            <Link href="/aszf" className="-my-2 inline-block py-2 underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Általános Szerződési Feltételek
             </Link>
           </p>

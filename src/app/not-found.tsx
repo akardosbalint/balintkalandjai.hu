@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: `Ez az oldal nincs meg — ${siteConfig.brandName}`,
   description:
-    "Ez az oldal nem létezik, de a történet folytatódik — nézd meg a főoldalt, vagy iratkozz fel a heti hírlevélre, hogy élőben kövesd, mi történik Rishikeshben.",
+    "Ez az oldal nem létezik, de a történet folytatódik — nézd meg a főoldalt, vagy iratkozz fel a heti hangfelvételre, hogy élőben kövesd, mi történik Rishikeshben.",
   robots: { index: false, follow: false },
 };
 
@@ -24,7 +24,7 @@ const links = [
   {
     href: "/aszf",
     title: "Általános Szerződési Feltételek",
-    description: "A hírlevél igénybevételének feltételei.",
+    description: "A heti hangfelvétel igénybevételének feltételei.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function NotFound() {
           href="/#feliratkozas"
           className="group mt-10 flex w-full max-w-md flex-col items-start gap-1 rounded-2xl bg-saffron-500 p-6 text-left text-forest-900 shadow-lg transition hover:bg-saffron-600"
         >
-          <span className="font-serif text-lg">Feliratkozás a hírlevélre</span>
+          <span className="font-serif text-lg">Feliratkozás a heti hangfelvételre</span>
           <span className="text-sm text-forest-900/70">
             Kövesd élőben, ahogy Rishikeshben keresem a válaszokat.
           </span>

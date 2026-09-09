@@ -6,7 +6,7 @@ import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const pageTitle = `Gyakori kérdések — ${siteConfig.brandName}`;
 const pageDescription =
-  "Ingyenes-e a hírlevél, milyen adatot kezelünk, hogyan iratkozhatsz le — a leggyakoribb kérdések egy helyen. Nem találod a válaszod? Iratkozz fel, és írj nekem.";
+  "Ingyenes-e a heti hangfelvétel, milyen adatot kezelünk, hogyan iratkozhatsz le — a leggyakoribb kérdések egy helyen. Nem találod a válaszod? Iratkozz fel, és írj nekem.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -32,9 +32,10 @@ const items: FaqItem[] = [
       <>
         {siteConfig.ownerFullName} 67 napos indiai jógaoktatói képzésének élő,
         szűretlen dokumentálása: napi videó Rishikeshből (TikTokon,
-        Instagramon, YouTube Shortson és Facebookon), plusz egy heti email
-        hírlevél, amiben mindaz benne van, ami egy 60 másodperces videóba
-        nem fér bele.
+        Instagramon, YouTube Shortson és Facebookon), plusz minden vasárnap
+        egy 20-30 perces, vágatlan hangfelvétel emailben — csak
+        feliratkozóknak, nem publikus —, amiben mindaz benne van, ami egy 60
+        másodperces videóba nem fér bele.
       </>
     ),
   },
@@ -54,22 +55,22 @@ const items: FaqItem[] = [
     ),
   },
   {
-    question: "Kell fizetnem a hírlevélért?",
+    question: "Kell fizetnem a heti hangfelvételért?",
     answer:
-      "Nem. A hírlevél jelenleg teljesen ingyenes, nincs mögötte fizetős termék vagy előfizetés.",
+      "Nem. A heti hangfelvétel jelenleg teljesen ingyenes, nincs mögötte fizetős termék vagy előfizetés.",
   },
   {
-    question: "Milyen gyakran érkezik levél?",
+    question: "Milyen gyakran érkezik a hangfelvétel?",
     answer:
-      "Heti egy alkalommal — nem napi optimizmus-adag, hanem egy hosszabb, mélyebb összefoglaló arról, ami a napi videók mögött valójában történik.",
+      "Minden vasárnap — nem napi optimizmus-adag, hanem egy 20-30 perces, vágatlan hanganyag arról, ami a napi videók mögött valójában történik.",
   },
   {
-    question: "Miben más a hírlevél, mint a napi videós tartalom?",
+    question: "Miben más a heti hangfelvétel, mint a napi videós tartalom?",
     answer:
-      "A napi videó a highlight reel. A hírlevél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel — a nyitott, még lezáratlan kérdésekkel együtt.",
+      "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel — a nyitott, még lezáratlan kérdésekkel együtt.",
   },
   {
-    question: "Csak a videós tartalmakat is követhetem, hírlevél nélkül?",
+    question: "Csak a videós tartalmakat is követhetem, a heti hangfelvétel nélkül?",
     answer: (
       <>
         Igen — a{" "}
@@ -149,7 +150,7 @@ const items: FaqItem[] = [
     question: "Hogyan iratkozhatok le?",
     answer: (
       <>
-        Bármikor, egy kattintással — minden levél alján találsz erre gombot.
+        Bármikor, egy kattintással — minden email alján találsz erre gombot.
         Vagy írj emailt a{" "}
         <a
           href={`mailto:${siteConfig.email}`}

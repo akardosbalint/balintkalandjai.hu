@@ -17,9 +17,9 @@ const proofPoints = [
       "Minden nap kirakok egy videót Rishikeshből TikTokra, Instagramra, YouTube Shortsra és Facebookra is — nem szerkesztett tartalom, hanem az, ami aznap tényleg történt.",
   },
   {
-    title: "Heti levél, szűretlenül",
+    title: "Heti hangfelvétel, vágatlanul",
     description:
-      "Amit nem mondok el 60 másodpercben, azt megírom hosszabban, hétvégenként — a kétségekkel, a rossz napokkal együtt.",
+      "Amit nem mondok el 60 másodpercben, azt elmondom hosszabban, minden vasárnap — egy 20-30 perces, vágatlan hanganyagban, a kétségekkel, a rossz napokkal együtt.",
   },
   {
     title: "Egy történet, ami még nincs lezárva",
@@ -39,7 +39,7 @@ export default function SocialProof() {
             Miért higgy nekem
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-            Nincsenek idézeteim elégedett olvasóktól. Van helyette valami
+            Nincsenek idézeteim elégedett hallgatóktól. Van helyette valami
             jobb.
           </h2>
           <p className="mt-4 text-ink-900/70 dark:text-sand-100/70">

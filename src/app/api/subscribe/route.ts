@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message:
-          "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessünk neked levelet.",
+          "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessünk neked hangfelvételt.",
       },
       { status: 400 }
     );

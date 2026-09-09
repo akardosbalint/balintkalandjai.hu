@@ -69,7 +69,7 @@ export default function JourneyProgress() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="mt-8 w-full max-w-md"
+      className="mt-6 w-full max-w-md sm:mt-8"
     >
       <div className="flex items-center justify-between text-sm text-ink-900/65 dark:text-sand-100/65">
         <span>{label}</span>

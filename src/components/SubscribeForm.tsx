@@ -6,6 +6,8 @@ import { siteConfig } from "@/lib/site-config";
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 interface SubscribeFormProps {
   id?: string;
   ctaLabel?: string;
@@ -25,10 +27,16 @@ export default function SubscribeForm({
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    if (!EMAIL_REGEX.test(email.trim())) {
+      setStatus("error");
+      setErrorMessage("Adj meg egy érvényes email címet.");
+      return;
+    }
+
     if (!consent) {
       setStatus("error");
       setErrorMessage(
-        "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked levelet."
+        "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked hangfelvételt."
       );
       return;
     }
@@ -108,12 +116,52 @@ export default function SubscribeForm({
             }}
           />
         </motion.svg>
-        <p className="font-serif text-xl text-forest-900 dark:text-sand-50">Ez megvan.</p>
+        <p className="font-serif text-xl text-forest-900 dark:text-sand-50">
+          Gratulálok, ezzel meg is vagyunk.
+        </p>
         <p className="max-w-sm text-ink-900/70 dark:text-sand-100/70">
-          Az első leveled jövő vasárnap estig megérkezik, egyenesen
+          Az első hangfelvételed jövő vasárnap estig megérkezik, egyenesen
           Rishikeshből. Ha nem találod, nézd meg a spam és a promóció
           mappákat is.
         </p>
+
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/60 dark:text-sand-100/60">
+          <span>Amíg vársz, kövess élőben:</span>
+          <span className="flex flex-wrap justify-center gap-x-3">
+            <a
+              href={siteConfig.social.tiktok}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              TikTok
+            </a>
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              Instagram
+            </a>
+            <a
+              href={siteConfig.social.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              YouTube
+            </a>
+            <a
+              href={siteConfig.social.facebook}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              Facebook
+            </a>
+          </span>
+        </div>
       </div>
     );
   }
@@ -168,11 +216,11 @@ export default function SubscribeForm({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest-800/30 text-terracotta-600 focus:ring-terracotta-500 dark:border-sand-50/30"
         />
         <span>
-          Elfogadom, hogy {siteConfig.ownerFullName} heti emailt küldjön
-          nekem, és megismertem az{" "}
+          Elfogadom, hogy {siteConfig.ownerFullName} heti hangfelvételt
+          küldjön nekem emailben, és megismertem az{" "}
           <a
             href="/adatkezeles"
-            className="underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
           >
             Adatkezelési Tájékoztatót
           </a>
@@ -203,8 +251,8 @@ export default function SubscribeForm({
       </AnimatePresence>
 
       <p className="mt-3 text-xs text-ink-900/65 dark:text-sand-100/65">
-        Heti 1 levél. Nulla spam, nulla guru-duma. Bármikor egy kattintással
-        leiratkozhatsz.
+        Heti 1 hangfelvétel. Nulla spam, nulla guru-duma. Bármikor egy
+        kattintással leiratkozhatsz.
       </p>
     </form>
   );
