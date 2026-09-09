@@ -48,7 +48,7 @@ export default function Term({ children, definition }: TermProps) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="underline decoration-dotted decoration-terracotta-500/70 underline-offset-4 cursor-help"
+        className="cursor-help underline decoration-dotted decoration-terracotta-500/70 underline-offset-4 transition-colors hover:decoration-terracotta-600 dark:hover:decoration-terracotta-300"
       >
         {children}
       </button>

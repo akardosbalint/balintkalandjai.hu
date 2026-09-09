@@ -11,7 +11,7 @@ export default function Header() {
           alt={siteConfig.brandName}
           width={40}
           height={40}
-          className="h-9 w-9 opacity-90 transition-opacity hover:opacity-100 dark:hidden sm:h-10 sm:w-10"
+          className="h-9 w-9 opacity-90 transition hover:scale-105 hover:opacity-100 dark:hidden sm:h-10 sm:w-10"
           priority
         />
         <Image
@@ -19,7 +19,7 @@ export default function Header() {
           alt={siteConfig.brandName}
           width={40}
           height={40}
-          className="hidden h-9 w-9 opacity-90 transition-opacity hover:opacity-100 dark:block sm:h-10 sm:w-10"
+          className="hidden h-9 w-9 opacity-90 transition hover:scale-105 hover:opacity-100 dark:block sm:h-10 sm:w-10"
           priority
         />
       </Link>

@@ -137,7 +137,7 @@ export default function SubscribeForm({
           placeholder="Keresztnév (opcionális)"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 dark:border-sand-50/20 dark:bg-forest-800/40 dark:text-sand-50 dark:placeholder:text-sand-100/50 sm:w-2/5"
+          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 focus-visible:ring-2 focus-visible:ring-terracotta-500/50 dark:border-sand-50/20 dark:bg-forest-800/40 dark:text-sand-50 dark:placeholder:text-sand-100/50 sm:w-2/5"
         />
         <label htmlFor={`${uid}-email`} className="sr-only">
           Email cím
@@ -151,7 +151,7 @@ export default function SubscribeForm({
           placeholder="te@email.hu"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 dark:border-sand-50/20 dark:bg-forest-800/40 dark:text-sand-50 dark:placeholder:text-sand-100/50"
+          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 focus-visible:ring-2 focus-visible:ring-terracotta-500/50 dark:border-sand-50/20 dark:bg-forest-800/40 dark:text-sand-50 dark:placeholder:text-sand-100/50"
         />
       </div>
 
@@ -183,7 +183,7 @@ export default function SubscribeForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-4 w-full rounded-full bg-saffron-500 px-8 py-3.5 font-medium text-forest-900 transition hover:bg-saffron-600 disabled:cursor-wait disabled:opacity-70 sm:w-auto"
+        className="mt-4 w-full rounded-full bg-saffron-500 px-8 py-3.5 font-medium text-forest-900 outline-none transition hover:scale-[1.02] hover:bg-saffron-600 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-forest-900/40 disabled:cursor-wait disabled:opacity-70 disabled:hover:scale-100 dark:focus-visible:ring-sand-50/50 sm:w-auto"
       >
         {status === "loading" ? "Küldés…" : ctaLabel}
       </button>
