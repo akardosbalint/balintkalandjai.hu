@@ -5,7 +5,7 @@ import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const pageTitle = `Adatkezelési tájékoztató — ${siteConfig.brandName}`;
 const pageDescription =
-  "Az akardosbalint.hu hírlevél-feliratkozáskor kezelt adatokról: milyen adat, milyen jogalap, meddig tároljuk, milyen jogaid vannak — nézd át feliratkozás előtt.";
+  "Az akardosbalint.hu heti hangfelvételre való feliratkozáskor kezelt adatokról: milyen adat, milyen jogalap, meddig tároljuk, milyen jogaid vannak — nézd át feliratkozás előtt.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -64,8 +64,8 @@ export default function PrivacyPolicyPage() {
             2. Milyen adatokat kezelünk
           </h2>
           <p className="mt-2">
-            A weboldal jelenleg egyetlen ponton kér el adatot: a hírlevélre
-            való feliratkozáskor (a főoldalon található feliratkozó
+            A weboldal jelenleg egyetlen ponton kér el adatot: a heti
+            hangfelvételre való feliratkozáskor (a főoldalon található feliratkozó
             űrlapon). Ekkor az alábbi adatokat kérem el és kezelem:
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
@@ -88,7 +88,7 @@ export default function PrivacyPolicyPage() {
             3. Az adatkezelés célja és jogalapja
           </h2>
           <p className="mt-2">
-            Az adatkezelés célja a heti hírlevél, valamint az azzal
+            Az adatkezelés célja a heti hangfelvétel, valamint az azzal
             kapcsolatos tartalmak kiküldése. Az adatkezelés jogalapja a
             GDPR 6. cikk (1) bekezdés a) pontja szerinti önkéntes
             hozzájárulásod, amelyet a feliratkozáskor a checkbox
@@ -129,7 +129,7 @@ export default function PrivacyPolicyPage() {
             5. Adatfeldolgozók
           </h2>
           <p className="mt-2">
-            A hírlevelek kiküldéséhez a MailerLite Limited (Ireland)
+            A heti hangfelvételek kiküldéséhez a MailerLite Limited (Ireland)
             szolgáltatását használom, amely EU-s adatfeldolgozóként a GDPR
             előírásai szerint kezeli az adatokat. Adatfeldolgozói
             szerződésük elérhető a MailerLite honlapján (Data Processing
@@ -185,8 +185,9 @@ export default function PrivacyPolicyPage() {
             >
               {siteConfig.email}
             </a>{" "}
-            címen teheted meg. A hírlevélről bármikor, egy kattintással
-            leiratkozhatsz a levelek alján található linkre kattintva.
+            címen teheted meg. A heti hangfelvételről bármikor, egy
+            kattintással leiratkozhatsz az emailek alján található linkre
+            kattintva.
           </p>
         </section>
 

@@ -36,7 +36,7 @@ export default function SubscribeForm({
     if (!consent) {
       setStatus("error");
       setErrorMessage(
-        "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked levelet."
+        "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked hangfelvételt."
       );
       return;
     }
@@ -120,7 +120,7 @@ export default function SubscribeForm({
           Gratulálok, ezzel meg is vagyunk.
         </p>
         <p className="max-w-sm text-ink-900/70 dark:text-sand-100/70">
-          Az első leveled jövő vasárnap estig megérkezik, egyenesen
+          Az első hangfelvételed jövő vasárnap estig megérkezik, egyenesen
           Rishikeshből. Ha nem találod, nézd meg a spam és a promóció
           mappákat is.
         </p>
@@ -216,8 +216,8 @@ export default function SubscribeForm({
           className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest-800/30 text-terracotta-600 focus:ring-terracotta-500 dark:border-sand-50/30"
         />
         <span>
-          Elfogadom, hogy {siteConfig.ownerFullName} heti emailt küldjön
-          nekem, és megismertem az{" "}
+          Elfogadom, hogy {siteConfig.ownerFullName} heti hangfelvételt
+          küldjön nekem emailben, és megismertem az{" "}
           <a
             href="/adatkezeles"
             className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
@@ -251,8 +251,8 @@ export default function SubscribeForm({
       </AnimatePresence>
 
       <p className="mt-3 text-xs text-ink-900/65 dark:text-sand-100/65">
-        Heti 1 levél. Nulla spam, nulla guru-duma. Bármikor egy kattintással
-        leiratkozhatsz.
+        Heti 1 hangfelvétel. Nulla spam, nulla guru-duma. Bármikor egy
+        kattintással leiratkozhatsz.
       </p>
     </form>
   );

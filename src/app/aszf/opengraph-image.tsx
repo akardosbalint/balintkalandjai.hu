@@ -9,6 +9,6 @@ export const contentType = "image/png";
 export default function OpengraphImage() {
   return renderOgImage(
     "Általános Szerződési Feltételek",
-    "A hírlevél-szolgáltatás igénybevételének feltételei."
+    "A heti hangfelvétel szolgáltatás igénybevételének feltételei."
   );
 }

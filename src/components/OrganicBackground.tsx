@@ -46,7 +46,7 @@ const VARIANT_BLOBS: Record<Variant, { className: string; style: React.CSSProper
       },
     },
   ],
-  // INNER — WhatYouGet: a heti levél befelé forduló ígérete. Ugyanaz a
+  // INNER — WhatYouGet: a heti hangfelvétel befelé forduló ígérete. Ugyanaz a
   // csendes arany nyelv, de alulról, hogy ne ismételje pontosan a
   // Story-t.
   offer: [

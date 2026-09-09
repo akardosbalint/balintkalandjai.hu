@@ -5,7 +5,7 @@ import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
 const pageTitle = `Általános Szerződési Feltételek — ${siteConfig.brandName}`;
 const pageDescription =
-  "A heti hírlevél igénybevételének feltételei: mit kapsz tőlem, mi a felelősségem, és hogyan iratkozhatsz le bármikor. Nézd át, mielőtt feliratkozol a levelekre.";
+  "A heti hangfelvétel igénybevételének feltételei: mit kapsz tőlem, mi a felelősségem, és hogyan iratkozhatsz le bármikor. Nézd át, mielőtt feliratkozol.";
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 /**
  * KIINDULÓ SABLON — MIELŐTT ÉLES OLDALON HASZNÁLNÁD:
- * A jelenlegi szolgáltatás ingyenes hírlevél, nincs fizetős termék
+ * A jelenlegi szolgáltatás ingyenes heti hangfelvétel, nincs fizetős termék
  * vagy előfizetés. Ha a jövőben fizetős programot indítasz, ezt a
  * dokumentumot bővíteni kell (fizetési feltételek, elállási jog,
  * számlázás), és érdemes jogásszal átnézetni.
@@ -72,13 +72,16 @@ export default function TermsPage() {
           </h2>
           <p className="mt-2">
             A weboldal ({siteConfig.url}) jelenleg egyetlen szolgáltatást
-            nyújt: egy ingyenes heti email hírlevelet, amelyben a
+            nyújt: egy ingyenes, heti hangfelvételt emailben, amelyben a
             {" " + siteConfig.ownerFullName} 67 napos indiai jógaoktatói
-            képzésének személyes, szűretlen dokumentálását olvashatod. A
-            hírlevél mellett napi videós tartalom is elérhető TikTokon,
-            Instagramon, YouTube Shortson és Facebookon, ez azonban nem a
-            weboldalon keresztül, hanem az adott platformokon zajlik, és
-            nem tartozik ennek az ÁSZF-nek a hatálya alá.
+            képzésének személyes, vágatlan dokumentálását hallgathatod. A
+            hangfelvétel minden vasárnap érkezik, kb. 20-30 perc hosszú, és
+            kizárólag a feliratkozók számára elérhető — nem publikus, és
+            nem kerül nyilvánosan megosztásra. A heti hangfelvétel mellett
+            napi videós tartalom is elérhető TikTokon, Instagramon, YouTube
+            Shortson és Facebookon, ez azonban nem a weboldalon keresztül,
+            hanem az adott platformokon zajlik, és nem tartozik ennek az
+            ÁSZF-nek a hatálya alá.
           </p>
           <p className="mt-2">
             A szolgáltatás jelenleg{" "}
@@ -88,7 +91,7 @@ export default function TermsPage() {
             , fizetős terméket vagy előfizetést a weboldal nem árul, és
             fizetési adatot nem kér be. Ha ez a jövőben változik (pl.
             fizetős program indul), ezt a dokumentumot előtte frissítem, és
-            a változásról a hírlevélben is tájékoztatlak.
+            a változásról a heti hangfelvételben is tájékoztatlak.
           </p>
         </section>
 
@@ -97,7 +100,7 @@ export default function TermsPage() {
             3. Feliratkozás
           </h2>
           <p className="mt-2">
-            A hírlevélre a főoldalon található űrlapon iratkozhatsz fel,
+            A heti hangfelvételre a főoldalon található űrlapon iratkozhatsz fel,
             email címed (kötelező) és keresztneved (opcionális) megadásával,
             valamint a feliratkozási feltételek elfogadásával. A
             feliratkozás önkéntes, bármikor lemondható, és nem jár semmilyen
@@ -118,7 +121,7 @@ export default function TermsPage() {
             4. Tartalom és felelősség
           </h2>
           <p className="mt-2">
-            A hírlevél és a hozzá kapcsolódó tartalom {siteConfig.ownerName}{" "}
+            A heti hangfelvétel és a hozzá kapcsolódó tartalom {siteConfig.ownerName}{" "}
             személyes tapasztalatait, véleményét és gondolatait osztja meg —
             nem minősül szakmai (jogi, egészségügyi, pszichológiai vagy
             pénzügyi) tanácsadásnak. A leírt jóga- és
@@ -129,8 +132,8 @@ export default function TermsPage() {
           <p className="mt-2">
             A tartalom élőben, szerkesztés nélkül készül, ezért előfordulhat,
             hogy egyes megállapítások később tévesnek bizonyulnak, vagy a
-            szerző véleménye megváltozik — ezt a levelek is jelezni fogják,
-            ahol releváns.
+            szerző véleménye megváltozik — ezt a hangfelvételek is jelezni
+            fogják, ahol releváns.
           </p>
         </section>
 
@@ -139,11 +142,14 @@ export default function TermsPage() {
             5. Szellemi tulajdon
           </h2>
           <p className="mt-2">
-            A weboldalon és a hírlevélben megjelenő szövegek, képek és egyéb
-            tartalmak {siteConfig.ownerFullName} szellemi tulajdonát képezik.
-            A tartalom saját, személyes célra szabadon olvasható és
-            megosztható (pl. linkelhető), de üzleti célú, engedély nélküli
-            átvétele vagy többszörözése nem megengedett.
+            A weboldalon megjelenő szövegek, képek, valamint a heti
+            hangfelvételek {siteConfig.ownerFullName} szellemi tulajdonát
+            képezik. A heti hangfelvétel kizárólag a feliratkozó személyes
+            meghallgatására készül — nyilvános megosztása (pl. feltöltése,
+            továbbküldése, linkelése) nem megengedett. A weboldal szövegei
+            saját, személyes célra szabadon olvashatók és megoszthatók (pl.
+            linkelhetők), de üzleti célú, engedély nélküli átvételük vagy
+            többszörözésük nem megengedett.
           </p>
         </section>
 
@@ -152,9 +158,9 @@ export default function TermsPage() {
             6. Leiratkozás, megszűnés
           </h2>
           <p className="mt-2">
-            A hírlevélről bármikor, indoklás nélkül, egy kattintással
-            leiratkozhatsz a levelek alján található linkre kattintva, vagy
-            a{" "}
+            A heti hangfelvételről bármikor, indoklás nélkül, egy
+            kattintással leiratkozhatsz az emailek alján található linkre
+            kattintva, vagy a{" "}
             <a
               href={`mailto:${siteConfig.email}`}
               className="underline decoration-terracotta-500 underline-offset-2"

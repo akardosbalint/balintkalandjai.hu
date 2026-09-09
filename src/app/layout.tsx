@@ -33,7 +33,7 @@ const notoDevanagari = Noto_Sans_Devanagari({
 });
 
 // META TITLE / DESCRIPTION — SEO + social share preview.
-// Szándékosan nyers, nem "jóga hírlevél feliratkozás" sablon szöveg —
+// Szándékosan nyers, nem "jóga hangfelvétel feliratkozás" sablon szöveg —
 // ugyanaz a hang, mint a hero-ban.
 //
 // A <title> tag-nek (böngésző fül + Google találati lista) 60 karakter

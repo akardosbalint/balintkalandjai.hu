@@ -15,7 +15,7 @@ import Term from "./Term";
  * konkrétabb részletei (pl. hogy milyen súlyos volt) NEM kerülhetnek
  * ide. Csak "nagyon mély pontra kerültem" jellegű, nyers de nem
  * klinikai megfogalmazás engedélyezett. A mélyebb történetet Bálint
- * majd saját tempójában, a heti levélben osztja meg, bizalmi
+ * majd saját tempójában, a heti hangfelvételben osztja meg, bizalmi
  * kapcsolat után — ezt a landing page nem előlegezheti meg.
  */
 export default function Story() {
@@ -123,8 +123,8 @@ export default function Story() {
               fővárosában” — összesen 67 napot töltök Indiában, mert
               korábban érkezem és később utazom haza. Nincsenek bekészített
               válaszaim — napi egy videóval (TikTokon, Instagramon, YouTube
-              Shortson és Facebookon) és heti egy hosszú, őszinte levéllel
-              dokumentálom majd az utam. Nyilvánosan
+              Shortson és Facebookon) és minden vasárnap egy hosszú, őszinte
+              hangfelvétellel dokumentálom majd az utam. Nyilvánosan
               csinálom, hogy legyen, aki számon kérje rajtam — így talán
               könnyebb lesz folytatni a nehéz napokon is. Gyere, nézd végig
               velem.

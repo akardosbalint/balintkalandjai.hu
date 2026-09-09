@@ -13,7 +13,7 @@ import Term from "./Term";
  * `activeSubheadline` konstansokat, vagy köss be egy feature-flag /
  * query param alapú választást.
  *
- * Közös elv minden verzióban: nem "iratkozz fel a hírlevélre" a
+ * Közös elv minden verzióban: nem "iratkozz fel a heti hangfelvételre" a
  * keret, hanem "gyere, kövesd végig, ahogy élőben keresem a
  * válaszokat" — lásd a copywriting-elveket a repo README-jében.
  *

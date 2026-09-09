@@ -24,7 +24,7 @@ export default function Footer() {
 
         <div className="max-w-md text-sm text-sand-100/60">
           <p>
-            Bármikor egy kattintással leiratkozhatsz — minden levél alján
+            Bármikor egy kattintással leiratkozhatsz — minden email alján
             találsz erre gombot.
           </p>
           <p className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1">

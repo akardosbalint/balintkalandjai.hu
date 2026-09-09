@@ -10,9 +10,9 @@ import OrganicBackground from "./OrganicBackground";
  */
 const items = [
   {
-    title: "Heti 1 levél, nem napi optimizmus-adag",
+    title: "Heti 1 hangfelvétel, nem napi optimizmus-adag",
     description:
-      "A napi videó a highlight reel. A heti levél a director's cut: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
+      "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
   },
   {
     title: "Nulla szűrés, nulla guru-pózolás",
@@ -22,12 +22,12 @@ const items = [
   {
     title: "Amit egy 60 másodperces videóban nem lehet elmondani",
     description:
-      "A heti levélben visszamegyek a napi videó mögé: mit jelentett valójában az az órányi Hatha, Ashtanga vagy pranayama gyakorlat, és mihez kezdek azzal, amit aznap megtanultam.",
+      "A heti hangfelvételben visszamegyek a napi videó mögé: mit jelentett valójában az az órányi Hatha, Ashtanga vagy pranayama gyakorlat, és mihez kezdek azzal, amit aznap megtanultam.",
   },
   {
     title: "Élő, lezáratlan gondolkodás",
     description:
-      "Nem utólag összerakott, szép ívű történetet kapsz. Minden levélben ott vannak a nyitott kérdések is: mit nem tudok még eldönteni, hol bizonytalanodom el, mit csinálnék most másképp.",
+      "Nem utólag összerakott, szép ívű történetet kapsz. Minden hangfelvételben ott vannak a nyitott kérdések is: mit nem tudok még eldönteni, hol bizonytalanodom el, mit csinálnék most másképp.",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function WhatYouGet() {
             Mit kapsz
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-            Négy dolog, amire számíthatsz minden levélben
+            Négy dolog, amire számíthatsz minden hangfelvételben
           </h2>
         </AnimatedSection>
 
