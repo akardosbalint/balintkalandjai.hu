@@ -5,14 +5,19 @@ import SocialProof from "@/components/SocialProof";
 import SecondCTA from "@/components/SecondCTA";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import SectionPath from "@/components/SectionPath";
 
 export default function Home() {
   return (
     <main className="overflow-x-hidden">
       <Hero />
+      <SectionPath from="outer" to="inner" />
       <Story />
+      <SectionPath from="inner" to="inner" />
       <WhatYouGet />
+      <SectionPath from="inner" to="outer" />
       <SocialProof />
+      <SectionPath from="outer" to="outer" />
       <SecondCTA />
       <Footer />
       <StickyCTA />

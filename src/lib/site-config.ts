@@ -12,8 +12,13 @@ export const siteConfig = {
   // körül tartva, hogy a Google ne vágja le a találati listában.
   description:
     "31 éven át lemaradtam a saját életemről. Most 67 napra Indiába megyek jógát tanulni, nyilvánosan dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
+  // Sorrend a feltételezett elérés/relevancia szerint: a TikTok az eddigi
+  // elsődleges, napi videós csatorna, utána a legszélesebb elérésű platformok.
   social: {
     tiktok: "https://tiktok.com/@akardosbalint.hu",
+    instagram: "https://instagram.com/akardosbalint",
+    youtube: "https://youtube.com/@akardosbalint/shorts",
+    facebook: "https://facebook.com/akardosbalint",
   },
   email: "balint@akardosbalint.hu",
   // Az adatkezelési tájékoztatóhoz (GDPR-hoz kötelező feltüntetni az
