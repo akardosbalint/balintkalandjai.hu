@@ -53,7 +53,7 @@ export default function SocialProof() {
             <AnimatedSection
               key={point.title}
               delay={0.08 * i}
-              className="border-t border-ink-900/10 pt-6 dark:border-sand-100/10"
+              className="rounded-2xl bg-white/70 p-6 shadow-soft ring-1 ring-ink-900/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg dark:bg-forest-600/30 dark:ring-sand-100/10 sm:p-7"
             >
               <h3 className="font-serif text-lg tracking-tight text-forest-900 dark:text-sand-50">
                 {point.title}

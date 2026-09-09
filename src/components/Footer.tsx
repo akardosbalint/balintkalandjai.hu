@@ -8,7 +8,7 @@ export default function Footer() {
         <p className="font-serif text-xl">{siteConfig.brandName}</p>
 
         <div className="flex gap-6 text-sm text-sand-100/70">
-          <a href={siteConfig.social.tiktok} className="hover:text-sand-50" target="_blank" rel="noreferrer">
+          <a href={siteConfig.social.tiktok} className="transition-colors duration-200 hover:text-sand-50" target="_blank" rel="noreferrer">
             TikTok
           </a>
         </div>
@@ -19,13 +19,13 @@ export default function Footer() {
             találsz erre gombot.
           </p>
           <p className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1">
-            <Link href="/gyik" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/gyik" className="underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Gyakori kérdések
             </Link>
-            <Link href="/adatkezeles" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/adatkezeles" className="underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Adatkezelési tájékoztató
             </Link>
-            <Link href="/aszf" className="underline underline-offset-2 hover:text-sand-50">
+            <Link href="/aszf" className="underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Általános Szerződési Feltételek
             </Link>
           </p>

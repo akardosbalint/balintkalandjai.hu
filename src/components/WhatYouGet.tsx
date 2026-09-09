@@ -51,7 +51,7 @@ export default function WhatYouGet() {
             <AnimatedSection
               key={item.title}
               delay={0.08 * i}
-              className="border-t border-ink-900/10 pt-6 dark:border-sand-100/10"
+              className="rounded-2xl bg-white/70 p-6 shadow-soft ring-1 ring-ink-900/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg dark:bg-forest-600/30 dark:ring-sand-100/10 sm:p-7"
             >
               <span className="font-serif text-2xl tracking-tight text-terracotta-600 dark:text-terracotta-400">
                 {String(i + 1).padStart(2, "0")}

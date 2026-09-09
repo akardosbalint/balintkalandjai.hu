@@ -36,7 +36,7 @@ export default function Story() {
         <div className="mt-10 grid gap-10 lg:grid-cols-[320px_1fr] lg:gap-16">
           <AnimatedSection
             delay={0.1}
-            className="mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
+            className="group mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
           >
             <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-forest-900/10 dark:ring-sand-50/10">
               <Image
@@ -44,7 +44,7 @@ export default function Story() {
                 alt="Kardos Bálint portréja"
                 fill
                 sizes="(min-width: 1024px) 320px, 260px"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
           </AnimatedSection>
