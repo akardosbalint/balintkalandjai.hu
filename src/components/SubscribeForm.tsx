@@ -122,6 +122,44 @@ export default function SubscribeForm({
           Rishikeshből. Ha nem találod, nézd meg a spam és a promóció
           mappákat is.
         </p>
+
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/60 dark:text-sand-100/60">
+          <span>Amíg vársz, kövess élőben:</span>
+          <span className="flex flex-wrap justify-center gap-x-3">
+            <a
+              href={siteConfig.social.tiktok}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              TikTok
+            </a>
+            <a
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              Instagram
+            </a>
+            <a
+              href={siteConfig.social.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              YouTube
+            </a>
+            <a
+              href={siteConfig.social.facebook}
+              target="_blank"
+              rel="noreferrer"
+              className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
+            >
+              Facebook
+            </a>
+          </span>
+        </div>
       </div>
     );
   }
