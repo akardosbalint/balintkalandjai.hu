@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: "class",
@@ -95,6 +96,21 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // Érintőképernyőn a `:hover` érintésre/görgetésre felvillanhat és
+    // eltűnhet (mobil Safari/Chrome ismert viselkedése), ami a kártya-
+    // lift, fotó-zoom és gomb-hover effektusokat villogtatja görgetés
+    // közben. Ezért a hover/group-hover variánst globálisan csak valódi,
+    // pontos mutatóeszközön (egér) aktiváljuk — érintőn ezek az
+    // effektusok egyszerűen nem futnak le, ahogy asztali gépen kívül
+    // nem is várható tőlük hover-visszajelzés.
+    plugin(function ({ addVariant }) {
+      addVariant("hover", "@media (hover: hover) and (pointer: fine) { &:hover }");
+      addVariant(
+        "group-hover",
+        "@media (hover: hover) and (pointer: fine) { :merge(.group):hover & }"
+      );
+    }),
+  ],
 };
 export default config;
