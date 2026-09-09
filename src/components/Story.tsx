@@ -25,10 +25,10 @@ export default function Story() {
 
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600 dark:text-terracotta-400">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
             Mielőtt feliratkozol
           </p>
-          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
+          <h2 className="text-balance font-serif text-3xl leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
             Nem vagyok guru.
           </h2>
         </AnimatedSection>

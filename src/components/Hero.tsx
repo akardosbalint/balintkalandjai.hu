@@ -85,7 +85,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-          className="text-balance font-serif text-4xl leading-[1.15] text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl"
+          className="text-balance font-serif text-4xl font-medium leading-[1.15] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl"
         >
           {activeHeadline}
         </motion.h1>

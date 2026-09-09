@@ -35,10 +35,10 @@ export default function WhatYouGet() {
     <section className="relative px-6 py-24 sm:py-32">
       <div className="mx-auto max-w-4xl">
         <AnimatedSection className="mx-auto max-w-xl text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-terracotta-600 dark:text-terracotta-400">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
             Mit kapsz
           </p>
-          <h2 className="text-balance font-serif text-3xl leading-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
+          <h2 className="text-balance font-serif text-3xl leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
             Négy dolog, amire számíthatsz minden levélben
           </h2>
         </AnimatedSection>
@@ -50,10 +50,10 @@ export default function WhatYouGet() {
               delay={0.08 * i}
               className="border-t border-ink-900/10 pt-6 dark:border-sand-100/10"
             >
-              <span className="font-serif text-2xl text-terracotta-600 dark:text-terracotta-400">
+              <span className="font-serif text-2xl tracking-tight text-terracotta-600 dark:text-terracotta-400">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-3 font-serif text-xl text-forest-900 dark:text-sand-50">
+              <h3 className="mt-3 font-serif text-xl tracking-tight text-forest-900 dark:text-sand-50">
                 {item.title}
               </h3>
               <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{item.description}</p>
