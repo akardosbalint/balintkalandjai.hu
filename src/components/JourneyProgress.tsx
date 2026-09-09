@@ -78,16 +78,18 @@ export default function JourneyProgress() {
       {/* Dekoratív — a fenti szöveg már megadja ugyanezt az infót. */}
       <div aria-hidden="true" className="relative mt-6 h-px w-full bg-ink-900/10 dark:bg-sand-100/15">
         <motion.div
-          className="absolute top-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-forest-900 shadow-lg"
+          className="absolute top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center"
           initial={{ left: 0 }}
           animate={{ left: `${percent}%` }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <span
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 rounded-full bg-saffron-500/40 blur-md animate-breathe"
-          />
-          <span className="font-devanagari text-base leading-none text-saffron-500">
+            className="animate-breathe font-devanagari text-2xl leading-none text-saffron-500"
+            style={{
+              filter:
+                "drop-shadow(0 0 6px rgba(255,153,51,0.55)) drop-shadow(0 1px 1px rgba(26,35,27,0.35))",
+            }}
+          >
             ॐ
           </span>
         </motion.div>

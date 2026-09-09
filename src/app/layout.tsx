@@ -28,7 +28,7 @@ const inter = Inter({
 const notoDevanagari = Noto_Sans_Devanagari({
   subsets: ["devanagari"],
   variable: "--font-devanagari",
-  weight: ["400"],
+  weight: ["700"],
   display: "swap",
 });
 
