@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface TermProps {
@@ -23,6 +23,7 @@ export default function Term({ children, definition }: TermProps) {
   const [open, setOpen] = useState(false);
   const [canHover, setCanHover] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+  const definitionId = useId();
 
   useEffect(() => {
     const mql = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -67,6 +68,8 @@ export default function Term({ children, definition }: TermProps) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
+        aria-controls={definitionId}
+        aria-describedby={open ? definitionId : undefined}
         className="cursor-help underline decoration-dotted decoration-terracotta-500/70 underline-offset-4 transition-colors hover:decoration-terracotta-600 dark:hover:decoration-terracotta-300"
       >
         {children}
@@ -83,6 +86,8 @@ export default function Term({ children, definition }: TermProps) {
         <AnimatePresence>
           {open && (
             <motion.span
+              id={definitionId}
+              role="status"
               initial={{ opacity: 0, y: 4, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 4, scale: 0.98 }}

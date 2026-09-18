@@ -1,4 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
+import HoverLiftCard from "./HoverLiftCard";
 import OrganicBackground from "./OrganicBackground";
 
 /**
@@ -51,18 +52,12 @@ export default function SocialProof() {
         <div className="mt-16 grid gap-8 sm:grid-cols-3">
           {proofPoints.map((point, i) => (
             <AnimatedSection key={point.title} delay={0.08 * i}>
-              {/*
-                A hover-lift egy KÜLÖN, belső elemen ül, nem az
-                AnimatedSection-ön — lásd a WhatYouGet-ben lévő
-                ugyanerről szóló megjegyzést (framer-motion inline
-                transform vs. Tailwind hover:-translate-y ütközése).
-              */}
-              <div className="rounded-2xl bg-white/70 p-6 shadow-soft ring-1 ring-ink-900/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg dark:bg-forest-600/30 dark:ring-sand-100/10 sm:p-7">
+              <HoverLiftCard>
                 <h3 className="font-serif text-lg tracking-tight text-forest-900 dark:text-sand-50">
                   {point.title}
                 </h3>
                 <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{point.description}</p>
-              </div>
+              </HoverLiftCard>
             </AnimatedSection>
           ))}
         </div>

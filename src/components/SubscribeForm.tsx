@@ -3,10 +3,9 @@
 import { useId, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
+import { EMAIL_REGEX } from "@/lib/validation";
 
 type Status = "idle" | "loading" | "success" | "error";
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 interface SubscribeFormProps {
   id?: string;
@@ -21,6 +20,9 @@ export default function SubscribeForm({
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [consent, setConsent] = useState(false);
+  // Honeypot: valódi látogató sosem látja/tölti ki (lásd a mező stílusát
+  // lent) — ha mégis van benne érték, a szerver botnak veszi a kérést.
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -48,7 +50,7 @@ export default function SubscribeForm({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName, consent }),
+        body: JSON.stringify({ email, firstName, consent, website }),
       });
 
       const data = await res.json();
@@ -125,7 +127,7 @@ export default function SubscribeForm({
           mappákat is.
         </p>
 
-        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/60 dark:text-sand-100/60">
+        <div className="mt-2 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/65 dark:text-sand-100/60">
           <span>Amíg vársz, kövess élőben:</span>
           <span className="flex flex-wrap justify-center gap-x-3">
             <a
@@ -173,6 +175,29 @@ export default function SubscribeForm({
       className="w-full max-w-md"
       noValidate
     >
+      {/*
+        Honeypot mező — embereknek láthatatlan (abszolút pozícionálva a
+        látható területen kívülre, nem display:none-nal, mert azt egyes
+        botok felismerik és kihagyják), a képernyőolvasók és a Tab-sorrend
+        számára is kihagyva. Ha ki van töltve, a szerver botnak veszi a
+        kérést (lásd api/subscribe/route.ts).
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden"
+      >
+        <label htmlFor={`${uid}-website`}>Website</label>
+        <input
+          id={`${uid}-website`}
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
       <div className="flex flex-col gap-3 sm:flex-row">
         <label htmlFor={`${uid}-firstName`} className="sr-only">
           Keresztnév (opcionális)

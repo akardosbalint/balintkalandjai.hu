@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { EMAIL_REGEX } from "@/lib/validation";
+import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 
 interface SubscribeBody {
   email?: string;
   firstName?: string;
   consent?: boolean;
+  /** Honeypot mező — embereknek üresen kell hagyniuk, botok gyakran kitöltik. */
+  website?: string;
 }
 
 /**
@@ -16,6 +18,17 @@ interface SubscribeBody {
  * a MailerLite küldi automatikusan.
  */
 export async function POST(request: Request) {
+  const clientIp = getClientIp(request);
+  if (isRateLimited(clientIp)) {
+    return NextResponse.json(
+      {
+        message:
+          "Sokan iratkoznak fel most erről a helyről — várj egy percet, és próbáld újra.",
+      },
+      { status: 429 }
+    );
+  }
+
   let body: SubscribeBody;
 
   try {
@@ -25,6 +38,14 @@ export async function POST(request: Request) {
       { message: "Hibás kérés — próbáld frissíteni az oldalt." },
       { status: 400 }
     );
+  }
+
+  // Honeypot: valódi látogató sosem tölti ki (a mező a form UI-ban rejtve
+  // van), bot viszont gyakran igen. Ilyenkor színlelt sikert adunk vissza —
+  // a MailerLite-ot nem hívjuk meg —, hogy a botnak ne legyen jelzés, mit
+  // érdemes máshogy próbálnia.
+  if (body.website) {
+    return NextResponse.json({ ok: true }, { status: 200 });
   }
 
   const email = body.email?.trim().toLowerCase();
