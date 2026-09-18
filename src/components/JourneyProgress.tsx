@@ -2,40 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { siteConfig } from "@/lib/site-config";
-
-const TOTAL_DAYS = siteConfig.journey.totalDays;
-
-function parseLocalDate(isoDate: string) {
-  const [year, month, day] = isoDate.split("-").map(Number);
-  return new Date(year, month - 1, day);
-}
-
-function dateOnly(d: Date) {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
-}
-
-type Phase = "before" | "during" | "after";
-
-interface JourneyDayInfo {
-  phase: Phase;
-  day: number;
-  daysUntilStart: number;
-}
-
-function getJourneyDayInfo(now: Date): JourneyDayInfo {
-  const start = parseLocalDate(siteConfig.journey.startDate);
-  const diffDays =
-    Math.round((dateOnly(now) - dateOnly(start)) / 86_400_000) + 1;
-
-  if (diffDays < 1) {
-    return { phase: "before", day: 0, daysUntilStart: 1 - diffDays };
-  }
-  if (diffDays > TOTAL_DAYS) {
-    return { phase: "after", day: TOTAL_DAYS, daysUntilStart: 0 };
-  }
-  return { phase: "during", day: diffDays, daysUntilStart: 0 };
-}
+import { getJourneyDayInfo, TOTAL_DAYS, type JourneyDayInfo } from "@/lib/journey";
 
 /**
  * Élő haladásjelző: hányadik napnál tartok a 67 napos indiai utamból.
