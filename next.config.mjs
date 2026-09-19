@@ -4,9 +4,16 @@
 // nonce-okat vezetnénk be (ami saját, a Next.js-ben is ismert CSP-nonce XSS
 // kockázati kategóriát nyitna meg). Enélkül is érdemi védelmet ad a többi
 // direktíva (frame-ancestors, object-src, base-uri, form-action).
+// Fejlesztésben a Next.js dev szerver (React Refresh / HMR) eval()-t használ
+// a modulok becsomagolásához — enélkül a 'unsafe-eval' engedély nélkül a
+// hidratáció elszáll dev módban (CSP script-src hibával), és az egész oldal
+// üresen marad. Production buildben nincs szükség eval-ra, ott ez nem kerül
+// be a policy-ba.
+const isDev = process.env.NODE_ENV === "development";
+
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self' data:",
