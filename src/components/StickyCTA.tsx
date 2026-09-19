@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CONSENT_EVENT, getStoredConsent } from "@/lib/analytics";
+import { EASE, SPRING } from "@/lib/motion";
 
 // Minden hely, ahol a látogató már látja a feliratkozó űrlapot (vagy a
 // footert) — ilyenkor a lebegő CTA felesleges, sőt zavaró duplikáció
@@ -74,15 +75,18 @@ export default function StickyCTA() {
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: EASE.smooth }}
           className="fixed inset-x-0 bottom-0 z-50 border-t border-forest-800/10 bg-sand-50/95 p-3 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:border-none sm:bg-transparent sm:p-0"
         >
-          <button
+          <motion.button
             onClick={scrollToForm}
-            className="w-full rounded-full bg-saffron-500 px-6 py-3.5 font-medium text-forest-900 shadow-soft outline-none transition hover:scale-[1.02] hover:bg-saffron-600 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-forest-900/40 dark:focus-visible:ring-sand-50/50 sm:w-auto sm:px-7 sm:shadow-glow-saffron"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={SPRING.hover}
+            className="w-full rounded-full bg-saffron-500 px-6 py-3.5 font-medium text-forest-900 shadow-soft outline-none transition-colors duration-200 hover:bg-saffron-600 focus-visible:ring-2 focus-visible:ring-forest-900/40 dark:focus-visible:ring-sand-50/50 sm:w-auto sm:px-7 sm:shadow-glow-saffron"
           >
             Gyere, tarts velem
-          </button>
+          </motion.button>
         </motion.div>
       )}
     </AnimatePresence>

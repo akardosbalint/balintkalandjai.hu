@@ -1,6 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { DURATION, EASE } from "@/lib/motion";
+import { Stagger, StaggerItem } from "./AnimatedSection";
 import JourneyProgress from "./JourneyProgress";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
@@ -68,9 +71,30 @@ const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // kifejezésekhez (telefonon is elérhető, nem csak hoverre).
 
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  // Finom parallax a háttér-blobokon — a szöveg fölött, alig érzékelhetően
+  // lassabban mozog görgetéskor, mint a tartalom. Csökkentett mozgás
+  // preferenciánál (prefers-reduced-motion) teljesen kikapcsolva, mert ez
+  // egy folyamatos, nem felhasználó-kezdeményezte animáció.
+  const backgroundY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion ? [0, 0] : [0, 56]
+  );
+
   return (
-    <section className="relative isolate overflow-hidden px-6 pb-20 pt-20 sm:pt-36 grain-overlay">
-      <OrganicBackground variant="hero" />
+    <section
+      ref={sectionRef}
+      className="relative isolate overflow-hidden px-6 pb-20 pt-20 sm:pt-36 grain-overlay"
+    >
+      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+        <OrganicBackground variant="hero" />
+      </motion.div>
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
         {/*
@@ -79,12 +103,13 @@ export default function Hero() {
           közvetlenül rontja a Core Web Vitals LCP metrikáját (mért
           eset: ~2.6s "element render delay" a korábbi 0.35s delay +
           1.1s duration miatt). Ezért ennél a két elemnél rövidebb az
-          animáció, mint a lentebbieknél.
+          animáció, mint a lentebbieknél — ez a motion-rendszer
+          DURATION.base értéke, szándékosan nem a lassabb DURATION.slow.
         */}
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: DURATION.base, delay: 0.05, ease: EASE.smooth }}
           className="text-balance font-serif text-4xl font-medium leading-[1.15] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl"
         >
           {activeHeadline}
@@ -93,7 +118,7 @@ export default function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: DURATION.base, delay: 0.15, ease: EASE.smooth }}
           className="mt-4 max-w-xl text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:mt-6 sm:text-xl"
         >
           Most Indiáig megyek, hogy behozzam a lemaradást. 67 napot töltök
@@ -127,19 +152,42 @@ export default function Hero() {
           minősítésű jógaoktatói képzést, és élőben dokumentálom az egészet.
         </motion.p>
 
-        <div className="flex w-full justify-center">
-          <JourneyProgress />
-        </div>
+        <Stagger className="mt-6 flex w-full flex-col items-center sm:mt-10" gap={0.15}>
+          <StaggerItem className="flex w-full justify-center">
+            <JourneyProgress />
+          </StaggerItem>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.1, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 flex w-full justify-center sm:mt-10"
-        >
-          <SubscribeForm id="feliratkozas" />
-        </motion.div>
+          <StaggerItem className="mt-6 flex w-full justify-center sm:mt-10">
+            <SubscribeForm id="feliratkozas" />
+          </StaggerItem>
+        </Stagger>
       </div>
+
+      <ScrollCue />
     </section>
+  );
+}
+
+/**
+ * Finom, görgetésre invitáló jelzés a hero alján — csak asztali nézeten
+ * (mobilon a sticky CTA és a form már eleve látótérben van, felesleges
+ * duplikáció lenne). Csökkentett mozgás preferenciánál a globális
+ * `prefers-reduced-motion` CSS szabály (globals.css) automatikusan
+ * lenullázza az animáció időtartamát, nincs szükség külön JS-guardra.
+ */
+function ScrollCue() {
+  return (
+    <motion.div
+      aria-hidden="true"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: DURATION.slower, delay: 1.1, ease: EASE.smooth }}
+      className="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center sm:flex"
+    >
+      <div className="flex flex-col items-center gap-2 text-ink-900/35 dark:text-sand-100/30">
+        <span className="h-9 w-px animate-breathe-slow bg-current" />
+        <span className="h-1.5 w-1.5 animate-breathe rounded-full bg-current" />
+      </div>
+    </motion.div>
   );
 }

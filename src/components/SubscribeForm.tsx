@@ -4,6 +4,7 @@ import { useId, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
 import { EMAIL_REGEX } from "@/lib/validation";
+import { SPRING } from "@/lib/motion";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -253,13 +254,16 @@ export default function SubscribeForm({
         </span>
       </label>
 
-      <button
+      <motion.button
         type="submit"
         disabled={status === "loading"}
-        className="mt-4 w-full rounded-full bg-saffron-500 px-8 py-3.5 font-medium text-forest-900 outline-none transition hover:scale-[1.02] hover:bg-saffron-600 active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-forest-900/40 disabled:cursor-wait disabled:opacity-70 disabled:hover:scale-100 dark:focus-visible:ring-sand-50/50 sm:w-auto"
+        whileHover={status === "loading" ? undefined : { scale: 1.03 }}
+        whileTap={status === "loading" ? undefined : { scale: 0.97 }}
+        transition={SPRING.hover}
+        className="mt-4 w-full rounded-full bg-saffron-500 px-8 py-3.5 font-medium text-forest-900 outline-none transition-colors duration-200 hover:bg-saffron-600 hover:shadow-glow-saffron focus-visible:ring-2 focus-visible:ring-forest-900/40 disabled:cursor-wait disabled:opacity-70 dark:focus-visible:ring-sand-50/50 sm:w-auto"
       >
         {status === "loading" ? "Küldés…" : ctaLabel}
-      </button>
+      </motion.button>
 
       <AnimatePresence>
         {status === "error" && (
