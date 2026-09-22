@@ -17,14 +17,14 @@ const validBody = {
 
 describe("POST /api/subscribe", () => {
   beforeEach(() => {
-    process.env.MAILERLITE_API_KEY = "test-key";
-    process.env.MAILERLITE_GROUP_ID = "test-group";
+    process.env.KIT_API_KEY = "test-key";
+    process.env.KIT_FORM_ID = "test-form";
   });
 
   afterEach(() => {
     vi.unstubAllGlobals();
-    delete process.env.MAILERLITE_API_KEY;
-    delete process.env.MAILERLITE_GROUP_ID;
+    delete process.env.KIT_API_KEY;
+    delete process.env.KIT_FORM_ID;
   });
 
   it("400-at ad hibás JSON body esetén", async () => {
@@ -51,7 +51,7 @@ describe("POST /api/subscribe", () => {
     expect(data.message).toMatch(/elfogadás/);
   });
 
-  it("honeypot kitöltése esetén színlelt sikert ad, és nem hívja a MailerLite-ot", async () => {
+  it("honeypot kitöltése esetén színlelt sikert ad, és nem hívja a Kit API-t", async () => {
     const fetchSpy = vi.fn();
     vi.stubGlobal("fetch", fetchSpy);
 
@@ -63,15 +63,15 @@ describe("POST /api/subscribe", () => {
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 
-  it("500-at ad, ha hiányoznak a MailerLite env változók", async () => {
-    delete process.env.MAILERLITE_API_KEY;
-    delete process.env.MAILERLITE_GROUP_ID;
+  it("500-at ad, ha hiányoznak a Kit env változók", async () => {
+    delete process.env.KIT_API_KEY;
+    delete process.env.KIT_FORM_ID;
 
     const res = await POST(makeRequest(validBody));
     expect(res.status).toBe(500);
   });
 
-  it("sikeres MailerLite hívás esetén ok:true-t ad, és a helyes payloadot küldi", async () => {
+  it("sikeres feliratkozás esetén ok:true-t ad, és a két Kit hívást a helyes payloaddal küldi", async () => {
     const fetchSpy = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({}), { status: 200 })
     );
@@ -83,29 +83,36 @@ describe("POST /api/subscribe", () => {
     const data = await res.json();
     expect(data.ok).toBe(true);
 
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
-    const [url, init] = fetchSpy.mock.calls[0];
-    expect(url).toBe("https://connect.mailerlite.com/api/subscribers");
-    expect(init.headers.Authorization).toBe("Bearer test-key");
-    const sentBody = JSON.parse(init.body);
-    expect(sentBody).toEqual({
-      email: "teszt@example.com",
-      fields: { name: "Teszt" },
-      groups: ["test-group"],
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
+
+    const [subscriberUrl, subscriberInit] = fetchSpy.mock.calls[0];
+    expect(subscriberUrl).toBe("https://api.kit.com/v4/subscribers");
+    expect(subscriberInit.headers["X-Kit-Api-Key"]).toBe("test-key");
+    expect(JSON.parse(subscriberInit.body)).toEqual({
+      email_address: "teszt@example.com",
+      first_name: "Teszt",
+    });
+
+    const [formUrl, formInit] = fetchSpy.mock.calls[1];
+    expect(formUrl).toBe("https://api.kit.com/v4/forms/test-form/subscribers");
+    expect(formInit.headers["X-Kit-Api-Key"]).toBe("test-key");
+    expect(JSON.parse(formInit.body)).toEqual({
+      email_address: "teszt@example.com",
     });
   });
 
-  it("422 MailerLite választ 422-vel és barátságos üzenettel ad tovább", async () => {
+  it("422 Kit választ 422-vel ad tovább, és nem hívja meg a form endpointot", async () => {
     const fetchSpy = vi.fn().mockResolvedValue(
-      new Response(JSON.stringify({ error: "duplicate" }), { status: 422 })
+      new Response(JSON.stringify({ errors: ["invalid"] }), { status: 422 })
     );
     vi.stubGlobal("fetch", fetchSpy);
 
     const res = await POST(makeRequest(validBody));
     expect(res.status).toBe(422);
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
-  it("429 MailerLite választ 429-cel ad tovább", async () => {
+  it("429 Kit választ 429-cel ad tovább", async () => {
     const fetchSpy = vi.fn().mockResolvedValue(
       new Response(JSON.stringify({}), { status: 429 })
     );
@@ -113,6 +120,20 @@ describe("POST /api/subscribe", () => {
 
     const res = await POST(makeRequest(validBody));
     expect(res.status).toBe(429);
+  });
+
+  it("502-t ad, ha a subscriber-hívás sikeres, de a form-hoz adás elbukik", async () => {
+    const fetchSpy = vi
+      .fn()
+      .mockResolvedValueOnce(new Response(JSON.stringify({}), { status: 200 }))
+      .mockResolvedValueOnce(
+        new Response(JSON.stringify({ errors: ["not found"] }), { status: 404 })
+      );
+    vi.stubGlobal("fetch", fetchSpy);
+
+    const res = await POST(makeRequest(validBody));
+    expect(res.status).toBe(502);
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 
   it("a saját rate limit lezárja az 5. kérés utánit ugyanarról az IP-ről", async () => {
