@@ -13,6 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         "/dashboard/*",
         "/api/*",
         "/koszonom",
+        "/megerositve",
       ],
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
