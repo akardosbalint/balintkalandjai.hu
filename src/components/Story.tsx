@@ -29,7 +29,7 @@ export default function Story() {
             Mielőtt feliratkozol
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-            Mindenbe belekezdtem. Semmit nem fejeztem be.
+            Mindenbe belekezdtem. Semmit nem fejeztem be. Mostanáig.
           </h2>
         </AnimatedSection>
 
