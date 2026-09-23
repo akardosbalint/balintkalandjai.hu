@@ -57,9 +57,8 @@ export default function ConfirmedPage() {
         </h1>
 
         <p className="mt-4 max-w-xl text-balance text-ink-900/70 dark:text-sand-100/70">
-          A feliratkozásod megerősítve. Az első hangfelvételed jövő vasárnap
-          estig megérkezik, egyenesen Rishikeshből — nulla szűrés, nulla
-          guru-duma.
+          A feliratkozásod megerősítve. Az első hangfelvételed a következő
+          vasárnapig érkezik.
         </p>
 
         <div className="mt-8 w-full max-w-md rounded-2xl border border-terracotta-500/30 bg-terracotta-500/10 p-5 text-left">

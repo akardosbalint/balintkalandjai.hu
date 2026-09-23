@@ -187,7 +187,7 @@ export default function SubscribeForm({
       </AnimatePresence>
 
       <p className="mt-3 text-xs text-ink-900/65 dark:text-sand-100/65">
-        Heti 1 hangfelvétel. Nulla spam, nulla guru-duma. Bármikor egy
+        Heti 1 hangfelvétel. Nulla spam, nulla duma. Bármikor egy
         kattintással leiratkozhatsz.
       </p>
     </form>

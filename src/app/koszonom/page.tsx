@@ -38,8 +38,7 @@ export default function ThankYouPage() {
 
         <p className="mt-4 max-w-xl text-balance text-ink-900/70 dark:text-sand-100/70">
           Küldtem egy megerősítő emailt — kattints a benne lévő linkre, hogy
-          valóban megkapd a heti hangfelvételt. Enélkül a feliratkozás nem
-          lép életbe.
+          valóban megkapd a heti hangfelvételt.
         </p>
 
         <div className="mt-8 w-full max-w-xs overflow-hidden rounded-3xl bg-forest-900/5 shadow-lg dark:bg-sand-50/5">
@@ -69,7 +68,7 @@ export default function ThankYouPage() {
             <span className="font-medium text-ink-900 dark:text-sand-50">
               promóciók
             </span>{" "}
-            mappát is — sokszor oda esik elsőre. Ha megtaláltad, húzd át a
+            mappát is — sokszor oda kerül elsőre. Ha megtaláltad, húzd át a
             beérkező levelek közé, hogy a következő hangfelvétel is
             biztosan odataláljon.
           </p>

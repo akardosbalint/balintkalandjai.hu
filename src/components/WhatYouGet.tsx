@@ -16,7 +16,7 @@ const items = [
       "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
   },
   {
-    title: "Nulla szűrés, nulla guru-pózolás",
+    title: "Nulla szűrés, nulla pózolás",
     description:
       "Nem azt fogom írni, hogy „megtaláltam magam”. Lehet, hogy három hét múlva kiderül, tévedtem valamiben — azt is megírom, nem csak a szép részeket.",
   },
