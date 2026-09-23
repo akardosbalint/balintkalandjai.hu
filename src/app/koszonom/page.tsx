@@ -68,9 +68,9 @@ export default function ThankYouPage() {
             <span className="font-medium text-ink-900 dark:text-sand-50">
               promóciók
             </span>{" "}
-            mappát is — sokszor oda kerül elsőre. Ha megtaláltad, húzd át a
+            mappát is — néha oda kerül először. Ha megtaláltad, húzd át a
             beérkező levelek közé, hogy a következő hangfelvétel is
-            biztosan odataláljon.
+            biztosan eljusson hozzád.
           </p>
         </div>
 
