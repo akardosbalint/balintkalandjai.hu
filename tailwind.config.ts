@@ -79,10 +79,18 @@ const config: Config = {
         breathe: "breathe 8s ease-in-out infinite",
         "breathe-slow": "breathe 14s ease-in-out infinite",
         "drift": "drift 22s ease-in-out infinite",
+        // Hidratálás nélkül is lefutó belépő animáció a hero-hoz és a
+        // fejléchez — lásd Hero.tsx, miért nem Framer Motion. Az easing a
+        // motion-rendszer EASE.smooth görbéje (src/lib/motion.ts).
+        "hero-in": "heroIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both",
       },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        heroIn: {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         breathe: {

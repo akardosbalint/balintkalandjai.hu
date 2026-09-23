@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
-import { DURATION, EASE } from "@/lib/motion";
 import ThemeToggle from "./ThemeToggle";
 
 const SCROLL_THRESHOLD = 24;
@@ -33,11 +31,10 @@ export default function Header() {
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: DURATION.base, delay: 0.1, ease: EASE.smooth }}
-      className={`fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${
+    // A belépő animáció CSS (animate-hero-in), nem Framer Motion — így a
+    // fejléc JS/hidratálás nélkül is látszik (lásd Hero.tsx).
+    <header
+      className={`animate-hero-in fixed inset-x-0 top-0 z-40 border-b transition-colors duration-300 ${
         scrolled
           ? "border-forest-800/10 bg-sand-50/75 shadow-soft backdrop-blur-md dark:border-sand-50/10 dark:bg-forest-900/70"
           : "border-transparent bg-transparent"
@@ -65,6 +62,6 @@ export default function Header() {
 
         <ThemeToggle />
       </div>
-    </motion.header>
+    </header>
   );
 }

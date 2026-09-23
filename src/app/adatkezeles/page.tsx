@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
         Adatkezelési tájékoztató
       </h1>
       <p className="mt-2 text-sm text-ink-900/65 dark:text-sand-100/65">
-        Hatályos: 2026. szeptember 2.
+        Hatályos: 2026. szeptember 23.
       </p>
 
       <div className="mt-10 space-y-8 text-ink-900/80 dark:text-sand-100/80">
@@ -72,11 +72,20 @@ export default function PrivacyPolicyPage() {
             <li>email cím (kötelező)</li>
             <li>keresztnév (opcionális, ha megadod)</li>
             <li>
-              feliratkozás időpontja és technikai adatok (pl. IP cím, amit a
-              Kit a visszaélések elleni védelem és a jogszerű hozzájárulás
-              igazolása miatt automatikusan rögzít)
+              a feliratkozás és a megerősítés időpontja, valamint azok a
+              technikai adatok, amelyeket a Kit rendszere a hozzájárulásod
+              igazolására rögzít (pl. amikor a megerősítő emailben lévő
+              linkre kattintasz)
             </li>
           </ul>
+          <p className="mt-2">
+            Az űrlap elküldésekor a weboldal szervere az IP-címedet
+            legfeljebb 10 percig, kizárólag a szerver memóriájában tartja
+            meg, hogy kiszűrje a tömeges, automatizált (bot) feliratkozási
+            kísérleteket. Ezt nem mentem el tartósan, és nem adom tovább a
+            Kitnek — a Kit a feliratkozáskor csak az email címedet és (ha
+            megadtad) a keresztnevedet kapja meg.
+          </p>
           <p className="mt-2">
             Az űrlapon kívül más adatgyűjtési pont (pl. regisztráció,
             fizetés, kapcsolatfelvételi form) jelenleg nincs az oldalon.
@@ -94,6 +103,12 @@ export default function PrivacyPolicyPage() {
             hozzájárulásod, amelyet a feliratkozáskor a checkbox
             bejelölésével adsz meg.
           </p>
+          <p className="mt-2">
+            A fenti, visszaélések kiszűrésére szolgáló rövid IP-cím-kezelés
+            jogalapja a GDPR 6. cikk (1) bekezdés f) pontja szerinti jogos
+            érdekem: a feliratkozó rendszer és a mások email címével
+            visszaélő, automatizált kérések elleni védelem.
+          </p>
         </section>
 
         <section>
@@ -101,26 +116,64 @@ export default function PrivacyPolicyPage() {
             4. Sütik (cookie-k) és analitika
           </h2>
           <p className="mt-2">
-            A weboldal Google Analyticset használ látogatottság mérésére
-            (pl. hányan, honnan és milyen oldalakra érkeznek). Ez a mérés
-            sütiket helyez el a böngésződben, és{" "}
-            <strong className="font-medium text-forest-900 dark:text-sand-50">
-              kizárólag a hozzájárulásoddal fut
-            </strong>{" "}
-            — az oldal betöltésekor semmilyen mérőkód nem aktív, amíg a
-            képernyő alján megjelenő sávon nem kattintasz az „Elfogadom”
-            gombra. Ha az „Elutasítom” gombra kattintasz, vagy nem
-            reagálsz, a mérés nem indul el. A döntésedet a böngésződ
-            eltárolja, így legközelebb nem kérdezünk rá újra; a döntést
-            bármikor megváltoztathatod a böngésződ süti-beállításaiban a
-            tárolt adat törlésével.
+            A weboldal Google Analyticset (Google Analytics 4) használ a
+            látogatottság mérésére (pl. hányan, honnan és milyen oldalakra
+            érkeznek), valamint annak mérésére, hogy sikeres volt-e egy
+            feliratkozás. A mérés a Google úgynevezett „hozzájárulási
+            módjában” (Consent Mode) fut, ami a gyakorlatban a következőt
+            jelenti:
+          </p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            <li>
+              A Google mérőkódja (gtag.js) minden látogatáskor betöltődik a
+              Google szerveréről — mint minden ilyen letöltésnél, ehhez a
+              böngésződ technikailag közli a Google-lel az IP-címedet.
+            </li>
+            <li>
+              <strong className="font-medium text-forest-900 dark:text-sand-50">
+                Amíg nem fogadod el a mérést
+              </strong>{" "}
+              (vagy ha elutasítod), a mérőkód nem helyez el és nem olvas ki
+              sütit, és nem rendel hozzád azonosítót. Ilyenkor csak anonim,
+              süti nélküli jeleket küld a Google-nek (pl. hogy egy oldalt
+              megnyitottak, vagy hogy egy feliratkozás sikeres vagy
+              sikertelen volt), amelyekből a Google összesített, becsült
+              statisztikát készít. Ezekből nem azonosítható, hogy ki vagy.
+            </li>
+            <li>
+              <strong className="font-medium text-forest-900 dark:text-sand-50">
+                Ha a képernyő alján megjelenő sávon az „Elfogadom” gombra
+                kattintasz
+              </strong>
+              , a Google Analytics sütiket helyez el a böngésződben (pl.{" "}
+              <code>_ga</code>), így az ismételt látogatásaid is mérhetővé
+              válnak.
+            </li>
+            <li>
+              Hirdetési célú sütit, remarketinget vagy hirdetési
+              személyre szabást az oldal egyik esetben sem használ — ezekhez
+              a hozzájárulást a mérőkód alapból megtagadottra állítja, és az
+              „Elfogadom” gomb sem kapcsolja be őket.
+            </li>
+            <li>
+              A mérés soha nem kapja meg az email címedet vagy a nevedet.
+            </li>
+          </ul>
+          <p className="mt-2">
+            A döntésedet a böngésződ helyi tárhelye (localStorage) jegyzi
+            meg, így legközelebb nem kérdezünk rá újra. A hozzájárulásodat
+            bármikor visszavonhatod, ha a böngésződben törlöd ennek az
+            oldalnak a tárolt adatait (sütik és webhelyadatok): ez a Google
+            Analytics sütiket is törli, és a következő látogatáskor a sáv
+            újra megjelenik.
           </p>
           <p className="mt-2">
-            Ezen kívül a weboldal nem használ saját sütiket, és nem épít
-            be hirdetési vagy követő (tracking) kódot. A tárhelyszolgáltató
-            (lásd lent) a szolgáltatás működtetéséhez technikailag
-            szükséges naplózást végezhet, ami nem minősül marketing célú
-            sütinek.
+            A weboldal saját sütit nem használ. A böngésződ helyi
+            tárhelyében a fenti döntésen kívül legfeljebb a kézzel választott
+            téma (világos/sötét) kerül tárolásra, ha a fejlécben lévő
+            kapcsolóval átállítod. A tárhelyszolgáltató (lásd lent) a
+            szolgáltatás működtetéséhez technikailag szükséges naplózást
+            végezhet.
           </p>
         </section>
 
@@ -148,13 +201,17 @@ export default function PrivacyPolicyPage() {
             szerződésben ellenőrizni.
           </p>
           <p className="mt-2">
-            Ha hozzájárulsz a látogatottság-méréshez, a Google Ireland
-            Limited (illetve anyavállalata, a Google LLC, USA) Google
-            Analytics szolgáltatása kezeli az ehhez szükséges adatokat
-            (pl. anonimizált IP-cím, meglátogatott oldalak, eszköz- és
-            böngészőtípus). Az adatkezelés jogalapja a hozzájárulásod
-            (GDPR 6. cikk (1) bek. a) pont), amit bármikor visszavonhatsz
-            a fent leírt módon. Az USA-ba történő adattovábbítás a Google
+            A látogatottság-mérést a Google Ireland Limited (illetve
+            anyavállalata, a Google LLC, USA) Google Analytics szolgáltatása
+            végzi (lásd a 4. pontot). A mérőkód betöltésekor a Google
+            megkapja az IP-címedet és a böngésződ technikai adatait;
+            hozzájárulás nélkül csak a süti nélküli, anonim jeleket
+            (meglátogatott oldal, esemény, eszköz- és böngészőtípus),
+            hozzájárulás esetén a sütialapú mérés adatait is. A Google
+            tájékoztatása szerint a Google Analytics 4 az IP-címeket nem
+            naplózza és nem tárolja. A sütialapú mérés jogalapja a
+            hozzájárulásod (GDPR 6. cikk (1) bek. a) pont), amit bármikor
+            visszavonhatsz a 4. pontban leírt módon. Az USA-ba történő adattovábbítás a Google
             által biztosított garanciák (Standard Szerződéses Feltételek)
             mellett történik.
           </p>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { EMAIL_REGEX } from "@/lib/validation";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
+import { siteConfig } from "@/lib/site-config";
 
 const KIT_API_BASE = "https://api.kit.com/v4";
 
@@ -116,7 +117,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message:
-          "A feliratkozás jelenleg nem elérhető. Próbáld meg később, vagy írj emailt.",
+          `A feliratkozás jelenleg nem elérhető. Próbáld meg később, vagy írj a ${siteConfig.email} címre.`,
       },
       { status: 500 }
     );

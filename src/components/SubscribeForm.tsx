@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
 import { EMAIL_REGEX } from "@/lib/validation";
+import { SUBSCRIBE_EVENTS, trackEvent } from "@/lib/analytics";
 import { SPRING } from "@/lib/motion";
 
 type Status = "idle" | "loading" | "error";
@@ -29,16 +30,26 @@ export default function SubscribeForm({
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Melyik űrlapról jött a konverzió/hiba (hero vagy alsó CTA) — GA4-ben
+  // ez alapján vethető össze a két form teljesítménye.
+  const formLocation = id ?? "ismeretlen";
+
+  function trackError(errorType: string) {
+    trackEvent(SUBSCRIBE_EVENTS.error, { form_location: formLocation, error_type: errorType });
+  }
+
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (!EMAIL_REGEX.test(email.trim())) {
+      trackError("invalid_email");
       setStatus("error");
       setErrorMessage("Adj meg egy érvényes email címet.");
       return;
     }
 
     if (!consent) {
+      trackError("missing_consent");
       setStatus("error");
       setErrorMessage(
         "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked hangfelvételt."
@@ -59,6 +70,7 @@ export default function SubscribeForm({
       const data = await res.json();
 
       if (!res.ok) {
+        trackError(`http_${res.status}`);
         setStatus("error");
         setErrorMessage(
           data?.message ||
@@ -67,8 +79,10 @@ export default function SubscribeForm({
         return;
       }
 
+      trackEvent(SUBSCRIBE_EVENTS.success, { form_location: formLocation });
       router.push("/koszonom");
     } catch {
+      trackError("network");
       setStatus("error");
       setErrorMessage(
         "Nem sikerült elküldeni — ellenőrizd a netkapcsolatot, és próbáld újra."

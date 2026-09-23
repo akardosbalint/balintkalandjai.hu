@@ -4,6 +4,8 @@
 **Vizsgált állapot:** `claude/yoga-landing-page-hcauxv` (a repo alapértelmezett / production branche) @ `1b478b4`
 **Előzmény:** a 2026-09-18-i audit (git history: `1a7ea98`) Top 10 listájának minden tétele lezárult — a domain és a Kit kulcsok is (lásd 0. pont). Ez a jelentés **újabb, teljes kör** a jelenlegi kódon. Csak a még nyitott vagy új problémák szerepelnek benne, a korábban javított tételeket nem ismétli meg.
 
+> **Javítási kör (2026-09-23, ugyanaznap):** a Top 10 lista #2, #3 és #4 tétele javítva, és az email cím bekerült a Footerbe, a GYIK-be (az utazás alatti korlátozott elérhetőséggel), a köszönőoldalra és az API hibaüzenetébe. A #1 (köszönővideó) szándékosan nyitva marad, a tulajdonos pár napon belül tölti fel. A jelentés eredeti szövege változatlan, csak ✅ jelölések kerültek bele.
+
 ### A kitöltött projekt-leírás (az audit-prompt sablonjához)
 - **Miről szól az oldal:** egyoldalas, magyar nyelvű személyes-márka landing oldal. Kardos Bálint 70 napos (2026-09-26 – 12-04) indiai útját és RYT-500 jógaoktatói képzését dokumentálja. Az egyetlen konverziós cél a **heti hangfelvételre (email-hírlevélre) való feliratkozás**.
 - **Tech stack:** Next.js 15.5 (App Router), React 18 (package.json), TypeScript strict, Tailwind 3.4, Framer Motion, Kit (ConvertKit) V4 API, Google Analytics 4 Consent Mode-dal, Vercel hosting, Vitest, GitHub Actions CI.
@@ -101,7 +103,7 @@ Ez WCAG 3.3.1 / 1.3.1 hiányosság.
 
 ## 2. CRO (Conversion Rate Optimization)
 
-### 🟠 Magas — Nincs konverziómérés: nem tudod, hány látogatóból lesz feliratkozó
+### 🟠 Magas — Nincs konverziómérés: nem tudod, hány látogatóból lesz feliratkozó ✅ Javítva — `generate_lead` + `subscribe_error` események `form_location`/`error_type` paraméterrel
 **Hely:** `src/components/SubscribeForm.tsx:70` (`router.push("/koszonom")`); a teljes `src/`-ben nincs `gtag('event', …)` hívás (`grep` üres)
 **Miért probléma:** a GA be van kötve, de sem `generate_lead`/`sign_up` esemény, sem hibaesemény (validációs hiba, 4xx/5xx) nem kerül mérésre. A `/koszonom` pageview-je csak közelítő konverziós jel:
 - közvetlen URL-látogatás is beszámít;
@@ -157,7 +159,7 @@ Egyetlen link sem vezet a profilokra ebből a szekcióból. Ma ezek csak a foote
 
 ## 3. Biztonság (Security)
 
-### 🟠 Magas (jogi/adatvédelmi) — A cookie-sáv, a GYIK és az Adatkezelési tájékoztató valótlant állít a mérésről
+### 🟠 Magas (jogi/adatvédelmi) — A cookie-sáv, a GYIK és az Adatkezelési tájékoztató valótlant állít a mérésről ✅ Javítva — (b) változat: a szövegek most pontosan a jelenlegi működést írják le; a 2. pont Kit/IP tévedése is javítva, a rate limit IP-kezelése feltüntetve
 **Hely:**
 - `src/components/CookieConsent.tsx:120-123`: „enélkül nem futnak mérőkódok”
 - `src/app/gyik/page.tsx:136-138`: „enélkül nem indul el semmilyen mérőkód”
@@ -306,7 +308,7 @@ A kód minősége összességében **jó**: konzisztens elnevezések, kis kompon
 
 Lokálisan a TTFB ~0. Élesben (Vercel CDN, magyar mobilhálózat) ehhez még hozzáadódik a hálózati késés.
 
-### 🟠 Magas — A hero tartalma (H1, subheadline, form) a szerver-HTML-ben láthatatlan: az LCP a JS-hidratálástól függ
+### 🟠 Magas — A hero tartalma (H1, subheadline, form) a szerver-HTML-ben láthatatlan: az LCP a JS-hidratálástól függ ✅ Javítva — CSS belépő animáció; újramérve: lassított mobil LCP 4,42 s → 2,63 s, JS nélkül a H1 és a form látszik, CLS ≈ 0
 **Hely:** `src/components/Hero.tsx:122-126,131-134` (`initial={{ opacity: 0, y: 16 }}`), `:168-176` (`Stagger` → `initial="hidden"`, a formot is elrejti); `src/components/Header.tsx:36-39`; `AnimatedSection.tsx:30`
 **Bizonyíték:** JavaScript nélküli rendernél (Playwright `javaScriptEnabled: false`) a `h1` computed opacity **0**, a `#feliratkozas` form effektív opacity **0**. Az első képernyő teljesen üres, csak a háttér látszik. Lassított mobilon az LCP 4,42 s, ami a Google „rossz” sávja (> 4 s). Az LCP-elem azért rajzolódik ki ennyire későn, mert a Framer Motionnek előbb le kell töltődnie, parse-olódnia és hidratálnia kell (a `/` oldal JS-e 164 kB).
 **Miért probléma:**
@@ -390,10 +392,10 @@ Ezek a márkanévre („Kardos Bálint”) keresve knowledge panel / rich result
 
 | # | Teendő | Súlyosság | Erőfeszítés | Hivatkozás |
 |---|---|---|---|---|
-| 1 | Töltsd fel a köszönővideót, **vagy** vedd ki a `<video>` blokkot a `/koszonom` oldalról, és a „Nem látod a levelet?” doboz kerüljön előre | 🟠 Magas | Triviális | 1. pont |
-| 2 | A hero H1/subheadline/form ne induljon `opacity:0`-ról (`initial={false}` vagy CSS-animáció) → gyorsabb LCP, JS nélkül is látszik a form | 🟠 Magas | Kicsi | 6. pont |
-| 3 | GA: a gtag.js csak hozzájárulás után töltődjön be, **vagy** a cookie-sáv, a GYIK és az Adatkezelési tájékoztató szövege legyen pontos | 🟠 Magas | Kicsi | 3. pont |
-| 4 | Konverziómérés: `generate_lead` esemény sikeres feliratkozáskor, `subscribe_error` hibánál, form-azonosítóval | 🟠 Magas | Triviális | 2. pont |
+| 1 | ⏳ (a tulajdonos pár napon belül feltölti) Töltsd fel a köszönővideót, **vagy** vedd ki a `<video>` blokkot a `/koszonom` oldalról, és a „Nem látod a levelet?” doboz kerüljön előre | 🟠 Magas | Triviális | 1. pont |
+| 2 | ✅ A hero H1/subheadline/form ne induljon `opacity:0`-ról (`initial={false}` vagy CSS-animáció) → gyorsabb LCP, JS nélkül is látszik a form | 🟠 Magas | Kicsi | 6. pont |
+| 3 | ✅ (szövegek pontosítva) GA: a gtag.js csak hozzájárulás után töltődjön be, **vagy** a cookie-sáv, a GYIK és az Adatkezelési tájékoztató szövege legyen pontos | 🟠 Magas | Kicsi | 3. pont |
+| 4 | ✅ Konverziómérés: `generate_lead` esemény sikeres feliratkozáskor, `subscribe_error` hibánál, form-azonosítóval | 🟠 Magas | Triviális | 2. pont |
 | 5 | Az API futásidejű inputellenőrzése (objektum/string típus, hosszkorlát) + 2 teszteset → nincs több 500-as hiba | 🟡 Közepes | Triviális | 3. pont |
 | 6 | „Süti-beállítások” link a Footerben (a hozzájárulás visszavonhatósága), és a `Footer` bekötése a `layout.tsx`-be, hogy az aloldalakon is legyen | 🟡 Közepes | Kicsi | 3. és 1. pont |
 | 7 | Form a11y: a mezőkeret kontrasztja ≥ 3:1, `aria-invalid`/`aria-describedby` a hibákra, fókusz a hibás mezőre; `/60` → `/65` a két poszt-konverziós oldalon | 🟡 Közepes | Kicsi | 1. pont |

@@ -133,9 +133,14 @@ const items: FaqItem[] = [
     question: "Használ az oldal sütiket vagy analitikát?",
     answer: (
       <>
-        Google Analyticset használok látogatottság mérésére, de csak akkor,
-        ha ezt a képernyő alján megjelenő sávon elfogadod — enélkül nem
-        indul el semmilyen mérőkód. Bővebben az{" "}
+        Google Analyticset használok a látogatottság és a feliratkozások
+        mérésére. A mérőkód minden látogatáskor betöltődik, de amíg a
+        képernyő alján megjelenő sávon nem fogadod el, nem helyez el
+        sütit, és csak anonim, süti nélküli jeleket küld a Google-nek
+        (pl. hogy megnyitottak egy oldalt, vagy sikeres volt-e egy
+        feliratkozás) — ezekből nem derül ki, hogy ki vagy. Ha elfogadod,
+        sütis mérés is indul. Hirdetési célú sütit egyik esetben sem
+        használ az oldal. Bővebben az{" "}
         <Link
           href="/adatkezeles"
           className="underline decoration-terracotta-500 underline-offset-2"
@@ -158,7 +163,9 @@ const items: FaqItem[] = [
         >
           {siteConfig.email}
         </a>{" "}
-        címre, azt is elintézem.
+        címre, azt is elintézem — az utazás alatt ez néhány napig is
+        eltarthat, a levél alján lévő leiratkozó link viszont azonnal
+        működik.
       </>
     ),
   },
@@ -183,7 +190,11 @@ const items: FaqItem[] = [
         >
           {siteConfig.email}
         </a>{" "}
-        címen — igyekszem személyesen válaszolni.
+        címen — igyekszem személyesen válaszolni. Fontos: az utazás
+        alatt (szeptember 26-tól a hazaérkezésemig — lásd fent) csak korlátozottan
+        férek hozzá az emailjeimhez, a képzés napjai hosszúak és
+        kötöttek, ezért a válaszom ilyenkor napokat, akár egy-két hetet is
+        késhet. Ne vedd sértésnek — minden levelet elolvasok.
       </>
     ),
   },
