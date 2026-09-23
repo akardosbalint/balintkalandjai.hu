@@ -6,7 +6,11 @@ import { getJourneyDayInfo, TOTAL_DAYS, type JourneyDayInfo } from "@/lib/journe
 import { EASE } from "@/lib/motion";
 
 /**
- * Élő haladásjelző: hányadik napnál tartok a 67 napos indiai utamból.
+ * Élő haladásjelző: hányadik napnál tartok a teljes utamból — ajtótól
+ * ajtóig, az otthonról induléstól a hazaérkezésig (lásd
+ * siteConfig.journey), nem csak az indiai tartózkodás alatt. Ezért a
+ * szövegek szándékosan nem állítják konkrétan, hogy "Rishikeshben"
+ * vagyok — az első/utolsó pár nap még/már utazás, nem ottlét.
  * Kliens oldalon számol (a látogató helyi dátuma alapján), hogy mindig
  * friss legyen újradeploy nélkül is — ezért csak mountolás után jelenik meg,
  * elkerülve a szerver/kliens dátum-eltérésből adódó hydration villanást.
@@ -26,8 +30,8 @@ export default function JourneyProgress() {
     info.phase === "before"
       ? `Indulásig még ${info.daysUntilStart} nap van hátra.`
       : info.phase === "during"
-        ? `A(z) ${info.day}. napomat élem Rishikeshben`
-        : "Megvan a 67 nap — a képzésnek vége, hazaértem";
+        ? `Az utam ${info.day}. napját élem`
+        : `Megvan a ${TOTAL_DAYS} nap — hazaértem`;
 
   const countLabel =
     info.phase === "before" ? `0 / ${TOTAL_DAYS}. nap` : `${info.day} / ${TOTAL_DAYS}. nap`;
