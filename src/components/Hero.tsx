@@ -28,7 +28,7 @@ import Term from "./Term";
  * Tehát amíg a tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy
  * már ott van, vagy hogy már eltelt X nap ("67 napja Rishikeshben..."
  * HIBÁS).
- * Jelen idő használható (pl. "67 napot töltök Indiában"), de
+ * Jelen idő használható (pl. "70 napot töltök Indiában"), de
  * csak terv/időtartam leírásaként, nem eltelt idő állításaként.
  *
  * F) "31 éven keresztül lemaradtam a saját életemről."
@@ -63,7 +63,7 @@ import Term from "./Term";
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
 // magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
-// lemaradást. 67 napot töltök Rishikeshben, ahol elvégzek egy
+// lemaradást. 70 napot töltök Rishikeshben, ahol elvégzek egy
 // nemzetközi jóga szövetség által akkreditált, RYT-500 minősítésű
 // jógaoktatói képzést, és élőben dokumentálom az egészet."
 // A JSX-es változat lent a Term komponenssel koppintható/kattintható
@@ -134,7 +134,7 @@ export default function Hero() {
           transition={{ duration: DURATION.base, delay: 0.15, ease: EASE.smooth }}
           className="mt-4 max-w-xl text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:mt-6 sm:text-xl"
         >
-          Most Indiáig megyek, hogy behozzam a lemaradást. 67 napot töltök
+          Most Indiáig megyek, hogy behozzam a lemaradást. 70 napot töltök
           Rishikeshben, ahol elvégzek egy{" "}
           <Term
             definition={

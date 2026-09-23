@@ -120,11 +120,11 @@ export default function Story() {
             <p>
               A terv: október 1. és november 28. között egy 500 órás
               akkreditált jógaoktatói képzés Rishikeshben, a „jóga
-              fővárosában” — összesen 67 napot töltök Indiában, mert
-              korábban érkezem és később utazom haza. Nincsenek bekészített
-              válaszaim — napi egy videóval (TikTokon, Instagramon, YouTube
-              Shortson és Facebookon) és minden vasárnap egy hosszú, őszinte
-              hangfelvétellel dokumentálom majd az utam. Nyilvánosan
+              fővárosában” — összesen 70 napot töltök Indiában. Nincsenek
+              bekészített válaszaim — napi egy videóval (TikTokon,
+              Instagramon, YouTube Shortson és Facebookon) és minden
+              vasárnap egy hosszabb, őszinte hangfelvétellel dokumentálom
+              majd az utam. Nyilvánosan
               csinálom, hogy legyen, aki számon kérje rajtam — így talán
               könnyebb lesz folytatni a nehéz napokon is. Gyere, nézd végig
               velem.

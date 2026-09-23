@@ -73,7 +73,7 @@ export default function TermsPage() {
           <p className="mt-2">
             A weboldal ({siteConfig.url}) jelenleg egyetlen szolgáltatást
             nyújt: egy ingyenes, heti hangfelvételt emailben, amelyben a
-            {" " + siteConfig.ownerFullName} 67 napos indiai jógaoktatói
+            {" " + siteConfig.ownerFullName} 70 napos indiai jógaoktatói
             képzésének személyes, vágatlan dokumentálását hallgathatod. A
             hangfelvétel minden vasárnap érkezik, kb. 20-30 perc hosszú, és
             kizárólag a feliratkozók számára elérhető — nem publikus, és
