@@ -28,7 +28,7 @@ import Term from "./Term";
  * Tehát amíg a tulajdonos el nem utazik, a szöveg NEM állíthatja, hogy
  * már ott van, vagy hogy már eltelt X nap ("67 napja Rishikeshben..."
  * HIBÁS).
- * Jelen idő használható (pl. "67 napot töltök Indiában"), de
+ * Jelen idő használható (pl. "70 napot töltök Indiában"), de
  * csak terv/időtartam leírásaként, nem eltelt idő állításaként.
  *
  * F) "31 éven keresztül lemaradtam a saját életemről."
