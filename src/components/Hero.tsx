@@ -92,7 +92,20 @@ export default function Hero() {
       ref={sectionRef}
       className="relative isolate overflow-hidden px-6 pb-20 pt-20 sm:pt-36 grain-overlay"
     >
-      <motion.div className="absolute inset-0" style={{ y: backgroundY }}>
+      {/*
+        pointer-events-none itt kötelező: ez a wrapper `position: absolute`
+        (a parallax `y` transform miatt kell), ezért — a z-indextől
+        függetlenül — a stacking felett fest a lenti statikus tartalomhoz
+        (form) képest. OrganicBackground saját gyökéreleme maga is
+        pointer-events-none, de az csak a GYEREKRE vonatkozik: ha ez a
+        wrapper-DIV maga (ami a teljes szekciót lefedi) nem kapja meg
+        ugyanezt, ő maga nyeli le az érintéseket a form fölött — ez okozta,
+        hogy mobilon nem lehetett a feliratkozó űrlapba koppintani.
+      */}
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        style={{ y: backgroundY }}
+      >
         <OrganicBackground variant="hero" />
       </motion.div>
 
