@@ -281,7 +281,7 @@ A kód minősége összességében **jó**: konzisztens elnevezések, kis kompon
 
 ### 🟢 Alacsony — Elavult/no-op beállítások
 **Hely:**
-- `GoogleAnalytics.tsx:23`: az `anonymize_ip: true` Universal Analytics-paraméter, GA4-ben hatástalan (a GA4 alapból nem tárol IP-t).
+- ✅ Javítva (a GA mérési azonosító cseréjével együtt): `GoogleAnalytics.tsx:23`: az `anonymize_ip: true` Universal Analytics-paraméter, GA4-ben hatástalan (a GA4 alapból nem tárol IP-t).
 - `npm run lint`: a `next lint` a Next 15.5-ben deprecated, a build-kimenet is jelzi. A Next 16-ban megszűnik.
 
 **Javaslat:** töröld az `anonymize_ip`-et, és migrálj ESLint CLI-re (`npx @next/codemod@canary next-lint-to-eslint-cli .`).

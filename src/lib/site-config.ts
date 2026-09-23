@@ -64,6 +64,6 @@ export const siteConfig = {
   analytics: {
     // A GA Measurement ID nem titkos adat (a böngészőbe amúgy is
     // kikerül), ezért simán ide kerülhet, env változó nélkül.
-    googleMeasurementId: "G-QYHPHKXFWE",
+    googleMeasurementId: "G-8587805PEC",
   },
 } as const;
