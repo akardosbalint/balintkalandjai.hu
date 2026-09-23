@@ -1,4 +1,5 @@
 import AnimatedSection from "./AnimatedSection";
+import HoverLiftCard from "./HoverLiftCard";
 import OrganicBackground from "./OrganicBackground";
 
 /**
@@ -49,15 +50,7 @@ export default function WhatYouGet() {
         <div className="mt-16 grid gap-x-10 gap-y-10 sm:grid-cols-2">
           {items.map((item, i) => (
             <AnimatedSection key={item.title} delay={0.08 * i}>
-              {/*
-                A hover-lift (-translate-y) egy KÜLÖN, belső elemen ül, nem
-                közvetlenül az AnimatedSection-ön — a framer-motion a
-                belépő animáció végén inline `transform` stílust hagy az
-                általa mozgatott elemen, ami felülírná (kioltaná) a
-                Tailwind hover:-translate-y class-t, ha ugyanarra az
-                elemre kerülne.
-              */}
-              <div className="rounded-2xl bg-white/70 p-6 shadow-soft ring-1 ring-ink-900/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg dark:bg-forest-600/30 dark:ring-sand-100/10 sm:p-7">
+              <HoverLiftCard>
                 <span className="font-serif text-2xl tracking-tight text-terracotta-600 dark:text-terracotta-400">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -65,7 +58,7 @@ export default function WhatYouGet() {
                   {item.title}
                 </h3>
                 <p className="mt-3 text-ink-900/70 dark:text-sand-100/70">{item.description}</p>
-              </div>
+              </HoverLiftCard>
             </AnimatedSection>
           ))}
         </div>

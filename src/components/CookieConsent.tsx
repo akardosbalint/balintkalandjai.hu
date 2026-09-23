@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { getStoredConsent, setStoredConsent } from "@/lib/analytics";
+import { EASE, SPRING } from "@/lib/motion";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -60,7 +61,7 @@ export default function CookieConsent() {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: EASE.smooth }}
           className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-6 py-4 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:py-5"
         >
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
@@ -77,20 +78,26 @@ export default function CookieConsent() {
               .
             </p>
             <div className="flex shrink-0 gap-3">
-              <button
+              <motion.button
                 type="button"
                 onClick={() => handleChoice("denied")}
-                className="rounded-full border border-forest-800/20 px-5 py-2.5 text-sm font-medium text-ink-900/70 transition hover:bg-forest-800/5 dark:border-sand-50/20 dark:text-sand-100/70 dark:hover:bg-sand-50/10"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                transition={SPRING.hover}
+                className="rounded-full border border-forest-800/20 px-5 py-2.5 text-sm font-medium text-ink-900/70 transition-colors hover:bg-forest-800/5 dark:border-sand-50/20 dark:text-sand-100/70 dark:hover:bg-sand-50/10"
               >
                 Elutasítom
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 type="button"
                 onClick={() => handleChoice("granted")}
-                className="rounded-full bg-saffron-500 px-5 py-2.5 text-sm font-medium text-forest-900 transition hover:bg-saffron-600"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                transition={SPRING.hover}
+                className="rounded-full bg-saffron-500 px-5 py-2.5 text-sm font-medium text-forest-900 transition-colors hover:bg-saffron-600"
               >
                 Elfogadom
-              </button>
+              </motion.button>
             </div>
           </div>
         </motion.div>

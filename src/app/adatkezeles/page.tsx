@@ -73,8 +73,8 @@ export default function PrivacyPolicyPage() {
             <li>keresztnév (opcionális, ha megadod)</li>
             <li>
               feliratkozás időpontja és technikai adatok (pl. IP cím, amit a
-              MailerLite a visszaélések elleni védelem és a jogszerű
-              hozzájárulás igazolása miatt automatikusan rögzít)
+              Kit a visszaélések elleni védelem és a jogszerű hozzájárulás
+              igazolása miatt automatikusan rögzít)
             </li>
           </ul>
           <p className="mt-2">
@@ -129,11 +129,13 @@ export default function PrivacyPolicyPage() {
             5. Adatfeldolgozók
           </h2>
           <p className="mt-2">
-            A heti hangfelvételek kiküldéséhez a MailerLite Limited (Ireland)
-            szolgáltatását használom, amely EU-s adatfeldolgozóként a GDPR
-            előírásai szerint kezeli az adatokat. Adatfeldolgozói
-            szerződésük elérhető a MailerLite honlapján (Data Processing
-            Agreement).
+            A heti hangfelvételek kiküldéséhez a Kit, Inc. (USA) szolgáltatását
+            használom, amely adatfeldolgozóként a GDPR előírásai szerint kezeli
+            az adatokat. Adatfeldolgozói szerződésük elérhető a Kit honlapján
+            (Data Processing Agreement). Az USA-ba történő adattovábbítás a
+            Kit által biztosított garanciák (pl. Standard Szerződéses
+            Feltételek) mellett történik — a pontos jogalapot érdemes
+            közvetlenül a Kittel kötött feldolgozói szerződésben ellenőrizni.
           </p>
           <p className="mt-2">
             A weboldal tárhelyét a Vercel Inc. (USA) biztosítja, amely a

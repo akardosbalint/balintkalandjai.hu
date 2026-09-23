@@ -6,7 +6,12 @@ export const siteConfig = {
   brandName: "Kardos Bálint",
   ownerName: "Bálint",
   ownerFullName: "Kardos Bálint",
-  url: "https://tudatossagesjelenlet.hu",
+  // A ténylegesen a Vercel projekthez kötött custom domain (lásd Vercel
+  // Settings → Domains) — korábban itt egy soha be nem kötött, korábbi
+  // márkanévhez tartozó domain (tudatossagesjelenlet.hu) szerepelt,
+  // emiatt minden canonical/OG/sitemap URL egy nem elérhető címre
+  // mutatott. Ez adja a metadataBase-t is (layout.tsx).
+  url: "https://www.akardosbalint.hu",
   // Nyers, nem sablon meta description — lásd app/layout.tsx a teljes
   // hangnemért (SEO + social share preview szöveg). 150-160 karakter
   // körül tartva, hogy a Google ne vágja le a találati listában.
