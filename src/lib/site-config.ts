@@ -31,25 +31,36 @@ export const siteConfig = {
   // vállalkozásként fut az oldal, ezért nincs adószám/nyilvántartási szám.
   ownerAddress: "7584 Babócsa, Rákóczi u. 28.",
   journey: {
-    // Az Indiába érkezés napja és a teljes indiai tartózkodás hossza — a
-    // JourneyProgress ebből számolja ki, hányadik napnál tartunk.
-    // Indulás Mo.-ról: 2026-09-26, érkezés Indiába: 2026-09-28.
-    // Indulás Indiából (Dehradun): 2026-12-03, érkezés Mo.-ra: 2026-12-04.
-    // FONTOS: ez nem ugyanaz, mint a képzés hossza — a 67 napos indiai
-    // tartózkodáson belül maga az akkreditált képzés 2026-10-01 és
-    // 2026-11-28 között tart (59 nap), a többi nap korábbi érkezés/
-    // későbbi hazautazás.
+    // A JourneyProgress (a Hero alatti haladásjelző) ebből a kettőből
+    // számolja ki, hányadik napnál tartunk — a TELJES utat követi,
+    // ajtótól ajtóig: az otthonról indulástól a hazaérkezésig, nem csak
+    // az indiai tartózkodást.
+    // Indulás Mo.-ról (= startDate): 2026-09-26. Érkezés Indiába:
+    // 2026-09-28. Indulás Indiából (Dehradun): 2026-12-03. Érkezés
+    // Mo.-ra (= startDate + totalDays - 1): 2026-12-04.
+    // totalDays = 70 (2026-09-26 .. 2026-12-04 bezárólag).
     //
-    // BIZONYTALAN VÉGDÁTUM: a december 3-i hazaindulás a JELENLEGI terv,
-    // nem biztos. Ha Őszentsége a Dalai Láma, Tenzin Gyatso december
-    // 27-ig bezárólag tanítást tart, Bálint ott marad addig — a
-    // turistavízum viszont egyszerre max. 90 napot enged (2026-09-28-tól
-    // számolva ez pont 2026-12-27), tehát ennél tovább semmiképpen nem
-    // maradhat. Ha ez a hosszabbítás ténylegesen bekövetkezik, a
-    // totalDays értékét (és a GYIK vonatkozó válaszát) frissíteni kell
-    // a tényleges hazautazás napjával.
-    startDate: "2026-09-28",
-    totalDays: 67,
+    // FONTOS — EZ NEM UGYANAZ, MINT A MÁSHOL ("67 nap Indiában")
+    // EMLEGETETT SZÁM: a Hero/Story/GYIK/ASZF stb. szövegekben szereplő
+    // "67 nap" kifejezetten az indiai tartózkodás hossza (2026-09-28 –
+    // 2026-12-03 bezárólag) — az egy külön, szándékosan változatlanul
+    // hagyott marketing-szám, nem ebből a totalDays-ből számolódik. A
+    // képzés maga (az akkreditált rész) 2026-10-01 és 2026-11-28 között
+    // tart (59 nap) — ez a 67 napos indiai tartózkodásnak is csak egy
+    // szelete.
+    //
+    // BIZONYTALAN VÉGDÁTUM: a december 3-i hazaindulás (és az ebből
+    // következő dec. 4-i hazaérkezés) a JELENLEGI terv, nem biztos. Ha
+    // Őszentsége a Dalai Láma, Tenzin Gyatso december 27-ig bezárólag
+    // tanítást tart, Bálint ott marad addig — a turistavízum viszont
+    // egyszerre max. 90 napot enged (2026-09-28-tól számolva ez pont
+    // 2026-12-27), tehát az indiai tartózkodás ennél tovább semmiképpen
+    // nem nyúlhat. Ha ez a hosszabbítás ténylegesen bekövetkezik, a
+    // totalDays értékét (és a GYIK vonatkozó válaszát, illetve a máshol
+    // szereplő "67 nap" szövegeket) frissíteni kell a tényleges
+    // hazautazás napjával.
+    startDate: "2026-09-26",
+    totalDays: 70,
   },
   analytics: {
     // A GA Measurement ID nem titkos adat (a böngészőbe amúgy is
