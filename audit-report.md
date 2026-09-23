@@ -1,270 +1,436 @@
-# Audit-jelentés — balintkalandjai.hu / Kardos Bálint feliratkozó oldal
+# Audit-jelentés — akardosbalint.hu (Kardos Bálint feliratkozó oldal)
 
-**Dátum:** 2026-09-18 (javítási kör: ugyanaznap, lásd alul)
-**Vizsgált branch/commit:** `claude/mit-kell-meg-megcsinalni-cfolta` @ `a35f4d6` (production branch legutóbbi mergelt állapota — a lenti javítások ehhez képest készültek, a jelentés eredeti szövege szándékosan változatlan, csak ✅ jelölés került a már megoldott tételekhez)
+**Dátum:** 2026-09-23
+**Vizsgált állapot:** `claude/yoga-landing-page-hcauxv` (a repo alapértelmezett / production branche) @ `1b478b4`
+**Előzmény:** a 2026-09-18-i audit (git history: `1a7ea98`) Top 10 listájának minden tétele lezárult — a domain és a Kit kulcsok is (lásd 0. pont). Ez a jelentés **újabb, teljes kör** a jelenlegi kódon. Csak a még nyitott vagy új problémák szerepelnek benne, a korábban javított tételeket nem ismétli meg.
 
-> **Javítási kör állapota:** a Top 10 lista #3–#10 tétele kódszinten megvalósult és commitolva van ugyanezen a branchen (lásd az egyes tételeknél a ✅ jelölést és a commit-hivatkozást). A #1 (MailerLite env változók) és #2 (custom domain bekötése) továbbra is Vercel dashboard / DNS művelet, kódból nem elvégezhető — ezekhez a tulajdonos hozzáférése szükséges.
+> **Javítási kör (2026-09-23, ugyanaznap):** a Top 10 lista #2, #3 és #4 tétele javítva, és az email cím bekerült a Footerbe, a GYIK-be (az utazás alatti korlátozott elérhetőséggel), a köszönőoldalra és az API hibaüzenetébe. A #1 (köszönővideó) szándékosan nyitva marad, a tulajdonos pár napon belül tölti fel. A jelentés eredeti szövege változatlan, csak ✅ jelölések kerültek bele.
 
-**Módszer:** teljes forráskód-átvizsgálás (minden `.ts`/`.tsx` fájl elolvasva), `npm run build`, `npm run lint` (`next lint`), `npm audit`, kontraszt-számítás a tényleges Tailwind szín-tokenekre (WCAG relatív luminancia képlet), élő Vercel projekt-metaadatok (domainek, deploymentek) lekérdezése az MCP integráción keresztül. Böngészős/vizuális (Lighthouse, valódi screenshot) tesztelés **nem** történt — ahol ez számítana, jelölve van.
+### A kitöltött projekt-leírás (az audit-prompt sablonjához)
+- **Miről szól az oldal:** egyoldalas, magyar nyelvű személyes-márka landing oldal. Kardos Bálint 70 napos (2026-09-26 – 12-04) indiai útját és RYT-500 jógaoktatói képzését dokumentálja. Az egyetlen konverziós cél a **heti hangfelvételre (email-hírlevélre) való feliratkozás**.
+- **Tech stack:** Next.js 15.5 (App Router), React 18 (package.json), TypeScript strict, Tailwind 3.4, Framer Motion, Kit (ConvertKit) V4 API, Google Analytics 4 Consent Mode-dal, Vercel hosting, Vitest, GitHub Actions CI.
+- **Regisztráció/fizetés/fiók:** **nincs.** Egyetlen adatgyűjtési pont van: email + opcionális keresztnév + GDPR-checkbox, double opt-innal (Kit).
+
+### Módszer
+- Minden `.ts`/`.tsx`/config fájlt végigolvastam (47 forrásfájl, ~3 900 sor).
+- Lefuttattam: `npm ci`, `npm run lint`, `npm test` (23/23 ✅), `npm run build` ✅, `npm audit`, `npm outdated`.
+- Elindítottam a production buildet lokálisan (`next start`), és curl-lel lekértem a HTTP-fejléceket, a `robots.txt`-t, a `sitemap.xml`-t, az OG-képet és az API-t hibás inputokkal.
+- Playwright + Chromium méréseket végeztem: LCP, CLS, 390×844-es mobil és 1440×900-as desktop nézet, 4× CPU-lassítás + lassú 4G szimuláció, JavaScript nélküli render, képernyőképek.
+- A WCAG-kontrasztot a tényleges Tailwind-tokenekből számoltam (relatív luminancia képlettel, alfa-keveréssel).
+- A Vercel projektet (domainek, env változók) MCP-n keresztül kérdeztem le.
+- **Korlát:** az élő domaint (`www.akardosbalint.hu`) a sandbox proxy blokkolta (403), ezért az éles fejléceket (pl. HSTS) és az éles Kit-flow-t nem tudtam közvetlenül tesztelni. Ahol ez számít, jelzem.
 
 ---
 
-## 0. Mit találtam — gyors áttekintés
+## 0. Mit találtam — áttekintés
 
 | | |
 |---|---|
-| **Stack** | Next.js 14.2.35 (App Router), TypeScript (strict), Tailwind CSS 3.4, Framer Motion 13.1, self-hosted Google Fonts (`next/font`) |
-| **Méret** | 35 forrásfájl, ~2 800 sor kód összesen (a legnagyobb fájl 259 sor) |
-| **Backend** | Nincs saját backend/adatbázis. Egyetlen szerver-oldali route: `POST /api/subscribe`, ami proxyként hívja a MailerLite API-t |
-| **Auth** | Nincs — nincs bejelentkezés, felhasználói fiók, session, jogosultságkezelés |
-| **Cél** | Egyoldalas (+ 3 jogi aloldal) magyar nyelvű feliratkozó/landing oldal egy 67 napos indiai jógaoktatói képzés heti hangfelvételéhez; a konverziós cél kizárólag az email-feliratkozás |
-| **Deploy** | Vercel, automatikus GitHub-integrációval; legutóbbi production deploy (`dpl_FYT8Qg…`) sikeres |
-| **Tesztek** | 0 db (nincs `*.test.*`/`*.spec.*` fájl, nincs CI) |
-| **Build/Lint** | `npm run build` ✅ hibátlan, `next lint` ✅ 0 figyelmeztetés |
+| **Méret** | 23 komponens/oldal, 12 lib-modul, 3 tesztfájl. A legnagyobb fájlok: `aszf/page.tsx`, `gyik/page.tsx` (215 sor), `adatkezeles/page.tsx` (211 sor) |
+| **Route-ok** | `/` (landing), `/gyik`, `/adatkezeles`, `/aszf`, `/koszonom` (feliratkozás után), `/megerositve` (double opt-in után), 404, `POST /api/subscribe`, OG-képek, sitemap, robots, manifest |
+| **Fő modulok** | `SubscribeForm` + `api/subscribe` (konverzió), `CookieConsent` + `GoogleAnalytics` + `lib/analytics` (consent), `ThemeSchedule`/`ThemeToggle` (napszak szerinti téma), `JourneyProgress` + `lib/journey` (napszámláló), `lib/rate-limit` |
+| **Deploy (Vercel, ellenőrizve)** | `www.akardosbalint.hu` ✅ bekötve, az apex 308-cal a www-re irányít. `KIT_API_KEY` és `KIT_FORM_ID` ✅ be van állítva (production + preview) |
+| **Build** | `/` First Load JS **164 kB** (ebből 103 kB közös). Minden oldal statikus, kivéve az API-t |
+| **Minőség** | lint 0 hiba, 23 teszt zöld, CI PR-onként fut |
 
-A kódbázis kicsi és tiszta — nincs benne backend-komplexitás (DB, auth, IDOR-kockázat), ezért az audit sablon több pontja (adatbázis-séma, jogosultságkezelés, session/JWT) **nem értelmezhető** erre az architektúrára; ezeknél ezt explicit jelzem, nem hagyom üresen.
-
-A legsúlyosabb tényleges problémák nem a kódban, hanem a **deploy-konfigurációban** vannak: a saját domain nincs bekötve a Vercel projektbe, és a MailerLite kulcsok megléte innen nem ellenőrizhető — enélkül a fő konverziós funkció (feliratkozás) és a teljes SEO/megosztási réteg (canonical, sitemap, OG) élesben nem feltétlenül működik.
+**Összkép:** a kód gondosan megírt és jól kommentezett, az előző audit minden kritikus pontja rendezve van. A mostani kör legsúlyosabb problémái:
+1. **A köszönőoldal videója nem létezik** (404). Épp a frissen konvertált látogató kap egy törött lejátszót.
+2. **A cookie-/adatkezelési szöveg valótlant állít.** Azt írja, hozzájárulás nélkül „semmilyen mérőkód nem fut”, de a gtag.js minden látogatónál betöltődik.
+3. **A hero (H1 + feliratkozó űrlap) a szerver által renderelt HTML-ben `opacity:0`.** Hidratálás előtt, illetve JS nélkül láthatatlan. Lassított mobilon az LCP 4,4 s.
 
 ---
 
 ## 1. UX/UI
 
-### 🟡 Közepes — Kényszerített nappal/éjszaka téma, felhasználói felülbírálás nélkül ✅ Javítva (`48a7e5d`)
-**Hely:** `src/components/ThemeSchedule.tsx:10-18`, `src/lib/theme-schedule.ts:5-18`, `src/app/layout.tsx:87-89`
-**Miért probléma:** A téma (light/dark) kizárólag a látogató **helyi óraidejéből** (6:00–19:00 = light, egyébként dark) dől el, percenként újraszámolva (`ThemeSchedule.tsx:28`). Nincs figyelembe véve az OS `prefers-color-scheme` beállítása, és **nincs kézi kapcsoló** — egy este böngésző látogató nem tud light módra váltani, ha azt szeretné, és fordítva. Ez felhasználói kontroll-vesztést okoz, és hibaként hathat ("miért mindig sötét ez az oldal éjjel").
-**Javaslat:** Alapértelmezésként `prefers-color-scheme`-t használni, a nappal/éjszaka logikát csak "javaslatként" alkalmazni ha a látogató még nem választott kézzel, és egy kis nap/hold ikon-kapcsolót tenni a Header-be, amit `localStorage`-ban megjegyez (hasonlóan a meglévő `cookie-consent` mintához az `analytics.ts`-ben).
+### 🟠 Magas — A köszönőoldal videója 404-et ad: törött lejátszó a konverzió után
+**Hely:** `src/app/koszonom/page.tsx:45-54` (`src="/videos/koszonom.mp4"`)
+**Bizonyíték:** a `public/` alatt nincs `videos/` mappa, és a git historyban sem szerepelt soha (`git log --all -- 'public/videos*'` üres). Lokális production szerveren: `GET /videos/koszonom.mp4 → 404`. Mobil képernyőkép: a poszter (profilfotó) megjelenik, alatta egy `0:00`-s vezérlősáv, a lejátszás nem indul.
+**Miért probléma:** ez az oldal az egész tölcsér legértékesebb pillanata: a látogató épp most adta meg az emailjét, és a double opt-in megerősítésére kell rávenni. Ha itt törött elem fogadja, az rontja a bizalmat, és csökkenti a megerősítési arányt. Ráadásul a nagy, 9:16-os blokk a „Nem látod a levelet?” instrukciót (a legfontosabb tartalmat) a hajtás alá tolja.
+**Javaslat:** töltsd fel a videót (`public/videos/koszonom.mp4`, H.264, ≤ 5–8 MB, vagy Vercel Blob/YouTube embed). Addig vedd ki a `<video>` blokkot. A „Nem látod a levelet?” dobozt tedd a videó **elé**.
 
-### 🟡 Közepes — A `Term` tooltip nincs programozottan összekötve a triggerrel ✅ Javítva (`f5e5e2d`)
-**Hely:** `src/components/Term.tsx:66-73` (trigger `<button>`) és `:82-96` (popup `<span>`)
-**Miért probléma:** A trigger gombon van `aria-expanded={open}`, de nincs `aria-controls` a popup elem `id`-jára mutatva, és a popup `<span>`-nek nincs is `id`-ja vagy `role`-ja. Képernyőolvasó így csak annyit közöl, hogy "gomb, lenyitva/összecsukva" — a megjelenő magyarázó szöveg és a gomb kapcsolata nincs explicit módon expozíciózva (WCAG 4.1.2 Name/Role/Value). A DOM-sorrend miatt a tartalom a legtöbb screen readerrel gyakorlatilag még kiolvasható, de ez esetlegesség, nem garancia.
-**Javaslat:** Adj a popup `<span>`-nek `id={\`${uid}-definition\`}`-t (a komponens már generál `uid`-t máshol is a projektben, pl. `SubscribeForm.tsx:20`, `Faq.tsx:17`), és tedd a triggerre `aria-controls`-t + `aria-describedby`-t erre az id-re.
+### 🟡 Közepes — Mobilon a cookie-sáv a köszönőoldalon rácsúszik a tartalomra
+**Hely:** `src/components/CookieConsent.tsx:20-80` (csak a főoldali formokat figyeli), `src/app/koszonom/page.tsx`
+**Bizonyíték:** a `/koszonom` mobil képernyőképén a banner 1,2 s után a videó alsó harmadára ül rá.
+**Miért probléma:** a banner elrejtési logikája csak a `feliratkozas`/`feliratkozas-lent` id-kat figyeli. A köszönőoldalon egyik sincs, így ott mindig megjelenik. Ide jellemzően az érkezik, aki a főoldalon még nem döntött, mert ott a form miatt el volt rejtve a sáv. Így a két legfontosabb poszt-konverziós elem közé ékelődik.
+**Javaslat:** a `/koszonom` és `/megerositve` oldalakon a banner csak görgetés után jelenjen meg, vagy kerüljön kompakt, sarokba tett formába.
 
-### 🟡 Közepes — WCAG AA kontraszthiba a sikeres feliratkozás utáni szövegben (számított, konkrét) ✅ Javítva (`f5e5e2d`)
-**Hely:** `src/components/SubscribeForm.tsx:128` — `text-sm text-ink-900/60` (light módban)
-**Miért probléma:** Kiszámoltam a tényleges renderelt színt (`ink-900` #241C15, 60% alfa, `sand-50` #FBF7F1 háttéren): a kontrasztarány **4.33:1**, ami **AA szinten (4.5:1) bukik** normál méretű (14px, nem "large text") szövegre. Ez pontosan az "Amíg vársz, kövess élőben:" sor a sikeres feliratkozás utáni állapotban — vagyis épp azok a látogatók futnak bele, akik sikeresen konvertáltak, és a következő lépésre (közösségi média követés) invitálod őket. Sötét módban ugyanez `sand-100/60` már 5.84:1-gyel megfelel — csak a light mód hibás.
-Ellenőrzésképpen az összes többi `ink-900/NN` és `sand-100/NN` előfordulást (14 hely) végigszámoltam a kódban ténylegesen használt háttérszínekkel — ez az **egyetlen** konkrét AA-bukás, a többi (`/65` és往 felfelé) 5:1 fölött van.
-**Javaslat:** `text-ink-900/60` → legalább `text-ink-900/65` (5.08:1) a `SubscribeForm.tsx:128` sorban, csak a light-mód variánsra (a dark:sand-100/60 maradhat).
+### 🟡 Közepes — Az űrlapmezők kerete nem teljesíti a WCAG 1.4.11-et (nem-szöveges kontraszt)
+**Hely:** `src/components/SubscribeForm.tsx:121,135` — `border-forest-800/15` a `sand-50` háttéren, a mező kitöltése `bg-white/80`
+**Bizonyíték:** a számított kontrasztarány a keret és a háttér között **1,32:1**, a követelmény ≥ 3:1. A mobil képernyőképen a mezők gyakorlatilag csak az enyhe fehér kitöltésből látszanak.
+**Miért probléma:** gyengénlátó felhasználónak, illetve napfényben telefonon nehéz észrevenni, hol a beviteli mező. Ez közvetlenül a konverziós formot érinti.
+**Javaslat:** legalább `border-forest-800/40` (≈ 3:1) vagy `ring-1 ring-ink-900/30` a mezőkre, sötét módban `border-sand-50/40`.
 
-### 🟢 Alacsony — Header logo: két kép egyszerre preloadolva
-**Hely:** `src/components/Header.tsx:9-24`
-**Miért probléma:** Light és dark logo egyaránt `priority` propot kap (`Header.tsx:15`, `:23`), miközben a másik csak `dark:hidden`/`hidden dark:block` CSS-sel van elrejtve. A `priority` egy `<link rel="preload">`-ot generál — mindkét kép letöltődik/preloadolódik, holott egyszerre csak az egyik látszik. (Ez a Core Web Vitals/teljesítmény szempontból is releváns, lásd 6. pont P2.)
-**Javaslat:** Csak a ténylegesen aktív témához tartozó logót jelöld `priority`-nak (pl. egy kliens-oldali "melyik téma aktív" ellenőrzéssel), vagy cseréld egyetlen, `currentColor`-ral színezhető SVG-re, hogy egyáltalán ne kelljen két raszteres fájl.
+### 🟡 Közepes — A form hibaüzenete nincs a mezőhöz kötve, és a fókusz nem mozdul
+**Hely:** `src/components/SubscribeForm.tsx:35-47` (kliens validáció), `:176-186` (hibaüzenet)
+**Miért probléma:** a `role="alert"` bejelenti a hibát, de:
+- az email mezőn nincs `aria-invalid`, sem `aria-describedby` a hibaszövegre;
+- hibás email vagy hiányzó checkbox esetén a fókusz a gombon marad;
+- a hibaüzenet a gomb **alatt** jelenik meg, miközben a probléma a gomb **fölötti** mezőben van. Mobilon ez könnyen kívül esik a látómezőn.
 
-### 🟢 Alacsony — Külső linkek nem jelzik, hogy új lapon nyílnak
-**Hely:** `src/components/Footer.tsx:11-22`, `src/components/SubscribeForm.tsx:131-162`, `src/app/gyik/page.tsx:77-113`
-**Miért probléma:** Minden social link `target="_blank"`, de sem vizuálisan (ikon), sem `aria-label`/`sr-only` szöveggel nincs jelezve, hogy új fülön nyílik — ez gyakori WCAG best-practice ajánlás (3.2.5), kifejezetten screen reader felhasználóknak segít felkészülni a kontextusváltásra.
-**Javaslat:** `aria-label="TikTok (új lapon nyílik)"` típusú kiegészítés, vagy egy vizuális "↗" ikon a linkek mellé.
+Ez WCAG 3.3.1 / 1.3.1 hiányosság.
+**Javaslat:** külön hibaállapot mezőnként (`emailError`, `consentError`), `aria-invalid` + `aria-describedby`, és hibánál `inputRef.current.focus()` a hibás mezőre.
 
-### 🟢 Alacsony — `rel="noreferrer"` `noopener` nélkül
-**Hely:** összes `target="_blank"` link (pl. `Footer.tsx:11`, `SubscribeForm.tsx:133`, `Story.tsx:89`, `gyik/page.tsx:79`)
-**Miért probléma:** Modern böngészők a `noreferrer`-t implicit `noopener`-ként is kezelik, de az iparági konvenció (és néhány régebbi böngésző/eszköz) mindkettőt együtt várja el (`rel="noreferrer noopener"`). Triviális, alacsony kockázatú, de egyszerű globális csere.
+### 🟡 Közepes — WCAG AA kontraszthiba: az előző auditban javított hiba a két poszt-konverziós oldalon megmaradt
+**Hely:** `src/app/koszonom/page.tsx:77`, `src/app/megerositve/page.tsx:86` — `text-sm text-ink-900/60`
+**Bizonyíték:** `ink-900` 60% alfával a `sand-50` háttéren **4,35:1** (AA küszöb 14 px-es szövegre: 4,5:1). Az előző kör a `SubscribeForm`-ban kijavította (`/65`), de ez a két másolat kimaradt.
+**Javaslat:** `text-ink-900/65` mindkét helyen. Hosszabb távon: a „kövess élőben” blokk legyen közös komponens (lásd 5. pont).
+
+### 🟡 Közepes — Az aloldalak zsákutcák: nincs footer, nincs navigáció, nincs CTA
+**Hely:** `src/app/gyik/page.tsx:192-214`, `src/app/adatkezeles/page.tsx`, `src/app/aszf/page.tsx` (a `Footer` csak a `src/app/page.tsx:22`-ben szerepel), `src/components/Header.tsx` (csak logó + téma-kapcsoló)
+**Miért probléma:**
+- A GYIK meta-leírása szerint „Iratkozz fel, és írj nekem”, de a `/gyik` oldalon nincs se űrlap, se feliratkozás-link.
+- Aki a GYIK-ből győződik meg (ez tipikusan késői, magas szándékú látogató), annak vissza kell navigálnia, és újra meg kell keresnie a formot.
+- A jogi oldalakról a Footer hiánya miatt sincs átjárás egymás közt.
+
+**Javaslat:**
+- A `Footer`-t tedd a `layout.tsx`-be.
+- A `/gyik` aljára tegyél egy `SubscribeForm`-ot, vagy legalább egy `/#feliratkozas` CTA-gombot (a 404-es oldal már ezt a mintát használja: `not-found.tsx:48-56`).
+
+### 🟢 Alacsony — A Header logó kicsi és halvány, és nem hordoz márkanevet
+**Hely:** `src/components/Header.tsx:48-63` — 32 px, `opacity-90`, vékony vonalas rajz
+**Bizonyíték:** a mobil képernyőképen a logó egy alig kivehető, szürke firka a bal felső sarokban.
+**Javaslat:** a logó mellé kerüljön ki a „Kardos Bálint” szöveg (a Footer és az OG-kép is így teszi), vagy legyen erősebb vonalvastagságú SVG a logó.
+
+### 🟢 Alacsony — A két ugyanolyan „Gyere, tarts velem” gomb és a `ctaLabel` prop még mindig kihasználatlan
+**Hely:** `src/components/SecondCTA.tsx:35`, `src/components/StickyCTA.tsx:88`
+**Miért probléma:** az előző auditban „Alacsony” volt, és nem került javításra. A `SecondCTA` az olvasóhoz szól („te is átéltél hasonlót”), mégis a hero-val azonos CTA-t kapja.
+
+### 🟢 Alacsony — Új lapon nyíló linkek jelzés nélkül
+**Hely:** `Footer.tsx:11-22`, `koszonom/page.tsx:81-89`, `megerositve/page.tsx:90-98`, `gyik/page.tsx:77-111`, `Story.tsx:88-95`
+**Javaslat:** `sr-only` „(új lapon nyílik)” szöveg vagy egy ↗ ikon (az előző auditból nyitva maradt pont).
 
 ---
 
 ## 2. CRO (Conversion Rate Optimization)
 
-### 🔴 Kritikus — A hirdetett domain nem éri el az oldalt (lásd részletesen az 5. és 7. pontban is)
-**Hely:** `src/lib/site-config.ts:8` (`url: "https://tudatossagesjelenlet.hu"`) vs. élő Vercel projekt domainjei
-**Miért probléma:** Az élő Vercel projekten (`balintkalandjai-hu`, csapat: `akardosbalint`) jelenleg **kizárólag** ezek a domainek vannak bekötve:
-```
-balintkalandjai-hu.vercel.app
-balintkalandjai-hu-akardosbalint.vercel.app
-balintkalandjai-hu-git-claude-yoga-landing-6acbf1-akardosbalint.vercel.app
-```
-A `tudatossagesjelenlet.hu` — amire a `metadataBase`, minden canonical URL, az összes OG-kép, a `sitemap.xml` és a `robots.txt` `sitemap:` sora hivatkozik — **nincs bekötve**. Ha bármilyen forgalmat (hirdetés, social media bio-link, kereső-találat) erre a domainre irányítasz, az vagy nem oldódik fel, vagy nem ehhez a projekthez ér. Ez a legnagyobb egyedi konverziós szivárgás az egész oldalon: bármennyire jó a copy és a form UX, ha a domain nem működik, 0% a konverzió az arra érkező forgalomból.
-**Javaslat:** Vercel dashboard → Settings → Domains alatt kösd be a `tudatossagesjelenlet.hu`-t (vagy döntsd el, hogy végleg a `balintkalandjai.hu` a márka-domain, és akkor a `site-config.ts`-t kell hozzáigazítani).
+### 🟠 Magas — Nincs konverziómérés: nem tudod, hány látogatóból lesz feliratkozó ✅ Javítva — `generate_lead` + `subscribe_error` események `form_location`/`error_type` paraméterrel
+**Hely:** `src/components/SubscribeForm.tsx:70` (`router.push("/koszonom")`); a teljes `src/`-ben nincs `gtag('event', …)` hívás (`grep` üres)
+**Miért probléma:** a GA be van kötve, de sem `generate_lead`/`sign_up` esemény, sem hibaesemény (validációs hiba, 4xx/5xx) nem kerül mérésre. A `/koszonom` pageview-je csak közelítő konverziós jel:
+- közvetlen URL-látogatás is beszámít;
+- a honeypotos botok is ide kerülnek (`route.ts:86-88` → `{ ok: true }` → redirect);
+- consent nélkül (Consent Mode) csak modellezett adat van.
 
-### 🟠 Magas — Nincs semmilyen visszaélés elleni védelem a feliratkozó endpointon ✅ Javítva (`f5e5e2d`) — honeypot + IP rate limit
-**Hely:** `src/app/api/subscribe/route.ts` (teljes fájl)
-**Miért probléma:** A route nem alkalmaz rate limitet, honeypot mezőt vagy CAPTCHA-t. Bárki, aki ismeri az endpointot, tetszőleges gyakorisággal POST-olhat rá tetszőleges (akár mások) email címmel. Ennek két konkrét kockázata van: (1) a MailerLite API díjköteles/kvótás hívásainak felégetése egy botolt spam-kitöltéssel, (2) harmadik felek email címének "bejelentetlen" feliratkoztatása, ami — bár a double opt-in miatt tényleges feliratkozást nem eredményez — zaklató megerősítő emailekhez vezethet, és rontja a küldő domain reputációját a MailerLite-nál.
-**Javaslat:** Legalább egy egyszerű honeypot mező (rejtett input, amit botok kitöltenek, emberek nem) + egy IP-alapú rate limit (pl. Vercel KV/Upstash, vagy akár egy egyszerű in-memory sliding window, ha a traffic alacsony).
+A hero-kód A–F headline-variánsokat tartalmaz A/B teszthez (`Hero.tsx:12-62`), de mérés nélkül egyik sem tesztelhető. Azt sem tudod, melyik form (hero vagy alsó) konvertál.
+**Javaslat:**
+- Sikeres válasz után `window.gtag?.('event', 'generate_lead', { form_id: id })`, hiba esetén `subscribe_error` a status kóddal.
+- Opcionálisan UTM → Kit tag (`first_touch`), hogy lásd, melyik social csatorna hozza a feliratkozókat.
 
-### 🟡 Közepes — A hero value proposition érzelmi horgot ad, nem azonnal konkrét ígéretet
-**Hely:** `src/components/Hero.tsx:60,93-128`
-**Miért probléma:** A jelenleg aktív headline ("31 éven keresztül lemaradtam a saját életemről.") és a subheadline identitás-alapú, nem ígéret-alapú horog — ez a kódkommentek szerint (`Hero.tsx:31-58`) **tudatos döntés**, és a fájl már tartalmaz 4 alternatív (A–E) headline-variációt A/B teszteléshez. CRO szempontból ez azt jelenti: egy hideg, a személyes brandet nem ismerő látogató az első 5 másodpercben érzelmi állítást kap, nem konkrét payoffot ("mit kapok, ha feliratkozom") — ez a `WhatYouGet` szekcióig görgetve derül ki. Ez nem feltétlenül hiba (lehet, hogy pont ez konvertál jobban erre a közönségre), de mivel a kód maga is A/B tesztre készült fel, **nincs jele, hogy ez a teszt ténylegesen fut** (nincs feature flag/query param kötés, csak egy statikus `activeHeadline` konstans).
-**Javaslat:** Kösd be ténylegesen egy A/B tesztelő eszközbe (a kód már felkészítve van rá a kommentek szerint), és mérd a hero-variánsok feliratkozási rátáját, mielőtt eldöntenéd, melyik marad.
+### 🟡 Közepes — Az above-the-fold szöveg sűrű, a konkrét ígéret („mit kapok”) a hajtás alatt van
+**Hely:** `src/components/Hero.tsx:122-166`
+**Bizonyíték:** 390×844-es mobilon az első képernyőt a 3 soros H1 és a **6 soros** subheadline (≈ 40 szó, két tooltipes szakkifejezéssel) tölti ki. A form a képernyő alján kezdődik, a „Heti 1 hangfelvétel. Nulla spam…” mikrocopy már a hajtás alá esik (lásd a képernyőképet).
+**Miért probléma:** hideg (TikTokról érkező) látogatónak az első 5 másodpercben az érzelmi horog megvan. A **csere** viszont nincs meg: mit kap és milyen gyakran. Ez csak a form alatti apró szövegből és a `WhatYouGet` szekcióból derül ki. A subheadline RYT-500 / Yoga Alliance kitérője a fejlesztőnek fontos, a döntéshez nem.
+**Javaslat:**
+- Rövidítsd a subheadline-t 1–2 sorra (pl. „70 nap Indiában, jógaoktatói képzéssel. Minden vasárnap elküldöm a vágatlan hangfelvételt arról, ami a videókból kimarad.”).
+- A RYT-500 részletek menjenek a Story-ba.
+- A „Heti 1 hangfelvétel…” sor kerüljön a gomb **fölé**.
 
-### 🟢 Alacsony–Közepes — A CTA-szöveg mindenhol azonos, a `ctaLabel` prop kihasználatlan
-**Hely:** `src/components/SubscribeForm.tsx:16-19` (van `ctaLabel` prop, default: "Gyere, tarts velem"), `src/components/SecondCTA.tsx:35` (nem ad át egyedi `ctaLabel`-t), `src/components/StickyCTA.tsx:84` (statikus, azonos szöveg)
-**Miért probléma:** A `SubscribeForm` komponens már támogat egyedi CTA-szöveget kontextusonként, de a `SecondCTA` (ami explicit az olvasóra fókuszál, más szöveggel: "Ha idáig eljutottál...") mégis az alapértelmezett "Gyere, tarts velem" szöveget örökli — elszalasztott lehetőség a szekció saját hangvételéhez illő, célzottabb CTA-ra (pl. "Mutasd az utamat").
-**Javaslat:** Adj át egyedi `ctaLabel`-t a `SecondCTA`-ban, ami illik "a te szög"-éhez.
+### 🟡 Közepes — A „Miért higgy nekem” szekcióban nincs egyetlen ellenőrizhető bizalmi jel sem
+**Hely:** `src/components/SocialProof.tsx:14-66`
+**Miért probléma:** a szekció őszintén kimondja, hogy nincs testimonial (ez jó döntés). Helyette viszont ígéreteket sorol fel („napi videó”, „vágatlan”), nem bizonyítékot. Pedig van ellenőrizhető social proof:
+- létező TikTok/IG/YouTube/FB profilok követőszámmal;
+- 3,5 év napi ECO-gyakorlat;
+- konkrét képzőintézmény neve (a Story sem nevezi meg).
 
-### 🟢 Alacsony — Nincs élő social proof / feliratkozó-számláló
-**Hely:** `src/components/SocialProof.tsx` (teljes fájl, ld. a komment `:4-11`)
-**Miért probléma:** Ez a kódban **tudatosan dokumentált** döntés (nem hamis social proof, hanem "kövesd a folyamatot" keret) — nem hiba, hanem egy jelenlegi állapot (még nincs elég feliratkozó/adat egy hiteles számlálóhoz). CRO szempontból mégis érdemes megjegyezni: amint lesz néhány száz feliratkozó, egy egyszerű "X-en csatlakoztak eddig" számláló mérhetően szokott javítani a konverziós rátán, és a jelenlegi struktúra könnyen bővíthető rá.
+Egyetlen link sem vezet a profilokra ebből a szekcióból. Ma ezek csak a footerben és a köszönőoldalon érhetők el.
+**Javaslat:**
+- Tegyél ide platformonként linkelt ikonsort, követőszámmal ha az releváns („12 000+ követő TikTokon”).
+- Nevezd meg az iskolát, és adj egy mintát, ha már van (akár egy 30 mp-es hang-előzetest).
+
+### 🟡 Közepes — Időzített ajánlat indulás/visszaérkezés utáni stratégia nélkül
+**Hely:** `src/lib/site-config.ts:61-62`, `src/components/JourneyProgress.tsx:29-34`, `Hero.tsx:137`, `Story.tsx:121-130`
+**Miért probléma:** az indulás 3 nap múlva van (a mai mobil képernyőképen: „Indulásig még 3 nap van hátra”). A számláló automatikusan vált, de a copy végig jövő időben beszél („elmegyek”, „dokumentálom majd”). Dec. 4. után a hero változatlanul egy már lezárult útra toboroz (`phase === "after"` csak a számláló szövegét változtatja). Nincs „mi lesz utána” ígéret.
+**Javaslat:**
+- Fázisonkénti (before/during/after) headline/subheadline a már meglévő `getJourneyDayInfo` alapján.
+- Az „after” fázisra egy archívum / „hallgasd meg az eddigieket” ajánlat.
+
+### 🟢 Alacsony — Tartalmi pontatlanság: „70 napot töltök Rishikeshben”
+**Hely:** `Hero.tsx:137-138`, `src/app/opengraph-image.tsx:12` („70 nap Rishikeshben”) vs. `site-config.ts:34-49` (a 70 nap ajtótól ajtóig számít, benne két utazási nappal) és `Story.tsx:123` („összesen 70 napot töltök Indiában”)
+**Miért probléma:** a saját kódkomment szerint (`site-config.ts:34-37`) a 70 nap a teljes utat jelenti, nem a rishikeshi tartózkodást. Egy „nincsenek bekészített válaszaim, őszinte vagyok” pozicionálású oldalon a számok pontatlansága bizalomromboló, ha valaki kiszúrja.
+**Javaslat:** „70 napos út, a nagy része Rishikeshben”, vagy egységesen „Indiában”.
+
+### 🟢 Alacsony — Kis mikrocopy-inkonzisztenciák
+**Hely:**
+- `SubscribeForm.tsx:44` („küldhessek”) vs. `route.ts:105` („küldhessünk”); `route.ts:43` („nálunk”), `adatkezeles/page.tsx:64,165` („kezelünk”, „tároljuk”) vs. a mindenhol máshol E/1-es hang.
+- `Story.tsx:86`: „3.5 éve” (magyarul: „3,5 éve”).
+
+**Miért probléma:** az egész márka a személyes, egyes szám első személyű hangra épül. A „mi” a hibaüzenetekben és a jogi szövegben kilóg ebből.
 
 ---
 
 ## 3. Biztonság (Security)
 
-### 🔴 Kritikus (funkcionális, nem exploit) — MailerLite kulcsok megléte innen nem ellenőrizhető
-**Hely:** `src/app/api/subscribe/route.ts:51-65`
-**Miért probléma:** A route helyesen, szerver-oldalon olvassa a `MAILERLITE_API_KEY`/`MAILERLITE_GROUP_ID` env változókat, és hiányuk esetén barátságos hibaüzenetet ad (`route.ts:54-65`) — ez maga **jó gyakorlat**, nincs hardcode-olt kulcs sehol a kódban (átfésültem az egész `src/`-t `api[_-]?key|secret|token|bearer|password` mintára, egyetlen találat sincs kulcs-literál, csak a helyes `process.env` hivatkozások). A probléma az, hogy ezen eszközökből nem tudom lekérdezni a Vercel projekt env change-eit — ha ezek a kulcsok hiányoznak élesben, a **teljes fő funkció** (feliratkozás) 500-as hibával elszáll minden látogatónál.
-**Javaslat:** Vercel dashboard → Settings → Environment Variables alatt fizikailag ellenőrizni a két kulcs meglétét Production környezetre, és egy valódi (nem teszt-)feliratkozással végigfuttatni a flow-t élesben.
+### 🟠 Magas (jogi/adatvédelmi) — A cookie-sáv, a GYIK és az Adatkezelési tájékoztató valótlant állít a mérésről ✅ Javítva — (b) változat: a szövegek most pontosan a jelenlegi működést írják le; a 2. pont Kit/IP tévedése is javítva, a rate limit IP-kezelése feltüntetve
+**Hely:**
+- `src/components/CookieConsent.tsx:120-123`: „enélkül nem futnak mérőkódok”
+- `src/app/gyik/page.tsx:136-138`: „enélkül nem indul el semmilyen mérőkód”
+- `src/app/adatkezeles/page.tsx:110`: „az oldal betöltésekor semmilyen mérőkód nem aktív”
+- a tényleges működés: `src/components/GoogleAnalytics.tsx:17-24`
 
-### 🟠 Magas — Next.js 14.2.35: több, a 14.x ágon nem javított CVE ✅ Javítva (`7af5afe`) — upgrade Next 15.5.25-re, a kritikus/magas CVE-k eltűntek az auditból
-**Hely:** `package.json:12` (`"next": "14.2.35"`)
-**Miért probléma:** `npm audit` kritikus és magas súlyosságú találatokat ad a telepített Next.js verzióra (DoS a Server Components/Image Optimization körül, cache poisoning, SSRF egyes konfigurációkban, stb. — lásd a teljes listát alább). Ellenőriztem az npm registry dist-tag-jeit: a **`next-14` tag pont a telepített `14.2.35`-re mutat** — vagyis ez már a 14-es ág legfrissebb patch-e, a projekt **nincs elmaradva** a saját major verzióján belül. A tényleges javítás csak Next 15/16-ra váltással érhető el (`npm audit fix --force` explicit jelzi: "Will install next@16.3.5, which is a breaking change").
-A támadási felület ugyanakkor a projekt jelenlegi felépítése miatt szűkebb, mint amit a CVE-lista sugall: **nincs** `middleware.ts`, **nincs** Server Action (csak egy sima Route Handler), **nincs** `images.remotePatterns` konfiguráció, nincs custom szerver/WebSocket upgrade — így a Windows-RCE, a Server Action SSRF és a middleware cache-poisoning találatok itt nem relevánsak. Ami ténylegesen releváns marad: a beépített Image Optimization endpoint (amit a `next/image` automatikusan használ — `Header.tsx`, `Story.tsx`) és az App Router Server Components DoS-vektorok.
-**Javaslat:** Ütemezz egy migrációt Next 15.x-re (majd onnan 16-ra) — ez major-verzió váltás App Router projektben, érdemes külön feladatként, tesztelési idővel tervezni, nem sürgősségi patch-ként.
+**Bizonyíték:** a `gtag.js` `afterInteractive`-vel **minden** látogatónál, feltétel nélkül betöltődik a `googletagmanager.com`-ról. A lokális Playwright-futásban a hozzájárulás előtt is megjelent a kimenő kérés (a sandbox blokkolta: `ERR_TUNNEL_CONNECTION_FAILED`). Google **Advanced Consent Mode**-ban a `denied` állapot mellett is küld cookie nélküli „ping”-eket (IP, user-agent, oldal-URL), és a script letöltése önmagában IP-címet továbbít a Google-nek (USA).
+**Miért probléma:** a tájékoztatás nem felel meg a valóságnak (GDPR 13. cikk, átláthatóság). Az EU-s gyakorlat (több DPA-döntés a Google Fonts/GA ügyekben) a hozzájárulás előtti Google-scriptbetöltést is kockázatosnak tartja. Magánszemély üzemeltetőként ez a legvalószínűbb valós jogi kitettség.
+**Javaslat (egyik vagy másik):**
+- **(a) Szigorú, ajánlott:** a `<GoogleAnalytics />` scriptet csak `granted` után rendereld (kliens komponens, ami a `CONSENT_EVENT`-re figyel). A Consent Mode default maradhat.
+- **(b)** Hagyd az Advanced módot, de írd át mindhárom szöveget pontosra („hozzájárulás nélkül a Google csak cookie nélküli, anonim jeleket kap…”).
 
-<details>
-<summary>Teljes <code>npm audit</code> kimenet (production függőségek)</summary>
+### 🟡 Közepes (GDPR) — A hozzájárulást nem lehet az oldalon visszavonni
+**Hely:** `src/components/CookieConsent.tsx:29,103-106` (döntés után a banner soha többé nem jelenik meg), `src/app/adatkezeles/page.tsx:114-116` („a böngésződ süti-beállításaiban a tárolt adat törlésével”)
+**Miért probléma:** a GDPR 7. cikk (3) szerint a visszavonásnak **ugyanolyan egyszerűnek** kell lennie, mint a megadásnak. A localStorage kézi törlése nem az.
+**Javaslat:** „Süti-beállítások” link a Footerben, ami törli a `cookie-consent` kulcsot és újra megjeleníti a bannert (`setStoredConsent` már megvan, csak egy `reopen` esemény kell).
 
+### 🟡 Közepes — Nem objektum típusú JSON body esetén az API 500-at dob (kezeletlen kivétel)
+**Hely:** `src/app/api/subscribe/route.ts:71-92`
+**Bizonyíték (lokális production szerveren):**
 ```
-next  9.3.4-canary.0 - 16.3.0-preview.10 — Severity: critical
-  - HTTP request smuggling in rewrites (GHSA-ggv3-7p47-pfv8)
-  - Unbounded next/image disk cache growth (GHSA-3x4c-7xq6-9pq8)
-  - Denial of Service with Server Components (GHSA-q4gf-8mx6-v5v3, GHSA-8h8q-6873-q5fj)
-  - Middleware/Proxy redirects cache-poisoned (GHSA-3g8h-86w9-wvmq)
-  - XSS in App Router with CSP nonces (GHSA-ffhc-5mcf-pf4q)
-  - Cache poisoning via RSC cache-busting collisions (GHSA-vfv6-92ff-j949)
-  - XSS in beforeInteractive scripts with untrusted input (GHSA-gx5p-jg67-6x7h)
-  - DoS in Image Optimization API (GHSA-h64f-5h5j-jqjh)
-  - SSRF via WebSocket upgrades (GHSA-c4j6-fc7j-m34r)
-  - Cache poisoning in RSC responses (GHSA-wfc6-r584-vfw7)
-  - Middleware/Proxy bypass with i18n, Pages Router (GHSA-36qx-fr4f-26g5)
-  - DoS in Server Actions (GHSA-m99w-x7hq-7vfj)
-  - SSRF in Server Actions on custom servers (GHSA-89xv-2m56-2m9x)
-  - Cache confusion for requests with bodies (GHSA-68g3-v927-f742, GHSA-4633-3j49-mh5q)
-  - Unbounded Server Action payload in Edge runtime (GHSA-4c39-4ccg-62r3)
-  - SSRF in rewrites via attacker-controlled hostname (GHSA-p9j2-gv94-2wf4)
-  - Unauthenticated disclosure of internal Server Function endpoints (GHSA-955p-x3mx-jcvp)
-  - Unauthenticated RCE on Windows-hosted servers (GHSA-p293-qw3h-jr36)
-  - Unauthenticated RCE in Image Optimization API with AVIF (GHSA-2xp9-vwfh-vxw4)
-
-postcss  <=8.5.22 (next.js transitive dep) — Severity: high
-  - XSS via unescaped </style> in CSS stringify (GHSA-qx2v-qp2m-jg93)
-  - Arbitrary file read via sourceMappingURL (GHSA-6g55-p6wh-862q, GHSA-fxqj-rqcc-2cmp, GHSA-r28c-9q8g-f849)
+POST /api/subscribe  body: null          → 500
+POST /api/subscribe  body: {"email":123} → 500
+TypeError: b.email?.trim is not a function
 ```
-</details>
+**Miért probléma:**
+- A `request.json()` bármilyen érvényes JSON-t visszaad (`null`, szám, tömb). A `body.website` / `body.email?.trim()` ilyenkor elszáll, és a kivétel a try/catch-en kívül esik.
+- Támadási kockázat alacsony, de zajos 500-as logokat, hibás riasztásokat és felesleges függvényfutást okoz.
+- A típusos `interface SubscribeBody` hamis biztonságérzetet ad.
 
-### 🟢 Alacsony — `postcss` build-time XSS/file-read CVE-k
-**Hely:** `node_modules/next/node_modules/postcss` (tranzitív, a Next 14.2.35-höz kötve)
-**Miért probléma:** A PostCSS itt kizárólag **build időben**, szerver oldalon fut (CSS fordítás), nem éri el futásidőben a látogatók böngészőjét — a valós exploit-felület gyakorlatilag nulla egy olyan pipeline-ban, ahol nincs felhasználó-vezérelt CSS bemenet. Ugyanaz a Next-upgrade oldja meg, mint a fenti pontot.
+**Javaslat:** futásidejű séma-ellenőrzés: `typeof body === "object" && body !== null`, a mezőkre `typeof … === "string"`, és hosszkorlát (email ≤ 254, firstName ≤ 100). Adj hozzá két tesztesetet a `route.test.ts`-hez.
 
-### 🟢 Alacsony — `js-yaml`/ESLint tooling dev-függőség sebezhetőség
-**Hely:** `devDependencies` (`eslint-config-next` → `@next/eslint-plugin-next` → `glob`; illetve `js-yaml` 4.0.0–4.3.1)
-**Miért probléma:** Kizárólag build/CI géphez kötött, dev-only eszközlánc — nincs runtime hatása az élő oldalra vagy a látogatókra. `npm audit fix` (force nélkül) megoldja a `js-yaml` részét.
+### 🟢 Alacsony — A Kit API hívásoknak nincs timeoutja
+**Hely:** `src/app/api/subscribe/route.ts:132-152`
+**Miért probléma:** ha a Kit lassan válaszol, a függvény a Vercel max. futásidejéig lóg. A látogató eközben percekig „Küldés…”-t lát, mert a kliens `fetch`-nek sincs timeoutja (`SubscribeForm.tsx:53`).
+**Javaslat:** `signal: AbortSignal.timeout(8000)` mindkét Kit-hívásra; a kliensen `AbortSignal.timeout(15000)`.
 
-### 🟡 Közepes — Nincsenek biztonsági HTTP fejlécek konfigurálva ✅ Javítva (`f5e5e2d`)
-**Hely:** `next.config.mjs` (teljes fájl — csak `redirects()` van definiálva, `headers()` nincs)
-**Miért probléma:** Nincs CSP, `X-Frame-Options`/`frame-ancestors`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`. A Vercel alapból nem fűz hozzá ezekhez hasonló védelmi fejléceket automatikusan. Valós kockázat itt visszafogott (nincs auth, nincs érzékeny adat, a form nem cookie-alapú, tehát CSRF-hatás minimális), de a feliratkozó formot tartalmazó oldal clickjacking elleni alapvédelme (`X-Frame-Options: DENY` vagy CSP `frame-ancestors 'none'`) egyszerű, ingyenes hardening lenne.
-**Javaslat:** `next.config.mjs`-ben egy `async headers()` blokk hozzáadása minden route-ra a fenti fejlécekkel. CSP-nél figyelni kell, hogy az inline script-eket (`layout.tsx:87-89,96-109`) nonce-szal vagy hash-sel kell engedélyezni, különben eltöri a Consent Mode/téma-inicializáló scriptet.
+### 🟢 Alacsony — Az IP-alapú rate limit hatásköre és mellékhatásai
+**Hely:** `src/lib/rate-limit.ts:9-39`, `route.ts:60-69`
+**Miért probléma:**
+- **(1)** Memóriában, instance-onként él. Ezt a kód maga is dokumentálja, tehát best-effort.
+- **(2)** 5 kérés / 10 perc / IP. Mobil CGNAT vagy egy közös wifi (pl. rendezvény, ahol a QR-kódot sokan egyszerre olvassák be) mögött valódi látogatókat blokkolhat.
+- **(3)** A `sweep()` minden kérésnél végigjárja a teljes Map-et. Ez most elhanyagolható, de O(n).
 
-### N/A — Auth, session, JWT, jogosultságkezelés, IDOR, adatbázis-séma
-**Miért N/A:** Az alkalmazásnak nincs felhasználói fiókja, bejelentkezése, sessionje, tokenje, sem adatbázisa — a teljes állapot-tárolás a MailerLite (külső SaaS) oldalán történik, a landing oldal maga stateless. Ezekben a kategóriákban nincs mit auditálni; nem hagyom szó nélkül, mert a sablon explicit kéri, de nincs releváns kód, amire hivatkozhatnék.
+**Javaslat:** a limitet emeld 10–20-ra, vagy kulcsold IP + email hash-re. Ha a forgalom nő, válts Upstash/Vercel KV-ra (a modul már erre van előkészítve).
+
+### 🟢 Alacsony — Security header finomhangolás
+**Hely:** `next.config.mjs:14-47`
+**Bizonyíték:** a lokális `curl -I /` válaszában benne van az `X-Powered-By: Next.js`, és nincs `Strict-Transport-Security`.
+**Miért probléma / javaslat:**
+- `poweredByHeader: false` a `nextConfig`-ba.
+- HSTS: a Vercel custom domaineken alapból küld HSTS-t. Az élő domaint innen nem értem el, ezért ellenőrizd egy `curl -I https://www.akardosbalint.hu`-val. Ha hiányzik, add hozzá: `max-age=63072000; includeSubDomains; preload`.
+- A CSP `script-src 'unsafe-inline'` dokumentált kompromisszum (`next.config.mjs:1-6`). Az XSS-védelmet gyakorlatilag kiiktatja, de mivel nincs felhasználói tartalom-renderelés, a kockázat alacsony.
+- `img-src` nem engedi a `*.google-analytics.com`-ot. A GA4 bizonyos fallback-útvonalai pixelt használnak. Böngészőben ellenőrizd a CSP-violationöket consent után.
+
+### 🟢 Alacsony — A preview deploymentek az éles Kit kulcsot és formot használják
+**Hely:** Vercel env: `KIT_API_KEY`, `KIT_FORM_ID` → target: `preview, production` (MCP-lekérdezés)
+**Miért probléma:** a 22 branch bármelyikének preview URL-jén tesztelt feliratkozás valódi feliratkozót hoz létre az éles listán, és elindítja az éles double opt-in / üdvözlő szekvenciát. Ez szennyezi a listát és a metrikákat.
+**Javaslat:** külön teszt-form (`KIT_FORM_ID` preview-ra), vagy preview-n mock mód.
+
+### 🟢 Alacsony — Függőségek (`npm audit`: 1 high, 3 moderate)
+**Bizonyíték:**
+```
+postcss <=8.5.22 (next/node_modules/postcss, tranzitív) — high: XSS a stringify-ban, fájlolvasás sourceMappingURL-lel
+@vitest/mocker / vitest 3.2.7 — moderate: path traversal (csak dev/test)
+```
+**Értékelés:** a PostCSS csak build időben fut, felhasználói CSS-bemenet nélkül, tehát futásidejű kockázata gyakorlatilag nincs. A vitest dev-only. A `next` 15.5.25 → **15.5.26** patch elérhető (`npm outdated`); ezt érdemes azonnal felvenni. A teljes javítás Next 16-tal jönne (breaking).
+
+### ✅ Rendben lévő pontok (ellenőrizve)
+- Nincs hardcode-olt titok. A `KIT_API_KEY` csak szerveren él, a GA Measurement ID publikus adat (`site-config.ts:67`).
+- Van honeypot, kliens- és szerveroldali email-validáció közös regexszel, és a consent szerveroldalon is kötelező.
+- `frame-ancestors 'none'`, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy` és `Permissions-Policy` aktív.
+- **N/A:** auth, session, JWT, jogosultságkezelés, IDOR, SQL injection. Nincs felhasználói fiók és nincs adatbázis. A CSRF-hatás minimális: a végpont nem cookie-alapú, és a legrosszabb eset egy double opt-in email.
 
 ---
 
 ## 4. Struktúra és architektúra
 
-A `src/app` (route-ok) / `src/components` (prezentációs) / `src/lib` (megosztott logika) hármas tagolás kicsi, lapos, és pontosan illik a projekt méretéhez — nincs túltervezés (nincs felesleges réteg, service/repository absztrakció egy 1 endpointos appban), és nincs alultervezés sem (a metadata-építés, a consent-kezelés, a téma-logika mind saját, jól elnevezett `lib/` modulban van, nem szórva a komponensek közt).
+A `src/app` (route-ok) / `src/components` / `src/lib` hármas tagolás a projekt méretéhez illő. Nincs túltervezés. Az üzleti logika (journey, rate limit, validáció, theme) kiemelt, tesztelhető `lib/` modulokban van.
 
-### 🟢 Alacsony — `robots.ts` nem létező útvonalakat tilt ✅ Javítva (`f5e5e2d`)
-**Hely:** `src/app/robots.ts:9`
-```ts
-disallow: ["/admin", "/admin/*", "/dashboard", "/dashboard/*", "/api/*"],
-```
-**Miért probléma:** A `/admin` és `/dashboard` útvonalak **nem léteznek** ebben a projektben (`find src/app -type d` szerint csak `adatkezeles`, `aszf`, `gyik`, `api/subscribe` van). Ez tipikusan másik projektből másolt boilerplate — önmagában ártalmatlan (a Google egyszerűen nem talál ott semmit), de megtévesztő a következő fejlesztőnek, aki azt hiheti, léteznek védett admin felületek.
-**Javaslat:** Töröld a nem létező bejegyzéseket, tartsd meg az `/api/*` tiltást (az valóban hasznos).
+### 🟡 Közepes — A `react@18` + Next 15 App Router párosítás: a típusok és a futásidő elcsúszik
+**Hely:** `package.json:14-16,19-21` (`react ^18`, `@types/react ^18`)
+**Miért probléma:** a Next 15 App Router a saját, beépített React 19 (canary) verzióját használja futásidőben, függetlenül a `package.json`-ban megadott React 18-tól. A típusok (`@types/react 18`) ezért nem a ténylegesen futó React API-t írják le, a Vitest-tesztek pedig React 18-cal futnának, ha komponenst tesztelnének. A Next 16-os migrációnál ez biztosan előjön.
+**Javaslat:** emeld `react`/`react-dom`/`@types/react*` → 19-re, amikor a Next 16-os upgrade-et tervezed. Nem sürgős, de egy lépésben érdemes.
 
-### 🟢 Alacsony — Árva, duplikált statikus fájlok a repo gyökerében ✅ Javítva (`f5e5e2d`)
-**Hely:** `/favicon.ico` (52 KB), `/kardos-balint-logo.png` (936 KB) — a repo **gyökerében**, nem a `public/` mappában
-**Miért probléma:** A Next.js kizárólag a `public/` mappából és a `src/app/` speciális fájlnév-konvencióiból szolgál ki statikus tartalmat — a repo gyökerében lévő fájlokat **soha nem éri el böngésző**. Ez a két fájl duplikátuma a ténylegesen használt `src/app/favicon.ico`-nak és `public/images/kardos-balint-logo.png`-nek (utóbbi 66 KB — a gyökérben lévő verzió majdnem **15×** nagyobb, feltehetően egy korábbi, nem optimalizált export). Tisztán holt súly: ~1 MB felesleg minden klónozásnál/git historyban.
-**Javaslat:** `git rm favicon.ico kardos-balint-logo.png` a repo gyökeréből.
+### 🟢 Alacsony — Elavult a README, és téves információt ad
+**Hely:** `README.md:1-4` („Tudatosság és Jelenlét”, „Next.js 14”), `:62-69` (egy már nem létező sikerüzenetet idéz: „Gratulálok, ezzel meg is vagyunk…”), `:71-75` (a `/adatkezeles` oldalt „kitölthető sablonnak, `[szögletes zárójeles]` placeholderekkel” írja le, pedig már ki van töltve), `:82-85` (A–D headline, valójában A–F); a `/koszonom` → `/megerositve` flow és a Kit „Success page” beállítás nincs leírva.
+**Miért probléma:** a következő fejlesztő (vagy AI-asszisztens) ebből indul ki.
 
-### N/A — Adatbázis-séma, normalizáltság, indexek; REST/GraphQL konvenciók
-**Miért N/A:** Nincs saját adatbázis. Az egyetlen API endpoint (`POST /api/subscribe`) egy darab, önálló célú Route Handler, nem egy erőforrás-gyűjtemény — a klasszikus REST-konvenciók (többes szám, CRUD igék egy resource-on) itt nem értelmezhető kritérium egyetlen endpoint esetén.
+### 🟢 Alacsony — Repo-higiénia: 22 remote branch, ebből sok már mergelt
+**Hely:** `git ls-remote --heads origin` → 22 branch (`claude/*`, `fix/*`)
+**Javaslat:** a mergelt branch-ek törlése, és a GitHubon az „Automatically delete head branches” bekapcsolása.
+
+### N/A — Adatbázis-séma, indexek, REST-konvenciók
+Nincs adatbázis. Egyetlen, egycélú `POST` route van, amit a Kit tárol.
 
 ---
 
 ## 5. Clean code
 
-A kód összességében jó minőségű: konzisztens elnevezés, kis, egy-felelősségű komponensek (a legnagyobb, `SubscribeForm.tsx`, is csak 259 sor és jól tagolt), és kiemelkedően jó **"miért" kommentek** (pl. a framer-motion inline-transform ütközés dokumentálva van pontosan ott, ahol számít — `WhatYouGet.tsx:52-59`, `SocialProof.tsx:54-59`, `Term.tsx:75-81`). Ez utóbbit külön érdemes megemlíteni, mert ritka erény.
+A kód minősége összességében **jó**: konzisztens elnevezések, kis komponensek, és kiemelkedően hasznos „miért”-kommentek (pl. `Hero.tsx:95-104` a mobil tap-bugról, `CookieConsent.tsx:9-18`).
 
-### 🟢 Alacsony — Duplikált email-validáló regex kliens és szerver oldalon ✅ Javítva (`f5e5e2d`)
-**Hely:** `src/components/SubscribeForm.tsx:9` és `src/app/api/subscribe/route.ts:3` — mindkét helyen szó szerint `/^[^\s@]+@[^\s@]+\.[^\s@]+$/`
-**Miért probléma:** Az, hogy kliens **és** szerver oldalon is validálsz, helyes (defense in depth) — a probléma csak az, hogy a szabály maga másolva van, nem egy közös helyről importálva. Ha valaki a jövőben szigorítja/lazítja a validációt az egyik helyen, a másik némán elszakadhat tőle.
-**Javaslat:** Emeld ki egy `src/lib/validation.ts`-be (`export const EMAIL_REGEX = ...`), és importáld mindkét helyen.
+### 🟡 Közepes — Duplikált oldal-sablon a `/koszonom` és a `/megerositve` között
+**Hely:** `src/app/koszonom/page.tsx:19-24,77-99` és `src/app/megerositve/page.tsx:21-26,86-108` (azonos `socialLinks` tömb és „Amíg vársz, kövess élőben” blokk). A social-link lista összesen **5 helyen** van újraírva: `Footer.tsx:11-22`, `gyik/page.tsx:77-111`, a két fenti oldal, illetve a `SocialProof`-ból hiányzik.
+**Bizonyíték:** a 1. pontban leírt kontraszthibát az előző javításkor pont ezért nem kapta el senki. Egy helyen javítva lett, a másolatokban nem.
+**Javaslat:** `<SocialLinks variant="inline|footer" />` komponens a `siteConfig.social`-ból generálva.
 
-### 🟢 Alacsony — Ismételt hover-lift workaround két komponensben ✅ Javítva (`f5e5e2d`) — `HoverLiftCard`
-**Hely:** `src/components/WhatYouGet.tsx:52-60` és `src/components/SocialProof.tsx:54-60`
-**Miért probléma:** Szó szerint ugyanaz a kártya-markup (`rounded-2xl bg-white/70 p-6 shadow-soft ring-1 ring-ink-900/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg dark:bg-forest-600/30 dark:ring-sand-100/10 sm:p-7`) és szó szerint ugyanaz a magyarázó komment a framer-motion/Tailwind ütközésről van duplikálva két fájlban.
-**Javaslat:** Egy kis `<HoverLiftCard>` shared komponens (`src/components/HoverLiftCard.tsx`) eltüntetné a duplikációt, és a workaround magyarázata is egy helyen élne.
+### 🟢 Alacsony — A cookie-sáv és a StickyCTA ugyanazt az IntersectionObserver-logikát duplikálja
+**Hely:** `CookieConsent.tsx:18,49-76` és `StickyCTA.tsx:11,37-62` (azonos `SUBSCRIBE_FORM_IDS` konstans és observer-minta)
+**Javaslat:** egy `useSubscribeFormInView()` hook a `lib/`-ben. A form-id-k egy helyen éljenek (ma a `Hero.tsx:174` és a `SecondCTA.tsx:35` is literálként írja őket).
 
-### 🟡 Közepes — Nulla automatizált teszt, pont a legkockázatosabb logikán ✅ Javítva (`bc05aee`) — 22 unit teszt a `journey.ts` határeseteire + a subscribe-route validációs ágaira
-**Hely:** teljes repo (nincs `*.test.*`/`*.spec.*` fájl, nincs test runner a `package.json`-ban)
-**Miért probléma:** Egy landing oldalnál a teljes UI-t tesztelni valószínűleg túlzás lenne — de van a kódban **konkrétan dátum-számítási logika**, amit a saját kódkommentek is "könnyen elrontható"-ként azonosítanak: `JourneyProgress.tsx:26-38` (`getJourneyDayInfo`) számolja ki, hányadik napnál tart az utazás, és a `Hero.tsx:20-29` kommentje explicit figyelmeztet: *"a szöveg NEM állíthatja, hogy már ott van... ('67 napja Rishikeshben...' HIBÁS)"*. Ez pont az a fajta logika, aminek egy határeset-hibája (nap 0, nap 1, nap 67, nap 68) csendben, észrevétlenül téves szöveget jelenítene meg éles oldalon, teszt nélkül.
-**Javaslat:** Nem kell teljes tesztlefedettség — de a `getJourneyDayInfo` határeseteire (indulás előtt/napján, utolsó nap, hazaérkezés utáni nap) és a `route.ts` validációs ágaira (üres email, hiányzó consent, hiányzó env var) pár Vitest/Jest unit teszt olcsón, nagy biztonságot adna.
+### 🟢 Alacsony — A téma-logika szándékos duplikációja (JS-string)
+**Hely:** `src/lib/theme-schedule.ts:60-62` vs. `:22-52`
+**Megjegyzés:** a duplikáció dokumentált és indokolt (inline FOUC-script). Egy unit teszt, ami `eval`-lal lefuttatja a `themeInitScript()`-et egy mock DOM-on, és összeveti a `resolveIsDark`-kal, biztosítaná, hogy a kettő ne csússzon szét.
 
-### 🟢 Alacsony — Nincs CI pipeline ✅ Javítva (`bc05aee`) — `.github/workflows/ci.yml`
-**Hely:** nincs `.github/workflows/` mappa
-**Miért probléma:** A lint és a build csak lokálisan, illetve a Vercel deploy-lépésben fut le — utóbbi tényleg blokkolja a hibás buildet éles deploytól, tehát a kockázat korlátozott, de nincs PR-időben visszajelzés (pl. egy reviewer nem lát zöld/piros lint-checket a PR-on).
-**Javaslat:** Egy minimális GitHub Actions workflow (`npm ci && npm run lint && npm run build`) PR-onként.
+### 🟢 Alacsony — Build-időben befagyott évszám a Footerben
+**Hely:** `src/components/Footer.tsx:44`: `new Date().getFullYear()` egy statikusan prerenderelt server komponensben
+**Miért probléma:** az évszám a build pillanatában rögzül. 2027-ben újradeploy nélkül „© 2026” marad. Kozmetikai.
+
+### 🟢 Alacsony — Elavult/no-op beállítások
+**Hely:**
+- ✅ Javítva (a GA mérési azonosító cseréjével együtt): `GoogleAnalytics.tsx:23`: az `anonymize_ip: true` Universal Analytics-paraméter, GA4-ben hatástalan (a GA4 alapból nem tárol IP-t).
+- `npm run lint`: a `next lint` a Next 15.5-ben deprecated, a build-kimenet is jelzi. A Next 16-ban megszűnik.
+
+**Javaslat:** töröld az `anonymize_ip`-et, és migrálj ESLint CLI-re (`npx @next/codemod@canary next-lint-to-eslint-cli .`).
+
+### 🟢 Alacsony — Tesztlefedettség: a kritikus logika fedett, a kliens-flow nem
+**Hely:** `src/lib/journey.test.ts` (7), `src/lib/rate-limit.test.ts` (6), `src/app/api/subscribe/route.test.ts` (10), összesen 23 ✅
+**Hiányzik:**
+- (1) a nem-objektum body esetei (lásd 3. pont);
+- (2) a `themeInitScript` ↔ `resolveIsDark` ekvivalencia;
+- (3) egy Playwright smoke-teszt a teljes feliratkozási flow-ra, mockolt API-val (form kitöltése → `/koszonom`);
+- (4) egy link-/asset-ellenőrzés, amely a hiányzó `koszonom.mp4`-et elkapta volna.
 
 ---
 
 ## 6. Teljesítmény
 
-A production build kimenete (`npm run build`) egészséges egy Framer Motion-t használó marketing oldalhoz: a `/` route 149 kB First Load JS, minden oldal statikusan (`○`) generálódik az API route kivételével, nincs felesleges kliens-oldali adatlekérés (a `JourneyProgress`/`ThemeSchedule` szándékosan csak kliens-oldali, a hydration-eltérés elkerülése miatt, jól dokumentálva).
+**Mért értékek** (lokális production build, Playwright/Chromium):
 
-### 🟡 Közepes — Framer Motion minden oldalra bekerül, viszonylag egyszerű animációkért
-**Hely:** `"use client"` + `import { motion }` a következő 9 komponensben: `AnimatedSection.tsx`, `Hero.tsx`, `SubscribeForm.tsx`, `JourneyProgress.tsx`, `CookieConsent.tsx`, `StickyCTA.tsx`, `Term.tsx`, `Faq.tsx`
-**Miért probléma:** A build kimenete szerint van egy ~53,6 kB-os megosztott chunk (`fd9d1056-…js`), ami a Framer Motion-t tartalmazza — ez a legnagyobb egyedi JS-darab az oldalon, miközben a legtöbb használat egyszerű opacity/translate fade-in (`AnimatedSection`, `SectionPath` mellett dekoratív pötty). Ez minden oldalbetöltésnél letöltődik és parse-olódik, ami az INP/TBI-t (Core Web Vitals) érintheti alacsonyabb kategóriás mobil eszközökön.
-**Javaslat:** Fontold meg a Framer Motion `LazyMotion` + `domAnimation`/`m` komponens mintáját (jelentősen kisebb bundle), vagy a legegyszerűbb fade-ek (pl. `AnimatedSection`, `SectionPath`) lecserélését sima CSS `@media (prefers-reduced-motion)`-t is tiszteletben tartó CSS transition + `IntersectionObserver`-re, Framer Motion nélkül.
+| Forgatókönyv | LCP | LCP elem | CLS |
+|---|---|---|---|
+| Desktop 1440×900 | 0,94 s | H1 | 0,002 |
+| Mobil 390×844, throttling nélkül | 1,26 s | subheadline `<p>` | 0 |
+| Mobil, 4× CPU + lassú 4G (1,6 Mbps, 150 ms) | **4,42 s** | subheadline `<p>` | 0,014 |
 
-### 🟢 Alacsony — Header dupla logó-preload (kereszthivatkozás az 1. ponttal)
-**Hely:** `src/components/Header.tsx:9-24` — ld. részletesen az 1. pont "Header logo" bejegyzésénél.
+Lokálisan a TTFB ~0. Élesben (Vercel CDN, magyar mobilhálózat) ehhez még hozzáadódik a hálózati késés.
 
-### 🟢 Alacsony / informatív — Az OG-kép logó fájlt minden kérésnél lemezről olvassa
-**Hely:** `src/lib/og-image.tsx:8-10` (`readFileSync` minden hívásnál, cache nélkül)
-**Miért probléma:** Alacsony forgalmú OG-kép route-nál (amit ráadásul a Vercel edge-en is cache-el) ez gyakorlatilag nem mérhető hatású — pusztán jelzem, mert egy `Buffer`-be egyszer betöltött, modul-szintű konstansként tárolt logó technikailag tisztább lenne, mint minden hívásnál újraolvasni a fájlrendszert.
+### 🟠 Magas — A hero tartalma (H1, subheadline, form) a szerver-HTML-ben láthatatlan: az LCP a JS-hidratálástól függ ✅ Javítva — CSS belépő animáció; újramérve: lassított mobil LCP 4,42 s → 2,63 s, JS nélkül a H1 és a form látszik, CLS ≈ 0
+**Hely:** `src/components/Hero.tsx:122-126,131-134` (`initial={{ opacity: 0, y: 16 }}`), `:168-176` (`Stagger` → `initial="hidden"`, a formot is elrejti); `src/components/Header.tsx:36-39`; `AnimatedSection.tsx:30`
+**Bizonyíték:** JavaScript nélküli rendernél (Playwright `javaScriptEnabled: false`) a `h1` computed opacity **0**, a `#feliratkozas` form effektív opacity **0**. Az első képernyő teljesen üres, csak a háttér látszik. Lassított mobilon az LCP 4,42 s, ami a Google „rossz” sávja (> 4 s). Az LCP-elem azért rajzolódik ki ennyire későn, mert a Framer Motionnek előbb le kell töltődnie, parse-olódnia és hidratálnia kell (a `/` oldal JS-e 164 kB).
+**Miért probléma:**
+- **CRO:** a lassú hálózaton érkező mobil látogató (a fő célközönség TikTokról/IG-ről jön) másodpercekig üres oldalt lát.
+- **SEO:** a Core Web Vitals LCP ranking-jel.
+- **Robusztusság:** ha a JS bármiért elbukik (pl. egy in-app böngésző blokkol valamit, vagy egy chunk nem töltődik be), a feliratkozó form **soha nem jelenik meg**.
+
+A kódkomment (`Hero.tsx:113-121`) már felismerte a problémát, de csak rövidítette az animációt, a kiinduló `opacity:0`-t nem szüntette meg.
+**Javaslat:**
+- A H1-en, a subheadline-on és a hero formon `initial={false}`, vagy csak a `y` animáljon, opacity nélkül.
+- Alternatíva: tisztán CSS-es belépő animáció (`@keyframes` + `animation-fill-mode: both`, amit a `prefers-reduced-motion` szabály már kezel).
+- A hajtás alatti `AnimatedSection`-öknél elfogadható a jelenlegi minta.
+
+### 🟡 Közepes — Framer Motion minden oldalon, főleg dekorációhoz
+**Hely:** 14 `"use client"` komponens importálja (`grep -l framer-motion src -r`). A legnagyobb közös chunk 54,2 kB.
+**Miért probléma:** a `/` First Load JS 164 kB (az előző auditnál 149 kB, tehát nő). A használat többsége fade/translate/hover-scale, amit CSS is meg tud oldani. Ez az INP-t és a fenti LCP-t is rontja gyenge telefonokon.
+**Javaslat:**
+- `LazyMotion` + `domAnimation` + `m.*` komponensek (jellemzően −20–30 kB).
+- A `HoverLiftCard`, `SectionPath` és a gombok `whileHover`/`whileTap` effektusai mehetnek CSS-transitionre.
+
+### 🟢 Alacsony — A köszönőoldal nem optimalizált posztert tölt be
+**Hely:** `src/app/koszonom/page.tsx:48`: `poster="/images/kardos-balint-profil.jpg"` (410 KB-os JPEG, a `next/image` pipeline-t megkerülve)
+**Javaslat:** kisebb, WebP/AVIF poszter (≈ 40–60 KB), vagy a videó-probléma rendezésekor saját, tömörített poszterkép.
+
+### 🟢 Alacsony — Mindkét fejléc-logó `priority`-vel preloadolódik
+**Hely:** `src/components/Header.tsx:54,62`. Az előző auditból nyitva maradt. Egyszerre csak az egyik látszik, mégis mindkettő preloadolódik. A megoldás: egyetlen `currentColor`-os inline SVG, ami egyben a 1. pont halványsági problémáját is megoldja.
+
+### 🟢 Alacsony — Az OG-kép minden kérésnél lemezről olvassa és base64-eli a logót
+**Hely:** `src/lib/og-image.tsx:8-11`. Statikusan prerenderelt route-oknál ez gyakorlatilag csak build-időben fut, tehát informatív tétel.
+
+### ✅ Rendben
+- `next/font` self-hosted fontok, `display: swap`.
+- A portré `next/image`, `sizes`-szal.
+- Minden oldal statikus (`○`), 1 éves `s-maxage`.
+- Nincs felesleges kliens-oldali adatlekérés.
+- A `prefers-reduced-motion` globálisan kezelve van.
 
 ---
 
 ## 7. SEO
 
-A metaadat-réteg összességében **alaposan meg van csinálva**: minden oldalnak egyedi, releváns title/description-je van, konzisztens `buildOpenGraph`/`buildTwitter` helperen keresztül (`src/lib/metadata.ts`), oldalanként dinamikusan generált OG-kép (`opengraph-image.tsx` minden route-ban), `sitemap.ts` + `robots.ts` megvan, és végignéztem a címhierarchiát minden oldalon (`Hero` `h1` → `Story`/`WhatYouGet`/`SocialProof`/`SecondCTA` `h2` → nincs kihagyott szint, nincs több `h1` egy oldalon).
+### 🟡 Közepes — Nincs strukturált adat (JSON-LD)
+**Hely:** a teljes `src/`-ben nincs `application/ld+json` (`grep` üres)
+**Miért probléma:** két olcsó, releváns lehetőség marad ki:
+- `FAQPage` séma a `/gyik`-re (11 kérdés kész van, `gyik/page.tsx:28-190`);
+- `Person` + `WebSite` séma a főoldalra (`sameAs` = a 4 social profil).
 
-### 🔴 Kritikus (kereszthivatkozás a 2. és 3. ponttal) — canonical/OG/sitemap egy be nem kötött domainre mutat
-**Hely:** `src/lib/site-config.ts:8`, felhasználva: `src/app/layout.tsx:49` (`metadataBase`), minden oldal `alternates.canonical`-ja, `src/app/sitemap.ts`, `src/app/robots.ts:11`
-**Miért probléma:** Lásd részletesen a 2. pont "A hirdetett domain nem éri el az oldalt" bejegyzésénél — ugyanaz a gyökérprobléma itt SEO-oldalról jelentkezik: ha egy keresőmotor indexeli a `*.vercel.app` URL-t (amin ténylegesen fut az oldal), az abban szereplő canonical tag egy **másik**, nem elérhető domainre mutat — ez klasszikus canonical-mismatch, ami miatt a keresőmotor bizonytalan lesz, melyik URL-t indexelje, és rontja az indexelési eséllyet.
+Ezek a márkanévre („Kardos Bálint”) keresve knowledge panel / rich result esélyt adnak.
+**Javaslat:** egy `<script type="application/ld+json">` a `layout.tsx`-ben (Person/WebSite) és a `gyik/page.tsx`-ben (FAQPage), a meglévő `siteConfig`-ból generálva.
 
-### 🟢 Alacsony — `sitemap.ts` mindig "most"-ot ad `lastModified`-ként
-**Hely:** `src/app/sitemap.ts:8,14,19,26` — mindegyik bejegyzés `lastModified: new Date()`
-**Miért probléma:** Ez minden egyes sitemap-lekérésnél az aktuális időbélyeget adja vissza, nem a tartalom tényleges utolsó módosítási dátumát — technikailag pontatlan jelzés a keresőmotor felé a frissesség-értékelésben. Alacsony prioritás egy fiatal, alacsony forgalmú oldalnál.
+### 🟢 Alacsony — `robots.txt` Disallow + `noindex` ütközés
+**Hely:** `src/app/robots.ts:9` (`/koszonom`, `/megerositve` tiltva) és `koszonom/page.tsx:16`, `megerositve/page.tsx:18` (`noindex`)
+**Miért probléma:** ha a robots.txt tiltja a crawlolást, a Google nem látja a `noindex` tag-et. Egy külső hivatkozás esetén az URL tartalom nélkül bekerülhet az indexbe. Két védelem egymás hatását oltja ki.
+**Javaslat:** vedd ki a két útvonalat a `disallow`-ból, a `noindex` elég.
 
-### 🟢 Alacsony — Nincs structured data (JSON-LD)
-**Hely:** nincs schema.org markup sehol
-**Miért probléma:** Nem hiba, csak elszalasztott lehetőség — egy személyes brand storytelling oldalnál egy `Person`/`WebSite` JSON-LD javíthatná a rich result esélyeket (pl. a Google találatban megjelenő extra infók). Nice-to-have, nem blokkoló.
+### 🟢 Alacsony — A `sitemap.ts` minden kérésnél „most”-ot ad `lastModified`-ként
+**Hely:** `src/app/sitemap.ts:8,14,20,26`. Élesben ellenőrizve: `<lastmod>2026-09-23T17:48:15Z</lastmod>` build-időre fagyva, minden oldalra ugyanaz. Az előző auditból nyitva maradt.
+**Javaslat:** fix dátumok (pl. a jogi oldalakon már szereplő „Hatályos” dátum).
+
+### 🟢 Alacsony — A `*.vercel.app` domain nem irányít át a fő domainre
+**Hely:** Vercel domainek (MCP): `balintkalandjai-hu.vercel.app` redirect nélkül
+**Miért probléma:** duplikált tartalom két hoszton. A canonical (`metadataBase` = `www.akardosbalint.hu`) ezt nagyrészt kezeli, tehát alacsony.
+**Javaslat:** Vercel → Domains → a `.vercel.app` domainen „Redirect to www.akardosbalint.hu” (308).
+
+### 🟢 Alacsony — Az OG-kép generikus fontot használ
+**Hely:** `src/lib/og-image.tsx:13-87`. A generált kép Satori alapfonttal (Noto Sans) renderel. Az ékezetek helyesek (ellenőrizve, a `ő` rendben van), de nem Fraunces, és a logó 76 px-es, halvány vonalas rajz. A brand-élmény gyengébb a megosztásokban, ami a TikTok/IG-ről érkező forgalomnál a fő belépő vizuál.
+**Javaslat:** a Fraunces TTF betöltése `fonts` opcióval, és a portré beemelése az OG-képre (az arc növeli a CTR-t).
+
+### ✅ Rendben
+- Egyedi title/description oldalanként.
+- A canonical a bekötött domainre mutat.
+- OG/Twitter oldalanként, helperrel.
+- `lang="hu"`, `hu_HU` locale.
+- Címhierarchia: minden oldalon pontosan egy `h1`, ugrás nélküli `h2`/`h3`.
+- A sitemap csak indexelhető oldalakat tartalmaz.
+- A `/privacy-policy` → `/adatkezeles` típusú 308-as redirectek működnek.
 
 ---
 
-## Top 10 azonnali teendő (hatás/erőfeszítés szerint rangsorolva)
+## Top 10 azonnali teendő (hatás / erőfeszítés szerint)
 
-| # | Teendő | Súlyosság | Erőfeszítés | Hivatkozás | Státusz |
-|---|---|---|---|---|---|
-| 1 | Ellenőrizd/állítsd be a `MAILERLITE_API_KEY` és `MAILERLITE_GROUP_ID` env változókat a Vercel Production környezetben, majd teszteld végig élesben a feliratkozást | 🔴 Kritikus | Triviális (percek) | 3. pont, S1 | ⏳ Nyitva — csak a tulajdonos tudja megtenni (Vercel dashboard, titkos kulcs) |
-| 2 | Kösd be a valódi custom domaint (`tudatossagesjelenlet.hu` vagy `balintkalandjai.hu` — döntsd el melyiket) a Vercel projektbe, és igazítsd hozzá a `site-config.ts` `url` mezőjét | 🔴 Kritikus | Kicsi–közepes (DNS propagáció) | 2. és 7. pont | ⏳ Nyitva — Vercel dashboard/DNS művelet, nem oldható meg kódból |
-| 3 | Adj hozzá alapvédelmet (honeypot mező + IP rate limit) a `/api/subscribe`-hoz | 🟠 Magas | Kicsi | 2. és 3. pont | ✅ Kész (`f5e5e2d`) |
-| 4 | Javítsd a WCAG kontraszthibát: `SubscribeForm.tsx:128` `text-ink-900/60` → `/65`+ | 🟡 Közepes | Triviális | 1. pont | ✅ Kész (`f5e5e2d`) |
-| 5 | Adj hozzá biztonsági HTTP fejléceket (`headers()` a `next.config.mjs`-ben: CSP, X-Frame-Options, stb.) | 🟡 Közepes | Kicsi | 3. pont | ✅ Kész (`f5e5e2d`) |
-| 6 | Ütemezd be a Next.js 15/16-ra migrálást a nyitott CVE-k lezárásához (nem sürgős patch, de tervezett feladat legyen) | 🟠 Magas | Közepes–nagy | 3. pont | ✅ Kész (`7af5afe`) — Next 15.5.25, lásd megjegyzés lent |
-| 7 | Kösd össze a `Term` tooltipet `aria-controls`/`aria-describedby`-vel a triggerrel | 🟡 Közepes | Kicsi | 1. pont | ✅ Kész (`f5e5e2d`) |
-| 8 | Adj kézi téma-váltó kapcsolót, és alapból `prefers-color-scheme`-et tisztelj a kényszerített nappal/éjszaka logika helyett | 🟡 Közepes | Közepes | 1. pont | ✅ Kész (`48a7e5d`) — kézi váltó megvalósult, `prefers-color-scheme` alapértelmezés helyett a meglévő nappal/éjszaka "auto" mód maradt az alap, hogy a szándékos brand-motívum ne sérüljön |
-| 9 | Töröld az árva gyökér-fájlokat (`/favicon.ico`, `/kardos-balint-logo.png`, ~1 MB holt súly), és tisztítsd a `robots.ts`-ben a nem létező `/admin`/`/dashboard` bejegyzéseket | 🟢 Alacsony | Triviális | 4. pont | ✅ Kész (`f5e5e2d`) |
-| 10 | Írj alapszintű teszteket a `JourneyProgress` dátum-logikájára és a `/api/subscribe` validációs ágaira, és köss be egy minimális CI workflow-t | 🟡 Közepes | Közepes | 5. pont | ✅ Kész (`bc05aee`) — 22 teszt, Vitest + GitHub Actions |
+| # | Teendő | Súlyosság | Erőfeszítés | Hivatkozás |
+|---|---|---|---|---|
+| 1 | ⏳ (a tulajdonos pár napon belül feltölti) Töltsd fel a köszönővideót, **vagy** vedd ki a `<video>` blokkot a `/koszonom` oldalról, és a „Nem látod a levelet?” doboz kerüljön előre | 🟠 Magas | Triviális | 1. pont |
+| 2 | ✅ A hero H1/subheadline/form ne induljon `opacity:0`-ról (`initial={false}` vagy CSS-animáció) → gyorsabb LCP, JS nélkül is látszik a form | 🟠 Magas | Kicsi | 6. pont |
+| 3 | ✅ (szövegek pontosítva) GA: a gtag.js csak hozzájárulás után töltődjön be, **vagy** a cookie-sáv, a GYIK és az Adatkezelési tájékoztató szövege legyen pontos | 🟠 Magas | Kicsi | 3. pont |
+| 4 | ✅ Konverziómérés: `generate_lead` esemény sikeres feliratkozáskor, `subscribe_error` hibánál, form-azonosítóval | 🟠 Magas | Triviális | 2. pont |
+| 5 | Az API futásidejű inputellenőrzése (objektum/string típus, hosszkorlát) + 2 teszteset → nincs több 500-as hiba | 🟡 Közepes | Triviális | 3. pont |
+| 6 | „Süti-beállítások” link a Footerben (a hozzájárulás visszavonhatósága), és a `Footer` bekötése a `layout.tsx`-be, hogy az aloldalakon is legyen | 🟡 Közepes | Kicsi | 3. és 1. pont |
+| 7 | Form a11y: a mezőkeret kontrasztja ≥ 3:1, `aria-invalid`/`aria-describedby` a hibákra, fókusz a hibás mezőre; `/60` → `/65` a két poszt-konverziós oldalon | 🟡 Közepes | Kicsi | 1. pont |
+| 8 | Hero-copy: rövidebb subheadline, a „Heti 1 hangfelvétel…” ígéret a gomb fölé; a „70 nap Rishikeshben” pontosítása | 🟡 Közepes | Kicsi (copy) | 2. pont |
+| 9 | JSON-LD: `FAQPage` a `/gyik`-re, `Person`/`WebSite` + `sameAs` a főoldalra; a `/koszonom`, `/megerositve` kivétele a robots `disallow`-ból | 🟡 Közepes | Kicsi | 7. pont |
+| 10 | Ellenőrizhető bizalmi jelek a „Miért higgy nekem” szekcióba (profil-linkek követőszámmal, a képzőhely neve) + CTA/form a `/gyik` oldalra | 🟡 Közepes | Kicsi–közepes | 2. és 1. pont |
 
-**Next.js upgrade megjegyzés (#6):** a 16.3.5-ig (legfrissebb) nem mentünk — a 15.5.25 (karbantartott "backport" ág) már lezárja az összes kritikus/magas súlyosságú Next.js CVE-t, a 16-ra lépés kockázata (nagyon friss major, több ökoszisztéma-súrlódás) nem állt arányban a maradék, csak build-time-only nyereséggel (egy tranzitív `postcss` találat a next saját `node_modules`-ában). Lásd a 3. pont Next.js-bejegyzését a részletekért.
+**Következő kör (nem azonnali):**
+- Framer Motion → `LazyMotion`/CSS (bundle −20–30 kB);
+- fázisfüggő hero-copy (before/during/after), mert az út 3 nap múlva indul;
+- külön Kit teszt-form a preview környezetre;
+- `next` 15.5.26 patch, majd Next 16 + React 19 migráció;
+- README frissítése;
+- `SocialLinks` komponens a duplikáció ellen;
+- a mergelt branch-ek törlése.
 
 ---
 
 ## Összegzés
 
-A kódbázis maga **jó minőségű, gondosan megírt, jól dokumentált** — nincs benne kódduplikáció-özön, halott absztrakció vagy elhanyagolt terület, és a build/lint tisztán fut. A valódi kockázatok döntő többsége **nem a kódban**, hanem a **deploy-konfigurációban** (domain, env változók) és a **függőségi lánc frissességében** (Next.js CVE-k) koncentrálódik — ezek pontosan azok a dolgok, amik egy tisztán kódszintű review-n könnyen átcsúsznak, de amíg nincsenek rendezve, a legjobban megírt UI is hiába van ott.
+Az előző audit **minden** kritikus és magas prioritású tétele lezárult: a domain be van kötve, a Kit kulcsok be vannak állítva, a Next.js CVE-k rendezve, van rate limit, honeypot, security header, teszt és CI. A kódbázis tiszta, kicsi, jól dokumentált.
+
+A mostani kör problémái **nem mély kódhibák**, hanem a konverziós út szélein ülnek:
+- a feliratkozás **utáni** első képernyő (törött videó, rácsúszó banner, kontraszthiba);
+- a feliratkozás **előtti** első másodpercek (láthatatlan hero hidratálásig, sűrű copy);
+- a **mérés** hiánya (nincs konverziós esemény);
+- a **jogi szövegek pontossága** a GA-betöltésről.
+
+Mind a tíz azonnali teendő napokon belül elvégezhető. Mivel az utazás 3 nap múlva indul, és várhatóan akkor jön a legtöbb forgalom, az 1–4. pontot érdemes még indulás előtt élesíteni.
 
 ---
 
-Szólj, ha szeretnéd, hogy elkezdjem kijavítani a talált problémákat — és ha igen, milyen sorrendben (pl. a fenti Top 10 listát követve, vagy csak a Kritikus/Magas tételeket most, a többit külön körben)?
+Szólj, ha szeretnéd, hogy elkezdjem kijavítani a talált problémákat, és ha igen, milyen sorrendben. Például:
+- **(a)** a Top 10 lista sorrendjében;
+- **(b)** csak az indulás előtt kritikus 1–4. pontot most, a többit külön körben;
+- **(c)** saját válogatás szerint.
+
+A videó feltöltése (1. pont) és a JSON-LD-hez szükséges követőszámok (10. pont) a te bemenetedet igénylik. A többit kódból el tudom végezni.

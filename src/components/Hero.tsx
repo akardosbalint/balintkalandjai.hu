@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { DURATION, EASE } from "@/lib/motion";
-import { Stagger, StaggerItem } from "./AnimatedSection";
 import JourneyProgress from "./JourneyProgress";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
@@ -111,28 +110,22 @@ export default function Hero() {
 
       <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
         {/*
-          A H1/subheadline itt a mérésekben az LCP (Largest Contentful
-          Paint) elem — hosszú fade-in delay/duration esetén ez
-          közvetlenül rontja a Core Web Vitals LCP metrikáját (mért
-          eset: ~2.6s "element render delay" a korábbi 0.35s delay +
-          1.1s duration miatt). Ezért ennél a két elemnél rövidebb az
-          animáció, mint a lentebbieknél — ez a motion-rendszer
-          DURATION.base értéke, szándékosan nem a lassabb DURATION.slow.
+          A H1/subheadline (mérésekben az LCP elem) és a feliratkozó űrlap
+          belépő animációja SZÁNDÉKOSAN tiszta CSS (`animate-hero-in`, lásd
+          tailwind.config.ts), nem Framer Motion. A motion-os `initial={{
+          opacity: 0 }}` a szerver-HTML-be is `opacity:0`-t renderel, így
+          ezek az elemek csak a JS letöltése + hidratálás UTÁN váltak
+          láthatóvá — lassított mobilon ez ~4.4 s LCP-t okozott, JS nélkül
+          pedig (pl. egyes in-app böngészők, elbukó chunk) a form SOHA nem
+          jelent meg. A CSS animáció az első festéssel azonnal indul, JS
+          nélkül is lefut, és a globális prefers-reduced-motion szabály
+          (globals.css) automatikusan kikapcsolja.
         */}
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: DURATION.base, delay: 0.05, ease: EASE.smooth }}
-          className="text-balance font-serif text-4xl font-medium leading-[1.15] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl"
-        >
+        <h1 className="animate-hero-in text-balance font-serif text-4xl font-medium leading-[1.15] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl">
           {activeHeadline}
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: DURATION.base, delay: 0.15, ease: EASE.smooth }}
-          className="mt-4 max-w-xl text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:mt-6 sm:text-xl"
+        <p className="animate-hero-in mt-4 max-w-xl [animation-delay:100ms] text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:mt-6 sm:text-xl"
         >
           Most Indiáig megyek, hogy behozzam a lemaradást. 70 napot töltök
           Rishikeshben, ahol elvégzek egy{" "}
@@ -163,17 +156,17 @@ export default function Hero() {
             RYT-500
           </Term>{" "}
           minősítésű jógaoktatói képzést, és élőben dokumentálom az egészet.
-        </motion.p>
+        </p>
 
-        <Stagger className="mt-6 flex w-full flex-col items-center sm:mt-10" gap={0.15}>
-          <StaggerItem className="flex w-full justify-center">
+        <div className="mt-6 flex w-full flex-col items-center sm:mt-10">
+          <div className="flex w-full justify-center">
             <JourneyProgress />
-          </StaggerItem>
+          </div>
 
-          <StaggerItem className="mt-6 flex w-full justify-center sm:mt-10">
+          <div className="animate-hero-in mt-6 flex w-full justify-center [animation-delay:200ms] sm:mt-10">
             <SubscribeForm id="feliratkozas" />
-          </StaggerItem>
-        </Stagger>
+          </div>
+        </div>
       </div>
 
       <ScrollCue />

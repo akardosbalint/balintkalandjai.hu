@@ -26,3 +26,22 @@ export function setStoredConsent(choice: ConsentChoice) {
   window.gtag?.("consent", "update", { analytics_storage: choice });
   window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: choice }));
 }
+
+/**
+ * GA4 esemény küldése. A `gtag` a layout.tsx beforeInteractive scriptjében
+ * mindig definiálva van (a gtag.js betöltése előtt a dataLayer sorba
+ * teszi a hívást), így ez sosem dob hibát. Consent Mode miatt hozzájárulás
+ * nélkül az esemény süti nélküli, anonim jelként megy ki — lásd az
+ * Adatkezelési tájékoztató 4. pontját. SOHA ne kerüljön ide személyes
+ * adat (email cím, név).
+ */
+export function trackEvent(name: string, params: Record<string, string | number> = {}) {
+  if (typeof window === "undefined") return;
+  window.gtag?.("event", name, params);
+}
+
+/** Konverziós események a feliratkozó formhoz — GA4-ben a `generate_lead` a kulcsesemény. */
+export const SUBSCRIBE_EVENTS = {
+  success: "generate_lead",
+  error: "subscribe_error",
+} as const;

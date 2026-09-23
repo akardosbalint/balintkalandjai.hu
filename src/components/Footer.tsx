@@ -23,6 +23,15 @@ export default function Footer() {
         </div>
 
         <div className="max-w-md text-sm text-sand-100/60">
+          <p className="mb-2">
+            Kérdésed van? Írj nekem:{" "}
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="-my-2 inline-block py-2 underline underline-offset-2 transition-colors duration-200 hover:text-sand-50"
+            >
+              {siteConfig.email}
+            </a>
+          </p>
           <p>
             Bármikor egy kattintással leiratkozhatsz — minden email alján
             találsz erre gombot.

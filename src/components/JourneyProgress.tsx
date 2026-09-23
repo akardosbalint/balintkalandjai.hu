@@ -22,7 +22,18 @@ export default function JourneyProgress() {
     setInfo(getJourneyDayInfo(new Date()));
   }, []);
 
-  if (!info) return null;
+  // Mountolás előtt (és JS nélkül) egy azonos magasságú, üres helyfoglaló
+  // áll itt: a hero form már a szerver-HTML-ben is látszik, és ha ez a
+  // blokk csak hidratálás után "nőne" fölé, lejjebb lökné a formot
+  // (layout shift / CLS, rossz esetben mellékoppintás).
+  if (!info) {
+    return (
+      <div aria-hidden="true" className="mt-6 w-full max-w-md sm:mt-8">
+        <div className="text-sm">&nbsp;</div>
+        <div className="mt-6 h-px" />
+      </div>
+    );
+  }
 
   const percent = Math.min(100, Math.max(0, (info.day / TOTAL_DAYS) * 100));
 

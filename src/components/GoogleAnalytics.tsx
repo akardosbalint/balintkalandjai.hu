@@ -20,7 +20,7 @@ export default function GoogleAnalytics() {
         src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
       />
       <Script id="ga-config" strategy="afterInteractive">
-        {`gtag('config', '${gaId}', { anonymize_ip: true });`}
+        {`gtag('config', '${gaId}');`}
       </Script>
     </>
   );

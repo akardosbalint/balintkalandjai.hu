@@ -70,7 +70,15 @@ export default function ThankYouPage() {
             </span>{" "}
             mappát is — néha oda kerül először. Ha megtaláltad, húzd át a
             beérkező levelek közé, hogy a következő hangfelvétel is
-            biztosan eljusson hozzád.
+            biztosan eljusson hozzád. Ha egy órán belül sem érkezik meg,
+            írj a{" "}
+            <a
+              href={`mailto:${siteConfig.email}`}
+              className="underline decoration-terracotta-500 underline-offset-2"
+            >
+              {siteConfig.email}
+            </a>{" "}
+            címre.
           </p>
         </div>
 

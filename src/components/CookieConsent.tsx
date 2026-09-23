@@ -118,9 +118,11 @@ export default function CookieConsent() {
         >
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
             <p className="text-sm text-ink-900/75 dark:text-sand-100/75">
-              Látogatottság-mérésre (Google Analytics) csak a
-              hozzájárulásoddal kerül sor — enélkül nem futnak
-              mérőkódok. Bővebben az{" "}
+              Az oldal Google Analyticset használ. Hozzájárulás nélkül
+              nem kerül süti a böngésződbe, és a Google csak anonim,
+              süti nélküli jeleket kap (pl. hogy megnyitottak egy
+              oldalt). Ha elfogadod, sütis látogatottság-mérés is
+              indul. Bővebben az{" "}
               <Link
                 href="/adatkezeles"
                 className="underline decoration-terracotta-500 underline-offset-2"
