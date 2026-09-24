@@ -16,17 +16,17 @@ const items = [
       "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
   },
   {
-    title: "Nulla szűrés, nulla pózolás",
+    title: "Nulla szűrő, teljes transzparencia",
     description:
-      "Nem azt fogom írni, hogy „megtaláltam magam”. Lehet, hogy három hét múlva kiderül, tévedtem valamiben — azt is megírom, nem csak a szép részeket.",
+      "Nem szépítek és nem vágok ki semmit: a jó napok mellett a rossz napokat, a kételyeimet és a hibáimat is hallani fogod. Ha három hét múlva kiderül, hogy valamiben tévedtem, azt is elmondom.",
   },
   {
     title: "Amit egy 60 másodperces videóban nem lehet elmondani",
     description:
-      "A heti hangfelvételben visszamegyek a napi videó mögé: mit jelentett valójában egy órányi Hatha, Ashtanga vagy Iyengar gyakorlat, egy pranayama- vagy jógaalvás- (yoga nidra) foglalkozás, és mihez kezdek azzal, amit aznap megtanultam.",
+      "A heti hangfelvételben beengedlek a kulisszák mögé. Elmesélem, mit jelentett valójában egy órányi Hatha, Ashtanga vagy Iyengar gyakorlat, egy pranayama- vagy jógaalvás- (yoga nidra) foglalkozás, és mihez kezdek azzal, amit aznap megtanultam.",
   },
   {
-    title: "Élő, lezáratlan gondolkodás",
+    title: "Lezáratlan gondolatmenetek, élőben",
     description:
       "Nem utólag összerakott, szép ívű történetet kapsz. Minden hangfelvételben ott vannak a nyitott kérdések is: mit nem tudok még eldönteni, hol bizonytalanodom el, mit csinálnék most másképp.",
   },
