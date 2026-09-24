@@ -11,7 +11,7 @@ import OrganicBackground from "./OrganicBackground";
  */
 const items = [
   {
-    title: "Heti 1 hangfelvétel, nem napi optimizmus-adag",
+    title: "Heti 1x 20-30 perces hangfelvétel",
     description:
       "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
   },
