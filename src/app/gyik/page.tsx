@@ -62,7 +62,7 @@ const items: FaqItem[] = [
   {
     question: "Milyen gyakran érkezik a hangfelvétel?",
     answer:
-      "Minden vasárnap — nem napi optimizmus-adag, hanem egy 20-30 perces, vágatlan hanganyag arról, ami a napi videók mögött valójában történik.",
+      "Heti 1x, minden vasárnap: egy 20-30 perces, vágatlan hanganyag arról, ami a napi videók mögött valójában történik.",
   },
   {
     question: "Miben más a heti hangfelvétel, mint a napi videós tartalom?",
