@@ -26,7 +26,7 @@ const items = [
       "A heti hangfelvételben beengedlek a kulisszák mögé. Elmesélem, mit jelentett valójában egy órányi Hatha, Ashtanga vagy Iyengar gyakorlat, egy pranayama- vagy jógaalvás- (yoga nidra) foglalkozás, és mihez kezdek azzal, amit aznap megtanultam.",
   },
   {
-    title: "Lezáratlan gondolatmenetek, élőben",
+    title: "Lezáratlan gondolatmenetek",
     description:
       "Nem utólag összerakott, szép ívű történetet kapsz. Minden hangfelvételben ott vannak a nyitott kérdések is: mit nem tudok még eldönteni, hol bizonytalanodom el, mit csinálnék most másképp.",
   },
