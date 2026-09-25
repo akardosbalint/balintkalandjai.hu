@@ -54,3 +54,32 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Görgetésre beúszó szekciók (AnimatedSection). Alapból NINCS rejtett
+ * kezdőállapot: a tartalom JS nélkül és nem támogató böngészőben is
+ * azonnal látható. Az animáció a scroll pozícióhoz kötött (nem időzített),
+ * és az elem belépése utáni első 140px görgetés alatt fut le — fix hossz,
+ * nem a teljes "entry" tartomány, mert a képernyőnél magasabb elemeknél
+ * (pl. a Story szövege) az olvasás közben is félig áttetsző maradna.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 140px;
+    }
+  }
+}

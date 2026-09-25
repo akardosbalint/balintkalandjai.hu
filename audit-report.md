@@ -4,6 +4,8 @@
 **Vizsgált állapot:** production branch `claude/yoga-landing-page-hcauxv` @ `8c84edd` (PR #27 után; ez fut élesben, a Vercel deploy READY)
 **Előzmény:** a 2026-09-23-i audit a git historyban van (`c45195f`, javítási jelölésekkel `9b4d2e2`). Ez a jelentés a mostani kód **teljes, új átvizsgálása**. A korábbi tételek állapotát a 8. fejezet foglalja össze.
 
+> **Javítási kör (2026-09-25, ugyanaznap):** a Top 10 #2, #3, #4, #5 tétele és a 3. fejezet két jogi pontatlansága (10 perces IP-állítás, ÁSZF-elfogadás) javítva. A „Miért higgy nekem” (SocialProof) szekciót a tulajdonos kérésére teljesen eltávolítottuk. A #1 (köszönővideó) a tulajdonos feladata (2026-09-26). A jelentés eredeti szövege változatlan, csak ✅ jelölések kerültek bele.
+
 ### A kitöltött projekt-leírás (az audit-prompt sablonjához)
 - **Miről szól az oldal:** magyar nyelvű, egyoldalas személyes-márka landing oldal (+ GYIK és jogi aloldalak). Kardos Bálint 70 napos indiai útját (2026-09-26 – 12-04) és RYT-500 jógaoktatói képzését dokumentálja. Az egyetlen konverziós cél a **heti, 20–30 perces hangfelvételre (email) való feliratkozás**.
 - **Tech stack:** Next.js 15.5 (App Router) · React 18 a `package.json`-ban · TypeScript strict · Tailwind 3.4 · Framer Motion 13 · Kit (ConvertKit) V4 API · Google Analytics 4 Consent Mode v2-vel · Vercel hosting · Vitest · GitHub Actions CI.
@@ -54,7 +56,7 @@
 **Miért probléma:** 2026-09-23 óta nyitott. Holnaptól (indulás) várható a legtöbb forgalom, és a double opt-in megerősítésére ösztönző oldal első eleme törött. A nagy 9:16-os blokk ráadásul a hajtás alá tolja a „Nem látod a levelet?” dobozt, pedig ez az oldal legfontosabb instrukciója.
 **Javaslat:** töltsd fel a videót (`public/videos/koszonom.mp4`, H.264, ≤ 8 MB). Ha holnapig nincs meg, a `<video>` blokk kerüljön ki ideiglenesen, a doboz pedig a helyére.
 
-### 🟠 Magas — A hero alatti teljes tartalom JS nélkül / hidratálás előtt láthatatlan
+### 🟠 Magas — A hero alatti teljes tartalom JS nélkül / hidratálás előtt láthatatlan ✅ Javítva
 **Hely:** `src/components/AnimatedSection.tsx:30` (`initial={{ opacity: 0, y: 28 }}` + `whileInView`). Ezt használja a `Story.tsx`, a `WhatYouGet.tsx`, a `SocialProof.tsx` és a `SecondCTA.tsx`, a második formmal együtt (`SecondCTA.tsx:31-36`).
 **Bizonyíték:** a Playwright JS nélküli teljes oldalas képernyőképén (390×7844 px) a hero és a footer között ~6 000 px üres, bézs felület van. A Story szövege, a portré, mind a 7 kártya és az alsó feliratkozó form láthatatlan. JS-sel minden megjelenik.
 **Miért probléma:**
@@ -75,7 +77,7 @@
 **Bizonyíték:** számítva **1,32:1**. A mobil képernyőképen (hero és alsó CTA) a mezők csak az enyhe fehér kitöltésből sejthetők.
 **Javaslat:** `border-forest-800/40` (≈3:1), sötét módban `border-sand-50/40`.
 
-### 🟡 Közepes — A „Mit kapsz” szekció címe és tartalma az átírások után szétcsúszott
+### 🟡 Közepes — A „Mit kapsz” szekció címe és tartalma az átírások után szétcsúszott ✅ Javítva
 **Hely:** `src/components/WhatYouGet.tsx:46` („Négy dolog, amire számíthatsz **minden hangfelvételben**”), `:14-16` (1. kártya)
 **Bizonyíték (mobil képernyőkép):**
 - Az 1. kártya címe most „Heti 1x 20-30 perces hangfelvétel” (gyakoriság és hossz), ez nem „valami, amire minden hangfelvételben számíthatsz”.
@@ -117,7 +119,7 @@
 
 **Mérés:** élesben fut a `generate_lead` (sikeres feliratkozás) és a `subscribe_error` (hibatípussal) GA4 esemény, `form_location` paraméterrel. A tulajdonos a GA4-ben `/koszonom` és `/megerositve` page_view kulcseseményeket is beállított.
 
-### 🟠 Magas — Első látogatáskor a sticky CTA addig nem jelenik meg, amíg a látogató nem dönt a cookie-sávon
+### 🟠 Magas — Első látogatáskor a sticky CTA addig nem jelenik meg, amíg a látogató nem dönt a cookie-sávon ✅ Javítva
 **Hely:** `src/components/StickyCTA.tsx:24,73` (`visible && consentDecided`), `src/components/CookieConsent.tsx:117-155`
 **Bizonyíték:** a kód szerint a sticky CTA csak `consentDecided === true` esetén renderelődik. A cookie-sáv mobilon, görgetés közben (a hero form elhagyása után) jelenik meg, és a mobil képernyőképen **~210 px-t, a képernyő ~25%-át** takarja: ez 5 soros szöveg + 2 gomb. Aki nem kattint rá (gyakori viselkedés), annak:
 - a sáv a teljes görgetés alatt ott marad;
@@ -129,7 +131,7 @@
 - **(b)** A cookie-sáv mobilon legyen kompakt, 1 sor + 2 kis gomb, és a részletek a linkre kerüljenek.
 - **(c)** Egy idő (pl. 15 s) vagy görgetési mélység után a sáv zsugorodjon egy kis sarok-gombbá.
 
-### 🟡 Közepes — A „Mit kapsz” és a „Miért higgy nekem” szekció ugyanazt ígéri kétszer, bizonyíték helyett
+### 🟡 Közepes — A „Mit kapsz” és a „Miért higgy nekem” szekció ugyanazt ígéri kétszer, bizonyíték helyett ✅ Javítva
 **Hely:** `src/components/SocialProof.tsx:14-30` vs. `src/components/WhatYouGet.tsx:12-33`
 **Bizonyíték:**
 - a SocialProof „Heti hangfelvétel, vágatlanul … 20-30 perces” (`:21-23`) = a WhatYouGet 1. kártyája;
@@ -176,7 +178,7 @@ Holnaptól az első napi videók is beágyazhatók vagy linkelhetők.
 
 **Nem alkalmazható (N/A) terület:** auth, session, JWT, jogosultságkezelés, IDOR, SQL injection. Nincs felhasználói fiók és adatbázis, az állapotot a Kit tárolja.
 
-### 🟡 Közepes — Az API típus-ellenőrzés nélkül dolgozza fel a body-t: kezeletlen 500-ak, hosszkorlát nélkül
+### 🟡 Közepes — Az API típus-ellenőrzés nélkül dolgozza fel a body-t: kezeletlen 500-ak, hosszkorlát nélkül ✅ Javítva
 **Hely:** `src/app/api/subscribe/route.ts:75` (`request.json()`), `:87` (`body.website`), `:91-93` (`body.email?.trim()`, `body.firstName?.trim()`)
 **Bizonyíték (lokális production szerver, curl):**
 ```
@@ -193,7 +195,7 @@ body: 5000 karakteres email                  → átmegy a validáción, a Kit-h
 
 **Javaslat:** futásidejű ellenőrzés: `typeof body === "object" && body !== null && !Array.isArray(body)`, a mezőkre `typeof … === "string"`, email ≤ 254, keresztnév ≤ 100 karakter. Adj hozzá 3 tesztesetet a `route.test.ts`-hez.
 
-### 🟡 Közepes (jogi pontosság) — Az Adatkezelési tájékoztató „legfeljebb 10 perces” IP-tárolási állítása nem igaz a kódra
+### 🟡 Közepes (jogi pontosság) — Az Adatkezelési tájékoztató „legfeljebb 10 perces” IP-tárolási állítása nem igaz a kódra ✅ Javítva
 **Hely:** `src/app/adatkezeles/page.tsx:82-84` („legfeljebb 10 percig, kizárólag a szerver memóriájában”) vs. `src/lib/rate-limit.ts:15-24,27-29`
 **Bizonyíték:** a `sweep()` csak egy **következő kérés** beérkezésekor fut le. Ha egy IP-cím után nem érkezik újabb feliratkozási kérés, a bejegyzés addig marad a memóriában, amíg a szerverless példány él. Ez 10 percnél hosszabb is lehet.
 **Miért probléma:** a tájékoztató konkrét, ellenőrizhető időtartamot ígér, amit a kód nem garantál (GDPR 5. cikk (1) e), 13. cikk).
@@ -201,7 +203,7 @@ body: 5000 karakteres email                  → átmegy a validáción, a Kit-h
 - Kód: `setTimeout`/`unref` alapú lejárat, vagy a kulcs legyen az IP hash-e (akkor a szöveg is pontosítható).
 - Szöveg: „legfeljebb a szerverfolyamat futásáig, jellemzően néhány percig”.
 
-### 🟢 Alacsony — Az ÁSZF olyan elfogadásra hivatkozik, amely nem történik meg
+### 🟢 Alacsony — Az ÁSZF olyan elfogadásra hivatkozik, amely nem történik meg ✅ Javítva
 **Hely:** `src/app/aszf/page.tsx:103-105` („…a feliratkozási feltételek elfogadásával”) vs. `src/components/SubscribeForm.tsx:166-173`. A checkbox csak az Adatkezelési tájékoztatót említi, az ÁSZF-et nem.
 **Javaslat:** a checkbox-szövegbe az ÁSZF linkje is („…megismertem az ÁSZF-et és az Adatkezelési tájékoztatót”), vagy az ÁSZF mondatának pontosítása.
 
@@ -264,7 +266,7 @@ A kód jó minőségű: konzisztens elnevezések, kis komponensek (a legnagyobb 
 **Bizonyíték:** a `/60` kontraszthiba pont ezért maradt benne mindkét másolatban.
 **Javaslat:** `<SocialLinks />` komponens a `siteConfig.social`-ból.
 
-### 🟢 Alacsony — Hibás hibakategória: a nem-JSON válasz „hálózati hibának” számít
+### 🟢 Alacsony — Hibás hibakategória: a nem-JSON válasz „hálózati hibának” számít ✅ Javítva
 **Hely:** `src/components/SubscribeForm.tsx:70` (`await res.json()`) → `catch` → `trackError("network")` + „ellenőrizd a netkapcsolatot”
 **Miért probléma:** ha a Vercel HTML hibaoldalt ad (pl. 504 timeout), a látogató félrevezető üzenetet kap, és a GA-ban `network` hibaként látszik `http_504` helyett.
 **Javaslat:** `const data = await res.json().catch(() => null)`.
@@ -370,10 +372,10 @@ A hero-javítás (PR #23) mérhetően működik: a lassított mobil LCP ~3× gyo
 | # | Teendő | Súlyosság | Erőfeszítés | Hivatkozás |
 |---|---|---|---|---|
 | 1 | Köszönővideó feltöltése — vagy **holnapig** a `<video>` blokk ideiglenes kivétele, és a „Nem látod a levelet?” doboz előre | 🟠 Magas | Triviális | 1. pont |
-| 2 | A sticky CTA ne tűnjön el a cookie-sáv miatt: a sáv fölé kerüljön, vagy a sáv legyen kompakt mobilon | 🟠 Magas | Kicsi | 2. pont |
-| 3 | `AnimatedSection`: ne induljon `opacity:0`-ról a szerver-HTML-ben (`noscript` fallback vagy CSS-animáció) → a Story, a kártyák és a 2. form JS nélkül is látszik | 🟠 Magas | Kicsi | 1. pont |
-| 4 | API futásidejű típus- és hosszellenőrzés + 3 teszt → nincs több 500, nincs 5000 karakteres email | 🟡 Közepes | Triviális | 3. pont |
-| 5 | A „Mit kapsz” címének és az 1. kártya leírásának összehangolása; a SocialProof kártyái ismétlés helyett ellenőrizhető bizonyítékot adjanak (profil-linkek, képzőhely) | 🟡 Közepes | Kicsi (copy) | 1. és 2. pont |
+| 2 | ✅ A sticky CTA ne tűnjön el a cookie-sáv miatt: a sáv fölé kerüljön, vagy a sáv legyen kompakt mobilon | 🟠 Magas | Kicsi | 2. pont |
+| 3 | ✅ `AnimatedSection`: ne induljon `opacity:0`-ról a szerver-HTML-ben (`noscript` fallback vagy CSS-animáció) → a Story, a kártyák és a 2. form JS nélkül is látszik | 🟠 Magas | Kicsi | 1. pont |
+| 4 | ✅ API futásidejű típus- és hosszellenőrzés + 3 teszt → nincs több 500, nincs 5000 karakteres email | 🟡 Közepes | Triviális | 3. pont |
+| 5 | ✅ A „Mit kapsz” címének és az 1. kártya leírásának összehangolása; a SocialProof kártyái ismétlés helyett ellenőrizhető bizonyítékot adjanak (profil-linkek, képzőhely) | 🟡 Közepes | Kicsi (copy) | 1. és 2. pont |
 | 6 | Form a11y: mezőkeret ≥ 3:1, `aria-invalid`/`aria-describedby`, fókusz a hibás mezőre; `/60` → `/65` | 🟡 Közepes | Kicsi | 1. pont |
 | 7 | Az Adatkezelési tájékoztató „legfeljebb 10 perc” állításának és a kódnak az összehangolása; ÁSZF-link a checkboxba | 🟡 Közepes | Triviális | 3. pont |
 | 8 | Fázisfüggő copy az indulás után (legalább „dokumentálom majd” → „dokumentálom”), a Story végére CTA-link | 🟡 Közepes | Kicsi | 2. pont |

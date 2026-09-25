@@ -28,10 +28,7 @@ export default function SecondCTA() {
           </p>
         </AnimatedSection>
 
-        <AnimatedSection
-          delay={0.15}
-          className="mt-10 flex w-full justify-center"
-        >
+        <AnimatedSection className="mt-10 flex w-full justify-center">
           <SubscribeForm id="feliratkozas-lent" />
         </AnimatedSection>
       </div>

@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { SPRING } from "@/lib/motion";
 
 /**
- * Közös kártya-stílus a WhatYouGet és SocialProof szekciókhoz. A hover-lift
+ * Kártya-stílus a WhatYouGet szekcióhoz. A hover-lift
  * spring-fizikával fut (nem CSS transitionnel) — puhább, "tapinthatóbb"
  * visszajelzés, konzisztensen a többi gomb/kártya mikro-interakciójával
  * (lásd src/lib/motion.ts SPRING).

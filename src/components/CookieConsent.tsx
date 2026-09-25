@@ -81,15 +81,24 @@ export default function CookieConsent() {
 
   // A fixen alul lévő sáv rövidebb oldalakon (pl. FAQ) eltakarhatná az
   // utolsó tartalmat, mert onnan nincs hova tovább görgetni — ezért
-  // amíg látszik, a body kap ugyanekkora alsó paddinget.
+  // amíg látszik, a body kap ugyanekkora alsó paddinget. Ugyanezt a
+  // magasságot a --cookie-banner-h CSS-változóban is közzétesszük: a
+  // StickyCTA ennyivel feljebb ül, így a kettő egyszerre is látszhat
+  // anélkül, hogy egymásra csúsznának (korábban a sticky CTA a döntésig
+  // egyáltalán nem jelent meg — aki a sávot figyelmen kívül hagyta, az
+  // soha nem látta a lebegő CTA-t).
   useEffect(() => {
+    const root = document.documentElement;
     if (!visible) {
       document.body.style.paddingBottom = "";
+      root.style.removeProperty("--cookie-banner-h");
       return;
     }
 
     function updatePadding() {
-      document.body.style.paddingBottom = `${bannerRef.current?.offsetHeight ?? 0}px`;
+      const height = `${bannerRef.current?.offsetHeight ?? 0}px`;
+      document.body.style.paddingBottom = height;
+      root.style.setProperty("--cookie-banner-h", height);
     }
 
     updatePadding();
@@ -97,6 +106,7 @@ export default function CookieConsent() {
     return () => {
       window.removeEventListener("resize", updatePadding);
       document.body.style.paddingBottom = "";
+      root.style.removeProperty("--cookie-banner-h");
     };
   }, [visible]);
 
@@ -114,22 +124,23 @@ export default function CookieConsent() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.4, ease: EASE.smooth }}
-          className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-6 py-4 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:py-5"
+          className="fixed inset-x-0 bottom-0 z-[60] border-t border-forest-800/10 bg-sand-50/95 px-4 py-3 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:px-6 sm:py-5"
         >
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-2.5 text-center sm:flex-row sm:justify-between sm:gap-4 sm:text-left">
+            {/*
+              Szándékosan rövid (mobilon ~3 sor): a hosszabb változat a
+              képernyő negyedét takarta. A tartalom ugyanaz — a részletek
+              az Adatkezelési tájékoztató 4. pontjában vannak.
+            */}
             <p className="text-sm text-ink-900/75 dark:text-sand-100/75">
-              Az oldal Google Analyticset használ. Hozzájárulás nélkül
-              nem kerül süti a böngésződbe, és a Google csak anonim,
-              süti nélküli jeleket kap (pl. hogy megnyitottak egy
-              oldalt). Ha elfogadod, sütis látogatottság-mérés is
-              indul. Bővebben az{" "}
+              Hozzájárulás nélkül a Google Analytics csak süti nélküli,
+              anonim mérést végez. Engedélyezed a sütis mérést?{" "}
               <Link
                 href="/adatkezeles"
                 className="underline decoration-terracotta-500 underline-offset-2"
               >
-                Adatkezelési tájékoztatóban
+                Részletek
               </Link>
-              .
             </p>
             <div className="flex shrink-0 gap-3">
               <motion.button
@@ -138,7 +149,7 @@ export default function CookieConsent() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={SPRING.hover}
-                className="rounded-full border border-forest-800/20 px-5 py-2.5 text-sm font-medium text-ink-900/70 transition-colors hover:bg-forest-800/5 dark:border-sand-50/20 dark:text-sand-100/70 dark:hover:bg-sand-50/10"
+                className="rounded-full border border-forest-800/20 px-5 py-2 text-sm font-medium text-ink-900/70 transition-colors hover:bg-forest-800/5 dark:border-sand-50/20 dark:text-sand-100/70 dark:hover:bg-sand-50/10"
               >
                 Elutasítom
               </motion.button>
@@ -148,7 +159,7 @@ export default function CookieConsent() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 transition={SPRING.hover}
-                className="rounded-full bg-saffron-500 px-5 py-2.5 text-sm font-medium text-forest-900 transition-colors hover:bg-saffron-600"
+                className="rounded-full bg-saffron-500 px-5 py-2 text-sm font-medium text-forest-900 transition-colors hover:bg-saffron-600"
               >
                 Elfogadom
               </motion.button>

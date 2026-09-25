@@ -1,9 +1,9 @@
-type Variant = "hero" | "story" | "offer" | "proof" | "cta";
+type Variant = "hero" | "story" | "offer" | "cta";
 
 /**
  * Két vizuális "hangnem" fut végig az oldalon, a külső-belső utazás
  * motívumát követve:
- * - OUTER (hero, proof, cta): a fizikai út, a nyilvánosság, a napi
+ * - OUTER (hero, cta): a fizikai út, a nyilvánosság, a napi
  *   dokumentálás — safrán/terrakotta, aszimmetrikus, nyugtalanabb
  *   "drift" mozgás, több/nagyobb folt.
  * - INNER (story, offer): a reflexió, a gyakorlat, a képzés belső
@@ -56,27 +56,6 @@ const VARIANT_BLOBS: Record<Variant, { className: string; style: React.CSSProper
       style: {
         background:
           "radial-gradient(closest-side, rgba(184,147,91,0.36), rgba(184,147,91,0) 70%)",
-      },
-    },
-  ],
-  // OUTER — SocialProof: a napi, nyilvános dokumentálás. Nyugtalanabb
-  // "drift" mozgás + egy kis terrakotta kísérő, hogy élénkebb legyen a
-  // Story/WhatYouGet csendjéhez képest.
-  proof: [
-    {
-      className:
-        "absolute -top-16 right-0 h-[24rem] w-[24rem] rounded-full blur-3xl animate-drift",
-      style: {
-        background:
-          "radial-gradient(closest-side, rgba(255,153,51,0.16), rgba(255,153,51,0) 70%)",
-      },
-    },
-    {
-      className:
-        "absolute bottom-0 left-10 h-[14rem] w-[14rem] rounded-full blur-3xl animate-breathe-slow",
-      style: {
-        background:
-          "radial-gradient(closest-side, rgba(193,97,60,0.12), rgba(193,97,60,0) 70%)",
       },
     },
   ],

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CONSENT_EVENT, getStoredConsent } from "@/lib/analytics";
 import { EASE, SPRING } from "@/lib/motion";
 
 // Minden hely, ahol a látogató már látja a feliratkozó űrlapot (vagy a
@@ -18,21 +17,7 @@ const SUBSCRIBE_FORM_IDS = ["feliratkozas", "feliratkozas-lent"];
  */
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
-  // Első látogatáskor, amíg a cookie consent döntés nincs meg, a
-  // banner is alul, teljes szélességben jelenik meg mobilon — hogy a
-  // kettő ne csússzon egymásra, a sticky CTA-t addig nem mutatjuk.
-  const [consentDecided, setConsentDecided] = useState(false);
   const intersectingKeys = useRef(new Set<string>());
-
-  useEffect(() => {
-    setConsentDecided(getStoredConsent() !== null);
-    function handleConsentChange() {
-      setConsentDecided(true);
-    }
-    window.addEventListener(CONSENT_EVENT, handleConsentChange);
-    return () =>
-      window.removeEventListener(CONSENT_EVENT, handleConsentChange);
-  }, []);
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -70,13 +55,17 @@ export default function StickyCTA() {
 
   return (
     <AnimatePresence>
-      {visible && consentDecided && (
+      {visible && (
         <motion.div
           initial={{ y: 80, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 80, opacity: 0 }}
           transition={{ duration: 0.4, ease: EASE.smooth }}
-          className="fixed inset-x-0 bottom-0 z-50 border-t border-forest-800/10 bg-sand-50/95 p-3 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:border-none sm:bg-transparent sm:p-0"
+          // Ha a cookie-sáv épp látszik, a CookieConsent a magasságát a
+          // --cookie-banner-h változóba írja — a CTA ennyivel feljebb ül,
+          // hogy a kettő ne takarja egymást.
+          style={{ bottom: "calc(var(--cookie-banner-h, 0px) + var(--sticky-gap, 0px))" }}
+          className="fixed inset-x-0 z-50 border-t border-forest-800/10 bg-sand-50/95 p-3 backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-900/95 sm:inset-x-auto sm:[--sticky-gap:1.5rem] sm:right-6 sm:border-none sm:bg-transparent sm:p-0"
         >
           <motion.button
             onClick={scrollToForm}

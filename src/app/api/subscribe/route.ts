@@ -1,17 +1,27 @@
 import { NextResponse } from "next/server";
-import { EMAIL_REGEX } from "@/lib/validation";
+import { EMAIL_MAX_LENGTH, EMAIL_REGEX, FIRST_NAME_MAX_LENGTH } from "@/lib/validation";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 import { siteConfig } from "@/lib/site-config";
 
 const KIT_API_BASE = "https://api.kit.com/v4";
 
-interface SubscribeBody {
-  email?: string;
-  firstName?: string;
-  consent?: boolean;
-  /** Honeypot mező — embereknek üresen kell hagyniuk, botok gyakran kitöltik. */
-  website?: string;
+/** Sima JSON objektum-e (nem null, nem tömb, nem primitív). */
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
+
+/**
+ * Opcionális szöveges mező kiolvasása: hiányzó mező → `undefined`, nem
+ * string érték → `null` (hibás kérés). A `request.json()` bármilyen
+ * érvényes JSON-t visszaadhat, ezért a típust futásidőben ellenőrizzük —
+ * enélkül pl. `{"email": 123}` kezeletlen TypeError-t (500) dobott.
+ */
+function optionalString(value: unknown): string | undefined | null {
+  if (value === undefined || value === null) return undefined;
+  return typeof value === "string" ? value : null;
+}
+
+const BAD_REQUEST_MESSAGE = "Hibás kérés — próbáld frissíteni az oldalt.";
 
 /** Egy sikertelen Kit API válaszból épít barátságos, magyar hibaüzenetet. */
 async function kitErrorResponse(response: Response, context: string) {
@@ -41,7 +51,7 @@ async function kitErrorResponse(response: Response, context: string) {
   return NextResponse.json(
     {
       message:
-        "Valami elakadt nálunk a feliratkozásnál. Próbáld meg még egyszer egy perc múlva.",
+        "Valami elakadt a feliratkozásnál. Próbáld meg még egyszer egy perc múlva.",
     },
     { status: 502 }
   );
@@ -69,15 +79,16 @@ export async function POST(request: Request) {
     );
   }
 
-  let body: SubscribeBody;
+  let body: unknown;
 
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json(
-      { message: "Hibás kérés — próbáld frissíteni az oldalt." },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: BAD_REQUEST_MESSAGE }, { status: 400 });
+  }
+
+  if (!isPlainObject(body)) {
+    return NextResponse.json({ message: BAD_REQUEST_MESSAGE }, { status: 400 });
   }
 
   // Honeypot: valódi látogató sosem tölti ki (a mező a form UI-ban rejtve
@@ -88,11 +99,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
-  const email = body.email?.trim().toLowerCase();
-  const firstName = body.firstName?.trim();
+  const rawEmail = optionalString(body.email);
+  const rawFirstName = optionalString(body.firstName);
+
+  if (rawEmail === null || rawFirstName === null) {
+    return NextResponse.json({ message: BAD_REQUEST_MESSAGE }, { status: 400 });
+  }
+
+  const email = rawEmail?.trim().toLowerCase();
+  const firstName = rawFirstName?.trim();
   const consent = body.consent === true;
 
-  if (!email || !EMAIL_REGEX.test(email)) {
+  if (!email || email.length > EMAIL_MAX_LENGTH || !EMAIL_REGEX.test(email)) {
     return NextResponse.json(
       { message: "Adj meg egy érvényes email címet." },
       { status: 400 }
@@ -103,8 +121,15 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message:
-          "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessünk neked hangfelvételt.",
+          "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked hangfelvételt.",
       },
+      { status: 400 }
+    );
+  }
+
+  if (firstName && firstName.length > FIRST_NAME_MAX_LENGTH) {
+    return NextResponse.json(
+      { message: `A keresztnév legfeljebb ${FIRST_NAME_MAX_LENGTH} karakter lehet.` },
       { status: 400 }
     );
   }

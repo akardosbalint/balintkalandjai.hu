@@ -38,7 +38,7 @@ export default function PrivacyPolicyPage() {
         Adatkezelési tájékoztató
       </h1>
       <p className="mt-2 text-sm text-ink-900/65 dark:text-sand-100/65">
-        Hatályos: 2026. szeptember 23.
+        Hatályos: 2026. szeptember 25.
       </p>
 
       <div className="mt-10 space-y-8 text-ink-900/80 dark:text-sand-100/80">
@@ -80,11 +80,15 @@ export default function PrivacyPolicyPage() {
           </ul>
           <p className="mt-2">
             Az űrlap elküldésekor a weboldal szervere az IP-címedet
-            legfeljebb 10 percig, kizárólag a szerver memóriájában tartja
-            meg, hogy kiszűrje a tömeges, automatizált (bot) feliratkozási
-            kísérleteket. Ezt nem mentem el tartósan, és nem adom tovább a
-            Kitnek — a Kit a feliratkozáskor csak az email címedet és (ha
-            megadtad) a keresztnevedet kapja meg.
+            kizárólag a szerver memóriájában tartja nyilván, hogy kiszűrje a
+            tömeges, automatizált (bot) feliratkozási kísérleteket: azt
+            számolja, hány kérés érkezett ugyanarról a címről az elmúlt 10
+            percben. A 10 percnél régebbi bejegyzéseket a szerver a
+            következő beérkező feliratkozási kérés feldolgozásakor törli, a
+            szerverfolyamat leállásakor pedig minden bejegyzés megszűnik.
+            Ezt nem mentem el tartósan, és nem adom tovább a Kitnek — a Kit
+            a feliratkozáskor csak az email címedet és (ha megadtad) a
+            keresztnevedet kapja meg.
           </p>
           <p className="mt-2">
             Az űrlapon kívül más adatgyűjtési pont (pl. regisztráció,
