@@ -13,7 +13,7 @@ const items = [
   {
     title: "Heti 1x 20-30 perces hangfelvétel",
     description:
-      "Ha feliratkozol, minden vasárnap egy 20-30 perces, vágatlan, exkluzív hanganyag érkezik a postaládádba: mit tanultam, mit rontottam el, min gondolkodtam hajnali négykor éjjel a szoba padlóján ülve stb.",
+      "Ha feliratkozol, minden vasárnap egy 20-30 perces, vágatlan, exkluzív hanganyag érkezik a postaládádba: mit tanultam, mit rontottam el, min gondolkodtam hajnali négykor a szoba padlóján ülve stb.",
   },
   {
     title: "Nulla szűrő, teljes transzparencia",
