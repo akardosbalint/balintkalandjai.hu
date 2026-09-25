@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
@@ -9,6 +9,8 @@ import { SUBSCRIBE_EVENTS, trackEvent } from "@/lib/analytics";
 import { SPRING } from "@/lib/motion";
 
 type Status = "idle" | "loading" | "error";
+/** Melyik mezőhöz tartozik a kliens oldali validációs hiba (null: szerver/hálózati hiba). */
+type ErrorField = "email" | "consent" | null;
 
 interface SubscribeFormProps {
   id?: string;
@@ -29,9 +31,13 @@ export default function SubscribeForm({
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [errorField, setErrorField] = useState<ErrorField>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const consentRef = useRef<HTMLInputElement>(null);
+  const errorId = `${uid}-error`;
 
-  // Melyik űrlapról jött a konverzió/hiba (hero vagy alsó CTA) — GA4-ben
-  // ez alapján vethető össze a két form teljesítménye.
+  // Melyik űrlapról jött a konverzió/hiba (hero, alsó CTA, GYIK) — GA4-ben
+  // ez alapján vethető össze a formok teljesítménye.
   const formLocation = id ?? "ismeretlen";
 
   function trackError(errorType: string) {
@@ -41,23 +47,31 @@ export default function SubscribeForm({
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    // Kliens oldali hibánál a fókusz a hibás mezőre ugrik, és a mező
+    // aria-invalid + aria-describedby-val a hibaszövegre mutat (WCAG
+    // 3.3.1) — így a képernyőolvasó is tudja, mi a gond és hol.
     if (!EMAIL_REGEX.test(email.trim())) {
       trackError("invalid_email");
       setStatus("error");
+      setErrorField("email");
       setErrorMessage("Adj meg egy érvényes email címet.");
+      emailRef.current?.focus();
       return;
     }
 
     if (!consent) {
       trackError("missing_consent");
       setStatus("error");
+      setErrorField("consent");
       setErrorMessage(
         "Ehhez elfogadásra van szükség — pipáld ki, hogy küldhessek neked hangfelvételt."
       );
+      consentRef.current?.focus();
       return;
     }
 
     setStatus("loading");
+    setErrorField(null);
     setErrorMessage("");
 
     try {
@@ -96,7 +110,9 @@ export default function SubscribeForm({
     <form
       id={id}
       onSubmit={handleSubmit}
-      className="w-full max-w-md"
+      // scroll-mt: a fix fejléc ne takarja a form tetejét, ha horgony-
+      // linkkel (pl. #feliratkozas) ugrunk ide.
+      className="w-full max-w-md scroll-mt-28"
       noValidate
     >
       {/*
@@ -122,6 +138,18 @@ export default function SubscribeForm({
         />
       </div>
 
+      {/*
+        Az ajánlat a mezők FÖLÖTT, a döntés pillanatában — korábban a gomb
+        alatt, apró betűvel állt, mobilon a hajtás alá csúszva. A szöveg
+        szándékosan rövid: 360px-es kijelzőn is 2 soros marad a tartalék
+        betűtípussal és az Inter-rel is — ha a webfont betöltése után
+        változna a sorok száma, az egész form lejjebb ugrana (CLS).
+      */}
+      <p className="mb-3 text-sm text-ink-900/75 dark:text-sand-100/75">
+        Minden vasárnap 1 vágatlan, 20-30 perces hangfelvétel.
+        Bármikor leiratkozhatsz.
+      </p>
+
       <div className="flex flex-col gap-3 sm:flex-row">
         <label htmlFor={`${uid}-firstName`} className="sr-only">
           Keresztnév (opcionális)
@@ -135,7 +163,7 @@ export default function SubscribeForm({
           placeholder="Keresztnév (opcionális)"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 focus-visible:ring-2 focus-visible:ring-terracotta-500/50 dark:border-sand-50/20 dark:bg-forest-800/40 dark:text-sand-50 dark:placeholder:text-sand-100/50 sm:w-2/5"
+          className="w-full rounded-full border border-forest-800/55 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 focus-visible:ring-2 focus-visible:ring-terracotta-500/50 aria-[invalid=true]:border-terracotta-700 dark:border-sand-50/40 dark:bg-forest-800/40 dark:aria-[invalid=true]:border-terracotta-400 dark:text-sand-50 dark:placeholder:text-sand-100/50 sm:w-2/5"
         />
         <label htmlFor={`${uid}-email`} className="sr-only">
           Email cím
@@ -148,9 +176,12 @@ export default function SubscribeForm({
           required
           autoComplete="email"
           placeholder="te@email.hu"
+          ref={emailRef}
+          aria-invalid={errorField === "email"}
+          aria-describedby={errorField === "email" ? errorId : undefined}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-full border border-forest-800/15 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 focus-visible:ring-2 focus-visible:ring-terracotta-500/50 dark:border-sand-50/20 dark:bg-forest-800/40 dark:text-sand-50 dark:placeholder:text-sand-100/50"
+          className="w-full rounded-full border border-forest-800/55 bg-white/80 px-5 py-3 text-ink-900 placeholder:text-ink-900/65 outline-none transition focus:border-terracotta-500 focus-visible:ring-2 focus-visible:ring-terracotta-500/50 aria-[invalid=true]:border-terracotta-700 dark:border-sand-50/40 dark:bg-forest-800/40 dark:aria-[invalid=true]:border-terracotta-400 dark:text-sand-50 dark:placeholder:text-sand-100/50"
         />
       </div>
 
@@ -163,8 +194,11 @@ export default function SubscribeForm({
           name="consent"
           type="checkbox"
           checked={consent}
+          ref={consentRef}
+          aria-invalid={errorField === "consent"}
+          aria-describedby={errorField === "consent" ? errorId : undefined}
           onChange={(e) => setConsent(e.target.checked)}
-          className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest-800/30 text-terracotta-600 focus:ring-terracotta-500 dark:border-sand-50/30"
+          className="mt-0.5 h-5 w-5 shrink-0 rounded border-forest-800/30 text-terracotta-600 focus:ring-terracotta-500 dark:border-sand-50/30"
         />
         <span>
           Elfogadom, hogy {siteConfig.ownerFullName} heti hangfelvételt
@@ -179,6 +213,26 @@ export default function SubscribeForm({
         </span>
       </label>
 
+      {/*
+        A hibaüzenet a mezők és a gomb KÖZÖTT jelenik meg (korábban a gomb
+        alatt, mobilon gyakran a látómezőn kívül), id-vel, hogy a hibás
+        mező aria-describedby-val hivatkozhasson rá.
+      */}
+      <AnimatePresence>
+        {status === "error" && (
+          <motion.p
+            id={errorId}
+            role="alert"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="mt-3 text-left text-sm text-terracotta-700 dark:text-terracotta-400"
+          >
+            {errorMessage}
+          </motion.p>
+        )}
+      </AnimatePresence>
+
       <motion.button
         type="submit"
         disabled={status === "loading"}
@@ -190,24 +244,6 @@ export default function SubscribeForm({
         {status === "loading" ? "Küldés…" : ctaLabel}
       </motion.button>
 
-      <AnimatePresence>
-        {status === "error" && (
-          <motion.p
-            role="alert"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="mt-3 text-sm text-terracotta-700 dark:text-terracotta-400"
-          >
-            {errorMessage}
-          </motion.p>
-        )}
-      </AnimatePresence>
-
-      <p className="mt-3 text-xs text-ink-900/65 dark:text-sand-100/65">
-        Heti 1 hangfelvétel. Nulla spam, nulla duma. Bármikor egy
-        kattintással leiratkozhatsz.
-      </p>
     </form>
   );
 }

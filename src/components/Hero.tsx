@@ -7,6 +7,7 @@ import JourneyProgress from "./JourneyProgress";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
 import Term from "./Term";
+import { SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 
 /**
  * HERO — headline + subheadline A/B variációk
@@ -61,13 +62,14 @@ import Term from "./Term";
  */
 const activeHeadline = "31 éven keresztül lemaradtam a saját életemről.";
 // Az aktív subheadline sima szövegként (A/B teszteléshez / kifejezés-
-// magyarázatok nélkül): "Most Indiáig megyek, hogy behozzam a
-// lemaradást. 70 napot töltök Rishikeshben, ahol elvégzek egy
-// nemzetközi jóga szövetség által akkreditált, RYT-500 minősítésű
-// jógaoktatói képzést, és élőben dokumentálom az egészet."
-// A JSX-es változat lent a Term komponenssel koppintható/kattintható
-// magyarázatot ad a "nemzetközi jóga szövetség" és "RYT-500"
-// kifejezésekhez (telefonon is elérhető, nem csak hoverre).
+// magyarázatok nélkül): "Most behozom a lemaradást: egy 70 napos indiai
+// út, benne egy nemzetközileg akkreditált, RYT-500 jógaoktatói képzés
+// Rishikeshben — élőben dokumentálva."
+// Szándékosan rövid (mobilon ~4 sor, korábban 6) és időtől független:
+// indulás előtt és az út alatt is igaz, nem kell a dátumhoz igazítani.
+// A "70 napos indiai út" pontos (ajtótól ajtóig, lásd site-config.ts) —
+// a korábbi "70 napot töltök Rishikeshben" nem volt az. A JSX-es
+// változatban az RYT-500 koppintható/kattintható magyarázatot kap (Term).
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -127,35 +129,23 @@ export default function Hero() {
 
         <p className="animate-hero-in mt-4 max-w-xl [animation-delay:100ms] text-balance text-lg text-ink-900/75 dark:text-sand-100/75 sm:mt-6 sm:text-xl"
         >
-          Most Indiáig megyek, hogy behozzam a lemaradást. 70 napot töltök
-          Rishikeshben, ahol elvégzek egy{" "}
-          <Term
-            definition={
-              <>
-                <strong className="font-medium text-forest-900 dark:text-sand-50">
-                  Yoga Alliance International
-                </strong>{" "}
-                — a jógaoktatói képzések legelterjedtebb nemzetközi
-                akkreditációs szervezete.
-              </>
-            }
-          >
-            nemzetközi jóga szövetség
-          </Term>{" "}
-          által akkreditált,{" "}
+          Most behozom a lemaradást: egy 70 napos indiai út, benne egy
+          nemzetközileg akkreditált,{" "}
           <Term
             definition={
               <>
                 <strong className="font-medium text-forest-900 dark:text-sand-50">
                   RYT-500
                 </strong>{" "}
-                — regisztrált, 500 órás jógaoktató-képzés minősítés.
+                — regisztrált, 500 órás jógaoktató-képzés minősítés, a
+                Yoga Alliance International (a legelterjedtebb nemzetközi
+                akkreditációs szervezet) rendszerében.
               </>
             }
           >
             RYT-500
           </Term>{" "}
-          minősítésű jógaoktatói képzést, és élőben dokumentálom az egészet.
+          jógaoktatói képzés Rishikeshben — élőben dokumentálva.
         </p>
 
         <div className="mt-6 flex w-full flex-col items-center sm:mt-10">
@@ -164,7 +154,7 @@ export default function Hero() {
           </div>
 
           <div className="animate-hero-in mt-6 flex w-full justify-center [animation-delay:200ms] sm:mt-10">
-            <SubscribeForm id="feliratkozas" />
+            <SubscribeForm id={SUBSCRIBE_FORM_IDS.hero} />
           </div>
         </div>
       </div>

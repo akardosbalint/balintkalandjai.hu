@@ -7,7 +7,7 @@ import { EASE, SPRING } from "@/lib/motion";
 // Minden hely, ahol a látogató már látja a feliratkozó űrlapot (vagy a
 // footert) — ilyenkor a lebegő CTA felesleges, sőt zavaró duplikáció
 // lenne (két "Gyere, tarts velem" gomb egymáson).
-const SUBSCRIBE_FORM_IDS = ["feliratkozas", "feliratkozas-lent"];
+import { ALL_SUBSCRIBE_FORM_IDS, SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 
 /**
  * Görgetés közben visszatérő CTA, ha épp egyik feliratkozó űrlap (Hero,
@@ -22,7 +22,7 @@ export default function StickyCTA() {
   useEffect(() => {
     const footer = document.querySelector("footer");
     const targets = [
-      ...SUBSCRIBE_FORM_IDS.map((id) => document.getElementById(id)),
+      ...ALL_SUBSCRIBE_FORM_IDS.map((id) => document.getElementById(id)),
       footer,
     ].filter((el): el is HTMLElement => el !== null);
     if (targets.length === 0) return;
@@ -47,7 +47,7 @@ export default function StickyCTA() {
   }, []);
 
   function scrollToForm() {
-    document.getElementById("feliratkozas")?.scrollIntoView({
+    document.getElementById(SUBSCRIBE_FORM_IDS.hero)?.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });

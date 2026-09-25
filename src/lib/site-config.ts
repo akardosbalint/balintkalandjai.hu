@@ -16,7 +16,7 @@ export const siteConfig = {
   // hangnemért (SEO + social share preview szöveg). 150-160 karakter
   // körül tartva, hogy a Google ne vágja le a találati listában.
   description:
-    "31 éven át lemaradtam a saját életemről. Most 70 napra Indiába megyek jógát tanulni, nyilvánosan dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
+    "31 éven át lemaradtam a saját életemről. Most behozom: 70 napos indiai út, jógaoktatói képzés, nyilvánosan dokumentálva. Nincsenek válaszaim. Gyere, keressük együtt.",
   // Sorrend a feltételezett elérés/relevancia szerint: a TikTok az eddigi
   // elsődleges, napi videós csatorna, utána a legszélesebb elérésű platformok.
   social: {

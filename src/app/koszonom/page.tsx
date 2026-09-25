@@ -82,7 +82,7 @@ export default function ThankYouPage() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/60 dark:text-sand-100/60">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/65 dark:text-sand-100/60">
           <span>Amíg vársz, kövess élőben:</span>
           <span className="flex flex-wrap justify-center gap-x-3">
             {socialLinks.map((link) => (
