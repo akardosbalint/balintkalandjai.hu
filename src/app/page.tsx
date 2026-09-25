@@ -1,7 +1,6 @@
 import Hero from "@/components/Hero";
 import Story from "@/components/Story";
 import WhatYouGet from "@/components/WhatYouGet";
-import SocialProof from "@/components/SocialProof";
 import SecondCTA from "@/components/SecondCTA";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
@@ -16,8 +15,6 @@ export default function Home() {
       <SectionPath from="inner" to="inner" />
       <WhatYouGet />
       <SectionPath from="inner" to="outer" />
-      <SocialProof />
-      <SectionPath from="outer" to="outer" />
       <SecondCTA />
       <Footer />
       <StickyCTA />

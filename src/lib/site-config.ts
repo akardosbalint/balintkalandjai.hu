@@ -39,7 +39,7 @@ export const siteConfig = {
     // 2026-09-28. Indulás Indiából (Dehradun): 2026-12-03. Érkezés
     // Mo.-ra (= startDate + totalDays - 1): 2026-12-04.
     // totalDays = 70 (2026-09-26 .. 2026-12-04 bezárólag). Ez a szám fut
-    // végig a marketing-szövegeken is (Hero, Story, SocialProof, GYIK,
+    // végig a marketing-szövegeken is (Hero, Story, GYIK,
     // ASZF, OG-kép, ez a description) — korábban ezek külön, változatlanul
     // hagyott "67 nap" (csak az indiai tartózkodás hossza, 2026-09-28 –
     // 2026-12-03) számot használtak, de ez szándékosan egységesítve lett

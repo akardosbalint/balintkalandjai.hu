@@ -4,7 +4,7 @@ import { useId, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
-import { EMAIL_REGEX } from "@/lib/validation";
+import { EMAIL_MAX_LENGTH, EMAIL_REGEX, FIRST_NAME_MAX_LENGTH } from "@/lib/validation";
 import { SUBSCRIBE_EVENTS, trackEvent } from "@/lib/analytics";
 import { SPRING } from "@/lib/motion";
 
@@ -67,14 +67,16 @@ export default function SubscribeForm({
         body: JSON.stringify({ email, firstName, consent, website }),
       });
 
-      const data = await res.json();
+      // Nem-JSON válasz (pl. a hosting HTML hibaoldala egy 504-nél) ne
+      // "hálózati hibaként" landoljon a catch ágban — az HTTP-hiba.
+      const data = await res.json().catch(() => null);
 
       if (!res.ok) {
         trackError(`http_${res.status}`);
         setStatus("error");
         setErrorMessage(
           data?.message ||
-            "Valami elakadt nálunk. Próbáld meg még egyszer egy perc múlva."
+            "Valami elakadt. Próbáld meg még egyszer egy perc múlva."
         );
         return;
       }
@@ -127,6 +129,7 @@ export default function SubscribeForm({
         <input
           id={`${uid}-firstName`}
           name="firstName"
+          maxLength={FIRST_NAME_MAX_LENGTH}
           type="text"
           autoComplete="given-name"
           placeholder="Keresztnév (opcionális)"
@@ -141,6 +144,7 @@ export default function SubscribeForm({
           id={`${uid}-email`}
           name="email"
           type="email"
+          maxLength={EMAIL_MAX_LENGTH}
           required
           autoComplete="email"
           placeholder="te@email.hu"

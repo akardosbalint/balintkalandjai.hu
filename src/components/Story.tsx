@@ -34,10 +34,7 @@ export default function Story() {
         </AnimatedSection>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-[320px_1fr] lg:gap-16">
-          <AnimatedSection
-            delay={0.1}
-            className="group mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none"
-          >
+          <AnimatedSection className="group mx-auto w-full max-w-[260px] lg:sticky lg:top-28 lg:max-w-none">
             <div className="relative aspect-[2/3] overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-forest-900/10 dark:ring-sand-50/10">
               <Image
                 src="/images/kardos-balint-profil.jpg"
@@ -49,10 +46,7 @@ export default function Story() {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection
-            delay={0.2}
-            className="space-y-5 text-lg leading-relaxed text-ink-900/80 dark:text-sand-100/80"
-          >
+          <AnimatedSection className="space-y-5 text-lg leading-relaxed text-ink-900/80 dark:text-sand-100/80">
             {/* MINTA: sok minden, semmi nem tapadt meg */}
             <p>
               Dolgoztam kereskedelemben, csináltam hideghívásokat, voltam már

@@ -13,7 +13,7 @@ const items = [
   {
     title: "Heti 1x 20-30 perces hangfelvétel",
     description:
-      "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel a szoba padlóján ülve.",
+      "Ha feliratkozol, minden vasárnap egy 20-30 perces, vágatlan, exkluzív hanganyag érkezik a postaládádba: mit tanultam, mit rontottam el, min gondolkodtam hajnali négykor a szoba padlóján ülve stb.",
   },
   {
     title: "Nulla szűrő, teljes transzparencia",
@@ -43,13 +43,13 @@ export default function WhatYouGet() {
             Mit kapsz
           </p>
           <h2 className="text-balance font-serif text-3xl leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-            Négy dolog, amire számíthatsz minden hangfelvételben
+            Ezt kapod minden vasárnap
           </h2>
         </AnimatedSection>
 
         <div className="mt-16 grid gap-x-10 gap-y-10 sm:grid-cols-2">
           {items.map((item, i) => (
-            <AnimatedSection key={item.title} delay={0.08 * i}>
+            <AnimatedSection key={item.title}>
               <HoverLiftCard>
                 <span className="font-serif text-2xl tracking-tight text-terracotta-600 dark:text-terracotta-400">
                   {String(i + 1).padStart(2, "0")}

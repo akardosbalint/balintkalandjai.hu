@@ -45,7 +45,7 @@ export default function TermsPage() {
         Általános Szerződési Feltételek
       </h1>
       <p className="mt-2 text-sm text-ink-900/65 dark:text-sand-100/65">
-        Hatályos: 2026. szeptember 3.
+        Hatályos: 2026. szeptember 25.
       </p>
 
       <div className="mt-10 space-y-8 text-ink-900/80 dark:text-sand-100/80">
@@ -73,8 +73,9 @@ export default function TermsPage() {
           <p className="mt-2">
             A weboldal ({siteConfig.url}) jelenleg egyetlen szolgáltatást
             nyújt: egy ingyenes, heti hangfelvételt emailben, amelyben a
-            {" " + siteConfig.ownerFullName} 70 napos indiai jógaoktatói
-            képzésének személyes, vágatlan dokumentálását hallgathatod. A
+            {" " + siteConfig.ownerFullName} 70 napos indiai útjának és
+            jógaoktatói képzésének személyes, vágatlan dokumentálását
+            hallgathatod. A
             hangfelvétel minden vasárnap érkezik, kb. 20-30 perc hosszú, és
             kizárólag a feliratkozók számára elérhető — nem publikus, és
             nem kerül nyilvánosan megosztásra. A heti hangfelvétel mellett
@@ -102,7 +103,7 @@ export default function TermsPage() {
           <p className="mt-2">
             A heti hangfelvételre a főoldalon található űrlapon iratkozhatsz fel,
             email címed (kötelező) és keresztneved (opcionális) megadásával,
-            valamint a feliratkozási feltételek elfogadásával. A
+            valamint a hozzájáruló nyilatkozat (checkbox) bejelölésével. A
             feliratkozás önkéntes, bármikor lemondható, és nem jár semmilyen
             fizetési kötelezettséggel. A feliratkozáskor kezelt
             adatokról bővebben az{" "}

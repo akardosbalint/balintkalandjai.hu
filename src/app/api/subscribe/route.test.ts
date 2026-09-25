@@ -37,6 +37,45 @@ describe("POST /api/subscribe", () => {
     expect(res.status).toBe(400);
   });
 
+  it.each([
+    ["null", null],
+    ["tömb", []],
+    ["szám", 42],
+  ])("400-at ad, ha a JSON body nem objektum (%s)", async (_label, body) => {
+    const res = await POST(makeRequest(body));
+    expect(res.status).toBe(400);
+  });
+
+  it.each([
+    ["email: szám", { ...validBody, email: 123 }],
+    ["firstName: objektum", { ...validBody, firstName: { x: 1 } }],
+  ])("400-at ad nem string mező esetén (%s), nem dob kivételt", async (_label, body) => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+
+    const res = await POST(makeRequest(body));
+    expect(res.status).toBe(400);
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("400-at ad túl hosszú email esetén, és nem hívja a Kit API-t", async () => {
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+
+    const res = await POST(
+      makeRequest({ ...validBody, email: `${"a".repeat(250)}@example.com` })
+    );
+    expect(res.status).toBe(400);
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("400-at ad túl hosszú keresztnév esetén", async () => {
+    const res = await POST(makeRequest({ ...validBody, firstName: "x".repeat(101) }));
+    expect(res.status).toBe(400);
+    const data = await res.json();
+    expect(data.message).toMatch(/keresztnév/);
+  });
+
   it("400-at ad érvénytelen email esetén", async () => {
     const res = await POST(makeRequest({ ...validBody, email: "nem-email" }));
     expect(res.status).toBe(400);
