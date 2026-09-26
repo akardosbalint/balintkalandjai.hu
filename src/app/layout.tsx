@@ -3,6 +3,7 @@ import { Fraunces, Inter, Noto_Sans_Devanagari } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import CookieConsent from "@/components/CookieConsent";
 import ThemeSchedule from "@/components/ThemeSchedule";
@@ -18,10 +19,19 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+// "optional", nem "swap": a szövegtörzs (alcím, form, kártyák) sortörése
+// a tartalék betűtípussal és az Inter-rel eltér, így "swap" esetén a
+// webfont megérkezésekor a hero szövege újratördelődik, és a feliratkozó
+// form lejjebb ugrik (lassított mobilon mért CLS 0.07-0.14). "optional"
+// mellett gyors kapcsolaton (a font preloadolt) ugyanúgy Inter jelenik
+// meg; lassú első látogatásnál a — next/font által méretre hangolt —
+// tartalék betűtípus marad az oldal élettartamára, csere nélkül, a
+// következő oldaltól pedig a gyorsítótárból már az Inter jön. A Fraunces
+// (H1) maradhat "swap": a címsor magassága a két betűtípussal azonos.
 const inter = Inter({
   subsets: ["latin", "latin-ext"],
   variable: "--font-inter",
-  display: "swap",
+  display: "optional",
 });
 
 // Az om (ॐ) jel helyes devanagari glifjéhez — az utazás-jelző jelölőjében.
@@ -111,6 +121,8 @@ export default function RootLayout({
         <ThemeSchedule />
         <Header />
         {children}
+        {/* Minden oldalon (a GYIK-en és a jogi oldalakon is) — korábban csak a főoldalon volt, az aloldalak zsákutcák voltak. */}
+        <Footer />
         <CookieConsent />
       </body>
     </html>

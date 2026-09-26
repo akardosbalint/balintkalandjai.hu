@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Faq, { type FaqItem } from "@/components/Faq";
+import SubscribeForm from "@/components/SubscribeForm";
+import { SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
@@ -43,10 +45,10 @@ const items: FaqItem[] = [
     question: "Pontosan meddig leszel Indiában?",
     answer: (
       <>
-        A gépem szeptember 26-án indul Magyarországról, szeptember 28-án
-        érkezem Indiába. Október 1. és november 28. között tart maga a
-        képzés, utána a terv szerint december 3-án indulok haza (érkezés
-        Mo.-ra december 4.). Van egy kivétel: ha Őszentsége a Dalai
+        Indulás Magyarországról: szeptember 26., érkezés Indiába:
+        szeptember 28. Maga a képzés október 1. és november 28. között
+        tart, a hazaindulás a terv szerint december 3. (érkezés Mo.-ra
+        december 4.). Van egy kivétel: ha Őszentsége a Dalai
         Láma, Tenzin Gyatso december 27-ig bezárólag tanítást tart, ott
         maradok addig — a turistavízumom viszont egyszerre max. 90
         napot enged az országban, ami épp december 27-ig ad időt,
@@ -221,6 +223,22 @@ export default function FaqPage() {
       <div className="mt-10">
         <Faq items={items} />
       </div>
+
+      {/*
+        Aki a GYIK-ig jut, az tipikusan már fontolgatja a feliratkozást —
+        ne kelljen visszanavigálnia a főoldalra a formért.
+      */}
+      <section className="mt-16 rounded-3xl bg-white/60 p-6 ring-1 ring-ink-900/10 dark:bg-forest-600/30 dark:ring-sand-100/10 sm:p-8">
+        <h2 className="font-serif text-2xl text-forest-900 dark:text-sand-50">
+          Kövesd végig élőben
+        </h2>
+        <p className="mt-2 text-ink-900/70 dark:text-sand-100/70">
+          Iratkozz fel, és ha van kérdésed, válaszként is megírhatod.
+        </p>
+        <div className="mt-6">
+          <SubscribeForm id={SUBSCRIBE_FORM_IDS.faq} />
+        </div>
+      </section>
     </main>
   );
 }

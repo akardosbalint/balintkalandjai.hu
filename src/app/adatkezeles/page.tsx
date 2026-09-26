@@ -175,7 +175,12 @@ export default function PrivacyPolicyPage() {
             A weboldal saját sütit nem használ. A böngésződ helyi
             tárhelyében a fenti döntésen kívül legfeljebb a kézzel választott
             téma (világos/sötét) kerül tárolásra, ha a fejlécben lévő
-            kapcsolóval átállítod. A tárhelyszolgáltató (lásd lent) a
+            kapcsolóval átállítod. Feliratkozás után a böngészőfül
+            munkamenet-tárhelyébe (sessionStorage) átmenetileg bekerül az
+            email címed domainje (pl. gmail.com, a cím többi része nem),
+            hogy a köszönőoldalon a megfelelő postafiókra mutató gombot
+            jeleníthessük meg; ez nem kerül továbbításra, és a lap
+            bezárásakor törlődik. A tárhelyszolgáltató (lásd lent) a
             szolgáltatás működtetéséhez technikailag szükséges naplózást
             végezhet.
           </p>

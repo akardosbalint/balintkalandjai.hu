@@ -1,6 +1,7 @@
 import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
 import SubscribeForm from "./SubscribeForm";
+import { SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 
 /**
  * MÁSODIK (ALSÓ) CTA — más szög, mint a hero
@@ -29,7 +30,7 @@ export default function SecondCTA() {
         </AnimatedSection>
 
         <AnimatedSection className="mt-10 flex w-full justify-center">
-          <SubscribeForm id="feliratkozas-lent" />
+          <SubscribeForm id={SUBSCRIBE_FORM_IDS.bottom} />
         </AnimatedSection>
       </div>
     </section>

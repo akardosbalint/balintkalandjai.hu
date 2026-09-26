@@ -15,7 +15,7 @@ import { EASE, SPRING } from "@/lib/motion";
 // pont ott lehet, ahova a banner felcsúszik — ilyenkor a banner lenyeli
 // előle az érintéseket, a látogató nem tud rákoppintani semmire. Ezért a
 // banner nem jelenhet meg, amíg egy feliratkozó űrlap a képernyőn van.
-const SUBSCRIBE_FORM_IDS = ["feliratkozas", "feliratkozas-lent"];
+import { ALL_SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 
 export default function CookieConsent() {
   const [timerElapsed, setTimerElapsed] = useState(false);
@@ -47,7 +47,7 @@ export default function CookieConsent() {
   }, []);
 
   useEffect(() => {
-    const targets = SUBSCRIBE_FORM_IDS.map((id) =>
+    const targets = ALL_SUBSCRIBE_FORM_IDS.map((id) =>
       document.getElementById(id)
     ).filter((el): el is HTMLElement => el !== null);
 

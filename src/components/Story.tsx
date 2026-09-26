@@ -2,6 +2,7 @@ import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
 import OrganicBackground from "./OrganicBackground";
 import Term from "./Term";
+import { SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 
 /**
  * STORY — bemutatkozó narratíva (150–250 szó, ívelt mini-sztori)
@@ -118,10 +119,23 @@ export default function Story() {
               bekészített válaszaim — napi egy videóval (TikTokon,
               Instagramon, YouTube Shortson és Facebookon) és minden
               vasárnap egy hosszabb, őszinte hangfelvétellel dokumentálom
-              majd az utam. Nyilvánosan
+              az utam. Nyilvánosan
               csinálom, hogy legyen, aki számon kérje rajtam — így talán
               könnyebb lesz folytatni a nehéz napokon is. Gyere, nézd végig
               velem.
+            </p>
+
+            {/*
+              CTA a Story végén: mobilon ez ~2600px szöveg, a végére érő
+              olvasónak egy kattintásra legyen a feliratkozás.
+            */}
+            <p>
+              <a
+                href={`#${SUBSCRIBE_FORM_IDS.hero}`}
+                className="-my-2 inline-block py-2 font-medium text-terracotta-600 underline decoration-terracotta-500 underline-offset-4 hover:text-terracotta-700 dark:text-terracotta-400 dark:hover:text-terracotta-300"
+              >
+                Gyere, tarts velem →
+              </a>
             </p>
           </AnimatedSection>
         </div>

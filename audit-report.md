@@ -4,6 +4,8 @@
 **Vizsgált állapot:** production branch `claude/yoga-landing-page-hcauxv` @ `8c84edd` (PR #27 után; ez fut élesben, a Vercel deploy READY)
 **Előzmény:** a 2026-09-23-i audit a git historyban van (`c45195f`, javítási jelölésekkel `9b4d2e2`). Ez a jelentés a mostani kód **teljes, új átvizsgálása**. A korábbi tételek állapotát a 8. fejezet foglalja össze.
 
+> **Második javítási kör (2026-09-25 este):** a CRO/UX-pontozás 3–6. javaslata. Rövidebb, időtől független hero-alcím. Az ajánlat a form tetejére került. Form-akadálymentesség. Footer minden oldalon, form a GYIK-en, CTA a Story végén. Jelen idejű szövegek. Közben mért és javított CLS-regresszió: a webfont-csere miatti újratördelés, az Inter `display: optional` lett.
+>
 > **Javítási kör (2026-09-25, ugyanaznap):** a Top 10 #2, #3, #4, #5 tétele és a 3. fejezet két jogi pontatlansága (10 perces IP-állítás, ÁSZF-elfogadás) javítva. A „Miért higgy nekem” (SocialProof) szekciót a tulajdonos kérésére teljesen eltávolítottuk. A #1 (köszönővideó) a tulajdonos feladata (2026-09-26). A jelentés eredeti szövege változatlan, csak ✅ jelölések kerültek bele.
 
 ### A kitöltött projekt-leírás (az audit-prompt sablonjához)
@@ -66,13 +68,13 @@
 
 **Javaslat:** az `AnimatedSection` kapja meg ugyanazt a mintát, mint a hero. Egy `noscript` stílus (`<noscript><style>[data-animate]{opacity:1!important;transform:none!important}</style></noscript>`), vagy CSS-es `animation-timeline: view()` / IntersectionObserver + class-toggle, `opacity:0` szerver-oldali kezdőállapot nélkül.
 
-### 🟡 Közepes — A form hibaüzenete nincs a mezőhöz kötve, és a fókusz nem mozdul
+### 🟡 Közepes — A form hibaüzenete nincs a mezőhöz kötve, és a fókusz nem mozdul ✅ Javítva
 **Hely:** `src/components/SubscribeForm.tsx:45-58` (kliens validáció), `:190-200` (`role="alert"` a gomb **alatt**)
 **Bizonyíték:** a `grep aria-invalid src` üres. Hibás email vagy hiányzó pipa esetén a fókusz a gombon marad.
 **Miért probléma:** WCAG 3.3.1 / 1.3.1 hiányosság. A képernyőolvasó nem tudja, melyik mező hibás. Mobilon a gomb alatti hibaüzenet könnyen kilóg a látómezőből, miközben a hiba a gomb fölötti mezőben van.
 **Javaslat:** mezőnkénti hibaállapot, `aria-invalid` + `aria-describedby`, és hibánál `focus()` a hibás mezőre.
 
-### 🟡 Közepes — Az űrlapmezők kerete nem éri el a 3:1 nem-szöveges kontrasztot (WCAG 1.4.11)
+### 🟡 Közepes — Az űrlapmezők kerete nem éri el a 3:1 nem-szöveges kontrasztot (WCAG 1.4.11) ✅ Javítva (`/55` világos módban = 3,33:1; a „/40 ≈ 3:1” becslés tévesnek bizonyult, csak 2,27:1)
 **Hely:** `src/components/SubscribeForm.tsx:135,149` — `border-forest-800/15` a `sand-50` háttéren
 **Bizonyíték:** számítva **1,32:1**. A mobil képernyőképen (hero és alsó CTA) a mezők csak az enyhe fehér kitöltésből sejthetők.
 **Javaslat:** `border-forest-800/40` (≈3:1), sötét módban `border-sand-50/40`.
@@ -90,7 +92,7 @@
 - Az 1. kártya leírása szóljon a formátumról, pl. „Minden vasárnap egy 20–30 perces, vágatlan hanganyag érkezik az emailedbe — kizárólag feliratkozóknak.”
 - A „highlight reel / director's cut” kép maradjon egy helyen, a 3. kártyában.
 
-### 🟢 Alacsony — Koppintási célok 24 px alatt (WCAG 2.5.8)
+### 🟢 Alacsony — Koppintási célok 24 px alatt (WCAG 2.5.8) ✅ Részben javítva (checkbox 20×20 px)
 **Hely / bizonyíték (Playwright DOM-mérés, 390 px):**
 - a checkbox 16×16 px (`SubscribeForm.tsx`, mindkét form);
 - az `ECO` link 38×21 px (`Story.tsx:88-95`);
@@ -99,7 +101,7 @@
 **Megjegyzés:** a checkbox teljes címkéje kattintható, ezért ott a gyakorlati kockázat kicsi. A szövegközi linkekre a 2.5.8 kivételt ad.
 **Javaslat:** checkbox `h-5 w-5`, a „Vissza” linkre `py-2 -my-2` (a Footer már így csinálja).
 
-### 🟢 Alacsony — Kontraszthiba a két poszt-konverziós oldalon (nyitva 09-23 óta)
+### 🟢 Alacsony — Kontraszthiba a két poszt-konverziós oldalon (nyitva 09-23 óta) ✅ Javítva
 **Hely:** `src/app/koszonom/page.tsx:85`, `src/app/megerositve/page.tsx:86` — `text-sm text-ink-900/60`
 **Bizonyíték:** **4,35:1** a `sand-50` háttéren, az AA küszöb 4,5:1.
 **Javaslat:** `/65`.
@@ -146,7 +148,7 @@
 
 Holnaptól az első napi videók is beágyazhatók vagy linkelhetők.
 
-### 🟡 Közepes — A Story mobilon ~3 képernyőnyi, CTA nélküli szövegfal
+### 🟡 Közepes — A Story mobilon ~3 képernyőnyi, CTA nélküli szövegfal ✅ Részben javítva (CTA-link a végén; a felsorolás hossza változatlan)
 **Hely:** `src/components/Story.tsx:56-131`
 **Bizonyíték:** a Story szekció mobilon **2 613 px** magas (képernyőkép), ebből ~1 900 px folyószöveg. Az első bekezdés (`:57-82`) egyetlen, 20+ elemű felsorolás. A teljes főoldal 8 051 px, a két form között ~5 500 px van.
 **Miért probléma:** a görgető mobil olvasó a Story közepén elveszítheti a fonalat, és a (fent leírt okból gyakran hiányzó) sticky CTA nem segít.
@@ -154,7 +156,7 @@ Holnaptól az első napi videók is beágyazhatók vagy linkelhetők.
 - Az első bekezdés felsorolását rövidítsd 5–6 legerősebb elemre (a lista maga a bizonyíték, de a hossza fáraszt).
 - A Story végére tegyél egy egysoros CTA-linket („Gyere, tarts velem →” → `#feliratkozas`).
 
-### 🟡 Közepes — A copy még jövő időben szól, holnap indul az út
+### 🟡 Közepes — A copy még jövő időben szól, holnap indul az út ✅ Javítva (időtől független hero-alcím és meta leírás, jelen idejű Story, dátumos GYIK)
 **Hely:** `src/components/Hero.tsx:130` („Most Indiáig megyek…”), `Story.tsx:121-130` („dokumentálom majd”), `src/components/JourneyProgress.tsx:29-34` (csak a számláló vált fázist)
 **Miért probléma:** holnaptól a JourneyProgress „Az utam 1. napját élem” feliratot mutat, a hero és a Story viszont indulás előtti nézőpontból beszél. Dec. 4. után (`phase === "after"`) az egész oldal egy lezárult útra toboroz.
 **Javaslat:** a meglévő `getJourneyDayInfo()` alapján fázisfüggő alcím (before / during / after). Legalább a „dokumentálom majd” → „dokumentálom” csere az indulás után.
@@ -167,7 +169,7 @@ Holnaptól az első napi videók is beágyazhatók vagy linkelhetők.
 
 **Javaslat:** „a napi videó a kirakat, a heti hangfelvétel a teljes, vágatlan változat”; „3,5”; mindenhol E/1.
 
-### 🟢 Alacsony — Tartalmi pontatlanság: „70 napot töltök Rishikeshben”
+### 🟢 Alacsony — Tartalmi pontatlanság: „70 napot töltök Rishikeshben” ✅ Javítva (hero, OG-kép; az ÁSZF a PR #28-ban)
 **Hely:** `Hero.tsx:130-131`, `src/app/opengraph-image.tsx:12` („70 nap Rishikeshben”), `src/app/aszf/page.tsx:76` („70 napos … jógaoktatói **képzésének**”)
 **Bizonyíték:** a `site-config.ts:34-49` szerint a 70 nap ajtótól ajtóig számít (két utazási nappal), az akkreditált képzés 59 napos (10.01–11.28). A `Story.tsx` helyesen „összesen 70 napot töltök Indiában”.
 **Javaslat:** „70 napos út, nagyrészt Rishikeshben”. Az ÁSZF-ben: „70 napos indiai útjának”.
@@ -376,9 +378,9 @@ A hero-javítás (PR #23) mérhetően működik: a lassított mobil LCP ~3× gyo
 | 3 | ✅ `AnimatedSection`: ne induljon `opacity:0`-ról a szerver-HTML-ben (`noscript` fallback vagy CSS-animáció) → a Story, a kártyák és a 2. form JS nélkül is látszik | 🟠 Magas | Kicsi | 1. pont |
 | 4 | ✅ API futásidejű típus- és hosszellenőrzés + 3 teszt → nincs több 500, nincs 5000 karakteres email | 🟡 Közepes | Triviális | 3. pont |
 | 5 | ✅ A „Mit kapsz” címének és az 1. kártya leírásának összehangolása; a SocialProof kártyái ismétlés helyett ellenőrizhető bizonyítékot adjanak (profil-linkek, képzőhely) | 🟡 Közepes | Kicsi (copy) | 1. és 2. pont |
-| 6 | Form a11y: mezőkeret ≥ 3:1, `aria-invalid`/`aria-describedby`, fókusz a hibás mezőre; `/60` → `/65` | 🟡 Közepes | Kicsi | 1. pont |
+| 6 | ✅ Form a11y: mezőkeret ≥ 3:1, `aria-invalid`/`aria-describedby`, fókusz a hibás mezőre; `/60` → `/65` | 🟡 Közepes | Kicsi | 1. pont |
 | 7 | Az Adatkezelési tájékoztató „legfeljebb 10 perc” állításának és a kódnak az összehangolása; ÁSZF-link a checkboxba | 🟡 Közepes | Triviális | 3. pont |
-| 8 | Fázisfüggő copy az indulás után (legalább „dokumentálom majd” → „dokumentálom”), a Story végére CTA-link | 🟡 Közepes | Kicsi | 2. pont |
+| 8 | ✅ Fázisfüggő copy az indulás után (legalább „dokumentálom majd” → „dokumentálom”), a Story végére CTA-link | 🟡 Közepes | Kicsi | 2. pont |
 | 9 | JSON-LD (`FAQPage`, `Person`/`WebSite`); a `/koszonom` és `/megerositve` kivétele a robots `disallow`-ból | 🟡 Közepes | Kicsi | 7. pont |
 | 10 | `next` 15.5.26 patch + `poweredByHeader: false` + `res.json().catch` a formban | 🟢 Alacsony | Triviális | 3., 5. pont |
 

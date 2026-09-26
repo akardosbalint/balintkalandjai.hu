@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import OpenInboxButton from "@/components/OpenInboxButton";
 import OrganicBackground from "@/components/OrganicBackground";
 import { siteConfig } from "@/lib/site-config";
 
@@ -40,6 +41,8 @@ export default function ThankYouPage() {
           Küldtem egy megerősítő emailt — kattints a benne lévő linkre, hogy
           valóban megkapd a heti hangfelvételt.
         </p>
+
+        <OpenInboxButton />
 
         <div className="mt-8 w-full max-w-xs overflow-hidden rounded-3xl bg-forest-900/5 shadow-lg dark:bg-sand-50/5">
           <video
@@ -82,7 +85,7 @@ export default function ThankYouPage() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/60 dark:text-sand-100/60">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/65 dark:text-sand-100/60">
           <span>Amíg vársz, kövess élőben:</span>
           <span className="flex flex-wrap justify-center gap-x-3">
             {socialLinks.map((link) => (
