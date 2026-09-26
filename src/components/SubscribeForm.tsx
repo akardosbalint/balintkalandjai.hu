@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/site-config";
 import { EMAIL_MAX_LENGTH, EMAIL_REGEX, FIRST_NAME_MAX_LENGTH } from "@/lib/validation";
 import { SUBSCRIBE_EVENTS, trackEvent } from "@/lib/analytics";
+import { getEmailDomain, SUBSCRIBED_DOMAIN_STORAGE_KEY } from "@/lib/mail-providers";
 import { SPRING } from "@/lib/motion";
 
 type Status = "idle" | "loading" | "error";
@@ -96,6 +97,14 @@ export default function SubscribeForm({
       }
 
       trackEvent(SUBSCRIBE_EVENTS.success, { form_location: formLocation });
+      // A köszönőoldal "Irány a postaládám" gombjához: csak a domain
+      // (pl. gmail.com), csak erre a böngészőfülre (sessionStorage).
+      try {
+        const domain = getEmailDomain(email);
+        if (domain) window.sessionStorage.setItem(SUBSCRIBED_DOMAIN_STORAGE_KEY, domain);
+      } catch {
+        // Letiltott tárhely — a köszönőoldal ilyenkor gomb nélkül jelenik meg.
+      }
       router.push("/koszonom");
     } catch {
       trackError("network");

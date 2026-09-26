@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import OpenInboxButton from "@/components/OpenInboxButton";
 import OrganicBackground from "@/components/OrganicBackground";
 import { siteConfig } from "@/lib/site-config";
 
@@ -40,6 +41,8 @@ export default function ThankYouPage() {
           Küldtem egy megerősítő emailt — kattints a benne lévő linkre, hogy
           valóban megkapd a heti hangfelvételt.
         </p>
+
+        <OpenInboxButton />
 
         <div className="mt-8 w-full max-w-xs overflow-hidden rounded-3xl bg-forest-900/5 shadow-lg dark:bg-sand-50/5">
           <video
