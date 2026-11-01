@@ -1,0 +1,8 @@
+{
+  "name": "Bálint Kalandjai — Indiai Jóga Útinapló",
+  "description": "Kardos Bálint 70 napos indiai jógaoktatói képzésének és utazásának személyes heti útinaplója és hangfelvételei.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

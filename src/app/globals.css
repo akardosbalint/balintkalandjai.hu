@@ -83,3 +83,28 @@ body {
     }
   }
 }
+
+@media print {
+  header,
+  footer,
+  nav,
+  .grain-overlay::after,
+  [data-no-print="true"] {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+  main {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .dark {
+    --background: #ffffff;
+    --foreground: #111111;
+  }
+}
+
+
+

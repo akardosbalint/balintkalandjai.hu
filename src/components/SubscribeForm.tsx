@@ -76,10 +76,16 @@ export default function SubscribeForm({
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/subscribe", {
+      const res = await fetch("/api/sender/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName, consent, website }),
+        body: JSON.stringify({
+          formId: "en5vrE",
+          email,
+          firstName,
+          consent,
+          website,
+        }),
       });
 
       // Nem-JSON válasz (pl. a hosting HTML hibaoldala egy 504-nél) ne

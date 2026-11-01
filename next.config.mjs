@@ -13,20 +13,19 @@ const isDev = process.env.NODE_ENV === "development";
 
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data:",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://cdn.sender.net https://js.stripe.com`,
+  "style-src 'self' 'unsafe-inline' https://cdn.sender.net",
+  "img-src 'self' data: https://cdn.sender.net https://stats.sender.net https://*.stripe.com",
   "font-src 'self' data:",
-  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com",
-  "frame-ancestors 'none'",
+  "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://cdn.sender.net https://stats.sender.net https://api.stripe.com",
+  "frame-src 'self' https://donate.stripe.com https://js.stripe.com",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://stats.sender.net",
   "object-src 'none'",
 ].join("; ");
 
 const SECURITY_HEADERS = [
   { key: "Content-Security-Policy", value: CONTENT_SECURITY_POLICY },
-  { key: "X-Frame-Options", value: "DENY" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
@@ -37,6 +36,8 @@ const SECURITY_HEADERS = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
+  poweredByHeader: false,
   async headers() {
     return [
       {
@@ -60,6 +61,16 @@ const nextConfig = {
       {
         source: "/faq",
         destination: "/gyik",
+        permanent: true,
+      },
+      {
+        source: "/alapozo-koszonum",
+        destination: "/alapozo-koszonom",
+        permanent: true,
+      },
+      {
+        source: "/alapozo-koszonjuk",
+        destination: "/alapozo-koszonom",
         permanent: true,
       },
     ];

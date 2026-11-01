@@ -71,28 +71,32 @@ export default function TermsPage() {
             2. A szolgáltatás
           </h2>
           <p className="mt-2">
-            A weboldal ({siteConfig.url}) jelenleg egyetlen szolgáltatást
-            nyújt: egy ingyenes, heti hangfelvételt emailben, amelyben a
-            {" " + siteConfig.ownerFullName} 70 napos indiai útjának és
-            jógaoktatói képzésének személyes, vágatlan dokumentálását
-            hallgathatod. A
-            hangfelvétel minden vasárnap érkezik, kb. 20-30 perc hosszú, és
-            kizárólag a feliratkozók számára elérhető — nem publikus, és
-            nem kerül nyilvánosan megosztásra. A heti hangfelvétel mellett
-            napi videós tartalom is elérhető TikTokon, Instagramon, YouTube
-            Shortson és Facebookon, ez azonban nem a weboldalon keresztül,
-            hanem az adott platformokon zajlik, és nem tartozik ennek az
-            ÁSZF-nek a hatálya alá.
+            A weboldal ({siteConfig.url}) ingyenes digitális tartalmakat és
+            önismereti, meditációs e-mail kurzusokat nyújt:
           </p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            <li>
+              Egy ingyenes, heti hangfelvételt emailben, amelyben {siteConfig.ownerFullName}
+              70 napos indiai útjának és jógaoktatói képzésének személyes, vágatlan
+              dokumentálása hallgatható meg minden vasárnap.
+            </li>
+            <li>
+              A <strong>Nirmana Meditációs Alapozó</strong> ingyenes, 7 napos e-mail
+              kurzust (/alapozo), amely kezdőknek és újrakezdőknek szóló napi leckékkel,
+              vezetett meditációkkal és bónuszfelülettel támogatja az önálló gyakorlás
+              elkezdését.
+            </li>
+          </ul>
           <p className="mt-2">
-            A szolgáltatás jelenleg{" "}
+            A szolgáltatás valamennyi alapvető tananyaga{" "}
             <strong className="font-medium text-forest-900 dark:text-sand-50">
               teljesen ingyenes
             </strong>
-            , fizetős terméket vagy előfizetést a weboldal nem árul, és
-            fizetési adatot nem kér be. Ha ez a jövőben változik (pl.
-            fizetős program indul), ezt a dokumentumot előtte frissítem, és
-            a változásról a heti hangfelvételben is tájékoztatlak.
+            , fizetési kötelezettséggel nem jár. A köszönőoldalon a látogatóknak
+            lehetőségük van önkéntes támogatás nyújtására a Stripe biztonságos fizetési
+            rendszerén keresztül („Customer Chooses Price”), hozzájárulva a további ingyenes
+            anyagok elkészítéséhez. Ez a támogatás teljesen opcionális, és nem feltétele a
+            kurzusok elérésének vagy sikeres elvégzésének.
           </p>
         </section>
 

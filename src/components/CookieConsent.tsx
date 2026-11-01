@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { getStoredConsent, setStoredConsent } from "@/lib/analytics";
+import { getStoredConsent, setStoredConsent, OPEN_CONSENT_EVENT } from "@/lib/analytics";
 import { EASE, SPRING } from "@/lib/motion";
 
 // Ugyanazok az id-k, amikkel a StickyCTA is figyeli, hogy épp látszik-e
@@ -110,9 +110,21 @@ export default function CookieConsent() {
     };
   }, [visible]);
 
+  useEffect(() => {
+    function handleOpen() {
+      setDecided(false);
+      setTimerElapsed(true);
+      setFormInView(false);
+      setVisible(true);
+    }
+    window.addEventListener(OPEN_CONSENT_EVENT, handleOpen);
+    return () => window.removeEventListener(OPEN_CONSENT_EVENT, handleOpen);
+  }, []);
+
   function handleChoice(choice: "granted" | "denied") {
     setStoredConsent(choice);
     setDecided(true);
+    setVisible(false);
   }
 
   return (

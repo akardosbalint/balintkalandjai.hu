@@ -1,5 +1,11 @@
 export const CONSENT_STORAGE_KEY = "cookie-consent";
 export const CONSENT_EVENT = "cookie-consent-changed";
+export const OPEN_CONSENT_EVENT = "open-cookie-consent";
+
+export function openCookieConsent() {
+  if (typeof window === "undefined") return;
+  window.dispatchEvent(new CustomEvent(OPEN_CONSENT_EVENT));
+}
 
 export type ConsentChoice = "granted" | "denied";
 

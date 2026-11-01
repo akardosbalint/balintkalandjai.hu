@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { SUBSCRIBE_EVENTS, trackEvent } from "./analytics";
+import { SUBSCRIBE_EVENTS, trackEvent, openCookieConsent, OPEN_CONSENT_EVENT } from "./analytics";
 
 describe("trackEvent", () => {
   afterEach(() => {
@@ -24,5 +24,22 @@ describe("trackEvent", () => {
 
   it("szerver oldalon (window nélkül) csendben nem csinál semmit", () => {
     expect(() => trackEvent(SUBSCRIBE_EVENTS.error)).not.toThrow();
+  });
+
+  it("openCookieConsent dispatch-eli az OPEN_CONSENT_EVENT eseményt", () => {
+    const dispatchEvent = vi.fn();
+    // @ts-expect-error test mock
+    globalThis.CustomEvent = class {
+      type: string;
+      constructor(type: string) {
+        this.type = type;
+      }
+    };
+    vi.stubGlobal("window", { dispatchEvent });
+
+    openCookieConsent();
+    expect(dispatchEvent).toHaveBeenCalledWith(
+      expect.objectContaining({ type: OPEN_CONSENT_EVENT })
+    );
   });
 });

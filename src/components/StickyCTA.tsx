@@ -15,7 +15,15 @@ import { ALL_SUBSCRIBE_FORM_IDS, SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-form
  * sáv, desktopon diszkrétebb, lebegő gomb jobb alul, hogy ne törje meg
  * az olvasást.
  */
-export default function StickyCTA() {
+interface StickyCTAProps {
+  targetId?: string;
+  label?: string;
+}
+
+export default function StickyCTA({
+  targetId = SUBSCRIBE_FORM_IDS.hero,
+  label = "Gyere, tarts velem",
+}: StickyCTAProps = {}) {
   const [visible, setVisible] = useState(false);
   const intersectingKeys = useRef(new Set<string>());
 
@@ -47,7 +55,7 @@ export default function StickyCTA() {
   }, []);
 
   function scrollToForm() {
-    document.getElementById(SUBSCRIBE_FORM_IDS.hero)?.scrollIntoView({
+    document.getElementById(targetId)?.scrollIntoView({
       behavior: "smooth",
       block: "center",
     });
@@ -74,7 +82,7 @@ export default function StickyCTA() {
             transition={SPRING.hover}
             className="w-full rounded-full bg-saffron-500 px-6 py-3.5 font-medium text-forest-900 shadow-soft outline-none transition-colors duration-200 hover:bg-saffron-600 focus-visible:ring-2 focus-visible:ring-forest-900/40 dark:focus-visible:ring-sand-50/50 sm:w-auto sm:px-7 sm:shadow-glow-saffron"
           >
-            Gyere, tarts velem
+            {label}
           </motion.button>
         </motion.div>
       )}

@@ -5,7 +5,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { DURATION, EASE } from "@/lib/motion";
 import JourneyProgress from "./JourneyProgress";
 import OrganicBackground from "./OrganicBackground";
-import SubscribeForm from "./SubscribeForm";
+import SenderForm from "./SenderForm";
 import Term from "./Term";
 import { SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 
@@ -168,7 +168,7 @@ export default function Hero() {
           </div>
 
           <div className="animate-hero-in mt-6 flex w-full justify-center [animation-delay:200ms] sm:mt-10">
-            <SubscribeForm id={SUBSCRIBE_FORM_IDS.hero} />
+            <SenderForm formId="en5vrE" id={SUBSCRIBE_FORM_IDS.hero} />
           </div>
         </div>
       </div>

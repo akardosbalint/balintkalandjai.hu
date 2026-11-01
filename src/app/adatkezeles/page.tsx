@@ -64,35 +64,32 @@ export default function PrivacyPolicyPage() {
             2. Milyen adatokat kezelünk
           </h2>
           <p className="mt-2">
-            A weboldal jelenleg egyetlen ponton kér el adatot: a heti
-            hangfelvételre való feliratkozáskor (a főoldalon található feliratkozó
-            űrlapon). Ekkor az alábbi adatokat kérem el és kezelem:
+            A weboldal feliratkozási pontjain (a főoldalon az indiai utazási heti
+            hangfelvételre, illetve a /alapozo oldalon a Nirmana Meditációs Alapozóra)
+            az alábbi adatokat kérem el és kezelem:
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>email cím (kötelező)</li>
             <li>keresztnév (opcionális, ha megadod)</li>
             <li>
               a feliratkozás és a megerősítés időpontja, valamint azok a
-              technikai adatok, amelyeket a Kit rendszere a hozzájárulásod
-              igazolására rögzít (pl. amikor a megerősítő emailben lévő
-              linkre kattintasz)
+              technikai adatok, amelyeket a feliratkozási rendszer (Sender.net)
+              a hozzájárulásod igazolására rögzít (pl. amikor a megerősítő
+              emailben lévő linkre kattintasz a double opt-in folyamatban)
             </li>
           </ul>
           <p className="mt-2">
-            Az űrlap elküldésekor a weboldal szervere az IP-címedet
-            kizárólag a szerver memóriájában tartja nyilván, hogy kiszűrje a
-            tömeges, automatizált (bot) feliratkozási kísérleteket: azt
-            számolja, hány kérés érkezett ugyanarról a címről az elmúlt 10
-            percben. A 10 percnél régebbi bejegyzéseket a szerver a
-            következő beérkező feliratkozási kérés feldolgozásakor törli, a
-            szerverfolyamat leállásakor pedig minden bejegyzés megszűnik.
-            Ezt nem mentem el tartósan, és nem adom tovább a Kitnek — a Kit
-            a feliratkozáskor csak az email címedet és (ha megadtad) a
-            keresztnevedet kapja meg.
+            Az űrlap elküldésekor a feliratkozási szolgáltató a visszaélések
+            kiszűrésére és a jogosultság igazolására technikai adatokat kezelhet.
+            Amennyiben a köszönőoldalon az önkéntes támogatás mellett döntesz,
+            a fizetési tranzakciót közvetlenül a Stripe (Stripe Technology Europe,
+            Limited) kezeli. A weboldal és a szerverünk bankkártyaadatot,
+            CVC-kódot vagy kártyaszámot semmilyen formában nem kér be, nem lát,
+            és nem tárol.
           </p>
           <p className="mt-2">
-            Az űrlapon kívül más adatgyűjtési pont (pl. regisztráció,
-            fizetés, kapcsolatfelvételi form) jelenleg nincs az oldalon.
+            A feliratkozási űrlapokon és az önkéntes Stripe-támogatáson kívül más
+            adatgyűjtési pont (pl. felhasználói fiók, kötelező fizetés) nincs az oldalon.
           </p>
         </section>
 
@@ -191,13 +188,24 @@ export default function PrivacyPolicyPage() {
             5. Adatfeldolgozók
           </h2>
           <p className="mt-2">
-            A heti hangfelvételek kiküldéséhez a Kit, Inc. (USA) szolgáltatását
-            használom, amely adatfeldolgozóként a GDPR előírásai szerint kezeli
-            az adatokat. Adatfeldolgozói szerződésük elérhető a Kit honlapján
-            (Data Processing Agreement). Az USA-ba történő adattovábbítás a
-            Kit által biztosított garanciák (pl. Standard Szerződéses
-            Feltételek) mellett történik — a pontos jogalapot érdemes
-            közvetlenül a Kittel kötött feldolgozói szerződésben ellenőrizni.
+            <strong>Sender.net (Sender.net UAB, Litvánia, Európai Unió):</strong>{" "}
+            A feliratkozási űrlapok kezeléséhez, a double opt-in megerősítési
+            folyamathoz, valamint a heti hangfelvételek és a Nirmana Meditációs
+            Alapozó napi oktató leveleinek kiküldéséhez a Sender.net szolgáltatását
+            használom. Adatfeldolgozóként az Európai Unióban bejegyzett vállalatként
+            a GDPR rendelkezései szerint jár el.
+          </p>
+          <p className="mt-2">
+            <strong>Stripe (Stripe Technology Europe, Limited, Írország, Európai Unió):</strong>{" "}
+            A köszönőoldalon felajánlott önkéntes támogatások biztonságos, PCI-DSS Level 1
+            minősítésű feldolgozását végző pénzügyi szolgáltató partner. A fizetési
+            tranzakció során megadott kártyaadatokat közvetlenül a Stripe dolgozza fel,
+            a weboldal szervere ezekhez nem fér hozzá.
+          </p>
+          <p className="mt-2">
+            A korábbi vagy alternatív heti hangfelvételek kiküldéséhez kapcsolódóan a
+            Kit, Inc. (USA) szolgáltatása is szerepelhet, amely adatfeldolgozóként a
+            GDPR előírásai és a Standard Szerződéses Feltételek szerint kezeli az adatokat.
           </p>
           <p className="mt-2">
             A weboldal tárhelyét a Vercel Inc. (USA) biztosítja, amely a

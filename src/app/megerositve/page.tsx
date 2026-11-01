@@ -18,12 +18,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const socialLinks = [
-  { href: siteConfig.social.tiktok, label: "TikTok" },
-  { href: siteConfig.social.instagram, label: "Instagram" },
-  { href: siteConfig.social.youtube, label: "YouTube" },
-  { href: siteConfig.social.facebook, label: "Facebook" },
-];
+import SocialLinks from "@/components/SocialLinks";
 
 export default function ConfirmedPage() {
   return (
@@ -83,21 +78,9 @@ export default function ConfirmedPage() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-sm text-ink-900/65 dark:text-sand-100/60">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-ink-900/65 dark:text-sand-100/60">
           <span>Amíg vársz, kövess élőben:</span>
-          <span className="flex flex-wrap justify-center gap-x-3">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                className="-my-2 inline-block py-2 underline decoration-terracotta-500 underline-offset-2 hover:text-ink-900 dark:hover:text-sand-50"
-              >
-                {link.label}
-              </a>
-            ))}
-          </span>
+          <SocialLinks className="flex flex-wrap justify-center gap-x-3" />
         </div>
 
         <Link

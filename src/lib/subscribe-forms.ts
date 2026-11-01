@@ -7,6 +7,8 @@ export const SUBSCRIBE_FORM_IDS = {
   hero: "feliratkozas",
   bottom: "feliratkozas-lent",
   faq: "feliratkozas-gyik",
+  alapozo: "alapozo-form",
+  alapozoBottom: "alapozo-form-bottom",
 } as const;
 
 export const ALL_SUBSCRIBE_FORM_IDS: readonly string[] = Object.values(SUBSCRIBE_FORM_IDS);

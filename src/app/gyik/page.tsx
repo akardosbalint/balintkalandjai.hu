@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Faq, { type FaqItem } from "@/components/Faq";
-import SubscribeForm from "@/components/SubscribeForm";
+import SenderForm from "@/components/SenderForm";
 import { SUBSCRIBE_FORM_IDS } from "@/lib/subscribe-forms";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
@@ -202,9 +202,116 @@ const items: FaqItem[] = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Miről szól ez az oldal?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `${siteConfig.ownerFullName} 70 napos indiai jógaoktatói képzésének élő, szűretlen dokumentálása: napi videó Rishikeshből (TikTokon, Instagramon, YouTube Shortson és Facebookon), plusz minden vasárnap egy 20-30 perces, vágatlan hangfelvétel emailben kizárólag feliratkozóknak.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Pontosan meddig leszel Indiában?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Indulás Magyarországról: szeptember 26., érkezés Indiába: szeptember 28. Maga a képzés október 1. és november 28. között tart, a hazaindulás a terv szerint december 3. (érkezés Mo.-ra december 4.).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Kell fizetnem a heti hangfelvételért?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nem. A heti hangfelvétel jelenleg teljesen ingyenes, nincs mögötte fizetős termék vagy előfizetés.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Milyen gyakran érkezik a hangfelvétel?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Heti 1x, minden vasárnap: egy 20-30 perces, vágatlan hanganyag arról, ami a napi videók mögött valójában történik.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Miben más a heti hangfelvétel, mint a napi videós tartalom?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A napi videó a highlight reel — azt bárki láthatja. A heti hangfelvétel a director's cut, kizárólag feliratkozóknak: mit tanultam, mit rontottam el, min gondolkodtam négykor éjjel — a nyitott, még lezáratlan kérdésekkel együtt.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Csak a videós tartalmakat is követhetem, a heti hangfelvétel nélkül?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Igen — a TikTok, Instagram, YouTube Shorts és Facebook profilom bárki számára nyitott, nem kell hozzá feliratkoznod semmire.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Milyen adatokat kezelsz, ha feliratkozom?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Az email címedet (kötelező) és opcionálisan a keresztnevedet az Adatkezelési tájékoztatóban foglaltak szerint.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Használ az oldal sütiket vagy analitikát?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Google Analyticset használunk a látogatottság mérésére Consent Mode-ban: hozzájárulás nélkül csak süti nélküli anonim jeleket küld, elfogadás esetén sütit is elhelyez.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hogyan iratkozhatok le?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Bármikor, egy kattintással minden email alján található linken keresztül, vagy a ${siteConfig.email} címre küldött levélben.`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Mi az a RYT-500 és a Yoga Alliance International?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Az RYT-500 egy regisztrált, 500 órás jógaoktató-képzés minősítés. A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Lesz-e a jövőben fizetős program?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Elképzelhető. Ha ez megvalósul, a feliratkozók előre értesítést kapnak róla, és az Általános Szerződési Feltételek is frissülnek.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hogyan érhetlek el, ha kérdésem van?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `Emailben, a ${siteConfig.email} címen — igyekszem személyesen válaszolni.`,
+      },
+    },
+  ],
+};
+
 export default function FaqPage() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <Link
         href="/"
         className="text-sm text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
@@ -236,7 +343,7 @@ export default function FaqPage() {
           Iratkozz fel, és ha van kérdésed, válaszként is megírhatod.
         </p>
         <div className="mt-6">
-          <SubscribeForm id={SUBSCRIBE_FORM_IDS.faq} />
+          <SenderForm formId="en5vrE" id={SUBSCRIBE_FORM_IDS.faq} />
         </div>
       </section>
     </main>
