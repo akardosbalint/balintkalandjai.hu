@@ -3,6 +3,7 @@ import Link from "next/link";
 import OpenInboxButton from "@/components/OpenInboxButton";
 import OrganicBackground from "@/components/OrganicBackground";
 import SocialLinks from "@/components/SocialLinks";
+import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
 import { siteConfig } from "@/lib/site-config";
 
 const pageTitle = "Örülök, hogy itt vagy! — Nirmana Meditációs Alapozó";
@@ -15,18 +16,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-// Megadott Stripe konfiguráció a Master Prompt 7.1 fejezetéből
-const STRIPE_CONFIG = {
-  productId: "prod_VViI8xPpi26jGI",
-  priceId: "price_1UUhg8KKK49wrBvLjC2eSnDa",
-  paymentLink: "https://donate.stripe.com/14A28sa33gxg4Ii0YM57W00",
-} as const;
-
 export default async function AlapozoKoszonomPage(props: {
-  searchParams: Promise<{ payment?: string }>;
+  searchParams: Promise<{ payment?: string; session_id?: string }>;
 }) {
   const searchParams = await props.searchParams;
-  const isPaymentSuccess = searchParams?.payment === "success";
+  const isPaymentSuccess =
+    searchParams?.payment === "success" || Boolean(searchParams?.session_id);
 
   return (
     <main className="relative isolate flex min-h-[90vh] flex-col items-center overflow-hidden px-6 py-20 sm:py-28">
@@ -136,20 +131,9 @@ export default async function AlapozoKoszonomPage(props: {
             </p>
           </div>
 
-          {/* Stripe fizetési gomb a megadott Price / Payment linkkel */}
-          <div className="mt-6 flex flex-col items-center">
-            <a
-              href={STRIPE_CONFIG.paymentLink}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex w-full items-center justify-center rounded-full bg-saffron-500 px-7 py-3.5 text-center font-medium text-forest-900 shadow-soft outline-none transition-all duration-200 hover:bg-saffron-600 hover:shadow-glow-saffron sm:w-auto"
-            >
-              Önkéntesen támogatom a munkád
-            </a>
-
-            <p className="mt-2 text-center text-xs text-ink-900/60 dark:text-sand-100/60">
-              Biztonságos Stripe fizetés · Tetszőleges önkéntes összeg (Customer Chooses Price)
-            </p>
+          {/* Stripe beágyazott checkout vagy intelligens fallback a hivatalos Payment Linkre */}
+          <div className="mt-6 w-full">
+            <StripeEmbeddedCheckout buttonLabel="Önkéntesen támogatom a munkád" />
           </div>
 
           <p className="mt-6 text-center text-xs leading-relaxed text-ink-900/65 dark:text-sand-100/65">
