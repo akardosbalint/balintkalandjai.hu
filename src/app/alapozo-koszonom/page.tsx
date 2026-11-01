@@ -24,75 +24,126 @@ export default async function AlapozoKoszonomPage(props: {
     searchParams?.payment === "success" || Boolean(searchParams?.session_id);
 
   return (
-    <main className="relative isolate flex min-h-[90vh] flex-col items-center overflow-hidden px-6 py-20 sm:py-28">
+    <main className="relative isolate flex min-h-[90vh] flex-col items-center overflow-hidden px-6 py-16 sm:py-24">
       <OrganicBackground variant="cta" />
 
       <div className="mx-auto flex w-full max-w-2xl animate-fade-in flex-col items-center text-center">
-        {/* Sikeres fizetés visszajelzés (ha a látogató a Stripe-ról tért vissza) */}
+        {/* Sikeres fizetés visszaigazoló szalag (ha befejezte a fizetést) */}
         {isPaymentSuccess && (
-          <div className="mb-8 w-full rounded-2xl border border-saffron-500/40 bg-saffron-500/15 p-5 text-left text-forest-900 dark:text-sand-50">
-            <p className="font-serif text-lg font-medium">
-              Hálásan köszönöm az önkéntes támogatásodat!
-            </p>
-            <p className="mt-1 text-sm text-ink-900/80 dark:text-sand-100/80">
-              A hozzájárulásod segít abban, hogy a jövőben még több ember számára tehessünk
-              elérhetővé ingyenes, minőségi meditációs és tudatossági tananyagokat.
-            </p>
+          <div className="mb-8 w-full rounded-2xl border border-emerald-600/40 bg-emerald-500/15 p-6 text-left text-forest-900 dark:border-emerald-400/40 dark:text-sand-50">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🙏</span>
+              <div>
+                <p className="font-serif text-xl font-medium text-emerald-950 dark:text-emerald-200">
+                  Hálásan köszönöm az önkéntes támogatásodat!
+                </p>
+                <p className="mt-1.5 text-sm leading-relaxed text-ink-900/85 dark:text-sand-100/90">
+                  A hozzájárulásod segít abban, hogy a jövőben még több ember számára tehessünk
+                  elérhetővé ingyenes, tiszta és minőségi meditációs útmutatókat.
+                </p>
+              </div>
+            </div>
           </div>
         )}
 
-        <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
-          Sikeres regisztráció
-        </p>
+        {/* Felső státusz címke — Magas kontrasztú, jól olvasható arany/krém tipográfia */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-forest-900/15 bg-white/90 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 shadow-sm dark:border-sand-50/25 dark:bg-forest-800 dark:text-sand-50 sm:text-sm">
+          <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
+          Sikeres regisztráció · Köszönjük, hogy csatlakoztál!
+        </div>
 
-        {/* 6.1. KÖSZÖNŐÜZENET */}
-        <h1 className="mt-4 text-balance font-serif text-3xl font-medium text-forest-900 dark:text-sand-50 sm:text-4xl md:text-5xl">
+        {/* 1. FŐCÍM */}
+        <h1 className="mt-5 text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl">
           Örülök, hogy itt vagy!
         </h1>
 
-        <p className="mt-4 max-w-xl text-balance text-base leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-lg">
-          Elindulhatsz a saját meditációs gyakorlásod felé vezető úton. A következő napokban
-          rövid, gyakorlatias leckékkel és vezetett gyakorlatokkal ismerkedhetsz meg a
-          meditáció alapjaival, és megtalálhatod a számodra megfelelő gyakorlási módot.
+        <p className="mt-4 max-w-xl text-balance text-base leading-relaxed text-ink-900/85 dark:text-sand-100/90 sm:text-lg">
+          Elindulhatsz a saját meditációs gyakorlásod felé vezető úton. A következő 7 napban
+          lépésről lépésre segítünk megteremteni a belső nyugalmat a mindennapok pörgésében.
         </p>
 
-        {/* 6.2. MI TÖRTÉNIK EZUTÁN? */}
-        <div className="mt-8 flex w-full flex-col items-center">
-          <OpenInboxButton />
+        {/* 1. LÉPÉS: GYORS ÉS EGYÉRTELMŰ POSTALÁDA MEGERŐSÍTÉS */}
+        <div className="mt-8 w-full rounded-2xl border border-forest-900/15 bg-white/90 p-6 text-left shadow-sm backdrop-blur-sm dark:border-sand-50/20 dark:bg-forest-800/80 sm:p-7">
+          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:items-start">
+            <div>
+              <div className="inline-flex items-center gap-2 font-serif text-xs font-bold uppercase tracking-wider text-forest-900 dark:text-sand-50">
+                <span className="rounded-full bg-forest-900/10 px-2 py-0.5 dark:bg-sand-50/15 dark:text-sand-50">1. Lépés:</span>
+                <span>Fontos megerősítés</span>
+              </div>
+              <h2 className="mt-2 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
+                Aktiváld a feliratkozásodat a postaládádban!
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/85">
+                Küldtünk egy jóváhagyó levelet a megadott e-mail címedre. Kattints a benne lévő
+                megerősítő linkre, hogy a napi leckék biztosan megérkezzenek hozzád.
+              </p>
+              <p className="mt-2 text-xs text-ink-900/65 dark:text-sand-100/70">
+                (Ha 1-2 percen belül nem látod, nézd meg a <strong>Promóciók</strong> vagy <strong>Spam</strong> mappát is.)
+              </p>
+            </div>
+            <div className="shrink-0 pt-1">
+              <OpenInboxButton />
+            </div>
+          </div>
+        </div>
 
-          <div className="mt-8 w-full max-w-md rounded-2xl border border-terracotta-500/30 bg-terracotta-500/10 p-5 text-left">
-            <p className="font-serif text-lg font-medium text-forest-900 dark:text-sand-50">
-              Fontos: erősítsd meg a feliratkozásodat!
+        {/* 2. LÉPÉS: ÖNKÉNTES TÁMOGATÁS — KIEMELT, EGYÉRTELMŰ ÉS NATÍV (OLDALON BELÜLI FIZETÉS) */}
+        <section className="mt-8 w-full rounded-3xl border-2 border-forest-900/15 bg-white/95 p-6 text-left shadow-lg backdrop-blur-sm dark:border-sand-50/25 dark:bg-forest-800/95 sm:p-8">
+          <div className="flex items-center justify-between gap-2 border-b border-forest-900/10 pb-4 dark:border-sand-50/15">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-forest-900/10 px-3.5 py-1 font-serif text-xs font-bold uppercase tracking-wider text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
+              💛 2. Lépés (Opcionális támogatás)
+            </span>
+            <span className="text-xs font-medium text-emerald-800 dark:text-emerald-300">
+              100% önkéntes hozzájárulás
+            </span>
+          </div>
+
+          <h2 className="mt-4 font-serif text-2xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-3xl">
+            Szeretnél még több ingyenes tananyagot?
+          </h2>
+
+          <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-900/85 dark:text-sand-100/85">
+            <p>
+              Ezt a 7 napos meditációs alapozót azért készítettem el teljesen ingyenesen, hogy
+              minél többen megtapasztalhassák a belső békét dogmák és anyagi akadályok nélkül.
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75">
-              Küldtünk egy megerősítő emailt a Sender.net rendszerén keresztül. Kérlek, nyisd
-              meg és kattints a benne lévő linkre, hogy a leckék biztosan eljussanak hozzád.
+            <p>
+              Ha értékesnek találod ezt a kezdeményezést, egy tetszőleges összeggel (egy kávé vagy
+              egy könyv árával) <strong>itt közvetlenül az oldalon</strong> támogathatod a
+              további ingyenes meditációs gyakorlatok felvételét.
             </p>
-            <p className="mt-3 text-xs leading-relaxed text-ink-900/70 dark:text-sand-100/70">
-              Ha nem találod a beérkező levelek között, ellenőrizd a{" "}
-              <span className="font-medium text-ink-900 dark:text-sand-50">spam</span> és a{" "}
-              <span className="font-medium text-ink-900 dark:text-sand-50">promóciók</span>{" "}
-              mappát is. A napi leckék a tervezett levélküldési idő szerint minden reggel
-              5:00-kor érkeznek — a gyakorlatot a saját időbeosztásod szerint bármikor
-              elvégezheted a nap folyamán.
+            <p className="text-xs italic text-ink-900/70 dark:text-sand-100/70">
+              * A támogatás teljesen opcionális: a kurzus minden leckéjét és vezetett hanganyagát
+              akkor is megkapod, ha most nem támogatsz.
             </p>
           </div>
 
-          {/* Bónusz tananyag felület elérése */}
-          <div className="mt-6 w-full max-w-md rounded-2xl border border-forest-900/15 bg-white/70 p-5 text-left shadow-sm backdrop-blur-sm dark:border-sand-50/15 dark:bg-forest-800/50">
+          {/* NATÍV STRIPE BEÁGYAZOTT CHECKOUT — NULLA ÁTIRÁNYÍTÁS */}
+          <div className="mt-6 w-full">
+            <StripeEmbeddedCheckout />
+          </div>
+
+          <p className="mt-4 text-center text-xs text-ink-900/60 dark:text-sand-100/60">
+            Köszönöm a bizalmadat és hogy időt szánsz a gyakorlásra!
+          </p>
+        </section>
+
+        {/* 3. BÓNUSZ TANANYAGOK ÉS HASZNOS LINKEK */}
+        <div className="mt-8 flex w-full flex-col gap-4">
+          <div className="rounded-2xl border border-forest-900/15 bg-white/70 p-5 text-left shadow-sm backdrop-blur-sm dark:border-sand-50/15 dark:bg-forest-800/60">
             <div className="flex items-start gap-4">
-              <span className="text-2xl">✨</span>
+              <span className="text-2xl">📖</span>
               <div>
                 <p className="font-serif text-base font-medium text-forest-900 dark:text-sand-50">
-                  Azonnal elérhető bónusz tananyagok
+                  Azonnal böngészhető bónusz anyagok
                 </p>
                 <p className="mt-1 text-xs leading-relaxed text-ink-900/75 dark:text-sand-100/75">
-                  A 7 nap teljes leirata, a kezdői testhelyzet-útmutató és a 14 napos folytatási
-                  terv a weboldalon is böngészhető.
+                  A 7 nap teljes leirata, a kezdői testhelyzet-útmutató és a 14 napos folytatási terv
+                  már elérhető a weboldalon.
                 </p>
                 <Link
                   href="/alapozo/bonusz"
-                  className="mt-3 inline-flex items-center text-xs font-semibold text-terracotta-600 underline underline-offset-4 hover:text-terracotta-700 dark:text-terracotta-400 dark:hover:text-terracotta-300"
+                  className="mt-2.5 inline-flex items-center text-xs font-semibold text-forest-900 underline underline-offset-4 hover:text-terracotta-600 dark:text-saffron-300 dark:hover:text-sand-50"
                 >
                   Tovább a bónuszfelületre →
                 </Link>
@@ -101,64 +152,23 @@ export default async function AlapozoKoszonomPage(props: {
           </div>
         </div>
 
-        {/* 7. STRIPE — ÖNKÉNTES TÁMOGATÁSI SZEKCIÓ */}
-        <section className="mt-14 w-full max-w-lg rounded-3xl border border-forest-900/15 bg-white/80 p-6 text-left shadow-sm backdrop-blur-sm dark:border-sand-50/15 dark:bg-forest-800/60 sm:p-8">
-          <p className="font-serif text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400">
-            Közösségi hozzájárulás
-          </p>
-
-          <h2 className="mt-2 font-serif text-2xl font-medium tracking-tight text-forest-900 dark:text-sand-50">
-            Szeretnél még több ingyenes tananyagot?
-          </h2>
-
-          <div className="mt-4 space-y-3 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/80">
-            <p>
-              Ezt a hétnapos meditációs alapozót azért teszem ingyenesen elérhetővé, hogy minél
-              többen megismerkedhessenek a meditációval, és elindulhassanak a saját gyakorlásuk
-              útján.
-            </p>
-            <p>
-              Ha értékesnek találod ezt a kezdeményezést, és szeretnél hozzájárulni további
-              ingyenes meditációs gyakorlatok és tananyagok létrehozásához, itt önkéntesen
-              támogathatod a munkámat.
-            </p>
-            <p>
-              A támogatás teljesen opcionális. A kurzus minden leckéjét akkor is megkapod, ha
-              nem támogatsz.
-            </p>
-            <p className="font-medium text-forest-900 dark:text-sand-50">
-              Köszönöm, hogy itt vagy, és hogy időt szánsz a gyakorlásra.
-            </p>
-          </div>
-
-          {/* Stripe beágyazott checkout vagy intelligens fallback a hivatalos Payment Linkre */}
-          <div className="mt-6 w-full">
-            <StripeEmbeddedCheckout buttonLabel="Önkéntesen támogatom a munkád" />
-          </div>
-
-          <p className="mt-6 text-center text-xs leading-relaxed text-ink-900/65 dark:text-sand-100/65">
-            Ha most nem szeretnél támogatni, nincs további teendőd. Az ingyenes kurzust ugyanúgy
-            megkapod, és a következő napokban folytatjuk a közös gyakorlást.
-          </p>
-        </section>
-
         {/* Social jelenlét */}
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-ink-900/65 dark:text-sand-100/60">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-ink-900/70 dark:text-sand-100/70">
           <span>Kövess az utazás és a képzés alatt is:</span>
           <SocialLinks className="flex flex-wrap justify-center gap-x-3" />
         </div>
 
-        <div className="mt-8 flex gap-4 text-sm">
+        <div className="mt-6 flex gap-4 text-sm">
           <Link
             href="/alapozo"
-            className="text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
+            className="text-forest-900 underline underline-offset-2 hover:text-terracotta-600 dark:text-saffron-300 dark:hover:text-sand-50"
           >
             ← Vissza az Alapozó oldalra
           </Link>
           <span className="text-ink-900/30 dark:text-sand-100/30">·</span>
           <Link
             href="/"
-            className="text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
+            className="text-forest-900 underline underline-offset-2 hover:text-terracotta-600 dark:text-saffron-300 dark:hover:text-sand-50"
           >
             Főoldal
           </Link>

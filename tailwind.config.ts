@@ -29,9 +29,15 @@ const config: Config = {
           700: "#8A3F26",
         },
         saffron: {
+          100: "#FFF0DB",
+          200: "#FFE0B8",
+          300: "#FFCC85",
           400: "#FFB366",
           500: "#FF9933",
           600: "#E6821A",
+          700: "#B8630E",
+          800: "#8A4705",
+          900: "#5C2E00",
         },
         forest: {
           // Világosabb erdő-árnyalat: sötét témában a "belső" felületekhez

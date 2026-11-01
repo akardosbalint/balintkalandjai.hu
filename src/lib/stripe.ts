@@ -1,5 +1,14 @@
 import Stripe from "stripe";
 
+export const STRIPE_DEFAULT_CONFIG = {
+  productId: "prod_VViI8xPpi26jGI",
+  priceId: process.env.STRIPE_PRICE_ID || "price_1UUhg8KKK49wrBvLjC2eSnDa",
+  publishableKey:
+    process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ||
+    "pk_live_51TqU9KKKK49wrBvL8zSql63ZYoJpYcw2OkjPj2eKMaFnXfS1Qjg2G1xexOTKj08ZUVgswbkh7hdwmQZKBD6JORYk00DQqFzyDO",
+  paymentLink: "https://donate.stripe.com/14A28sa33gxg4Ii0YM57W00",
+} as const;
+
 let stripeInstance: Stripe | null = null;
 
 export function getStripeServer(): Stripe | null {
@@ -20,9 +29,3 @@ export function getStripeServer(): Stripe | null {
 
   return stripeInstance;
 }
-
-export const STRIPE_DEFAULT_CONFIG = {
-  productId: "prod_VViI8xPpi26jGI",
-  priceId: process.env.STRIPE_PRICE_ID || "price_1UUhg8KKK49wrBvLjC2eSnDa",
-  paymentLink: "https://donate.stripe.com/14A28sa33gxg4Ii0YM57W00",
-} as const;

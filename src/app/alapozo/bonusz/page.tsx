@@ -287,18 +287,18 @@ export default function AlapozoBonuszPage() {
         <div className="mb-8 flex items-center justify-between text-xs sm:text-sm">
           <Link
             href="/alapozo"
-            className="text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
+            className="font-medium text-forest-900 underline underline-offset-2 hover:text-terracotta-700 dark:text-sand-100 dark:hover:text-sand-50"
           >
-            ← Vissza az Alapozó főoldalára
+            ← Vissza az Alapozó feliratkozási oldalára
           </Link>
-          <span className="rounded-full bg-forest-900/5 px-3 py-1 text-ink-900/70 dark:bg-sand-50/10 dark:text-sand-100/70">
+          <span className="rounded-full bg-forest-900/10 px-3.5 py-1 text-xs font-semibold text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
             Teljes Kurzus Dokumentáció & Segédletek
           </span>
         </div>
 
         {/* Hero bevezető */}
         <AnimatedSection className="text-center">
-          <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+          <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-saffron-800 dark:text-saffron-300 sm:text-sm">
             Nirmana Meditációs Alapozó
           </p>
           <h1 className="mt-3 text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl">
@@ -353,7 +353,7 @@ export default function AlapozoBonuszPage() {
         {/* 1. RÉSZLETES LECKÉK ÉS MEDITÁCIÓS SZÖVEGEK */}
         <section id="leckek" className="mt-16 sm:mt-24 scroll-mt-24">
           <AnimatedSection className="mb-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron-800 dark:text-saffron-300">
               Oktató e-mailek és leiratok
             </p>
             <h2 className="mt-1 font-serif text-2xl font-medium text-forest-900 dark:text-sand-50 sm:text-3xl">
@@ -378,7 +378,7 @@ export default function AlapozoBonuszPage() {
                   </span>
                 </div>
 
-                <p className="mt-3 text-sm font-medium italic text-terracotta-700 dark:text-terracotta-300">
+                <p className="mt-3 text-sm font-medium italic text-forest-900/90 dark:text-sand-100">
                   {l.subtitle}
                 </p>
 
@@ -409,7 +409,7 @@ export default function AlapozoBonuszPage() {
         {/* 2. KEZDŐI TESTHELYZET-ÚTMUTATÓ */}
         <section id="testhelyzetek" className="mt-20 sm:mt-28 scroll-mt-24">
           <AnimatedSection className="mb-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron-800 dark:text-saffron-300">
               Gyakorlati útmutató
             </p>
             <h2 className="mt-1 font-serif text-2xl font-medium text-forest-900 dark:text-sand-50 sm:text-3xl">
@@ -440,7 +440,7 @@ export default function AlapozoBonuszPage() {
         {/* 3. 14 NAPOS FOLYTATÁSI TERV */}
         <section id="folytatasi-terv" className="mt-20 sm:mt-28 scroll-mt-24">
           <AnimatedSection className="mb-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron-800 dark:text-saffron-300">
               Hosszú távú építkezés
             </p>
             <h2 className="mt-1 font-serif text-2xl font-medium text-forest-900 dark:text-sand-50 sm:text-3xl">
@@ -474,7 +474,7 @@ export default function AlapozoBonuszPage() {
         <section id="naplo" className="mt-20 sm:mt-28 scroll-mt-24">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
             <AnimatedSection>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron-800 dark:text-saffron-300">
                 Önreflexió
               </p>
               <h2 className="mt-1 font-serif text-2xl font-medium text-forest-900 dark:text-sand-50 sm:text-3xl">
@@ -491,7 +491,7 @@ export default function AlapozoBonuszPage() {
             {JOURNAL_PROMPTS.map((prompt, i) => (
               <AnimatedSection key={i}>
                 <div className="flex items-start gap-4 rounded-xl border border-forest-900/10 bg-white/60 p-4 dark:border-sand-50/10 dark:bg-forest-800/40">
-                  <span className="font-serif font-semibold text-terracotta-600 dark:text-terracotta-400">
+                  <span className="font-serif font-bold text-forest-900 dark:text-saffron-300">
                     {i + 1}.
                   </span>
                   <p className="text-sm text-ink-900/80 dark:text-sand-100/80">{prompt}</p>
@@ -504,7 +504,7 @@ export default function AlapozoBonuszPage() {
         {/* 5. GYAKORI KÉRDÉSEK */}
         <section id="gyik" className="mt-20 sm:mt-28 scroll-mt-24">
           <AnimatedSection className="mb-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron-800 dark:text-saffron-300">
               Gyakorlási kérdések
             </p>
             <h2 className="mt-1 font-serif text-2xl font-medium text-forest-900 dark:text-sand-50 sm:text-3xl">
@@ -532,7 +532,7 @@ export default function AlapozoBonuszPage() {
         <div className="mt-20 flex flex-wrap justify-between gap-4 border-t border-forest-900/10 pt-8 dark:border-sand-50/10">
           <Link
             href="/alapozo"
-            className="text-sm font-medium text-terracotta-600 underline underline-offset-2 dark:text-terracotta-400"
+            className="text-sm font-medium text-forest-900 underline underline-offset-2 hover:text-terracotta-700 dark:text-sand-100 dark:hover:text-sand-50"
           >
             ← Vissza az Alapozó feliratkozási oldalára
           </Link>

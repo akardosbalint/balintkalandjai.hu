@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
@@ -8,21 +8,24 @@ import {
 } from "@stripe/react-stripe-js";
 import { STRIPE_DEFAULT_CONFIG } from "@/lib/stripe";
 
-const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-const stripePromise = publishableKey ? loadStripe(publishableKey) : null;
-
 interface StripeEmbeddedCheckoutProps {
-  buttonLabel?: string;
   className?: string;
+  autoLoad?: boolean;
 }
 
 export default function StripeEmbeddedCheckout({
-  buttonLabel = "Önkéntesen támogatom a munkád",
   className = "",
+  autoLoad = true,
 }: StripeEmbeddedCheckoutProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [hasError, setHasError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [isStarted, setIsStarted] = useState(autoLoad);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const stripePromise = useMemo(() => {
+    const key =
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ||
+      STRIPE_DEFAULT_CONFIG.publishableKey;
+    return loadStripe(key);
+  }, []);
 
   const fetchClientSecret = useCallback(async () => {
     try {
@@ -33,85 +36,67 @@ export default function StripeEmbeddedCheckout({
 
       const data = await res.json();
       if (!res.ok || !data.clientSecret) {
-        setHasError(true);
-        setErrorMessage(
-          data?.message || "A beágyazott fizetés jelenleg nem elérhető."
+        throw new Error(
+          data?.message || "Nem sikerült létrehozni a fizetési munkamenetet."
         );
-        throw new Error(data?.error || "Failed to create checkout session");
       }
 
       return data.clientSecret;
     } catch (err) {
-      setHasError(true);
+      const msg = err instanceof Error ? err.message : "Fizetési hiba történt";
+      setLoadError(msg);
       throw err;
     }
   }, []);
 
-  // Ha nincs kliensoldali Publishable Key vagy hiba történt a beágyazáskor:
-  // Elegáns tartalékmegoldás (Fallback) a megadott hivatalos Stripe Payment Linkre
-  if (!stripePromise || hasError) {
-    return (
-      <div className={`flex flex-col items-center ${className}`}>
-        {hasError && errorMessage && (
-          <p className="mb-3 text-xs text-amber-800 dark:text-amber-300 text-center">
-            {errorMessage} Átirányítás a hivatalos fizetési oldalra:
-          </p>
-        )}
-        <a
-          href={STRIPE_DEFAULT_CONFIG.paymentLink}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex w-full items-center justify-center rounded-full bg-saffron-500 px-7 py-3.5 text-center font-medium text-forest-900 shadow-soft outline-none transition-all duration-200 hover:bg-saffron-600 hover:shadow-glow-saffron sm:w-auto"
-        >
-          {buttonLabel} →
-        </a>
-        <p className="mt-2 text-center text-xs text-ink-900/60 dark:text-sand-100/60">
-          Biztonságos Stripe fizetés · Tetszőleges önkéntes összeg (Customer Chooses Price)
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div className={`w-full ${className}`}>
-      {!isOpen ? (
+      {!isStarted ? (
         <div className="flex flex-col items-center">
           <button
             type="button"
-            onClick={() => setIsOpen(true)}
-            className="inline-flex w-full items-center justify-center rounded-full bg-saffron-500 px-7 py-3.5 text-center font-medium text-forest-900 shadow-soft outline-none transition-all duration-200 hover:bg-saffron-600 hover:shadow-glow-saffron sm:w-auto cursor-pointer"
+            onClick={() => setIsStarted(true)}
+            className="inline-flex w-full items-center justify-center rounded-full bg-saffron-500 px-8 py-4 font-serif text-base font-semibold text-forest-900 shadow-md transition-all duration-200 hover:bg-saffron-600 hover:shadow-glow-saffron sm:w-auto cursor-pointer"
           >
-            {buttonLabel}
+            Önkéntes támogatási összeg választása
           </button>
-          <p className="mt-2 text-center text-xs text-ink-900/60 dark:text-sand-100/60">
-            Biztonságos, oldalon belüli Stripe fizetés · Tetszőleges önkéntes összeg
+          <p className="mt-2 text-center text-xs text-ink-900/70 dark:text-sand-100/70">
+            Közvetlen, biztonságos fizetés itt az oldalon (bankkártya, Apple Pay, Google Pay)
           </p>
         </div>
       ) : (
-        <div className="mt-4 w-full">
-          <div className="mb-3 flex items-center justify-between">
-            <span className="text-xs font-semibold uppercase tracking-wider text-forest-900 dark:text-sand-50">
-              Biztonságos Stripe Fizetés (Oldalon belül)
-            </span>
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="text-xs text-ink-900/60 underline hover:text-ink-900 dark:text-sand-100/60 dark:hover:text-sand-50 cursor-pointer"
-            >
-              Mégsem / Bezárás
-            </button>
-          </div>
+        <div className="w-full">
+          {loadError && (
+            <div className="mb-4 rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-center text-xs text-rose-800 dark:text-rose-200">
+              <p className="font-semibold">A beágyazott fizetési ablak betöltése elakadt:</p>
+              <p className="mt-1">{loadError}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setLoadError(null);
+                  setIsStarted(true);
+                }}
+                className="mt-2 inline-block rounded-full bg-white/80 px-4 py-1.5 font-medium text-forest-900 shadow-sm hover:bg-white dark:bg-forest-700 dark:text-sand-50"
+              >
+                Újrapróbálás
+              </button>
+            </div>
+          )}
 
           <div
-            id="checkout"
-            className="min-h-[440px] w-full overflow-hidden rounded-2xl border border-forest-900/15 bg-white p-2 shadow-sm dark:border-sand-50/15"
+            id="stripe-embedded-checkout"
+            className="min-h-[460px] w-full overflow-hidden rounded-2xl border border-forest-900/15 bg-white p-3 shadow-md dark:border-sand-50/20 dark:bg-sand-50"
           >
             <EmbeddedCheckoutProvider
               stripe={stripePromise}
               options={{ fetchClientSecret }}
             >
-              <EmbeddedCheckout />
+              <EmbeddedCheckout className="w-full min-h-[420px]" />
             </EmbeddedCheckoutProvider>
+          </div>
+
+          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-ink-900/65 dark:text-sand-100/65">
+            <span>🔒 256 bites SSL titkosítás · Hivatalos Stripe beágyazott felület</span>
           </div>
         </div>
       )}

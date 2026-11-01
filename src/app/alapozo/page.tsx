@@ -237,8 +237,8 @@ export default function AlapozoPage() {
         <OrganicBackground variant="hero" />
 
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <p className="animate-hero-in inline-flex items-center gap-2 rounded-full border border-terracotta-500/20 bg-terracotta-500/10 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-700 dark:border-terracotta-400/30 dark:bg-terracotta-400/15 dark:text-terracotta-300 sm:text-sm">
-            <span className="inline-block h-2 w-2 rounded-full bg-terracotta-500" />
+          <p className="animate-hero-in inline-flex items-center gap-2 rounded-full border border-forest-900/15 bg-white/90 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 shadow-sm dark:border-sand-50/25 dark:bg-forest-800 dark:text-sand-50 sm:text-sm">
+            <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
             Nirmana Meditációs Alapozó · Ingyenes 7 napos útmutató
           </p>
 
@@ -255,13 +255,13 @@ export default function AlapozoPage() {
           {/* Fő benefit-ígéretek pontokba szedve a gyors áttekintéshez */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-ink-900/75 dark:text-sand-100/75 sm:text-sm">
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className="text-terracotta-600 dark:text-terracotta-400 font-bold">✓</span> Kevesebb mentális zaj
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Kevesebb mentális zaj
             </span>
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className="text-terracotta-600 dark:text-terracotta-400 font-bold">✓</span> Érzelmi stabilitás a feszült napokon
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Érzelmi stabilitás a feszült napokon
             </span>
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className="text-terracotta-600 dark:text-terracotta-400 font-bold">✓</span> Mélyebb, pihentetőbb alvás
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Mélyebb, pihentetőbb alvás
             </span>
           </div>
 
@@ -276,7 +276,7 @@ export default function AlapozoPage() {
             </span>
             <span className="text-ink-900/40 dark:text-sand-100/40 font-bold">→</span>
             <span className="rounded-full border border-forest-900/15 bg-white/75 px-4 py-2 font-medium text-forest-900 shadow-sm dark:border-sand-50/15 dark:bg-forest-800/60 dark:text-sand-50">
-              3. Békében folytatom
+              3. Békével folytatom
             </span>
           </div>
 
@@ -298,7 +298,7 @@ export default function AlapozoPage() {
 
         <div className="mx-auto max-w-5xl">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Valódi átalakulás
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -315,7 +315,7 @@ export default function AlapozoPage() {
               <AnimatedSection key={b.title}>
                 <HoverLiftCard className="flex h-full flex-col justify-between p-7 sm:p-8">
                   <div>
-                    <span className="inline-block rounded-full bg-forest-900/5 px-3 py-1 text-xs font-medium text-terracotta-700 dark:bg-sand-50/10 dark:text-terracotta-300">
+                    <span className="inline-block rounded-full bg-forest-900/10 px-3.5 py-1 text-xs font-semibold text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
                       {b.badge}
                     </span>
                     <h3 className="mt-4 font-serif text-xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-2xl">
@@ -338,7 +338,7 @@ export default function AlapozoPage() {
 
         <div className="mx-auto max-w-3xl">
           <AnimatedSection className="text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Miért fog most végre működni?
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -377,7 +377,7 @@ export default function AlapozoPage() {
 
         <div className="mx-auto max-w-4xl">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Lépésről lépésre
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -394,10 +394,10 @@ export default function AlapozoPage() {
               <AnimatedSection key={d.day}>
                 <HoverLiftCard className="flex flex-col gap-4 p-6 sm:p-7 md:flex-row md:items-start md:gap-6">
                   <div className="flex shrink-0 items-center gap-3 md:flex-col md:items-start">
-                    <span className="font-serif text-2xl font-medium text-terracotta-600 dark:text-terracotta-400">
+                    <span className="font-serif text-2xl font-bold text-forest-900 dark:text-sand-50">
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    <span className="rounded-full bg-forest-900/5 px-3 py-1 text-xs font-medium text-forest-900 dark:bg-sand-50/10 dark:text-sand-50">
+                    <span className="rounded-full bg-forest-900/10 px-3 py-1 text-xs font-semibold text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
                       {d.day}
                     </span>
                   </div>
@@ -409,8 +409,8 @@ export default function AlapozoPage() {
                     <p className="mt-2 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75 sm:text-base">
                       {d.benefit}
                     </p>
-                    <div className="mt-3 inline-flex items-center text-xs font-medium text-terracotta-700 dark:text-terracotta-300">
-                      <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-terracotta-500" />
+                    <div className="mt-3 inline-flex items-center text-xs font-medium text-forest-900/90 dark:text-sand-100">
+                      <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
                       {d.breakthrough}
                     </div>
                   </div>
@@ -427,7 +427,7 @@ export default function AlapozoPage() {
 
         <div className="mx-auto max-w-3xl">
           <AnimatedSection className="text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Megérkezés önmagadhoz
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -439,7 +439,7 @@ export default function AlapozoPage() {
             {TARGET_AUDIENCE.map((item, idx) => (
               <AnimatedSection key={idx}>
                 <div className="flex items-start gap-4 rounded-2xl border border-forest-900/10 bg-white/75 p-5 shadow-sm backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/50">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta-500/15 font-serif text-sm font-medium text-terracotta-700 dark:bg-terracotta-400/20 dark:text-terracotta-300">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 font-serif text-sm font-bold text-emerald-800 dark:bg-emerald-400/20 dark:text-emerald-300">
                     ✓
                   </span>
                   <p className="text-base leading-relaxed text-ink-900/80 dark:text-sand-100/80">
@@ -458,7 +458,7 @@ export default function AlapozoPage() {
 
         <div className="mx-auto max-w-4xl">
           <AnimatedSection className="text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Egyszerű és kényelmes
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -472,7 +472,7 @@ export default function AlapozoPage() {
           <div className="mt-14 grid gap-8 sm:grid-cols-3">
             <AnimatedSection>
               <HoverLiftCard className="h-full p-6 text-center sm:text-left">
-                <span className="font-serif text-3xl font-medium text-terracotta-600 dark:text-terracotta-400">
+                <span className="font-serif text-3xl font-bold text-forest-900 dark:text-sand-50">
                   01
                 </span>
                 <h3 className="mt-3 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
@@ -487,7 +487,7 @@ export default function AlapozoPage() {
 
             <AnimatedSection>
               <HoverLiftCard className="h-full p-6 text-center sm:text-left">
-                <span className="font-serif text-3xl font-medium text-terracotta-600 dark:text-terracotta-400">
+                <span className="font-serif text-3xl font-bold text-forest-900 dark:text-sand-50">
                   02
                 </span>
                 <h3 className="mt-3 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
@@ -502,7 +502,7 @@ export default function AlapozoPage() {
 
             <AnimatedSection>
               <HoverLiftCard className="h-full p-6 text-center sm:text-left">
-                <span className="font-serif text-3xl font-medium text-terracotta-600 dark:text-terracotta-400">
+                <span className="font-serif text-3xl font-bold text-forest-900 dark:text-sand-50">
                   03
                 </span>
                 <h3 className="mt-3 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
@@ -537,7 +537,7 @@ export default function AlapozoPage() {
             </AnimatedSection>
 
             <AnimatedSection className="text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
                 Az útmutatód
               </p>
               <h2 className="mt-2 font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -567,7 +567,7 @@ export default function AlapozoPage() {
 
       {/* 8. ÖNKÉNTES TÁMOGATÁS TÁJÉKOZTATÓ (Kötelező masterprompt szöveg) */}
       <section className="relative overflow-hidden px-6 py-14 sm:py-20">
-        <div className="mx-auto max-w-2xl rounded-3xl border border-terracotta-500/30 bg-terracotta-500/10 p-7 text-center sm:p-10">
+        <div className="mx-auto max-w-2xl rounded-3xl border border-forest-900/15 bg-white/90 p-7 text-center shadow-sm dark:border-sand-50/15 dark:bg-forest-800/80 sm:p-10">
           <h2 className="font-serif text-xl font-medium text-forest-900 dark:text-sand-50 sm:text-2xl">
             Önkéntes támogatás
           </h2>
@@ -584,7 +584,7 @@ export default function AlapozoPage() {
       <section className="relative px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-2xl">
           <AnimatedSection className="text-center">
-            <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Minden kétséget eloszlatva
             </p>
             <h2 className="mt-3 font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -607,7 +607,7 @@ export default function AlapozoPage() {
 
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <AnimatedSection>
-            <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-terracotta-600 dark:text-terracotta-400 sm:text-sm">
+            <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-forest-900 dark:text-sand-100 sm:text-sm">
               Találj vissza önmagadhoz
             </p>
             <h2 className="mt-3 text-balance font-serif text-3xl font-medium leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
@@ -631,7 +631,7 @@ export default function AlapozoPage() {
           <div className="mt-10">
             <Link
               href="/"
-              className="text-sm text-terracotta-600 underline underline-offset-2 hover:text-terracotta-700 dark:text-terracotta-400"
+              className="text-sm font-medium text-forest-900 underline underline-offset-2 hover:text-terracotta-700 dark:text-sand-100 dark:hover:text-sand-50"
             >
               ← Vissza a főoldalra
             </Link>
