@@ -6,7 +6,7 @@ import SocialLinks from "@/components/SocialLinks";
 import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
 import { siteConfig } from "@/lib/site-config";
 
-const pageTitle = "Örülök, hogy itt vagy! — Nirmana Meditációs Alapozó";
+const pageTitle = "Örülök, hogy itt vagy! — Meditációs Alapozó";
 const pageDescription =
   "A feliratkozási kérelmed rögzítve. Erősítsd meg az emailedet, és kezdd el a hétnapos meditációs alapozó gyakorlatait.";
 

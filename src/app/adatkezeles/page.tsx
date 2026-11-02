@@ -65,7 +65,7 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p className="mt-2">
             A weboldal feliratkozási pontjain (a főoldalon az indiai utazási heti
-            hangfelvételre, illetve a /alapozo oldalon a Nirmana Meditációs Alapozóra)
+            hangfelvételre, illetve a /alapozo oldalon a Meditációs Alapozóra)
             az alábbi adatokat kérem el és kezelem:
           </p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
           <p className="mt-2">
             <strong>Sender.net (Sender.net UAB, Litvánia, Európai Unió):</strong>{" "}
             A feliratkozási űrlapok kezeléséhez, a double opt-in megerősítési
-            folyamathoz, valamint a heti hangfelvételek és a Nirmana Meditációs
+            folyamathoz, valamint a heti hangfelvételek és a Meditációs
             Alapozó napi oktató leveleinek kiküldéséhez a Sender.net szolgáltatását
             használom. Adatfeldolgozóként az Európai Unióban bejegyzett vállalatként
             a GDPR rendelkezései szerint jár el.

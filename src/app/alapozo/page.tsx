@@ -10,7 +10,7 @@ import StickyCTA from "@/components/StickyCTA";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
-const pageTitle = "Nem kell megvilágosodnod ahhoz, hogy békére lelj — Nirmana Meditációs Alapozó";
+const pageTitle = "Nem kell megvilágosodnod ahhoz, hogy békére lelj — Meditációs Alapozó";
 const pageDescription =
   "Engedd el a folyamatos túlagyalást és a belső feszültséget. Sajátítsd el a valódi nyugalmat, ami a mindennapok pörgésében is veled marad — kényszeres elvárások és bűntudat nélkül.";
 
@@ -59,12 +59,12 @@ const CORE_BENEFITS = [
   },
 ];
 
-// Miért fulladt eddig kudarcba a meditáció? (Tévhitek vs. Nirmana megkönnyebbülés)
+// Miért fulladt eddig kudarcba a meditáció? (Tévhitek vs. Megkönnyebbülés)
 const MYTHS_VS_BENEFITS = [
   {
     myth: "Azt hitted, kötelező teljesen kiüríteni a fejedet",
     reality:
-      "A gondolatmentesség egy elérhetetlen mítosz, ami csak kudarcérzést szül. Az agy dolga a gondolkodás. A Nirmanában nem a gondolatok elnémítását tanulod meg, hanem azt, hogyan köss békét velük anélkül, hogy magukkal rántanának.",
+      "A gondolatmentesség egy elérhetetlen mítosz, ami csak kudarcérzést szül. Az agy dolga a gondolkodás. Ebben a kurzusban nem a gondolatok elnémítását tanulod meg, hanem azt, hogyan köss békét velük anélkül, hogy magukkal rántanának.",
   },
   {
     myth: "Azt hitted, órákig kell mereven, kényelmetlen pózban ülni",
@@ -74,7 +74,7 @@ const MYTHS_VS_BENEFITS = [
   {
     myth: "Újabb nyomasztó kötelesség lett belőle a to-do listádon",
     reality:
-      "A Nirmana szelíd és bűntudatmentes. Ez a napod egyetlen olyan 10–15 perce, ahol nem kell megfelelned senkinek. Nem egy újabb elvárás, hanem maga a fellélegzés.",
+      "Ez a módszer szelíd és bűntudatmentes. Ez a napod egyetlen olyan 10–15 perce, ahol nem kell megfelelned senkinek. Nem egy újabb elvárás, hanem maga a fellélegzés.",
   },
 ];
 
@@ -91,7 +91,7 @@ const TRANSFORMATION_DAYS = [
     day: "2. nap",
     title: "A figyelem visszaszerzése – szelíden, harc nélkül",
     benefit:
-      "Megérted, miért kalandozik el az elme, és megkapod a Nirmana 3 lépéses módszerét, amivel a legzaklatottabb pillanatban is percek alatt visszahozhatod magad a belső nyugalmadba.",
+      "Megérted, miért kalandozik el az elme, és megkapod a 3 lépéses módszert, amivel a legzaklatottabb pillanatban is percek alatt visszahozhatod magad a belső nyugalmadba.",
     breakthrough: "Fő nyereség: azonnali mentális kapaszkodó stressz és kapkodás esetén",
   },
   {
@@ -170,7 +170,7 @@ const ALAPOZO_FAQ_ITEMS = [
   {
     question: "Tényleg teljesen ingyenes a kurzus?",
     answer:
-      "Igen, a 7 napos Nirmana Meditációs Alapozó 100%-ban ingyenes, és semmilyen bankkártyaadatot nem kérünk. A leckékhez és a vezetett meditációs hanganyagokhoz azonnal, díjmentesen hozzáférhetsz.",
+      "Igen, a 7 napos Meditációs Alapozó 100%-ban ingyenes, és semmilyen bankkártyaadatot nem kérünk. A leckékhez és a vezetett meditációs hanganyagokhoz azonnal, díjmentesen hozzáférhetsz.",
   },
   {
     question: "Nem fogja teleszemetelni a postaládámat sok reklámlevél?",
@@ -193,7 +193,7 @@ export default function AlapozoPage() {
   const courseJsonLd = {
     "@context": "https://schema.org",
     "@type": "Course",
-    name: "Nirmana Meditációs Alapozó",
+    name: "Meditációs Alapozó",
     description: pageDescription,
     provider: {
       "@type": "Person",
@@ -239,7 +239,7 @@ export default function AlapozoPage() {
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <p className="animate-hero-in inline-flex items-center gap-2 rounded-full border border-forest-900/15 bg-white/90 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 shadow-sm dark:border-sand-50/25 dark:bg-forest-800 dark:text-sand-50 sm:text-sm">
             <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-            Nirmana Meditációs Alapozó · Ingyenes 7 napos útmutató
+            Meditációs Alapozó · Ingyenes 7 napos útmutató
           </p>
 
           <h1 className="animate-hero-in mt-6 text-balance font-serif text-3xl font-medium leading-[1.18] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl">
@@ -265,7 +265,7 @@ export default function AlapozoPage() {
             </span>
           </div>
 
-          {/* Nirmana 3 lépéses belső mechanizmus (a stresszből a nyugalomba) */}
+          {/* 3 lépéses belső mechanizmus (a stresszből a nyugalomba) */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
             <span className="rounded-full border border-forest-900/15 bg-white/75 px-4 py-2 font-medium text-forest-900 shadow-sm dark:border-sand-50/15 dark:bg-forest-800/60 dark:text-sand-50">
               1. Észreveszem a feszültséget
@@ -572,7 +572,7 @@ export default function AlapozoPage() {
             Önkéntes támogatás
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-base">
-            A Nirmana Meditációs Alapozó teljes egészében ingyenes. Ha szeretnéd támogatni a
+            A Meditációs Alapozó teljes egészében ingyenes. Ha szeretnéd támogatni a
             további ingyenes meditációs anyagok elkészítését, erre a feliratkozás után, a
             köszönőoldalon lesz lehetőséged. A támogatás teljesen önkéntes, a kurzus elérésének
             nem feltétele.

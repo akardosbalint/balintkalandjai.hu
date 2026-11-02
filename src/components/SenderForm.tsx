@@ -326,7 +326,7 @@ export default function SenderForm({
             consentLabel
           ) : isAlapozo ? (
             <>
-              Elfogadom, hogy a Nirmana Meditációs Alapozó leckéit és hanganyagait
+              Elfogadom, hogy a Meditációs Alapozó leckéit és hanganyagait
               megkapjam emailben, és megismertem az{" "}
               <Link
                 href="/adatkezeles"

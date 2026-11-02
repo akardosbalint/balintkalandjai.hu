@@ -7,9 +7,9 @@ import PrintButton from "@/components/PrintButton";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
-const pageTitle = "Bónuszanyagok és Teljes Tananyag — Nirmana Meditációs Alapozó";
+const pageTitle = "Bónuszanyagok és Teljes Tananyag — Meditációs Alapozó";
 const pageDescription =
-  "A Nirmana Meditációs Alapozó 7 napos teljes tananyaga, vezetett meditációs leiratai, kezdői segédlete, 14 napos folytatási terve és gyakorlási naplója.";
+  "A Meditációs Alapozó 7 napos teljes tananyaga, vezetett meditációs leiratai, kezdői segédlete, 14 napos folytatási terve és gyakorlási naplója.";
 
 export const metadata: Metadata = {
   title: `${pageTitle} | ${siteConfig.brandName}`,
@@ -56,7 +56,7 @@ Ma csak annyi a feladatod, hogy leülj kényelmesen, engedd el a teljesítményk
   {
     day: 2,
     title: "Találd meg a figyelmed kapaszkodóját",
-    subtitle: "A figyelem visszatérése és a Nirmana 3 lépéses kerete",
+    subtitle: "A figyelem visszatérése és a 3 lépéses keret",
     duration: "10-12 perc",
     anchor: "A légzés mint figyelmi horgony",
     emailBody: `Kedves Gyakorló!
@@ -65,7 +65,7 @@ A tegnapi nap után felmerülhetett benned a kérdés: „Hányszor fog még elk
 
 A meditáció nem az el nem kalandozás művészete, hanem a visszatérés gyakorlása. Minden egyes alkalommal, amikor észreveszed, hogy a figyelmed elúszott, és szelíden visszahozod, egyfajta „mentális fekvőtámaszt” végzel: fejleszted a tudatosságodat.
 
-A Nirmana 3 lépéses kerete a mindennapi gyakorlásod vezérfonala:
+A 3 lépéses keret a mindennapi gyakorlásod vezérfonala:
 1. Észreveszem: Tudatosítom, hogy már nem a légzésnél járok. Nem bosszankodom, egyszerűen észlelem.
 2. Visszatérek: Szelíden, mint egy barát a szórakozott társát, visszahozom a figyelmemet a légzéshez.
 3. Folytatom: Jelen maradok a következő pillanattal, tiszta lappal.`,
@@ -269,7 +269,7 @@ const ALAPOZO_FAQ = [
   },
   {
     q: "Zenével vagy csendben érdemes gyakorolni?",
-    a: "A Nirmana megközelítés a belső csendre és a természetes jelenlétre épít. A vezetett meditációk beszédhangját követheted, de a zene nélküli csend teszi lehetővé a valós mentális folyamatok tiszta észlelését.",
+    a: "Ez a megközelítés a belső csendre és a természetes jelenlétre épít. A vezetett meditációk beszédhangját követheted, de a zene nélküli csend teszi lehetővé a valós mentális folyamatok tiszta észlelését.",
   },
   {
     q: "Mi történik, ha kimarad egy nap?",
@@ -299,7 +299,7 @@ export default function AlapozoBonuszPage() {
         {/* Hero bevezető */}
         <AnimatedSection className="text-center">
           <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-saffron-800 dark:text-saffron-300 sm:text-sm">
-            Nirmana Meditációs Alapozó
+            Meditációs Alapozó
           </p>
           <h1 className="mt-3 text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl">
             Bónuszanyagok és a 7 nap teljes tananyaga

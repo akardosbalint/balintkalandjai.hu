@@ -81,7 +81,7 @@ export default function TermsPage() {
               dokumentálása hallgatható meg minden vasárnap.
             </li>
             <li>
-              A <strong>Nirmana Meditációs Alapozó</strong> ingyenes, 7 napos e-mail
+              A <strong>Meditációs Alapozó</strong> ingyenes, 7 napos e-mail
               kurzust (/alapozo), amely kezdőknek és újrakezdőknek szóló napi leckékkel,
               vezetett meditációkkal és bónuszfelülettel támogatja az önálló gyakorlás
               elkezdését.
