@@ -115,7 +115,7 @@ export default function Story() {
             <p>
               A terv: október 1. és november 28. között egy 500 órás
               akkreditált jógaoktatói képzés Rishikeshben, a „jóga
-              fővárosában” — összesen 70 napot töltök Indiában. Nincsenek
+              fővárosában”, a Rudra YogPeeth Yoga Ashramban — összesen 70 napot töltök Indiában. Nincsenek
               bekészített válaszaim — napi egy videóval (TikTokon,
               Instagramon, YouTube Shortson és Facebookon) és minden
               vasárnap egy hosszabb, őszinte hangfelvétellel dokumentálom

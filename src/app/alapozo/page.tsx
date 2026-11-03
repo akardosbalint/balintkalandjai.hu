@@ -10,9 +10,9 @@ import StickyCTA from "@/components/StickyCTA";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
-const pageTitle = "Nem kell megvilágosodnod ahhoz, hogy békére lelj — Meditációs Alapozó";
+const pageTitle = "Itt az ideje, hogy élj — ne csak túlélj! — Idegrendszeri Alapozó";
 const pageDescription =
-  "Engedd el a folyamatos túlagyalást és a belső feszültséget. Sajátítsd el a valódi nyugalmat, ami a mindennapok pörgésében is veled marad — kényszeres elvárások és bűntudat nélkül.";
+  "Ingyenes 7 napos e-mail kurzus: napi 2 perc olvasás és 5 perc célzott gyakorlat a nyugodtabb hétköznapokért.";
 
 export const metadata: Metadata = {
   title: `${pageTitle} — ${siteConfig.brandName}`,
@@ -31,161 +31,75 @@ export const metadata: Metadata = {
   }),
 };
 
-// 4 kulcsfontosságú életminőség-javulás (Benefit fókusz)
-const CORE_BENEFITS = [
+// 7 napos tematika: Lépésről lépésre, felesleges elméleti túlterhelés nélkül
+// 3 letisztult szakasz a túlélő üzemmódból a valódi stabilitásba
+const CURRICULUM_STAGES = [
   {
-    title: "Csendesebb elme, kevesebb felesleges túlagyalás",
+    step: "01",
+    phase: "1. Szakasz",
+    title: "Azonnali vészfék & Fiziológiai szünet",
     description:
-      "Ismerős az érzés, amikor a fejedben végtelenítve fut a „mi lesz ha...” és a múltbeli beszélgetések elemzése? A gyakorlás során megtanulod kívülről látni a gondolataidat anélkül, hogy mindegyiknek hinnél. A felesleges aggódás helyét tiszta, békés tér veszi át.",
-    badge: "Mentális megkönnyebbülés",
+      "Hogyan szakítsd meg a szimpatikus túlpörgést és a testben rekedt feszültséget percek alatt. Célzott légzés- és szemizmokhoz kötött reflexek, amelyek azonnal csökkentik a szívritmust.",
+    highlight: "A testi stresszreakció közvetlen lekapcsolása percek alatt",
   },
   {
-    title: "Valódi érzelmi stabilitás a váratlan helyzetekben",
+    step: "02",
+    phase: "2. Szakasz",
+    title: "Belső biztonságérzet & A Vagus-ideg aktiválása",
     description:
-      "A határidők szorítása, a munkahelyi konfliktusok és az élet kiszámíthatatlansága nem rántanak többé azonnal magukkal. Kialakul benned egy szilárd belső védőháló: nem azonnal reflexből reagálsz, hanem képes leszel nyugodtan, tisztán dönteni feszült pillanatokban is.",
-    badge: "Belső biztonság",
+      "Átkapcsolás a regeneráló paraszimpatikus állapotba. Szomatikus földelés és a stressz két elsődleges testi raktárának (állkapocs és vállöv) feloldása alulról felfelé (bottom-up).",
+    highlight: "A limbikus rendszer megnyugtatása a testérzeteken keresztül",
   },
   {
-    title: "Mélyebb pihenés és regenerálódó idegrendszer",
+    step: "03",
+    phase: "3. Szakasz",
+    title: "Fenntartható mikrorutin & Idegrendszeri higiénia",
     description:
-      "Megszűnik az esti plafonbámulás és a szorító érzés a gyomrodban. A tested és az idegrendszered végre megtanul átkapcsolni a folyamatos túlélő, készenléti üzemmódból a mély regenerációba. Reggelente kipihentebben, friss energiával ébredsz.",
-    badge: "Valódi regeneráció",
-  },
-  {
-    title: "Őszinte, osztatlan jelenlét a szeretteiddel",
-    description:
-      "Nem félig a telefonodon vagy a teendőiden járó aggyal vagy ott a vacsoránál: valódi figyelmet, türelmet és melegséget tudsz adni a párodnak, gyerekeidnek és legfőképp önmagadnak. Újra megélheted a pillanatok valódi örömét.",
-    badge: "Mélyebb kapcsolatok",
+      "Tudatos mélypihenés (Mikro-NSDR) és a saját 5 perces idegrendszeri biztonsági horgonyod rögzítése, amely a legsűrűbb munkanapokon is tartható.",
+    highlight: "Kényszermentes, tartós belső stabilitás a mindennapokban",
   },
 ];
 
-// Miért fulladt eddig kudarcba a meditáció? (Tévhitek vs. Megkönnyebbülés)
-const MYTHS_VS_BENEFITS = [
-  {
-    myth: "Azt hitted, kötelező teljesen kiüríteni a fejedet",
-    reality:
-      "A gondolatmentesség egy elérhetetlen mítosz, ami csak kudarcérzést szül. Az agy dolga a gondolkodás. Ebben a kurzusban nem a gondolatok elnémítását tanulod meg, hanem azt, hogyan köss békét velük anélkül, hogy magukkal rántanának.",
-  },
-  {
-    myth: "Azt hitted, órákig kell mereven, kényelmetlen pózban ülni",
-    reality:
-      "Nincs szükség sem füstölőkre, sem lótuszülésre. Egy kényelmes fotel vagy kanapé tökéletes. A meditáció lényege a figyelem szelídsége, nem a test kényszerű merevsége.",
-  },
-  {
-    myth: "Újabb nyomasztó kötelesség lett belőle a to-do listádon",
-    reality:
-      "Ez a módszer szelíd és bűntudatmentes. Ez a napod egyetlen olyan 10–15 perce, ahol nem kell megfelelned senkinek. Nem egy újabb elvárás, hanem maga a fellélegzés.",
-  },
-];
-
-// A 7 napos belső átalakulás lépései (Kifejezetten a belső nyereségre fókuszálva)
-const TRANSFORMATION_DAYS = [
-  {
-    day: "1. nap",
-    title: "A bűntudat és a görcsös akarás elengedése",
-    benefit:
-      "Megtapasztalod a felszabadító felismerést: nem rontod el a meditációt, ha jönnek a gondolatok. Kényelmesen elhelyezkedsz, és megengeded a testednek, hogy végre letegye a nap terheit.",
-    breakthrough: "Fő nyereség: azonnal megszűnik a teljesítménykényszer és az önostorozás",
-  },
-  {
-    day: "2. nap",
-    title: "A figyelem visszaszerzése – szelíden, harc nélkül",
-    benefit:
-      "Megérted, miért kalandozik el az elme, és megkapod a 3 lépéses módszert, amivel a legzaklatottabb pillanatban is percek alatt visszahozhatod magad a belső nyugalmadba.",
-    breakthrough: "Fő nyereség: azonnali mentális kapaszkodó stressz és kapkodás esetén",
-  },
-  {
-    day: "3. nap",
-    title: "A testben rekedt feszültségek kioldása",
-    benefit:
-      "Megszabadítod a nyakadat, a válladat és a mellkasodat a felgyülemlett fizikai görcsöktől. Ha nehezedre esik a légzésre figyelni, kézzelfogható alternatív kapaszkodót találsz.",
-    breakthrough: "Fő nyereség: érezhető testi megkönnyebbülés és szabadabb légzés",
-  },
-  {
-    day: "4. nap",
-    title: "Békekötés a gondolatokkal – a belső háború vége",
-    benefit:
-      "Megtanulod kívülről, ítélkezés nélkül szemlélni a felbukkanó gondolatokat. Nem ragadsz bele a szorongató monológokba: a gondolatok jönnek és mennek, te pedig békében maradsz.",
-    breakthrough: "Fő nyereség: elcsendesülő belső zaj és tisztább fej a döntéseidhez",
-  },
-  {
-    day: "5. nap",
-    title: "Tágas belső szabadság a beszűkült aggodalmak helyett",
-    benefit:
-      "Kitágítod a figyelmedet a környezetedre és a saját belső teredre. Megtapasztalod a nyitott éberséget, ahol a mindennapi problémák elveszítik nyomasztó, beszűkítő súlyukat.",
-    breakthrough: "Fő nyereség: megkönnyebbülés, tágasabb perspektíva és belső könnyedség",
-  },
-  {
-    day: "6. nap",
-    title: "Jelenlét a rohanásban – a nyugalmad veled marad",
-    benefit:
-      "Átülteted a megélt békét a mindennapi helyzetekbe: a dugóba, a megbeszélésekre vagy a családi vacsorákra. Olyan fenntartható szokást teremtesz, ami nem foszlik szét a nap folyamán.",
-    breakthrough: "Fő nyereség: a belső csend a mindennapok pörgésében is veled marad",
-  },
-  {
-    day: "7. nap",
-    title: "Önálló belső erő – a tartós biztonságod megalapozása",
-    benefit:
-      "Összeáll a teljes folyamat. Kiválasztod a saját alapgyakorlatodat, amire bármikor támaszkodhatsz, és megkapod a 14 napos útmutatót az önálló, magabiztos folytatáshoz.",
-    breakthrough: "Fő nyereség: egy életre szóló, független belső stabilitás",
-  },
-];
-
-// Élethelyzetek és belső igények
+// Kinek szól ez a kurzus? (A brief szerinti célcsoport)
 const TARGET_AUDIENCE = [
-  "Úgy érzed, a napjaid állandó rohanásból és tűzoltásból állnak, és estére teljesen kimerül az idegrendszered.",
-  "Az agyad még az ágyban fekve sem hajlandó leállni: szüntelenül a holnapi terheken és múltbeli helyzeteken kattog.",
-  "Türelmetlenebb vagy a szeretteiddel és munkatársaiddal, mint szeretnéd – és emiatt este bűntudat gyötör.",
-  "Korábban már próbáltál meditálni, de csalódottan feladtad: „nekem ez nem megy, az én agyam túl aktív a csendhez”.",
-  "Nem elvont filozófiára vagy kötelező dogmákra vágysz, hanem a valódi hétköznapi életedben azonnal érezhető belső békére.",
+  "Krónikus belső feszültséget és kimerültséget érzel, de nincs napi 30–60 perced bonyolult relaxációs technikákra.",
+  "Nem még több elméletet vagy spirituális körmondatokat keresel, hanem azonnal megtapasztalható, biológiailag működő megoldást.",
+  "Nehezen kapcsolsz ki este, zakatol az agyad a teendőkön és a feszültség a testedben (állkapocs, nyak, mellkas) reked.",
+  "Úgy érzed, a napjaid állandó túlélésből és készenlétből állnak a valódi jelenlét és öröm helyett.",
+  "Szeretnéd, hogy a feszültségoldás napi 5-7 percben, természetesen és bűntudat nélkül épüljön be a munkanapjaidba.",
 ];
 
-// Gyakran Ismételt Kérdések a kétségek eloszlatására
+// Gyakran Ismételt Kérdések
 const ALAPOZO_FAQ_ITEMS = [
   {
-    question: "Mi van, ha képtelen vagyok kiüríteni a fejemet?",
+    question: "Mennyi időt vesz igénybe egy-egy napi lecke?",
     answer:
-      "Ez a leggyakoribb tévhit a meditációval kapcsolatban! Az emberi agy biológiailag képtelen a teljes gondolatmentességre. A kurzus célja pontosan az, hogy megtanulj békében lenni a gondolatok jelenlétével, és szelíden visszahozni a figyelmedet ahelyett, hogy harcolnál velük.",
+      "Pontosan napi 2 perc olvasás és 5 perc célzott szomatikus gyakorlat — mindössze 7 perc összesen. Kifejezetten krónikusan túlterhelt, sűrű napirenddel élő embereknek terveztük: nem kapsz felesleges elméleti körmondatokat vagy 20 perces hanganyagokat, csak azonnal működő biológiai megoldásokat.",
   },
   {
-    question: "Valóban segíteni fog csökkenteni a mindennapi stresszt és szorongást?",
+    question: "Miért nem elegendő a képernyő előtti „pihenés”?",
     answer:
-      "Igen. A vezetett gyakorlatok célzottan csillapítják a túlpörgetett szimpatikus idegrendszert (a „harcolj vagy menekülj” állapotot), és aktiválják a regenerációért és belső nyugalomért felelős paraszimpatikus idegrendszert. Már az első lecke után érezni fogod a megkönnyebbülést.",
+      "A közösségi média görgetése vagy a televízió nézése csupán eltereli a figyelmet, de az idegrendszert nem csillapítja: a vizuális ingerek és a kék fény fenntartják a készenléti állapotot. A kurzusban megmutatjuk, hogyan kapcsold be a valódi biológiai regenerációt.",
   },
   {
-    question: "Nagyon kevés az időm. Be tudom illeszteni egy zsúfolt napirendbe?",
+    question: "Mi az a Vagus-ideg, és hogyan segít a stresszoldásban?",
     answer:
-      "Kifejezetten a modern, túlzsúfolt életvitelhez terveztük. Napi 10–15 perc elegendő. Ráadásul ez a negyedóra nem „elvesz” időt a napodból: a tisztább fókusz és a nyugodtabb idegrendszer révén a többi teendődet is sokkal hatékonyabban és kevesebb hibával fogod elvégezni.",
+      "A Vagus-ideg (bolygóideg) a szervezet elsődleges belső fékrendszere: összeköti az agyat a szívvel, tüdővel és a belső szervekkel. Amikor célzott légzéssel vagy mikroszomatikus gyakorlatokkal aktiválod, a pulzus lassul, és a tested azonnal átkapcsol regeneráló (paraszimpatikus) üzemmódba.",
   },
   {
-    question: "Mikor a legcélszerűbb elvégezni a napi leckéket?",
+    question: "Tényleg teljesen ingyenes a 7 napos kurzus?",
     answer:
-      "A levelek minden reggel 5:00-kor érkeznek a postaládádba, de a gyakorlatot a nap bármely szakaszában elvégezheted. Hallgathatod a reggeli kávé előtt, napközben egy rövid szünetben a munkahelyeden, vagy akár este, a lefekvés előtti megnyugváshoz.",
+      "Igen, 100%-ban ingyenes tudásmegosztás. Semmilyen bankkártyaadatot nem kérünk, a leckéket közvetlenül a megadott e-mail címedre kapod, és a leiratkozás bármikor egyetlen kattintás.",
   },
   {
-    question: "Szükségem van különleges eszközökre vagy meditációs párnára?",
+    question: "Mikor érkeznek a napi levelek?",
     answer:
-      "Egyáltalán nem. Egy kényelmes szék, a kanapé vagy akár az íróasztalod tökéletesen megfelel. Nem kell lótuszülésben ülnöd, és nincs szükség semmilyen speciális felszerelésre.",
-  },
-  {
-    question: "Tényleg teljesen ingyenes a kurzus?",
-    answer:
-      "Igen, a 7 napos Meditációs Alapozó 100%-ban ingyenes, és semmilyen bankkártyaadatot nem kérünk. A leckékhez és a vezetett meditációs hanganyagokhoz azonnal, díjmentesen hozzáférhetsz.",
-  },
-  {
-    question: "Nem fogja teleszemetelni a postaládámat sok reklámlevél?",
-    answer:
-      "Egyáltalán nem. Szigorúan csak a kurzushoz tartozó napi egyetlen oktató e-mailt kapod meg a 7 nap során. Nincsenek agresszív reklámok, nem adjuk át az adataidat senkinek, és a leiratkozás mindig egyetlen kattintás.",
+      "Minden reggel a postaládádban vár a napi lecke. A 2 perces olvasást és az 5 perces gyakorlatot a nap bármely szakaszában elvégezheted – reggeli indításként, a munkahelyi asztalodnál egy feszült pillanatban, vagy este lefekvés előtt.",
   },
   {
     question: "Mi történik, ha egy vagy több nap kimarad?",
     answer:
-      "Semmi probléma! A kurzusban egyáltalán nincs teljesítménykényszer vagy bűntudatkeltés. A levelek és a vezetett meditációs hanganyagok megmaradnak a postaládádban, így a saját időbeosztásod szerint bármikor folytathatod őket.",
-  },
-  {
-    question: "Bármikor leiratkozhatok, ha mégsem nekem való?",
-    answer:
-      "Természetesen. Minden kiküldött levél alján találsz egy egykattintásos leiratkozási linket, így egyetlen gombnyomással bármikor megszüntetheted a tagságodat.",
+      "Semmi gond! Nincs teljesítménykényszer és nincs bűntudat. A levelek ott maradnak a postaládádban, így a saját ritmusodban bármikor visszatérhetsz hozzájuk.",
   },
 ];
 
@@ -193,7 +107,7 @@ export default function AlapozoPage() {
   const courseJsonLd = {
     "@context": "https://schema.org",
     "@type": "Course",
-    name: "Meditációs Alapozó",
+    name: "Idegrendszeri Alapozó — 7 napos e-mail kurzus",
     description: pageDescription,
     provider: {
       "@type": "Person",
@@ -204,7 +118,7 @@ export default function AlapozoPage() {
     hasCourseInstance: {
       "@type": "CourseInstance",
       courseMode: "online",
-      courseWorkload: "PT15M",
+      courseWorkload: "PT7M",
     },
   };
 
@@ -232,217 +146,182 @@ export default function AlapozoPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* 1. BENEFIT-FIRST HERO SZEKCIÓ */}
+      {/* 1. HERO SZEKCIÓ (FŐKÉPERNYŐ) */}
       <section className="relative isolate overflow-hidden px-6 pb-20 pt-16 sm:pb-28 sm:pt-28 grain-overlay">
         <OrganicBackground variant="hero" />
 
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
-          <p className="animate-hero-in inline-flex items-center gap-2 rounded-full border border-forest-900/15 bg-white/90 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 shadow-sm dark:border-sand-50/25 dark:bg-forest-800 dark:text-sand-50 sm:text-sm">
-            <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-            Meditációs Alapozó · Ingyenes 7 napos útmutató
-          </p>
-
-          <h1 className="animate-hero-in mt-6 text-balance font-serif text-3xl font-medium leading-[1.18] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl">
-            Nem kell megvilágosodnod ahhoz, hogy békére lelj.
+          {/* H1 Főcím */}
+          <h1 className="animate-hero-in text-balance font-serif text-3xl font-medium leading-[1.18] tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl md:text-6xl">
+            Itt az ideje, hogy élj — ne csak túlélj!
           </h1>
 
+          {/* Alcím */}
           <p className="animate-hero-in mt-6 max-w-2xl text-balance text-lg leading-relaxed text-ink-900/85 dark:text-sand-100/85 [animation-delay:100ms] sm:text-xl">
-            Szabadulj meg a szüntelen túlagyalástól, a belső feszültségtől és a kimerültségtől.
-            Tanuld meg úgy észrevenni a gondolataidat és visszatérni a jelenhez, hogy a nyugalmad
-            a mindennapok pörgésében is veled maradjon.
+            Ingyenes 7 napos e-mail kurzus: napi 2 perc olvasás és 5 perc célzott gyakorlat a nyugodtabb hétköznapokért.
           </p>
 
-          {/* Fő benefit-ígéretek pontokba szedve a gyors áttekintéshez */}
+          {/* Kiemelt pontok */}
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-ink-900/75 dark:text-sand-100/75 sm:text-sm">
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Kevesebb mentális zaj
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Modern életmód-orvoslás és ősi jógikus tradíciók
             </span>
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Érzelmi stabilitás a feszült napokon
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Napi 2 perc elmélet, 5 perc gyakorlat
             </span>
             <span className="inline-flex items-center gap-1.5 font-medium">
-              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Mélyebb, pihentetőbb alvás
+              <span className="text-emerald-700 dark:text-emerald-400 font-bold">✓</span> Pár nap után érzékelhető változás
             </span>
           </div>
 
-          {/* 3 lépéses belső mechanizmus (a stresszből a nyugalomba) */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
-            <span className="rounded-full border border-forest-900/15 bg-white/75 px-4 py-2 font-medium text-forest-900 shadow-sm dark:border-sand-50/15 dark:bg-forest-800/60 dark:text-sand-50">
-              1. Észreveszem a feszültséget
-            </span>
-            <span className="text-ink-900/40 dark:text-sand-100/40 font-bold">→</span>
-            <span className="rounded-full border border-forest-900/15 bg-white/75 px-4 py-2 font-medium text-forest-900 shadow-sm dark:border-sand-50/15 dark:bg-forest-800/60 dark:text-sand-50">
-              2. Szelíden visszatérek
-            </span>
-            <span className="text-ink-900/40 dark:text-sand-100/40 font-bold">→</span>
-            <span className="rounded-full border border-forest-900/15 bg-white/75 px-4 py-2 font-medium text-forest-900 shadow-sm dark:border-sand-50/15 dark:bg-forest-800/60 dark:text-sand-50">
-              3. Békével folytatom
-            </span>
-          </div>
-
-          {/* Form ID: eERn80 — Medi Alapozó Form */}
+          {/* Inline Feliratkozási Űrlap */}
           <div className="mt-10 flex w-full justify-center">
             <SenderForm
               formId="eERn80"
               id="alapozo-form"
-              ctaLabel="Kérem a belső nyugalmat — Csatlakozom"
-              offerNote="100% ingyenes útmutató · Reggelente érkező napi leckék · Bármikor 1 kattintással leiratkozhatsz"
+              ctaLabel="Kérem a 7 napos alapozó kurzust!"
+              offerNote="100% ingyenes e-mail kurzus · Napi 2 perc elmélet, 5 perc gyakorlat · Bármikor 1 kattintással leiratkozhatsz"
             />
           </div>
         </div>
       </section>
 
-      {/* 2. MIT VÁLTOZTAT MEG AZ ÉLETEDBEN A GYAKORLÁS? (Kulcsfontosságú Benefitek) */}
+      {/* 2. MIÉRT HOZTAM LÉTRE EZT A KURZUST? (A probléma & empátia a brief szerint) */}
       <section className="relative overflow-hidden px-6 py-20 sm:py-28">
-        <OrganicBackground variant="offer" />
-
-        <div className="mx-auto max-w-5xl">
-          <AnimatedSection className="mx-auto max-w-2xl text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
-              Valódi átalakulás
-            </p>
-            <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-              Mit ad neked a rendszeres belső csend?
-            </h2>
-            <p className="mt-4 text-balance text-ink-900/80 dark:text-sand-100/80 sm:text-lg">
-              A meditáció nem öncélú gyakorlat és nem misztikus póz. Egy olyan belső eszköztár,
-              ami kézzelfoghatóan jobbá, nyugodtabbá és élhetőbbé teszi a mindennapjaidat.
-            </p>
-          </AnimatedSection>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2">
-            {CORE_BENEFITS.map((b) => (
-              <AnimatedSection key={b.title}>
-                <HoverLiftCard className="flex h-full flex-col justify-between p-7 sm:p-8">
-                  <div>
-                    <span className="inline-block rounded-full bg-forest-900/10 px-3.5 py-1 text-xs font-semibold text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
-                      {b.badge}
-                    </span>
-                    <h3 className="mt-4 font-serif text-xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-2xl">
-                      {b.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75 sm:text-base">
-                      {b.description}
-                    </p>
-                  </div>
-                </HoverLiftCard>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. MIÉRT FULLADT EDDIG KUDARCBA A MEDITÁCIÓ? (Tévhitek vs. Megkönnyebbülés) */}
-      <section className="relative overflow-hidden px-6 py-20 sm:py-28 grain-overlay">
         <OrganicBackground variant="story" />
 
         <div className="mx-auto max-w-3xl">
           <AnimatedSection className="text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
-              Miért fog most végre működni?
+              A probléma és empátia
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-              Nem veled volt a baj: csak rossz szabályok szerint játszottál.
+              Miért hoztam létre ezt a kurzust?
             </h2>
-            <p className="mt-4 text-balance text-ink-900/80 dark:text-sand-100/80 sm:text-lg">
-              Sokan azért adják fel a meditációt néhány nap után, mert elérhetetlen elvárásokat
-              támasztanak magukkal szemben. A Nirmanában elengedjük a görcsös akarást.
-            </p>
           </AnimatedSection>
 
-          <div className="mt-12 space-y-5">
-            {MYTHS_VS_BENEFITS.map((item, idx) => (
-              <AnimatedSection key={idx}>
-                <div className="rounded-2xl border border-forest-900/10 bg-white/75 p-6 shadow-sm backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/50 sm:p-7">
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-rose-700 dark:text-rose-400">
-                    <span className="font-bold">✕ A régi tévhit:</span>
-                    <span>{item.myth}</span>
-                  </div>
-                  <div className="mt-3 pt-3 border-t border-forest-900/10 dark:border-sand-50/10">
-                    <p className="text-sm font-medium text-forest-900 dark:text-sand-50 sm:text-base leading-relaxed">
-                      <span className="text-emerald-700 dark:text-emerald-400 font-bold mr-1.5">✓ A felszabadító valóság:</span>
-                      {item.reality}
-                    </p>
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-          </div>
+          <AnimatedSection className="mt-10 rounded-3xl border border-forest-900/10 bg-white/85 p-8 shadow-sm backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/60 sm:p-10">
+            <div className="space-y-5 text-base leading-relaxed text-ink-900/85 dark:text-sand-100/90 sm:text-lg">
+              <p>
+                A mai világban a krónikus kimerültség szinte <strong>normálállapottá vált</strong>. Úgy teszünk, mintha természetes lenne, hogy reggeltől estig feszültségben élünk, az agyunk még az ágyban fekve is szüntelenül pörög, és a nap végén az egyetlen menedékünk a telefon görgetése vagy a képernyő bámulása.
+              </p>
+              <p>
+                De a képernyő <strong>nem pihenteti az idegrendszert</strong> — csak eltereli a figyelmet, miközben a stresszhormonok szintje folyamatosan magasan marad, a test pedig sosem kap valódi engedélyt a lazításra.
+              </p>
+              <p>
+                Nem még több elméleti információra vagy órákig tartó meditációra van szükséged, hanem egy <strong>valóban működő megoldásra</strong>. Ez az ingyenes kurzus nem akarja a teljes szakirodalmat a nyakadba zúdítani: a modern életmód-orvoslás és az ősi jógikus tradíciók legtisztább esszenciáját sűríti napi 2 perc olvasásba és 5 perc célzott gyakorlatba, hogy a saját bőrödön tapasztald meg a szimpatikus túlpörgés megszelídítését.
+              </p>
+            </div>
+
+            <div className="mt-8 border-t border-forest-900/10 pt-6 dark:border-sand-50/10">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-ink-900/75 dark:text-sand-100/75">
+                <span className="font-serif italic">„A stressz jelenléte nem a te hibád, de a megoldás a te kezedben van.”</span>
+                <span className="font-medium text-forest-900 dark:text-sand-50">— Kardos Bálint</span>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* 4. A 7 NAPOS ÁTALAKULÁS LÉPÉSEI (Benefit-vezérelt folyamat) */}
-      <section className="relative overflow-hidden px-6 py-20 sm:py-28">
-        <OrganicBackground variant="cta" />
+      {/* 3. HOGYAN ÉPÜL FEL A 7 NAP? (Letisztult, egyszerűsített áttekintés) */}
+      <section className="relative overflow-hidden px-6 py-20 sm:py-28 grain-overlay">
+        <OrganicBackground variant="offer" />
 
         <div className="mx-auto max-w-4xl">
           <AnimatedSection className="mx-auto max-w-2xl text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
-              Lépésről lépésre
+              Lépésről lépésre · Napi 7 perc
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-              Hogyan épül fel a belső nyugalmad 7 nap alatt?
+              Hogyan épül fel a 7 nap?
             </h2>
             <p className="mt-3 text-ink-900/75 dark:text-sand-100/75 sm:text-lg">
-              Nem száraz tananyagot kapsz, hanem napról napra egyre mélyebb megkönnyebbülést.
-              Minden reggel egy rövid felismerés és egy azonnal kipróbálható vezetett hanganyag vár.
+              Nem kapsz felesleges elméleti körmondatokat vagy bemagolandó anyagokat: minden reggel egyetlen, tiszta levél vár a postaládádban <strong>2 perc elmélettel és 5 perc célzott gyakorlattal</strong>.
             </p>
           </AnimatedSection>
 
-          <div className="mt-14 space-y-6">
-            {TRANSFORMATION_DAYS.map((d, index) => (
-              <AnimatedSection key={d.day}>
+          {/* 3 Fő Szakasz kártyái */}
+          <div className="mt-12 space-y-5">
+            {CURRICULUM_STAGES.map((item) => (
+              <AnimatedSection key={item.step}>
                 <HoverLiftCard className="flex flex-col gap-4 p-6 sm:p-7 md:flex-row md:items-start md:gap-6">
                   <div className="flex shrink-0 items-center gap-3 md:flex-col md:items-start">
                     <span className="font-serif text-2xl font-bold text-forest-900 dark:text-sand-50">
-                      {String(index + 1).padStart(2, "0")}
+                      {item.step}
                     </span>
-                    <span className="rounded-full bg-forest-900/10 px-3 py-1 text-xs font-semibold text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
-                      {d.day}
+                    <span className="rounded-full bg-forest-900/10 px-3 py-1 font-serif text-xs font-semibold text-forest-900 dark:bg-sand-50/15 dark:text-sand-50">
+                      {item.phase}
                     </span>
                   </div>
 
                   <div className="flex-1">
                     <h3 className="font-serif text-xl font-medium tracking-tight text-forest-900 dark:text-sand-50">
-                      {d.title}
+                      {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75 sm:text-base">
-                      {d.benefit}
+                    <p className="mt-2 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-base">
+                      {item.description}
                     </p>
                     <div className="mt-3 inline-flex items-center text-xs font-medium text-forest-900/90 dark:text-sand-100">
                       <span className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                      {d.breakthrough}
+                      {item.highlight}
                     </div>
                   </div>
                 </HoverLiftCard>
               </AnimatedSection>
             ))}
           </div>
+
+          {/* Összegző mikro-kártya: A napi működési elv */}
+          <AnimatedSection className="mt-8 rounded-2xl border border-forest-900/15 bg-white/70 p-6 backdrop-blur-sm dark:border-sand-50/15 dark:bg-forest-800/60 sm:p-7">
+            <div className="grid gap-4 sm:grid-cols-3 text-left">
+              <div className="rounded-xl border border-forest-900/10 bg-white/60 p-4 dark:border-sand-50/10 dark:bg-forest-900/40">
+                <p className="font-serif text-sm font-semibold text-forest-900 dark:text-sand-50">⏱️ Napi 2 perc elmélet</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-900/75 dark:text-sand-100/75">
+                  Tömör neurobiológiai megértés: miért reagál így a tested és hogyan hat az adott gyakorlat.
+                </p>
+              </div>
+              <div className="rounded-xl border border-forest-900/10 bg-white/60 p-4 dark:border-sand-50/10 dark:bg-forest-900/40">
+                <p className="font-serif text-sm font-semibold text-forest-900 dark:text-sand-50">🧘 Napi 5 perc gyakorlat</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-900/75 dark:text-sand-100/75">
+                  Azonnal végrehajtható szomatikus eszköz az íróasztalodnál vagy este az ágyban.
+                </p>
+              </div>
+              <div className="rounded-xl border border-forest-900/10 bg-white/60 p-4 dark:border-sand-50/10 dark:bg-forest-900/40">
+                <p className="font-serif text-sm font-semibold text-forest-900 dark:text-sand-50">🌱 Zéró bűntudat</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-900/75 dark:text-sand-100/75">
+                  Nincs teljesítménykényszer. Ha kimarad egy nap, a levelek megvárnak a postaládádban.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* 5. KINEK SZÓL? (Érzelmi és élethelyzeti illeszkedés) */}
-      <section className="relative overflow-hidden px-6 py-20 sm:py-28 grain-overlay">
+      {/* 4. KINEK SZÓL EZ A KURZUS? (Célcsoport definíció a brief szerint) */}
+      <section className="relative overflow-hidden px-6 py-20 sm:py-28">
         <OrganicBackground variant="story" />
 
         <div className="mx-auto max-w-3xl">
           <AnimatedSection className="text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
-              Megérkezés önmagadhoz
+              Célcsoport
             </p>
             <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-              Neked szól ez az alapozó, ha...
+              Kinek szól ez a kurzus?
             </h2>
+            <p className="mt-3 text-ink-900/75 dark:text-sand-100/75 sm:text-lg">
+              Azoknak a tudatos embereknek készült, akik nem elvont teóriákra, hanem a zsúfolt hétköznapokba azonnal beépíthető, működő eszközökre vágynak:
+            </p>
           </AnimatedSection>
 
           <div className="mt-12 space-y-4">
             {TARGET_AUDIENCE.map((item, idx) => (
               <AnimatedSection key={idx}>
-                <div className="flex items-start gap-4 rounded-2xl border border-forest-900/10 bg-white/75 p-5 shadow-sm backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/50">
+                <div className="flex items-start gap-4 rounded-2xl border border-forest-900/10 bg-white/85 p-5 shadow-sm backdrop-blur-sm dark:border-sand-50/10 dark:bg-forest-800/50">
                   <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/15 font-serif text-sm font-bold text-emerald-800 dark:bg-emerald-400/20 dark:text-emerald-300">
                     ✓
                   </span>
-                  <p className="text-base leading-relaxed text-ink-900/80 dark:text-sand-100/80">
+                  <p className="text-base leading-relaxed text-ink-900/85 dark:text-sand-100/85">
                     {item}
                   </p>
                 </div>
@@ -452,75 +331,9 @@ export default function AlapozoPage() {
         </div>
       </section>
 
-      {/* 6. HOGYAN MŰKÖDIK? (Egyszerű, sallangmentes lépések) */}
-      <section className="relative overflow-hidden px-6 py-20 sm:py-28">
-        <OrganicBackground variant="offer" />
-
-        <div className="mx-auto max-w-4xl">
-          <AnimatedSection className="text-center">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
-              Egyszerű és kényelmes
-            </p>
-            <h2 className="text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-              Hogyan illesztheted be a napjaidba?
-            </h2>
-            <p className="mt-3 text-ink-900/75 dark:text-sand-100/75">
-              Nem kell átszervezned az életedet: a gyakorlás alkalmazkodik hozzád, nem fordítva.
-            </p>
-          </AnimatedSection>
-
-          <div className="mt-14 grid gap-8 sm:grid-cols-3">
-            <AnimatedSection>
-              <HoverLiftCard className="h-full p-6 text-center sm:text-left">
-                <span className="font-serif text-3xl font-bold text-forest-900 dark:text-sand-50">
-                  01
-                </span>
-                <h3 className="mt-3 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
-                  15 másodperces csatlakozás
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75">
-                  Csak a keresztnevedet és a legfontosabb email címedet add meg. Semmi bonyolult
-                  regisztráció vagy felesleges kérdés.
-                </p>
-              </HoverLiftCard>
-            </AnimatedSection>
-
-            <AnimatedSection>
-              <HoverLiftCard className="h-full p-6 text-center sm:text-left">
-                <span className="font-serif text-3xl font-bold text-forest-900 dark:text-sand-50">
-                  02
-                </span>
-                <h3 className="mt-3 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
-                  Reggeli inspiráció és hanganyag
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75">
-                  A levelek reggel 5:00-kor megérkeznek, bennük egy rövid gondolattal és egy
-                  5–10 perces vezetett meditációval.
-                </p>
-              </HoverLiftCard>
-            </AnimatedSection>
-
-            <AnimatedSection>
-              <HoverLiftCard className="h-full p-6 text-center sm:text-left">
-                <span className="font-serif text-3xl font-bold text-forest-900 dark:text-sand-50">
-                  03
-                </span>
-                <h3 className="mt-3 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
-                  A te saját ritmusodban
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-900/75 dark:text-sand-100/75">
-                  A reggeli küldés nem követel hajnali ébredést. Akkor hallgatod meg, amikor
-                  neked jólesik: kávézás előtt, ebédidőben vagy este.
-                </p>
-              </HoverLiftCard>
-            </AnimatedSection>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. BEMUTATKOZÁS (Kardos Bálint) */}
+      {/* 5. A TRÉNERED (Kardos Bálint bemutatkozás & hitelesítések) */}
       <section className="relative overflow-hidden px-6 py-20 sm:py-28 grain-overlay">
-        <OrganicBackground variant="story" />
+        <OrganicBackground variant="cta" />
 
         <div className="mx-auto max-w-4xl">
           <div className="grid items-center gap-10 md:grid-cols-[280px_1fr] md:gap-14">
@@ -528,7 +341,7 @@ export default function AlapozoPage() {
               <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-forest-900/10 dark:ring-sand-50/10">
                 <Image
                   src="/images/kardos-balint-profil.jpg"
-                  alt="Kardos Bálint"
+                  alt="Kardos Bálint — Tréner"
                   fill
                   sizes="(min-width: 768px) 280px, 240px"
                   className="object-cover"
@@ -538,49 +351,123 @@ export default function AlapozoPage() {
 
             <AnimatedSection className="text-left">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
-                Az útmutatód
+                A trénered
               </p>
               <h2 className="mt-2 font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
                 Kardos Bálint
               </h2>
 
-              <div className="mt-5 space-y-3 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-base">
+              <div className="mt-4 space-y-3 text-sm leading-relaxed text-ink-900/85 dark:text-sand-100/85 sm:text-base">
                 <p>
-                  Szakmai háttér és minősítések:
+                  A krónikus kimerültség, az insomnia és a pánikrohamok egy időben az életem mindennapos részei voltak. Pontosan ismerem a túlpörgött szimpatikus idegrendszer csapdáit és a tehetetlenség érzését.
                 </p>
-                <ul className="list-disc space-y-1 pl-5 text-ink-900/75 dark:text-sand-100/75">
-                  <li>RYT-200 jógaoktatói képzés Indiában</li>
-                  <li>Lifestyle Medicine Consultant végzettség a LifestylePro szervezetétől</li>
-                  <li>Többéves személyes meditációs és tudatossági tapasztalat</li>
-                </ul>
-                <p className="pt-2">
-                  Nem guruként vagy tévedhetetlen tanítóként vagyok jelen, hanem olyan gyakorlóként,
-                  aki a saját elakadásain, szorongásain és túlagyalásain keresztül tanulta meg: a
-                  meditáció nem a gondolatok elhallgattatásáról szól, hanem a figyelem szelíd,
-                  következetes visszatéréséről és a belső biztonság megteremtéséről.
+                <p>
+                  Célom, hogy egyszerű, tiszta és a test szintjén működő eszközöket adjak a kezedbe, amelyek felesleges körmondatok nélkül segítenek visszatalálni a stabilitáshoz és a belső csendhez.
                 </p>
               </div>
             </AnimatedSection>
           </div>
+
+          {/* HITELESSÉGI & SZAKMAI BLOKK: HOGYAN JÖVÖK ÉN AHHOZ... */}
+          <AnimatedSection className="mt-12 rounded-3xl border border-forest-900/15 bg-white/95 p-6 shadow-sm backdrop-blur-sm dark:border-sand-50/15 dark:bg-forest-800/90 sm:p-9">
+            <div className="text-center sm:text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 dark:text-sand-100 sm:text-sm">
+                Módszertani és szakmai megalapozottság
+              </p>
+              <h3 className="mt-2 text-balance font-serif text-2xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-3xl">
+                Hogyan jövök én ahhoz, hogy idegrendszer-fejlesztési témával foglalkozzak?
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-base">
+                Az idegrendszer szabályozása nem ezotéria és nem pusztán elméleti tanulás: a <strong>nyugati orvostudomány élettani törvényei</strong> és a <strong>keleti több ezer éves szomatikus tapasztalás</strong> szétválaszthatatlan egysége. A munkám ezen a három szilárd pilléren nyugszik:
+              </p>
+            </div>
+
+            {/* A 3 egységes pillér kártya: Nyugati orvoslás + Keleti szomatika + Tudományos bizonyíték */}
+            <div className="mt-8 grid gap-5 sm:grid-cols-3">
+              {/* 1. Pillér: Nyugati orvostudomány */}
+              <div className="flex flex-col justify-between rounded-2xl border border-forest-900/10 bg-white/80 p-5 shadow-xs dark:border-sand-50/10 dark:bg-forest-900/50">
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-sm font-bold text-emerald-900 dark:bg-emerald-400/20 dark:text-emerald-200">
+                      🔬
+                    </span>
+                    <h4 className="font-serif text-base font-medium text-forest-900 dark:text-sand-50">
+                      A tudományos „Miért”
+                    </h4>
+                  </div>
+                  <p className="mt-2 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+                    Lifestyle Medicine Consultant (LifestylePro Academy)
+                  </p>
+                  <p className="mt-2.5 text-xs leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-sm">
+                    Egzakt neurobiológiai háttér: a HPA-tengely (stresszhormonok), a bolygóideg (nervus vagus) és az autonóm idegrendszer működése. Nem tüneti kezelés, hanem a biológiai ok-okozati összefüggések pontos ismerete.
+                  </p>
+                </div>
+              </div>
+
+              {/* 2. Pillér: Keleti szomatika */}
+              <div className="flex flex-col justify-between rounded-2xl border border-forest-900/10 bg-white/80 p-5 shadow-xs dark:border-sand-50/10 dark:bg-forest-900/50">
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-sm font-bold text-emerald-900 dark:bg-emerald-400/20 dark:text-emerald-200">
+                      🧘
+                    </span>
+                    <h4 className="font-serif text-base font-medium text-forest-900 dark:text-sand-50">
+                      A szomatikus „Hogyan”
+                    </h4>
+                  </div>
+                  <p className="mt-2 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+                    500 órás jógaoktató (Rudra YogPeeth, Rishikesh)
+                  </p>
+                  <p className="mt-2.5 text-xs leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-sm">
+                    500 intenzív óra a forrásnál, Indiában: a pránájáma (légzés mint azonnali idegrendszeri beavatkozás), a pratjáhára és a Jóga Nidra (tudatos mélyregeneráció) közvetlenül a test szintjén ható, évezredes eszköztára.
+                  </p>
+                </div>
+              </div>
+
+              {/* 3. Pillér: A tudományos igazolás (Szerzetes-kutatások) */}
+              <div className="flex flex-col justify-between rounded-2xl border border-forest-900/10 bg-white/80 p-5 shadow-xs dark:border-sand-50/10 dark:bg-forest-900/50">
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/15 text-sm font-bold text-emerald-900 dark:bg-emerald-400/20 dark:text-emerald-200">
+                      🏛️
+                    </span>
+                    <h4 className="font-serif text-base font-medium text-forest-900 dark:text-sand-50">
+                      A bizonyított eredmény
+                    </h4>
+                  </div>
+                  <p className="mt-2 text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+                    PNAS & Harvard kutatási háttér
+                  </p>
+                  <p className="mt-2.5 text-xs leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-sm">
+                    A szerzeteseken végzett EEG- és agyi vizsgálatok (Dr. Richard Davidson, PNAS; Dr. Herbert Benson, Harvard) igazolták: a szomatikus gyakorlatok mérhető neuroplaszticitást és autonóm szabályozást hoznak létre. A nyugalom edzhető képesség.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Egységes záró szintézis */}
+            <div className="mt-7 rounded-2xl border border-emerald-600/20 bg-emerald-500/10 p-5 text-left dark:border-emerald-400/25 dark:bg-emerald-950/20">
+              <p className="text-sm leading-relaxed text-ink-900/85 dark:text-sand-100/90 sm:text-base">
+                <strong>A célom és ígéretem:</strong> A legtöbb jógaoktatásból hiányzik a modern orvosi megértés, a hagyományos orvoslás pedig ritkán ad a feszült pillanatban 5 perc alatt bevethető testi eszközt. Ez a kettős háttér biztosítja, hogy amit tőlem tanulsz, az <strong>tudományosan is helytálló, a tested szintjén azonnal működő, sallangmentes megoldás</strong>.
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* 8. ÖNKÉNTES TÁMOGATÁS TÁJÉKOZTATÓ (Kötelező masterprompt szöveg) */}
+      {/* 6. ÖNKÉNTES TÁMOGATÁS TÁJÉKOZTATÓ */}
       <section className="relative overflow-hidden px-6 py-14 sm:py-20">
         <div className="mx-auto max-w-2xl rounded-3xl border border-forest-900/15 bg-white/90 p-7 text-center shadow-sm dark:border-sand-50/15 dark:bg-forest-800/80 sm:p-10">
           <h2 className="font-serif text-xl font-medium text-forest-900 dark:text-sand-50 sm:text-2xl">
-            Önkéntes támogatás
+            100%-ban Ingyenes Tudásmegosztás
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/80 sm:text-base">
-            A Meditációs Alapozó teljes egészében ingyenes. Ha szeretnéd támogatni a
-            további ingyenes meditációs anyagok elkészítését, erre a feliratkozás után, a
-            köszönőoldalon lesz lehetőséged. A támogatás teljesen önkéntes, a kurzus elérésének
-            nem feltétele.
+            Az Idegrendszeri Alapozó teljes egészében ingyenes. Ha a kurzus elvégzése után szeretnéd önkéntesen támogatni a további ingyenes anyagok elkészítését, erre a feliratkozás utáni köszönőoldalon lesz lehetőséged. A támogatás teljesen opcionális, a leckék elérésének semmilyen formában nem feltétele.
           </p>
         </div>
       </section>
 
-      {/* 9. GYAKRAN ISMÉTELT KÉRDÉSEK (Kétségek eloszlatása & Megnyugtatás) */}
+      {/* 7. GYAKRAN ISMÉTELT KÉRDÉSEK */}
       <section className="relative px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-2xl">
           <AnimatedSection className="text-center">
@@ -591,7 +478,7 @@ export default function AlapozoPage() {
               Gyakran ismételt kérdések
             </h2>
             <p className="mt-3 text-sm text-ink-900/75 dark:text-sand-100/75 sm:text-base">
-              Minden fontos tudnivaló, mielőtt megtennéd az első lépést a belső csend felé.
+              Minden fontos részlet az Idegrendszeri Alapozó kurzusról:
             </p>
           </AnimatedSection>
 
@@ -601,30 +488,31 @@ export default function AlapozoPage() {
         </div>
       </section>
 
-      {/* 10. ZÁRÓ CTA */}
+      {/* 8. ZÁRÓ / ALSÓ CSATLAKOZÁSI SZEKCIÓ (Brief E. pont) */}
       <section className="relative overflow-hidden px-6 py-20 sm:py-28 grain-overlay">
         <OrganicBackground variant="cta" />
 
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <AnimatedSection>
             <p className="font-serif text-xs font-semibold uppercase tracking-[0.25em] text-forest-900 dark:text-sand-100 sm:text-sm">
-              Találj vissza önmagadhoz
+              Csatlakozz most
             </p>
-            <h2 className="mt-3 text-balance font-serif text-3xl font-medium leading-tight tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
-              Engedd meg magadnak a belső csendet – kezdd el még ma
+            {/* Záró idézet a brief alapján */}
+            <h2 className="mt-3 text-balance font-serif text-2xl font-medium leading-relaxed tracking-tight text-forest-900 dark:text-sand-50 sm:text-4xl">
+              „A stressz jelenléte nem a te hibád, de a megoldás a te kezedben van. Tedd meg az első lépést a belső csend felé.”
             </h2>
             <p className="mt-4 text-balance text-base text-ink-900/75 dark:text-sand-100/75 sm:text-lg">
-              Nem kell tovább egyedül cipelned a szüntelen feszültséget és a túlagyalást.
-              Napi 10 perc elegendő ahhoz, hogy visszaszerezd a figyelmedet és békében éld a napjaidat.
+              Kezdd el még ma az ingyenes 7 napos e-mail kurzust, és tapasztald meg a valódi idegrendszeri regenerációt.
             </p>
           </AnimatedSection>
 
+          {/* Ismételt feliratkozási űrlap a brief szerint */}
           <AnimatedSection className="mt-10 flex w-full justify-center">
             <SenderForm
               formId="eERn80"
               id="alapozo-form-bottom"
-              ctaLabel="Kérem a belső nyugalmat — Csatlakozom"
-              offerNote="100% ingyenes útmutató · Napi 10–15 perc · Bármikor leiratkozhatsz"
+              ctaLabel="Kérem a 7 napos alapozó kurzust!"
+              offerNote="100% ingyenes e-mail kurzus · Napi 2 perc elmélet, 5 perc gyakorlat · Bármikor leiratkozhatsz"
             />
           </AnimatedSection>
 
@@ -641,7 +529,7 @@ export default function AlapozoPage() {
 
       <StickyCTA
         targetId="alapozo-form"
-        label="Kérem az ingyenes alapozót"
+        label="Kérem a 7 napos alapozó kurzust!"
       />
     </main>
   );

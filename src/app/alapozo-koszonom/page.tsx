@@ -6,9 +6,9 @@ import SocialLinks from "@/components/SocialLinks";
 import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
 import { siteConfig } from "@/lib/site-config";
 
-const pageTitle = "Örülök, hogy itt vagy! — Meditációs Alapozó";
+const pageTitle = "Köszönöm a bizalmad! — Idegrendszeri Alapozó";
 const pageDescription =
-  "A feliratkozási kérelmed rögzítve. Erősítsd meg az emailedet, és kezdd el a hétnapos meditációs alapozó gyakorlatait.";
+  "Köszönöm a bizalmad! Az 1. napi levél már úton van a postaládádba. Nézd meg a Beérkezett (vagy Promóciók) mappát!";
 
 export const metadata: Metadata = {
   title: `${pageTitle} | ${siteConfig.brandName}`,
@@ -39,46 +39,44 @@ export default async function AlapozoKoszonomPage(props: {
                 </p>
                 <p className="mt-1.5 text-sm leading-relaxed text-ink-900/85 dark:text-sand-100/90">
                   A hozzájárulásod segít abban, hogy a jövőben még több ember számára tehessünk
-                  elérhetővé ingyenes, tiszta és minőségi meditációs útmutatókat.
+                  elérhetővé ingyenes, tiszta és minőségi idegrendszeri útmutatókat.
                 </p>
               </div>
             </div>
           </div>
         )}
 
-        {/* Felső státusz címke — Magas kontrasztú, jól olvasható arany/krém tipográfia */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-forest-900/15 bg-white/90 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 shadow-sm dark:border-sand-50/25 dark:bg-forest-800 dark:text-sand-50 sm:text-sm">
+        {/* Felső státusz címke — Magas kontrasztú, jól olvasható tipográfia */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-forest-900/15 bg-white/95 px-4 py-1.5 font-serif text-xs font-semibold uppercase tracking-[0.2em] text-forest-900 shadow-sm dark:border-sand-50/25 dark:bg-forest-800 dark:text-sand-50 sm:text-sm">
           <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
-          Sikeres regisztráció · Köszönjük, hogy csatlakoztál!
+          Gratulálok, a regisztrációt sikeres!
         </div>
 
-        {/* 1. FŐCÍM */}
+        {/* 1. FŐCÍM & ÜZENET A BRIEF SZERINT */}
         <h1 className="mt-5 text-balance font-serif text-3xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-5xl">
-          Örülök, hogy itt vagy!
+          Köszönöm a bizalmad!
         </h1>
 
-        <p className="mt-4 max-w-xl text-balance text-base leading-relaxed text-ink-900/85 dark:text-sand-100/90 sm:text-lg">
-          Elindulhatsz a saját meditációs gyakorlásod felé vezető úton. A következő 7 napban
-          lépésről lépésre segítünk megteremteni a belső nyugalmat a mindennapok pörgésében.
+        <p className="mt-4 max-w-xl text-balance text-base leading-relaxed text-ink-900/85 dark:text-sand-100/90 sm:text-xl font-medium">
+          Az 1. napi levél már úton van a postaládádba. Nézd meg a Beérkezett (vagy Promóciók) mappát!
         </p>
 
         {/* 1. LÉPÉS: GYORS ÉS EGYÉRTELMŰ POSTALÁDA MEGERŐSÍTÉS */}
-        <div className="mt-8 w-full rounded-2xl border border-forest-900/15 bg-white/90 p-6 text-left shadow-sm backdrop-blur-sm dark:border-sand-50/20 dark:bg-forest-800/80 sm:p-7">
+        <div className="mt-8 w-full rounded-2xl border border-forest-900/15 bg-white/95 p-6 text-left shadow-sm backdrop-blur-sm dark:border-sand-50/20 dark:bg-forest-800/80 sm:p-7">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row sm:items-start">
             <div>
               <div className="inline-flex items-center gap-2 font-serif text-xs font-bold uppercase tracking-wider text-forest-900 dark:text-sand-50">
                 <span className="rounded-full bg-forest-900/10 px-2 py-0.5 dark:bg-sand-50/15 dark:text-sand-50">1. Lépés:</span>
-                <span>Fontos megerősítés</span>
+                <span>Postafiók ellenőrzése</span>
               </div>
               <h2 className="mt-2 font-serif text-xl font-medium text-forest-900 dark:text-sand-50">
-                Aktiváld a feliratkozásodat a postaládádban!
+                Nyisd meg a levelet és erősítsd meg a feliratkozást!
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-ink-900/80 dark:text-sand-100/85">
-                Küldtünk egy jóváhagyó levelet a megadott e-mail címedre. Kattints a benne lévő
-                megerősítő linkre, hogy a napi leckék biztosan megérkezzenek hozzád.
+                Küldtünk egy megerősítő levelet az általad megadott e-mail címre. Kattints a levélben lévő gombra, hogy azonnal elindulhasson a 7 napos utazás.
               </p>
               <p className="mt-2 text-xs text-ink-900/65 dark:text-sand-100/70">
-                (Ha 1-2 percen belül nem látod, nézd meg a <strong>Promóciók</strong> vagy <strong>Spam</strong> mappát is.)
+                (Ha 1-2 percen belül nem látod az elsődleges mappában, kérlek nézd meg a <strong>Promóciók</strong> vagy <strong>Spam</strong> mappát is.)
               </p>
             </div>
             <div className="shrink-0 pt-1">
@@ -99,22 +97,18 @@ export default async function AlapozoKoszonomPage(props: {
           </div>
 
           <h2 className="mt-4 font-serif text-2xl font-medium tracking-tight text-forest-900 dark:text-sand-50 sm:text-3xl">
-            Szeretnél még több ingyenes tananyagot?
+            Szeretnéd támogatni a további ingyenes anyagokat?
           </h2>
 
           <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-900/85 dark:text-sand-100/85">
             <p>
-              Ezt a 7 napos meditációs alapozót azért készítettem el teljesen ingyenesen, hogy
-              minél többen megtapasztalhassák a belső békét dogmák és anyagi akadályok nélkül.
+              Ezt a 7 napos Idegrendszeri Alapozót azért készítettem el teljesen ingyenesen, hogy bárki megtapasztalhassa a belső stabilitást és a regenerációt.
             </p>
             <p>
-              Ha értékesnek találod ezt a kezdeményezést, egy tetszőleges összeggel (egy kávé vagy
-              egy könyv árával) <strong>itt közvetlenül az oldalon</strong> támogathatod a
-              további ingyenes meditációs gyakorlatok felvételét.
+              Ha értékesnek találod ezt a kezdeményezést, egy tetszőleges összeggel (egy kávé vagy egy könyv árával) <strong>itt közvetlenül az oldalon, natív Stripe fizetéssel</strong> támogathatod a jövőbeli anyagok és vezetett meditációk elkészítését.
             </p>
             <p className="text-xs italic text-ink-900/70 dark:text-sand-100/70">
-              * A támogatás teljesen opcionális: a kurzus minden leckéjét és vezetett hanganyagát
-              akkor is megkapod, ha most nem támogatsz.
+              * A támogatás teljesen opcionális: a 7 napos alapozó kurzus minden leckéjét és gyakorlatát akkor is maradéktalanul megkapod, ha most nem támogatsz.
             </p>
           </div>
 
@@ -124,7 +118,7 @@ export default async function AlapozoKoszonomPage(props: {
           </div>
 
           <p className="mt-4 text-center text-xs text-ink-900/60 dark:text-sand-100/60">
-            Köszönöm a bizalmadat és hogy időt szánsz a gyakorlásra!
+            Köszönöm a bizalmadat és hogy időt szánsz az idegrendszered lecsendesítésére!
           </p>
         </section>
 

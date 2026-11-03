@@ -89,7 +89,7 @@ export default function Header() {
                 : "text-ink-900/70 hover:text-ink-900 dark:text-sand-100/70 dark:hover:text-sand-50"
             }`}
           >
-            <span className="hidden sm:inline">Meditációs </span>Alapozó
+            <span className="hidden sm:inline">Idegrendszeri </span>Alapozó
           </Link>
           <Link
             href="/gyik"

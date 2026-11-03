@@ -7,9 +7,9 @@ import PrintButton from "@/components/PrintButton";
 import { siteConfig } from "@/lib/site-config";
 import { buildOpenGraph, buildTwitter } from "@/lib/metadata";
 
-const pageTitle = "Bónuszanyagok és Teljes Tananyag — Meditációs Alapozó";
+const pageTitle = "Bónuszanyagok és Teljes Tananyag — Idegrendszeri Alapozó";
 const pageDescription =
-  "A Meditációs Alapozó 7 napos teljes tananyaga, vezetett meditációs leiratai, kezdői segédlete, 14 napos folytatási terve és gyakorlási naplója.";
+  "Az Idegrendszeri Alapozó 7 napos teljes tananyaga, vezetett szomatikus gyakorlati leiratai, kezdői segédlete, 14 napos folytatási terve és gyakorlási naplója.";
 
 export const metadata: Metadata = {
   title: `${pageTitle} | ${siteConfig.brandName}`,
@@ -34,7 +34,7 @@ const LESSONS = [
     day: 1,
     title: "Kezdj el, úgy, ahogy vagy",
     subtitle: "A meditáció alapjai és a teljesítménykényszer oldása",
-    duration: "10 perc",
+    duration: "5 perc",
     anchor: "A természetes légzés és testérzetek",
     emailBody: `Kedves Gyakorló!
 
@@ -57,7 +57,7 @@ Ma csak annyi a feladatod, hogy leülj kényelmesen, engedd el a teljesítményk
     day: 2,
     title: "Találd meg a figyelmed kapaszkodóját",
     subtitle: "A figyelem visszatérése és a 3 lépéses keret",
-    duration: "10-12 perc",
+    duration: "5 perc",
     anchor: "A légzés mint figyelmi horgony",
     emailBody: `Kedves Gyakorló!
 
@@ -86,14 +86,14 @@ A 3 lépéses keret a mindennapi gyakorlásod vezérfonala:
     day: 3,
     title: "A tested mindig itt van",
     subtitle: "Testtudatosság, testpásztázás és alternatív figyelmi horgonyok",
-    duration: "12 perc",
+    duration: "5 perc",
     anchor: "Testérzetek és testpásztázás",
     emailBody: `Kedves Gyakorló!
-
+ 
 Nem mindenkinek kényelmes közvetlenül a légzésre figyelni — egyeseknél a légzés kontrollálása vagy szorongató érzése alakulhat ki. Jó hírem van: a figyelemnek nem kötelező a légzéshez tapadnia.
-
+ 
 A testünknek van egy páratlan tulajdonsága: míg az elménk a múltban és a jövőben kalandozik, a testünk mindig kizárólag a jelen pillanatban létezik. Ha kapcsolatba lépsz a testérzeteiddel, automatikusan a jelenbe érkezel.
-
+ 
 A mai leckében a testpásztázás (body scan) technikáját gyakoroljuk: átvizsgáljuk a testet tetőtől talpig, ítélkezés nélkül megfigyelve az érzeteket — a meleget, a hideget, a bizsergést vagy épp az érzetek hiányát. A cél nem az ellazulás kikényszerítése, hanem az egyszerű észlelés.`,
     meditationScript: `1. lépés: Ülj egyenesen vagy feküdj le hanyatt fekvésbe egy matracra, ha úgy jobban ellazul a hátad.
 
@@ -111,7 +111,7 @@ A mai leckében a testpásztázás (body scan) technikáját gyakoroljuk: átviz
     day: 4,
     title: "A gondolataid nem ellenségek",
     subtitle: "Gondolatok észlelése, ítélkezésmentes szemlélődés",
-    duration: "12-15 perc",
+    duration: "5 perc",
     anchor: "A gondolatok mint felhők az égen",
     emailBody: `Kedves Gyakorló!
 
@@ -134,7 +134,7 @@ Ma a „megfigyelő én” pozícióját gyakoroljuk: elképzeljük, hogy az elm
     day: 5,
     title: "Tágítsd ki a figyelmedet",
     subtitle: "Fókuszált vs. nyitott figyelem, hangok és terek",
-    duration: "12-15 perc",
+    duration: "5 perc",
     anchor: "A környezet hangjai és a nyitott tér",
     emailBody: `Kedves Gyakorló!
 
@@ -159,7 +159,7 @@ Ha megtanulsz békét kötni a hangokkal anélkül, hogy zavaró tényezőként 
     day: 6,
     title: "Meditáció a hétköznapokban",
     subtitle: "Tudatos jelenlét a szőnyegen kívül: séta és mindennapi cselekvés",
-    duration: "10-15 perc",
+    duration: "5 perc",
     anchor: "A lépések és a mozgás érzete",
     emailBody: `Kedves Gyakorló!
 
@@ -186,7 +186,7 @@ A fenntartható rutin kulcsa nem az, hogy órákat ülsz csendben, hanem az, hog
     day: 7,
     title: "A saját gyakorlásod kezdete",
     subtitle: "Integráció, önálló gyakorlat és a 14 napos folytatási terv",
-    duration: "15 perc",
+    duration: "5-7 perc",
     anchor: "A belső csend és a megnyugvás tere",
     emailBody: `Kedves Gyakorló!
 
@@ -195,17 +195,17 @@ Gratulálok! Megcsináltad a hét napot. Lehet, hogy voltak napok, amikor könny
 Ma összerakjuk az eddig tanultakat egy teljes, integrált meditációba: légzésfigyelés, testpásztázás, hangok észlelése és nyitott figyelem.
 
 A hét nap lezárult, de a gyakorlásod most kezdődik el igazán. Az alábbiakban megosztom veled a 14 napos folytatási tervet, amellyel stabil, tartós szokássá mélyítheted az önmagadra szánt napi perceket. Köszönöm a bizalmadat és a kitartásodat!`,
-    meditationScript: `1. lépés: Ülj le az immár ismerős stabil testhelyzetedbe. Érezd a hálát magad iránt, hogy rászántad ezt a hetet a figyelmed fejlesztésére.
+    meditationScript: `1. lépés: Ülj le az immár ismerős stabil testhelyzetedbe. Érezd a hálát magad iránt, hogy rászántad ezt a hetet az idegrendszered megnyugtatására.
 
-2. lépés: Kezdd a testeddel (1-2 perc): érezd a súlyt, a tartást, engedd le a vállaidat.
+2. lépés: Kezdd a testeddel (1 perc): érezd a testsúlyod, a talaj támaszát, engedd le a vállaidat.
 
-3. lépés: Térj át a légzésedre (3-4 perc): kövesd a belégzést és kilégzést a választott horgonyodnál. Ha gondolat érkezik: Észreveszem – visszatérek – folytatom.
+3. lépés: Térj át a nyújtott kilégzésre (2 perc): lassítsd a kilégzést, bekapcsolva a szívritmus lassulását (RSA).
 
-4. lépés: Nyisd ki a figyelmed a hangokra és a térre (3-4 perc): engedd meg a környezetnek, hogy pontosan olyan legyen, amilyen.
+4. lépés: Nyisd ki a figyelmed a tágas perifériára (1-2 perc): engedd el a csőlátást és a készenlétet.
 
-5. lépés: Zárásként pihenj meg a puszta éberségben (2-3 perc): nincsen semmi, amit meg kellene oldanod, sehova nem kell sietned. Csak lenni, itt és most.
+5. lépés: Zárásként pihenj meg a csendben (1 perc): nincsen semmi, amit meg kellene oldanod, csak a biológiai biztonság állapota.
 
-6. lépés: Végy egy mély lélegzetet, mozgasd meg az ujjaidat, és lassan nyisd ki a szemed.`,
+6. lépés: Végy egy fiziológiai sóhajt, mozgasd meg az ujjaidat, és lassan nyisd ki a szemed.`,
   },
 ];
 
@@ -231,26 +231,26 @@ const POSTURE_GUIDES = [
 // 14 NAPOS FOLYTATÁSI TERV
 const EXTENSION_PLAN = [
   {
-    period: "1. hét (8–14. nap): A rutin stabilizálása",
-    dailyTarget: "Napi 10–12 perc",
+    period: "1. hét (8–14. nap): A mikrorutin stabilizálása",
+    dailyTarget: "Napi 5 perc célzott szomatikus gyakorlat",
     focus:
-      "Válassz ki egyetlen fix időpontot a napodban (pl. közvetlenül ébredés után vagy munka előtt). Használd a 2. és 3. nap technikáját (légzés és testérzetek). Ne akarj hosszabb időt ülni, a fókusz a napi rendszerességen van.",
+      "Válassz ki egyetlen fix időpontot a napodban (pl. közvetlenül ébredés után, az ebéd utáni szünetben vagy lefekvés előtt). Alkalmazd a fiziológiai sóhajt vagy a nyújtott kilégzést. A fókusz nem a hosszúságon, hanem a napi rendszerességen van.",
   },
   {
     period: "2. hét (15–21. nap): Elmélyítés és hétköznapi jelenlét",
-    dailyTarget: "Napi 12–15 perc ülő + 2 db 1 perces mikro-meditáció",
+    dailyTarget: "Napi 5–7 perc gyakorlat + 1 perces mikro-szünetek",
     focus:
-      "Gyakorold a 4. és 5. nap technikáját (gondolatok és hangok nyitott szemlélése). Napközben állj meg kétszer 60 másodpercre (pl. mielőtt belépsz egy ajtón, vagy mielőtt elindítod az autót), és végy 3 tudatos lélegzetet.",
+      "Gyakorold a perifériás látás és a szomatikus földelés technikáját. Napközben feszült helyzetben állj meg 60 másodpercre (pl. mielőtt belépsz egy megbeszélésre), és végy 3 tudatos fiziológiai sóhajt.",
   },
 ];
 
 // GYAKORLÁSI NAPLÓ KÉRDÉSSOR
 const JOURNAL_PROMPTS = [
   "Milyen napszakban gyakoroltam ma, és milyen volt a kezdeti fizikai állapotom (fáradt, feszült, nyugodt)?",
-  "Milyen figyelmi kapaszkodót (légzés, testérzet, hangok) használtam ma a legkönnyebben?",
-  "Hányszor vettem észre, hogy elkalandoztam, és milyen hangulatban hoztam vissza a figyelmem (bosszankodva vagy szelíden)?",
+  "Milyen figyelmi kapaszkodót (légzésritmus, talpi testérzet, izomlazítás) használtam ma a legkönnyebben?",
+  "Hányszor vettem észre, hogy a testem feszültségbe zárt, és sikerült-e kioldanom a mikromozgással?",
   "Milyen gondolati minta ismétlődött a legtöbbször a csendben?",
-  "Hogyan hatott a mai 10–15 perc a gyakorlás utáni első órára?",
+  "Hogyan hatott a mai 5–7 perces gyakorlat a közérzetedre és a napodra?",
 ];
 
 // ALAPOZÓ GYIK

@@ -153,7 +153,7 @@ export default function Hero() {
                 <strong className="font-medium text-forest-900 dark:text-sand-50">
                   RYT-500
                 </strong>{" "}
-                — regisztrált, 500 órás jógaoktató-képzés minősítés.
+                — regisztrált, 500 órás jógaoktató-képzés minősítés (Rudra YogPeeth Yoga Ashram, Rishikesh).
               </>
             }
           >

@@ -33,7 +33,7 @@ export default function Footer() {
               href="/alapozo"
               className="-my-2 inline-block py-2 underline underline-offset-2 transition-colors duration-200 hover:text-sand-50"
             >
-              Meditációs Alapozó
+              Idegrendszeri Alapozó
             </Link>
             <Link href="/gyik" className="-my-2 inline-block py-2 underline underline-offset-2 transition-colors duration-200 hover:text-sand-50">
               Gyakori kérdések

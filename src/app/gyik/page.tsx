@@ -174,7 +174,7 @@ const items: FaqItem[] = [
   {
     question: "Mi az a RYT-500 és a Yoga Alliance International?",
     answer:
-      "Az RYT-500 egy regisztrált, 500 órás jógaoktató-képzés minősítés. A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete, amelyik ezt a minősítést kiadja.",
+      "Az RYT-500 egy regisztrált, 500 órás jógaoktató-képzés minősítés (amelyet Indiában, Rishikeshben, a Rudra YogPeeth Yoga Ashramban végeztem el). A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete, amelyik ezt a minősítést kiadja.",
   },
   {
     question: "Lesz-e a jövőben fizetős program?",
@@ -283,7 +283,7 @@ const faqJsonLd = {
       name: "Mi az a RYT-500 és a Yoga Alliance International?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Az RYT-500 egy regisztrált, 500 órás jógaoktató-képzés minősítés. A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete.",
+        text: "Az RYT-500 egy regisztrált, 500 órás jógaoktató-képzés minősítés, amelyet Indiában, Rishikeshben a Rudra YogPeeth Yoga Ashramban szereztem meg. A Yoga Alliance International a jógaoktatói képzések legelterjedtebb nemzetközi akkreditációs szervezete.",
       },
     },
     {

@@ -27,7 +27,8 @@ export default function Home() {
         name: siteConfig.ownerFullName,
         url: siteConfig.url,
         image: `${siteConfig.url}/images/kardos-balint-profil.jpg`,
-        jobTitle: "Jógaoktató-jelölt (RYT-500)",
+        jobTitle:
+          "Jógaoktató (500 órás képzés, Rudra YogPeeth Yoga Ashram, Rishikesh) és Lifestyle Medicine Consultant (LifestylePro Academy)",
         sameAs: [
           siteConfig.social.tiktok,
           siteConfig.social.instagram,

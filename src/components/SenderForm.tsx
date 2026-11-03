@@ -326,7 +326,7 @@ export default function SenderForm({
             consentLabel
           ) : isAlapozo ? (
             <>
-              Elfogadom, hogy a Meditációs Alapozó leckéit és hanganyagait
+              Elfogadom, hogy az Idegrendszeri Alapozó leckéit és hanganyagait
               megkapjam emailben, és megismertem az{" "}
               <Link
                 href="/adatkezeles"
@@ -377,7 +377,7 @@ export default function SenderForm({
         transition={SPRING.hover}
         className="mt-5 w-full rounded-full bg-saffron-500 px-8 py-3.5 font-medium text-forest-900 shadow-soft outline-none transition-all duration-200 hover:bg-saffron-600 hover:shadow-glow-saffron focus-visible:ring-2 focus-visible:ring-forest-900/40 disabled:cursor-wait disabled:opacity-70 dark:focus-visible:ring-sand-50/50"
       >
-        {status === "loading" ? "Küldés…" : activeCtaLabel.includes("→") ? activeCtaLabel : `${activeCtaLabel} →`}
+        {status === "loading" ? "Küldés…" : (activeCtaLabel.includes("→") || activeCtaLabel.includes("!")) ? activeCtaLabel : `${activeCtaLabel} →`}
       </motion.button>
 
       {/* Micro-trust elem a konverziós súrlódás csökkentésére */}
