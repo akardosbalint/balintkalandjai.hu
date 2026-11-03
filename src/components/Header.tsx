@@ -73,9 +73,9 @@ export default function Header() {
         >
           <Link
             href="/"
-            className={`rounded-full px-2.5 py-1.5 transition-colors sm:px-3.5 ${
+            className={`rounded-full px-2.5 py-1.5 font-medium transition-colors sm:px-3.5 ${
               isHome
-                ? "bg-forest-900/10 font-medium text-forest-900 dark:bg-sand-50/10 dark:text-sand-50"
+                ? "bg-forest-900/10 text-forest-900 dark:bg-sand-50/15 dark:text-sand-50"
                 : "text-ink-900/70 hover:text-ink-900 dark:text-sand-100/70 dark:hover:text-sand-50"
             }`}
           >
@@ -83,9 +83,9 @@ export default function Header() {
           </Link>
           <Link
             href="/alapozo"
-            className={`rounded-full px-2.5 py-1.5 transition-colors sm:px-3.5 ${
+            className={`rounded-full px-2.5 py-1.5 font-medium transition-colors sm:px-3.5 ${
               isAlapozo
-                ? "bg-terracotta-500/15 font-medium text-terracotta-700 dark:bg-terracotta-400/20 dark:text-terracotta-300"
+                ? "bg-forest-900/10 text-forest-900 dark:bg-sand-50/15 dark:text-sand-50"
                 : "text-ink-900/70 hover:text-ink-900 dark:text-sand-100/70 dark:hover:text-sand-50"
             }`}
           >
@@ -93,9 +93,9 @@ export default function Header() {
           </Link>
           <Link
             href="/gyik"
-            className={`hidden rounded-full px-2.5 py-1.5 transition-colors sm:inline-block sm:px-3.5 ${
+            className={`hidden rounded-full px-2.5 py-1.5 font-medium transition-colors sm:inline-block sm:px-3.5 ${
               isGyik
-                ? "bg-forest-900/10 font-medium text-forest-900 dark:bg-sand-50/10 dark:text-sand-50"
+                ? "bg-forest-900/10 text-forest-900 dark:bg-sand-50/15 dark:text-sand-50"
                 : "text-ink-900/70 hover:text-ink-900 dark:text-sand-100/70 dark:hover:text-sand-50"
             }`}
           >
